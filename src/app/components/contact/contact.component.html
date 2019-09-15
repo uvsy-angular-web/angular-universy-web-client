@@ -1,0 +1,25 @@
+<div class="container">
+    <br>
+    <div class="row justify-content-center">
+        <div>
+            <img src="https://i.ibb.co/Vm2TrMF/Icono-documento-negro-1.png" alt="logo-universy">
+            <br>
+            <br>
+            <p>info.universy@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h5>¡ Conocenos !</h5>
+        <hr>
+    </div>
+
+    <div class="row justify-content-center">
+        <div *ngFor="let contact of contacts" class="col-md-2 text-center">
+            <img [src]="contact.img" alt="foto de {{contact.name}}">
+            <p> {{ contact.lastname}} </p>
+            <p> {{ contact.name}} </p>
+            <b><p> {{ contact.rol}} </p></b>
+        </div>
+    </div>
+</div>
