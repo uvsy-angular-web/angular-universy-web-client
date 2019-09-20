@@ -7,6 +7,7 @@ import { TopNavBarComponent } from './components/core/top-nav-bar/top-nav-bar.co
 import { ContactComponent } from './components/core/contact/contact.component';
 import { FooterComponent } from './components/core/footer/footer.component';
 import { HomeComponent } from './components/core/home/home.component';
+import { InstitutionComponent } from './components/institution/institution.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HomeComponent } from './components/core/home/home.component';
     TopNavBarComponent,
     ContactComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    InstitutionComponent
   ],
   imports: [
     BrowserModule,
