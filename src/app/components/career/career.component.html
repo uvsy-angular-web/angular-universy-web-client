@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <h3>Mis Carreras</h3>
+        </div>
+        <div>
+            <a href="#" data-toggle="modal" data-target="#newCareer">+ Agregar Carrera</a>
+        </div>
+    </div>
+    <br>
+
+    <div class="row justify-content-center">
+        <div *ngFor="let career of careers" class="col-sm-4 text-center">
+            <button class="btn button-career "> {{ career.name}} </button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal Registrar Carrera-->
+<div class="modal fade" id="newCareer" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Registrar Carrera</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div> 
+

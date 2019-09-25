@@ -8,6 +8,7 @@ import { ContactComponent } from './components/core/contact/contact.component';
 import { FooterComponent } from './components/core/footer/footer.component';
 import { HomeComponent } from './components/core/home/home.component';
 import { InstitutionComponent } from './components/institution/institution.component';
+import { CareerComponent } from './components/career/career.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InstitutionComponent } from './components/institution/institution.compo
     ContactComponent,
     FooterComponent,
     HomeComponent,
-    InstitutionComponent
+    InstitutionComponent,
+    CareerComponent
   ],
   imports: [
     BrowserModule,
