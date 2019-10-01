@@ -3,6 +3,8 @@
     color: white;
     padding: 5%;
     font-size: 20px;
+    width:38rem;
+    height: 12rem;
 }
 
 .btn-primary{
@@ -12,6 +14,9 @@
 }
 
 .btn-border{
-
     border-radius: 42px;
+}
+.onda-footer{
+    position: fixed;
+    top: 75%;
 }
