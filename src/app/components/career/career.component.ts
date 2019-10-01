@@ -9,7 +9,7 @@ export class CareerComponent implements OnInit {
 
   careers = [
     { name: 'Ingeniería en Sistemas de Información' },
-    { name: 'Ingeniería Industrial' }
+    { name: 'Ingeniería Industrial' },
    ]
 
   constructor() { }
