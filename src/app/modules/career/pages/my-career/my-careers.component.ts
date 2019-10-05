@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-career',
-  templateUrl: './career.component.html',
-  styleUrls: ['./career.component.css']
+  selector: 'app-my-careers',
+  templateUrl: './my-careers.component.html',
+  styleUrls: ['./my-careers.component.css']
 })
-export class CareerComponent implements OnInit {
+export class MyCareersComponent implements OnInit {
 
   careers = [
     {name: 'Ingeniería en Sistemas de Información'},
     {name: 'Ingeniería Industrial'},
+    {name: 'Ingeniería Química'},
   ];
 
   constructor() {
@@ -17,4 +18,5 @@ export class CareerComponent implements OnInit {
 
   ngOnInit() {
   }
+
 }

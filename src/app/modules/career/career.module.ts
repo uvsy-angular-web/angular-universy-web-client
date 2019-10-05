@@ -2,11 +2,11 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {CareerRoutingModule} from './career-routing.module';
-import {CareerComponent} from './pages/career/career.component';
+import {MyCareersComponent} from './pages/my-career/my-careers.component';
 
 
 @NgModule({
-  declarations: [CareerComponent],
+  declarations: [MyCareersComponent],
   imports: [
     CommonModule,
     CareerRoutingModule
