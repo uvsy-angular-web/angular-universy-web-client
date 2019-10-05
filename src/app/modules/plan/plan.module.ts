@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { PlanRoutingModule } from './plan-routing.module';
 import {PlanComponent} from './pages/plan/plan.component';
+import { PlanEditComponent } from './pages/plan-edit/plan-edit.component';
 
 @NgModule({
   declarations: [
-    PlanComponent
+    PlanComponent,
+    PlanEditComponent
   ],
   imports: [
     CommonModule,
