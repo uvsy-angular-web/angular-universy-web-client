@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CareerComponent} from "./pages/career/career.component";
+import {CareerComponent} from './pages/career/career.component';
 
 const routes: Routes = [
   {path: '', component: CareerComponent}
