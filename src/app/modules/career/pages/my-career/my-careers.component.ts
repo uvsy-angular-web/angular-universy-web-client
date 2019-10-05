@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { ModalComponent } from '../../components/modal/modal.component';
 
 @Component({
   selector: 'app-my-careers',
