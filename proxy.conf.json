@@ -1,0 +1,7 @@
+{
+  "/universy/institution": {
+    "target": "https://b14g773oq5.execute-api.sa-east-1.amazonaws.com/dev3",
+    "secure": false
+  }
+}
+

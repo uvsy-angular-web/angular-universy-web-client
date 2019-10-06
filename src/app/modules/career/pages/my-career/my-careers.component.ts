@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CareerService} from '../../../../core/services/career.service';
 
 @Component({
   selector: 'app-my-careers',
@@ -13,10 +14,19 @@ export class MyCareersComponent implements OnInit {
     {name: 'Ingeniería Química'},
   ];
 
-  constructor() {
+  constructor(private careerService: CareerService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this._getCareers();
+    this._addProgram();
+  }
+
+  private _getCareers() {
+    this.careerService.getCareers();
+  }
+  private _addProgram() {
+    this.careerService.addProgram();
   }
 
 }

@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {TopNavBarComponent} from './top-nav-bar/top-nav-bar.component';
 import {FooterComponent} from './footer/footer.component';
 import {CareerService} from './services/career.service';
+import {SystemConfigService} from './services/config/system-config.service';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import {CareerService} from './services/career.service';
     FooterComponent
   ],
   providers: [
-    CareerService
+    CareerService,
+    SystemConfigService,
+    // {provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true},
   ]
 })
 export class CoreModule {
