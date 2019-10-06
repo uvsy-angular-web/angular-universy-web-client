@@ -1,5 +1,4 @@
 .button-career{
-    background-color: #E5C028;
     color: white;
     padding: 5%;
     font-size: 20px;
@@ -21,4 +20,12 @@
 .onda-footer{
     position: fixed;
     top: 75%;
+}
+
+.btn-career-on{
+    background-color: #E5C028;
+}
+
+.btn-career-off{
+    background-color: gray;
 }

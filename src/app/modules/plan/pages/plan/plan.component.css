@@ -1,0 +1,30 @@
+
+
+.btn-plan-on{
+    background-color: #E5C028;
+}
+
+.btn-plan-off{
+    background-color: gray;
+}
+
+.btn-violet{
+    background-color:#3D1255;
+    border-color: #3D1255;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    color: white;
+}
+
+.well{
+    height: 12rem;
+    width: 100%;
+    border-radius: 25px;
+}
+
+a{
+    color:white;
+}
+
+a:link { color: black ; text-decoration: none } 
+a:hover { color: black ; text-decoration: none}
+a:active { color:black ; text-decoration: none} 
