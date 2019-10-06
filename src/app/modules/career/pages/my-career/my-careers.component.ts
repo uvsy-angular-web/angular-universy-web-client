@@ -9,10 +9,10 @@ import { ModalComponent } from '../../components/modal/modal.component';
 export class MyCareersComponent implements OnInit {
 
   careers = [
-    {name: 'Ingeniería en Sistemas de Información', active: true},
-    {name: 'Ingeniería Industrial', active: false},
-    {name: 'Ingeniería Química', active: true},
-    {name: 'Otra Ingeniería capaz', active: false},
+    {careerName: 'Ingeniería en Sistemas de Información', active: true},
+    {careerName: 'Ingeniería Industrial', active: false},
+    {careerName: 'Ingeniería Química', active: true},
+    {careerName: 'Otra Ingeniería capaz', active: false},
   ];
 
   constructor() {
