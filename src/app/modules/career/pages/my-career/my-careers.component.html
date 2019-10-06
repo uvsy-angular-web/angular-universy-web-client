@@ -16,9 +16,10 @@
         <div *ngFor="let career of careers" class="col-sm-5 ">
             <button class="btn button-career" 
                 [ngClass]="{
-                'btn-career-on':career.active === 'true',
-                'btn-career-off':career.active === 'false'}">
+                'btn-career-on' :career.active === true,
+                'btn-career-off':career.active === false}">
                 {{ career.name}}
+                <h5 [hidden]="career.active === true">-Inactiva-</h5>
             </button>
         </div>
     </div>
