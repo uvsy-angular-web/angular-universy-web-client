@@ -9,7 +9,7 @@ export class SystemConfigService {
   readonly APPLICATION_JSON = 'application/json';
 
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
   public static getBaseUrl(): string {
