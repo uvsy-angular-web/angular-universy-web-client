@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './config/system-config.service';
+import {Career, Institution} from '../../shared/models/career.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,25 +23,26 @@ export class CareerService {
       }
     );
   }
-  addProgram() {
+
+  addCareer(career: Career, institution: Institution) {
     const body = {
-      careerKey: {
-        institutionKey: 'FRC',
-        careerCode: 'K'
-      },
-      uuid: '2937c937-e435-490e-85cf-9f7790d3a699',
-      name: 'Plan 2003',
-      validFrom: '26/03/2008'
+      institutionKey: institution.institutionKey,
+      careerName: career.careerName
     };
-    const baseUrl = SystemConfigService.getBaseUrl();
-    const headers = this.systemConfigService.getHeader();
-    this.http.post(baseUrl + '/universy/institution/programs', body, {headers}).subscribe(
+    const baseUrl = CareerService._getBaseUrl();
+    const headers = this._getHeaders();
+    this.http.put(baseUrl + '/universy/institution/careers', body, {headers}).subscribe(
       (value) => {
         console.log(value);
       }
     );
   }
+
   private _getHeaders() {
     return this.systemConfigService.getHeader();
+  }
+
+  private static _getBaseUrl() {
+    return SystemConfigService.getBaseUrl();
   }
 }

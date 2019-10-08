@@ -11,7 +11,6 @@ export class Career {
     this.active = active;
   }
 }
-
 export class Institution {
   institutionKey: string;
   name: string;

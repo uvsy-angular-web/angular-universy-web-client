@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {CareerService} from '../../../../core/services/career.service';
 import {InstitutionService} from '../../../../core/services/institution.service';
-import {Career, Institutions} from '../../../../shared/models/career.model';
+import {Career, Institution, Institutions} from '../../../../shared/models/career.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CareerModalComponent} from '../../components/career-modal/career-modal.component';
+import {CareerService} from '../../../../core/services/career.service';
 
-const FIRST_INSTITUTION_INDEX = 0;
 
 @Component({
   selector: 'app-my-careers',
@@ -13,29 +14,40 @@ const FIRST_INSTITUTION_INDEX = 0;
 
 export class MyCareersComponent implements OnInit {
   public;
-  careers: Career[] = [];
+  institution: Institution = new Institution();
 
-  constructor(private institutionService: InstitutionService) {
+  constructor(
+    private institutionService: InstitutionService,
+    private careerService: CareerService,
+    private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
     this._getCareers();
-    // this._addProgram();
   }
 
   private _getCareers() {
-    this.institutionService.getCareers().subscribe(
-      (institution: Institutions) => {
+    this.institutionService.getInstitution().subscribe(
+      (institution: Institution) => {
         if (institution) {
-          this.careers = institution.institutions[FIRST_INSTITUTION_INDEX].careers;
-          // TODO: Change this ir order to get only the institution that correspond
+          this.institution = institution;
         }
       }
     );
   }
 
-  private _addProgram() {
-    this.institutionService.addProgram();
+  public openNewCareerModal() {
+    const modalRef = this.modalService.open(CareerModalComponent);
+    modalRef.componentInstance.title = 'Agregar carrera';
+    modalRef.componentInstance.confirmButtonText = 'Agregar';
+    modalRef.componentInstance.confirmEvent.subscribe((career) => {
+      this.addCareer(career);
+    });
   }
+
+  private addCareer(career: Career) {
+    this.careerService.addCareer(career, this.institution);
+  }
+
 
 }
