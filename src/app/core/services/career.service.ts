@@ -11,19 +11,6 @@ export class CareerService {
   constructor(private http: HttpClient, private systemConfigService: SystemConfigService) {
   }
 
-
-  getCareers() {
-    const baseUrl = SystemConfigService.getBaseUrl();
-    const headers = this._getHeaders();
-    const params = new HttpParams()
-      .set('institutionKey', 'FRC'); // TODO: change this, dont harcodear
-    this.http.get(baseUrl + '/universy/institution', {headers, params}).subscribe(
-      (value) => {
-        console.log(value);
-      }
-    );
-  }
-
   addCareer(career: Career, institution: Institution) {
     const body = {
       institutionKey: institution.institutionKey,

@@ -27,22 +27,4 @@ export class InstitutionService {
         }
       );
   }
-
-/*  addProgram() {
-    const body = {
-      careerKey: {
-        institutionKey: 'FRC',
-        careerCode: 'K'
-      },
-      name: '21:14-PUT',
-      validFrom: '26/03/2020'
-    };
-    const baseUrl = SystemConfigService.getBaseUrl();
-    const headers = this.systemConfigService.getHeader();
-    this.http.put(baseUrl + '/universy/institution/programs', body, {headers}).subscribe(
-      (value) => {
-        console.log(value);
-      }
-    );
-  }*/
 }
