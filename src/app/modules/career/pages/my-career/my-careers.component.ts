@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {InstitutionService} from '../../../../core/services/institution.service';
-import {Career, Institution, Institutions} from '../../../../shared/models/career.model';
+import {Career, Institution} from '../../../../shared/models/career.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CareerModalComponent} from '../../components/career-modal/career-modal.component';
 import {CareerService} from '../../../../core/services/career.service';
+import {NotificationService} from '../../../../shared/modals/notification.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class MyCareersComponent implements OnInit {
   constructor(
     private institutionService: InstitutionService,
     private careerService: CareerService,
+    private notificationService: NotificationService,
     private modalService: NgbModal) {
   }
 
@@ -46,7 +48,14 @@ export class MyCareersComponent implements OnInit {
   }
 
   private addCareer(career: Career) {
-    this.careerService.addCareer(career, this.institution);
+    this.careerService.addCareer(career, this.institution).subscribe(
+      () => {
+        this._getCareers();
+      }, ((error) => {
+        this.notificationService.showError(error);
+      })
+    );
+
   }
 
 

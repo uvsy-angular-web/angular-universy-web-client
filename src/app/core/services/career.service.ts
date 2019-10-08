@@ -31,11 +31,7 @@ export class CareerService {
     };
     const baseUrl = CareerService._getBaseUrl();
     const headers = this._getHeaders();
-    this.http.put(baseUrl + '/universy/institution/careers', body, {headers}).subscribe(
-      (value) => {
-        console.log(value);
-      }
-    );
+    return this.http.put(baseUrl + '/universy/institution/careers', body, {headers});
   }
 
   private _getHeaders() {
