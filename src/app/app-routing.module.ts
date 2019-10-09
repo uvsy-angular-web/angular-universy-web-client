@@ -1,18 +1,36 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ContactComponent } from './components/core/contact/contact.component';
-import { HomeComponent } from 'src/app/components/core/home/home.component';
-import { InstitutionComponent } from './components/institution/institution.component';
-import { CareerComponent} from './components/career/career.component'
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HomeModule} from './modules/home/home.module';
+
 
 const routes: Routes = [
-  {path: '' , component: HomeComponent},
-  {path: 'institution' , component: InstitutionComponent},
-  {path: 'career' , component: CareerComponent}
+
+  {
+    path: '',
+    loadChildren: () => import('./modules/home/home.module').then(mod => mod.HomeModule)
+  },
+  {
+    path: 'career',
+    loadChildren: () => import('./modules/career/career.module').then(mod => mod.CareerModule)
+  },
+  {
+    path: 'institution',
+    loadChildren: () => import('./modules/institution/institution.module').then(mod => mod.InstitutionModule)
+  },
+  {
+    path: 'contact-info',
+    loadChildren: () => import('./modules/contact-info/contact-info.module').then(mod => mod.ContactInfoModule)
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), HomeModule],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
