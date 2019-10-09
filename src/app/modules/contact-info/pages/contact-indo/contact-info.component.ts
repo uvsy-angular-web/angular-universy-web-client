@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Contact} from '../../../../shared/models/contact.model';
 
 @Component({
   selector: 'app-contact-info',
@@ -6,43 +7,47 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./contact-info.component.css']
 })
 export class ContactInfoComponent implements OnInit {
-  contacts = [
-    {
-      name: 'Camila Alejandra',
-      lastname: 'Corrales',
-      img: 'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-128.png',
-      rol: 'Quality Assurance'
-    },
-    {
-      name: 'Guido',
-      lastname: 'Henry',
-      img: 'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/3_avatar-128.png',
-      rol: 'Developed'
-    },
-    {
-      name: 'Lorena Soledad',
-      lastname: 'Ledesma',
-      img: 'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/9_avatar-128.png',
-      rol: 'Scrum Master'
-    },
-    {
-      name: 'Maximiliano',
-      lastname: 'Pomar',
-      img: 'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/8_avatar-128.png',
-      rol: 'UX/UI Designer'
-    },
-    {
-      name: 'Gonzalo Alejandro',
-      lastname: 'Saad',
-      img: 'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/7_avatar-128.png',
-      rol: 'Developed'
-    }
-  ];
+  contacts: Contact[];
 
   constructor() {
   }
 
   ngOnInit() {
+    this.initializeContacts();
+  }
+
+  private initializeContacts() {
+    this.contacts = [
+      new Contact(
+        'Camila Alejandra',
+        'Corrales',
+        'Quality Assurance',
+        'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-128.png'
+      ),
+      new Contact(
+        'Guido',
+        'Henry',
+        'Developed',
+        'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/3_avatar-128.png'
+      ),
+      new Contact(
+        'Lorena Soledad',
+        'Ledesma',
+        'Scrum Master',
+        'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/9_avatar-128.png'
+      ), new Contact(
+        'Maximiliano',
+        'Pomar',
+        'UX/UI Designer',
+        'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/8_avatar-128.png'
+      ),
+      new Contact(
+        'Maximiliano',
+        'Saad',
+        'Developed',
+        'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/7_avatar-128.png'
+      )
+    ];
   }
 
 }

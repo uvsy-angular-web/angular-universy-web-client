@@ -6,21 +6,21 @@ import configJson from '@config/config.json';
   providedIn: 'root'
 })
 export class SystemConfigService {
-  readonly APPLICATION_JSON = 'application/json';
 
 
   constructor() {
   }
-
-  public static getBaseUrl(): string {
-    return `${configJson.baseEndpoint}/${configJson.stage}`;
-  }
+  readonly APPLICATION_JSON = 'application/json';
 
   public getHeader(): HttpHeaders {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Content-type', this.APPLICATION_JSON);
     headers = headers.append('x-api-key', configJson.apiKey);
     return headers;
+  }
+
+  public static getBaseUrl(): string {
+    return `${configJson.baseEndpoint}/${configJson.stage}`;
   }
 
 }
