@@ -1,31 +1,52 @@
 
-
-.btn-plan-on{
-    background-color: #E5C028;
+.btn-plan-on {
+  background-color: #E5C028;
 }
 
-.btn-plan-off{
-    background-color: gray;
+.btn-plan-on:hover {
+  background-color: #eec829;
 }
 
-.btn-violet{
-    background-color:#3D1255;
-    border-color: #3D1255;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    color: white;
-    
+.btn-plan-off {
+  background-color: gray;
 }
 
-.well{
-    height: 12rem;
-    width: 100%;
-    border-radius: 25px;
+.btn-plan-off:hover {
+  background-color: #979797;
 }
 
-a{
-    color:white;
+.btn-violet {
+  background-color: #3D1255;
+  border-color: #3D1255;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: white;
+
 }
 
-a:link { color: black ; text-decoration: none } 
-a:hover { color: black ; text-decoration: none}
-a:active { color:black ; text-decoration: none} 
+.career-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.program {
+  cursor: pointer;
+  width: 100%;
+  border-radius: 25px;
+  margin: 2rem;
+  padding: 2rem;
+  transition: all 100ms ease-in-out;
+}
+
+.not-pusblished {
+  border-left: 2px solid white;
+}
+
+.plan-name {
+  color: white;
+}
+
+i {
+  cursor: pointer;
+}

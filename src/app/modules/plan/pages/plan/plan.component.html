@@ -1,34 +1,27 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 ">
-            <h3>
-                <span class="glyphicon glyphicon-circle-arrow-left"></span>
-                carreerName
-                <span class="glyphicon glyphicon-pencil"></span>
-            </h3>
-            <hr>
-        </div>
+  <div class="row">
+    <div class="col-sm-12 ">
+       <i class="material-icons">arrow_back</i>
+        <span class="career-title">careerName</span>
+        <i class="material-icons">edit</i>
+      <hr>
     </div>
+  </div>
 
-    <div *ngFor="let plan of planes" class="col-xs-12 text-center">
-        <div class="well"
-            [ngClass]="{'btn-plan-off' :plan.published === true, 'btn-plan-on': plan.published === false }">
-            <div class="col-xs-9 text-plan">
-                <h3>
-                    <a href="">
-                        {{plan.name}}
-                        <br>
-                        Desde: {{plan.validfrom}}
-                    </a>
-                </h3>
-            </div>
-            <div class="col-xs-3" *ngIf="!plan.published">
-                <br>
-                <button class="btn btn-violet">Publicar</button>
-            </div>
-        </div>
+  <div *ngFor="let plan of planes" class="row text-left program"
+       [ngClass]="{'btn-plan-off' :plan.published , 'btn-plan-on': !plan.published }"
+       (click)="navigateToViewPlanPage(plan)">
+    <div class="col-8">
+      <h3 class="plan-name">
+          {{plan.name}}
+          <br>
+          Desde: {{plan.validfrom}}
+      </h3>
     </div>
-
+    <div class="col-4 text-center not-pusblished" *ngIf="!plan.published">
+      <br>
+      <button class="btn btn-violet">Publicar</button>
+    </div>
+  </div>
 </div>
+

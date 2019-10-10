@@ -5,6 +5,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CareerModalComponent} from '../../components/career-modal/career-modal.component';
 import {CareerService} from '../../../../core/services/career.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class MyCareersComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private notificationService: NotificationService,
+    private router: Router,
     private modalService: NgbModal) {
   }
 
@@ -45,6 +47,10 @@ export class MyCareersComponent implements OnInit {
     modalRef.componentInstance.confirmEvent.subscribe((career) => {
       this.addCareer(career);
     });
+  }
+
+  public navigateToPlanPage(career: Career) {
+    this.router.navigate(['/plan', career.careerKey.institutionKey, career.careerKey.careerCode]);
   }
 
   private addCareer(career: Career) {

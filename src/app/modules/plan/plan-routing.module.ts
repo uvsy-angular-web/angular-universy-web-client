@@ -5,8 +5,8 @@ import { PlanEditComponent } from './pages/plan-edit/plan-edit.component';
 
 
 const routes: Routes = [
-  {path: '', component: PlanComponent},
-  {path: 'plan-edit', component: PlanEditComponent},
+  {path: ':institutionKey/:careerCode', component: PlanComponent},
+  {path: 'plan-edit/:planCode', component: PlanEditComponent},
 ];
 
 @NgModule({
