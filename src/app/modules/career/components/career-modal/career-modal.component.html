@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelAction()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" [formGroup]="form">
+  <div class="form-group">
+    <label for="careerName">
+      Nombre:
+    </label>
+    <input id="careerName" class="form-control" type="text" formControlName="careerName">
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>
+  <button type="button" class="btn btn-primary" (click)="confirmAction()">{{confirmButtonText}}</button>
+</div>

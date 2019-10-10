@@ -2,16 +2,24 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {CareerRoutingModule} from './career-routing.module';
-import {CareerComponent} from './pages/career/career.component';
+import {MyCareersComponent} from './pages/my-career/my-careers.component';
+import {CareerModalComponent} from './components/career-modal/career-modal.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [CareerComponent],
+  declarations: [
+    MyCareersComponent,
+    CareerModalComponent
+  ],
   imports: [
     CommonModule,
-    CareerRoutingModule
+    CareerRoutingModule, NgbModule,
+    NgbModule.forRoot(), ReactiveFormsModule
   ],
-
+  entryComponents: [CareerModalComponent]
 })
+
 export class CareerModule {
 }
