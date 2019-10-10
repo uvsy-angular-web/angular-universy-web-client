@@ -21,7 +21,6 @@ import {SystemConfigService} from './services/config/system-config.service';
   providers: [
     CareerService,
     SystemConfigService,
-    // {provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true},
   ]
 })
 export class CoreModule {

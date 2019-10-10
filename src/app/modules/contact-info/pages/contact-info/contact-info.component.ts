@@ -27,7 +27,7 @@ export class ContactInfoComponent implements OnInit {
       new Contact(
         'Guido',
         'Henry',
-        'Developed',
+        'Developer',
         'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/3_avatar-128.png'
       ),
       new Contact(
@@ -35,16 +35,17 @@ export class ContactInfoComponent implements OnInit {
         'Ledesma',
         'Scrum Master',
         'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/9_avatar-128.png'
-      ), new Contact(
+      ),
+      new Contact(
         'Maximiliano',
         'Pomar',
         'UX/UI Designer',
         'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/8_avatar-128.png'
       ),
       new Contact(
-        'Maximiliano',
+        'Gonzalo',
         'Saad',
-        'Developed',
+        'Developer',
         'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/7_avatar-128.png'
       )
     ];
