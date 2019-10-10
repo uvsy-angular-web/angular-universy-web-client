@@ -1,21 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 ">
-       <i class="material-icons">arrow_back</i>
+      <h3>
+        <i class="material-icons" (click)="navigateCareerPage()">arrow_back</i>
         <span class="career-title">careerName</span>
         <i class="material-icons">edit</i>
-      <hr>
+      </h3>
     </div>
   </div>
-
+  <hr>
   <div *ngFor="let plan of planes" class="row text-left program"
        [ngClass]="{'btn-plan-off' :plan.published , 'btn-plan-on': !plan.published }"
        (click)="navigateToViewPlanPage(plan)">
     <div class="col-8">
       <h3 class="plan-name">
-          {{plan.name}}
-          <br>
-          Desde: {{plan.validfrom}}
+        {{plan.name}}
+        <br>
+        Desde: {{plan.validfrom}}
       </h3>
     </div>
     <div class="col-4 text-center not-pusblished" *ngIf="!plan.published">
