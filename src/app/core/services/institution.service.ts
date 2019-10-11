@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './config/system-config.service';
-import {Institution, Institutions} from '../../shared/models/career.model';
+import {Career, Institution, Institutions} from '../../shared/models/career.model';
 import {Observable} from 'rxjs';
 import 'rxjs-compat/add/operator/map';
 
@@ -26,5 +26,23 @@ export class InstitutionService {
           return institutions.institutions[FIRST_INSTITUTION_INDEX];
         }
       );
+  }
+
+  addCareer(career: Career, institution: Institution) {
+    const body = {
+      institutionKey: institution.institutionKey,
+      careerName: career.careerName
+    };
+    const baseUrl = InstitutionService._getBaseUrl();
+    const headers = this._getHeaders();
+    return this.http.put(baseUrl + '/universy/institution/careers', body, {headers});
+  }
+
+  private _getHeaders() {
+    return this.systemConfigService.getHeader();
+  }
+
+  private static _getBaseUrl() {
+    return SystemConfigService.getBaseUrl();
   }
 }

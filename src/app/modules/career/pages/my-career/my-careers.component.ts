@@ -50,11 +50,12 @@ export class MyCareersComponent implements OnInit {
   }
 
   public navigateToPlanPage(career: Career) {
-    this.router.navigate(['/plan', career.careerKey.institutionKey, career.careerKey.careerCode]);
+    this.careerService.updateCareer(career);
+    this.router.navigate(['/plan', {state: {career}}]);
   }
 
   private addCareer(career: Career) {
-    this.careerService.addCareer(career, this.institution).subscribe(
+    this.institutionService.addCareer(career, this.institution).subscribe(
       () => {
         this._getCareers();
       }, ((error) => {
