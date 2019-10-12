@@ -2,13 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Career} from '../../../../shared/models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
-import {NameEditComponent} from '../../../../shared/modals/components/name-edit/name-edit.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
-import {CareerKey} from '../../../../shared/models/carreer-key.model';
 import {Program} from '../../../../shared/models/program.model';
 import {ProgramModalComponent} from '../../components/add-program-modal/program-modal.component';
+import {ProgramService} from '../../../../core/services/program.service';
 
 
 @Component({
@@ -23,6 +22,7 @@ export class ProgramComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private careerService: CareerService,
+              private programService: ProgramService,
               private modalService: NgbModal,
               private institutionService: InstitutionService,
               private notificationService: NotificationService,
@@ -72,7 +72,7 @@ export class ProgramComponent implements OnInit {
 
   private addProgram(newProgram: Program) {
     if (newProgram) {
-      this.careerService.addProgram(newProgram).subscribe(
+      this.programService.addProgram(newProgram).subscribe(
         () => {
           this.getPrograms();
         }, ((error) => {
@@ -84,7 +84,7 @@ export class ProgramComponent implements OnInit {
   }
 
   private getPrograms() {
-    this.careerService.getPrograms().subscribe(
+    this.programService.getPrograms().subscribe(
       (programs: Program[]) => {
         this.programs = programs;
       }, ((error) => {

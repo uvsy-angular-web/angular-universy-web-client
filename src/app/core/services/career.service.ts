@@ -40,28 +40,14 @@ export class CareerService {
     return this.http.post(baseUrl + '/universy/institution/careers', body, {headers});
   }
 
-  public addProgram(program: Program) {
+  addCareer(careerName: string) {
     const body = {
-      careerKey: this.getCurrentCareer().careerKey,
-      name: program.name,
-      validFrom: program.validFrom
+      institutionKey: this.institutionService.getCurrentInstitution().institutionKey,
+      careerName
     };
     const baseUrl = CareerService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
-  }
-
-  getPrograms(): Observable<Program[]> {
-    const baseUrl = SystemConfigService.getBaseUrl();
-    const headers = this.systemConfigService.getHeader();
-    const params = new HttpParams()
-      .set('institutionKey', this.getCurrentCareer().careerKey.institutionKey)
-      .set('careerCode', this.getCurrentCareer().careerKey.careerCode);
-    return this.http.get(baseUrl + '/universy/institution/programs', {headers, params})
-      .map((data: any) => {
-          return data.programs;
-        }
-      );
+    return this.http.put(baseUrl + '/universy/institution/careers', body, {headers});
   }
 
   private _getHeaders() {

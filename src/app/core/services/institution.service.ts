@@ -21,8 +21,8 @@ export class InstitutionService {
 
 
   getInstitution(): Observable<Institution> {
-    const baseUrl = SystemConfigService.getBaseUrl();
-    const headers = this.systemConfigService.getHeader();
+    const baseUrl = InstitutionService._getBaseUrl();
+    const headers = this._getHeaders();
 
     const institutionKey = this.getCurrentInstitution().institutionKey;
     const params = new HttpParams()
@@ -35,15 +35,6 @@ export class InstitutionService {
       );
   }
 
-  addCareer(careerName: string, institution: Institution) {
-    const body = {
-      institutionKey: institution.institutionKey,
-      careerName
-    };
-    const baseUrl = InstitutionService._getBaseUrl();
-    const headers = this._getHeaders();
-    return this.http.put(baseUrl + '/universy/institution/careers', body, {headers});
-  }
 
   public setCurrentInstitution(institution: Institution) {
     this.institutionSource.next(institution);

@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {Career, Institution} from '../../../../shared/models/career.model';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {NameEditComponent} from '../../../../shared/modals/components/name-edit/name-edit.component';
 import {CareerService} from '../../../../core/services/career.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Router} from '@angular/router';
@@ -22,8 +20,7 @@ export class MyCareersComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private notificationService: NotificationService,
-    private router: Router,
-    private modalService: NgbModal) {
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -35,6 +32,7 @@ export class MyCareersComponent implements OnInit {
       (institution: Institution) => {
         if (institution) {
           this.institution = institution;
+          this.institutionService.setCurrentInstitution(institution);
         }
       }
     );
@@ -56,9 +54,9 @@ export class MyCareersComponent implements OnInit {
   }
 
   private addCareer(careerName) {
-    this.institutionService.addCareer(careerName, this.institution).subscribe(
+    this.careerService.addCareer(careerName).subscribe(
       () => {
-        // this._getCareers();
+        this.getCareers();
       }, ((error) => {
         this.notificationService.showError(error);
       })

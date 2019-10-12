@@ -25,7 +25,6 @@ export class ProgramModalComponent implements OnInit {
     private formBuilder: FormBuilder) {
   }
 
-
   public ngOnInit(): void {
     this._createForm();
   }
