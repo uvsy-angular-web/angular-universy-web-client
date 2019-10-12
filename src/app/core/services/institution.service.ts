@@ -35,10 +35,10 @@ export class InstitutionService {
       );
   }
 
-  addCareer(career: Career, institution: Institution) {
+  addCareer(careerName: string, institution: Institution) {
     const body = {
       institutionKey: institution.institutionKey,
-      careerName: career.careerName
+      careerName
     };
     const baseUrl = InstitutionService._getBaseUrl();
     const headers = this._getHeaders();

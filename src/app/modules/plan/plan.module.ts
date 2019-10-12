@@ -5,6 +5,7 @@ import {PlanRoutingModule} from './plan-routing.module';
 import {PlanComponent} from './pages/plan/plan.component';
 import {PlanEditComponent} from './pages/plan-edit/plan-edit.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     PlanRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    SharedModule
   ]
 })
 export class PlanModule {

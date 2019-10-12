@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {Career, Institution} from '../../../../shared/models/career.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CareerModalComponent} from '../../components/career-modal/career-modal.component';
+import {NameEditComponent} from '../../../../shared/modals/name-edit/name-edit.component';
 import {CareerService} from '../../../../core/services/career.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Router} from '@angular/router';
@@ -41,12 +41,13 @@ export class MyCareersComponent implements OnInit {
   }
 
   public openNewCareerModal() {
-    const modalRef = this.modalService.open(CareerModalComponent);
-    modalRef.componentInstance.title = 'Agregar carrera';
-    modalRef.componentInstance.confirmButtonText = 'Agregar';
-    modalRef.componentInstance.confirmEvent.subscribe((career) => {
-      this.addCareer(career);
-    });
+    this.notificationService.openEditNameModal(
+      'Agregar carrera',
+      'Agregar',
+    ).subscribe(
+      (newCareerName) => this.addCareer(newCareerName)
+    );
+
   }
 
   public navigateToPlanPage(career: Career) {
@@ -54,8 +55,8 @@ export class MyCareersComponent implements OnInit {
     this.router.navigate(['career/plan']);
   }
 
-  private addCareer(career: Career) {
-    this.institutionService.addCareer(career, this.institution).subscribe(
+  private addCareer(careerName) {
+    this.institutionService.addCareer(careerName, this.institution).subscribe(
       () => {
         this._getCareers();
       }, ((error) => {

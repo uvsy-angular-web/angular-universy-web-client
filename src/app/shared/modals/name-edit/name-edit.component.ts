@@ -1,16 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Career} from '../../../../shared/models/career.model';
+import {Career} from '../../models/career.model';
 
 @Component({
   selector: 'app-career-modal',
-  templateUrl: './career-modal.component.html',
+  templateUrl: './name-edit.component.html',
 })
-export class CareerModalComponent implements OnInit {
-  @Input() title;
-  @Input() career = new Career();
-  @Input() confirmButtonText;
+export class NameEditComponent implements OnInit {
+  @Input() title: string;
+  @Input() itemText: string;
+  @Input() confirmButtonText: string;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
 
@@ -27,20 +27,19 @@ export class CareerModalComponent implements OnInit {
 
   public confirmAction(): void {
     if (this.form.valid) {
-      this.career.careerName = this.careerName.value;
-      this.confirmEvent.emit(this.career);
+      this.confirmEvent.emit(this.itemTextControl.value);
       this.activeModal.dismiss();
     }
   }
 
   private _createForm(): void {
     this.form = this.formBuilder.group({
-      careerName: new FormControl(this.career.careerName, CareerModalComponent._getValidatorsForCareerName())
+      itemText: new FormControl(this.itemText, NameEditComponent._getValidatorsForCareerName())
     });
   }
 
-  public get careerName(): FormControl {
-    return this.form.get('careerName') as FormControl;
+  public get itemTextControl(): FormControl {
+    return this.form.get('itemText') as FormControl;
   }
 
   private static _getValidatorsForCareerName(): Validators {

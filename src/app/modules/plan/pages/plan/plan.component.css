@@ -1,17 +1,17 @@
 
-.btn-plan-on {
+.btn-program-on {
   background-color: #E5C028;
 }
 
-.btn-plan-on:hover {
+.btn-program-on:hover {
   background-color: #eec829;
 }
 
-.btn-plan-off {
+.btn-program-off {
   background-color: gray;
 }
 
-.btn-plan-off:hover {
+.btn-program-off:hover {
   background-color: #979797;
 }
 
@@ -41,7 +41,7 @@
   border-left: 2px solid white;
 }
 
-.plan-name {
+.program-name {
   color: white;
 }
 
