@@ -21,10 +21,6 @@ const routes: Routes = [
     loadChildren: () => import('./modules/contact-info/contact-info.module').then(mod => mod.ContactInfoModule)
   },
   {
-    path: 'plan',
-    loadChildren: () => import('./modules/plan/plan.module').then(mod => mod.PlanModule)
-  },
-  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'

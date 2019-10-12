@@ -18,6 +18,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     CareerRoutingModule, NgbModule,
     NgbModule.forRoot(), ReactiveFormsModule
   ],
+  exports: [CareerModalComponent],
   entryComponents: [CareerModalComponent]
 })
 

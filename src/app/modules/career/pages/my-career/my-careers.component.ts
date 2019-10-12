@@ -50,8 +50,8 @@ export class MyCareersComponent implements OnInit {
   }
 
   public navigateToPlanPage(career: Career) {
-    this.careerService.updateCareer(career);
-    this.router.navigate(['/plan', {state: {career}}]);
+    this.careerService.setCurrentCareer(career);
+    this.router.navigate(['career/plan']);
   }
 
   private addCareer(career: Career) {
@@ -62,7 +62,6 @@ export class MyCareersComponent implements OnInit {
         this.notificationService.showError(error);
       })
     );
-
   }
 
 

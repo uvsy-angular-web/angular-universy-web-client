@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Career} from '../../../../shared/models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
+import {CareerModalComponent} from '../../../career/components/career-modal/career-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {InstitutionService} from '../../../../core/services/institution.service';
+import {NotificationService} from '../../../../shared/modals/notification.service';
 
 @Component({
   selector: 'app-plan',
@@ -17,31 +21,44 @@ export class PlanComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private careerService: CareerService,
+              private modalService: NgbModal,
+              private institutionService: InstitutionService,
+              private notificationService: NotificationService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.careerService.currentCareer
-      .subscribe((serviceCareer) => this.career = serviceCareer
-      );
+    this.career = this.careerService.getCurrentCareer();
   }
 
   public navigateToViewPlanPage(plan) {
-    this.router.navigate(['/plan',]);
+    this.router.navigate(['/plan']);
   }
 
   public navigateCareerPage() {
     this.router.navigate(['/career']);
   }
 
-  public editCareerName() {
-    /*    this.careerService.addCareer(career, this.institution).subscribe(
-          () => {
-            this._getCareers();
-          }, ((error) => {
-            this.notificationService.showError(error);
-          })
-        );*/
 
+  public openEditCareerModal() {
+    const modalRef = this.modalService.open(CareerModalComponent);
+    modalRef.componentInstance.title = 'Modificar carrera';
+    modalRef.componentInstance.confirmButtonText = 'Modificar';
+    modalRef.componentInstance.career = this.career;
+    modalRef.componentInstance.confirmEvent.subscribe((career: Career) => {
+      this.editCareer(career.careerName);
+    });
+  }
+
+  private editCareer(careerName: string) {
+    this.career.careerName = careerName;
+    this.careerService.updateCareer(this.career).subscribe(
+      () => {
+        this.careerService.setCurrentCareer(this.career);
+      }, ((error) => {
+        this.notificationService.showError('Ocurrio un error tratando de modificar la carrera');
+        console.error(error);
+      })
+    );
   }
 }
