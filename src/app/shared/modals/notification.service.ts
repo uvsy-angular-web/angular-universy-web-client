@@ -18,7 +18,7 @@ export class NotificationService {
   }
 
   openEditNameModal(title: string, confirmButtonText: string, itemText = '') {
-    const modalRef = this.modalService.open(NameEditComponent);
+    const modalRef = this.modalService.open(NameEditComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.confirmButtonText = confirmButtonText;
     modalRef.componentInstance.itemText = itemText;

@@ -37,7 +37,6 @@ export class ProgramModalComponent implements OnInit {
   public confirmAction(): void {
     if (this.form.valid) {
       this.program.name = this.name.value;
-
       this.program.validFrom = this.getValidFromDate();
       this.confirmEvent.emit(this.program);
       this.activeModal.dismiss();

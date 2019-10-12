@@ -18,11 +18,8 @@ import {ProgramModalComponent} from '../../components/add-program-modal/program-
 })
 export class ProgramComponent implements OnInit {
   career: Career;
-  programs: Program[];
-  // programs = [
-  //    {name: 'Plan1', validfrom: 2008, validto: 2020, published: true},
-  //    {name: 'Plan2', validfrom: 2020, validto: 2100, published: false},
-  //  ];
+  programs: Program[] = [];
+
 
   constructor(private route: ActivatedRoute,
               private careerService: CareerService,
@@ -34,6 +31,7 @@ export class ProgramComponent implements OnInit {
 
   ngOnInit() {
     this.career = this.careerService.getCurrentCareer();
+    this.getPrograms();
   }
 
   public navigateToViewPlanPage(plan) {
@@ -56,7 +54,7 @@ export class ProgramComponent implements OnInit {
   }
 
   public openNewPlanModal() {
-    const modalRef = this.modalService.open(ProgramModalComponent);
+    const modalRef = this.modalService.open(ProgramModalComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = 'Agregar plan';
     modalRef.componentInstance.confirmButtonText = 'Agregar';
     modalRef.componentInstance.confirmEvent.subscribe(
@@ -65,7 +63,7 @@ export class ProgramComponent implements OnInit {
   }
 
   public showAddProgram(): boolean {
-    return !this.programs || this.programs.length > 0 && !this.isThereProgramNotPublished();
+    return this.programs.length === 0 && !this.isThereProgramNotPublished();
   }
 
   private isThereProgramNotPublished() {

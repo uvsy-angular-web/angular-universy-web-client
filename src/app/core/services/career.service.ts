@@ -37,7 +37,7 @@ export class CareerService {
     };
     const baseUrl = CareerService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.put(baseUrl + '/universy/institution/careers', body, {headers});
+    return this.http.post(baseUrl + '/universy/institution/careers', body, {headers});
   }
 
   public addProgram(program: Program) {
@@ -54,9 +54,9 @@ export class CareerService {
   getPrograms(): Observable<Program[]> {
     const baseUrl = SystemConfigService.getBaseUrl();
     const headers = this.systemConfigService.getHeader();
-    const params = new HttpParams();
-    params.append('institutionKey', this.getCurrentCareer().careerKey.institutionKey);
-    params.append('careerCode', this.getCurrentCareer().careerKey.careerCode);
+    const params = new HttpParams()
+      .set('institutionKey', this.getCurrentCareer().careerKey.institutionKey)
+      .set('careerCode', this.getCurrentCareer().careerKey.careerCode);
     return this.http.get(baseUrl + '/universy/institution/programs', {headers, params})
       .map((data: any) => {
           return data.programs;
