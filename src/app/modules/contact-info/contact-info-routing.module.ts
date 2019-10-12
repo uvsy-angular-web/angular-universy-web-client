@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ContactInfoComponent} from './pages/contact-indo/contact-info.component';
+import {ContactInfoComponent} from './pages/contact-info/contact-info.component';
 
 
 const routes: Routes = [

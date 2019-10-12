@@ -4,16 +4,20 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start --qa": "ng serve --configuration=qa",
-    "start --sat": "ng serve --configuration=sat",
-    "start --prod": "ng serve --configuration=production",
     "build": "ng build",
-    "build --qa": "ng build --configuration=qa",
-    "build --sat": "ng build --configuration=sat",
-    "build --prod": "ng build --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:browser:prod": "ng build --prod",
+    "build:browser:serverless": "ng build --prod --base-href /production/",
+    "build:serverless": "npm run build:browser:serverless && npm run build:server:serverless",
+    "build:prod": "npm run build:browser:prod && npm run build:server:prod",
+    "server": "node local.js",
+    "build:prod:deploy": "npm run build:prod && npm run deploy",
+    "build:serverless:deploy": "npm run build:serverless && npm run deploy",
+    "deploy": "serverless deploy",
+    "build:server:prod": "webpack --config webpack.server.config.js --progress --colors",
+    "build:server:serverless": "webpack --config webpack.server.config.js --progress --colors"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +29,16 @@
     "@angular/platform-browser": "~8.2.5",
     "@angular/platform-browser-dynamic": "~8.2.5",
     "@angular/router": "~8.2.5",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.2",
+    "@ng-toolkit/serverless": "^7.1.2",
+    "aws-serverless-express": "^3.2.0",
+    "bootstrap": "^4.3.1",
+    "cors": "~2.8.4",
+    "cp-cli": "^1.1.0",
+    "jquery": "^3.4.1",
+    "popper": "^1.0.1",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
@@ -45,9 +58,14 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "opencollective": "^1.0.3",
     "protractor": "~5.4.0",
+    "serverless": "1.40.0",
+    "serverless-apigw-binary": "^0.4.4",
+    "ts-loader": "4.2.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "webpack-cli": "2.1.2"
   }
 }

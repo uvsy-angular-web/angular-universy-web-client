@@ -10,9 +10,11 @@ import { ModalComponent } from './components/modal/modal.component';
   declarations: [MyCareersComponent, ModalComponent],
   imports: [
     CommonModule,
-    CareerRoutingModule
+    CareerRoutingModule, NgbModule,
+    NgbModule.forRoot(), ReactiveFormsModule
   ],
-
+  entryComponents: [CareerModalComponent]
 })
+
 export class CareerModule {
 }
