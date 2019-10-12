@@ -36,7 +36,10 @@
   padding: 2rem;
   transition: all 100ms ease-in-out;
 }
-
+.no-program-text{
+  font-weight: lighter;
+  font-style: italic;
+}
 .not-pusblished {
   border-left: 2px solid white;
 }

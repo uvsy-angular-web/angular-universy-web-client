@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorModalComponent} from './components/error-modal/error-modal.component';
-import {NameEditComponent} from './name-edit/name-edit.component';
+import {NameEditComponent} from './components/name-edit/name-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
 

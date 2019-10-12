@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Career} from '../../models/career.model';
+import {Career} from '../../../models/career.model';
 
 @Component({
   selector: 'app-career-modal',

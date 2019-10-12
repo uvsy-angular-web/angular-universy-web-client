@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Career, Institution} from '../../shared/models/career.model';
-import {BehaviorSubject} from 'rxjs';
+import {Career, Institution, Institutions} from '../../shared/models/career.model';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {SystemConfigService} from './config/system-config.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {InstitutionService} from './institution.service';
+import {Program} from '../../shared/models/program.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,31 @@ export class CareerService {
     };
     const baseUrl = CareerService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.post(baseUrl + '/universy/institution/careers', body, {headers});
+    return this.http.put(baseUrl + '/universy/institution/careers', body, {headers});
+  }
+
+  public addProgram(program: Program) {
+    const body = {
+      careerKey: this.getCurrentCareer().careerKey,
+      name: program.name,
+      validFrom: program.validFrom
+    };
+    const baseUrl = CareerService._getBaseUrl();
+    const headers = this._getHeaders();
+    return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
+  }
+
+  getPrograms(): Observable<Program[]> {
+    const baseUrl = SystemConfigService.getBaseUrl();
+    const headers = this.systemConfigService.getHeader();
+    const params = new HttpParams();
+    params.append('institutionKey', this.getCurrentCareer().careerKey.institutionKey);
+    params.append('careerCode', this.getCurrentCareer().careerKey.careerCode);
+    return this.http.get(baseUrl + '/universy/institution/programs', {headers, params})
+      .map((data: any) => {
+          return data.programs;
+        }
+      );
   }
 
   private _getHeaders() {
