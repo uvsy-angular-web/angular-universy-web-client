@@ -15,13 +15,6 @@
   background-color: #979797;
 }
 
-.btn-violet {
-  background-color: #3D1255;
-  border-color: #3D1255;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  color: white;
-
-}
 
 .career-title {
   margin-left: 1rem;
@@ -36,16 +29,23 @@
   padding: 2rem;
   transition: all 100ms ease-in-out;
 }
-.no-program-text{
+
+.no-program-text {
   font-weight: lighter;
   font-style: italic;
 }
+
 .not-pusblished {
   border-left: 2px solid white;
 }
 
 .program-name {
   color: white;
+}
+
+.valid-from {
+  color: white;
+  font-style: italic;
 }
 
 i {

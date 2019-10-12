@@ -10,8 +10,8 @@
 
   </div>
   <hr>
-    <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewPlanModal()"
-                  [buttonTitle]="'Agregar plan'"></app-add-item>
+  <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewPlanModal()"
+                [buttonTitle]="'Agregar plan'"></app-add-item>
   <div *ngIf="programs">
     <div *ngFor="let program of programs" class="row text-left program"
          [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }"
@@ -19,13 +19,13 @@
       <div class="col-8">
         <h3 class="program-name">
           {{program.name}}
-          <br>
-          Desde: {{program.validFrom}}
         </h3>
+        <h4 class="valid-from">
+          Desde: {{program.validFrom | date:'yyyy'}}</h4>
       </div>
       <div class="col-4 text-center not-pusblished" *ngIf="!program.published">
         <br>
-        <button class="btn btn-violet">Publicar</button>
+        <button class="btn btn-primary">Publicar</button>
       </div>
     </div>
   </div>
