@@ -6,17 +6,17 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Program} from '../../../../shared/models/program.model';
-import {ProgramModalComponent} from '../../components/program-modal/program-modal.component';
+import {ProgramModalComponent} from '../../../program/components/program-modal/program-modal.component';
 import {ProgramService} from '../../../../core/services/program.service';
 import {Location} from '@angular/common';
 
 
 @Component({
-  selector: 'app-program',
-  templateUrl: './program.component.html',
-  styleUrls: ['./program.component.css']
+  selector: 'app-career',
+  templateUrl: './career.component.html',
+  styleUrls: ['./career.component.css']
 })
-export class ProgramComponent implements OnInit {
+export class CareerComponent implements OnInit {
   career: Career;
   programs: Program[] = [];
 
@@ -36,9 +36,9 @@ export class ProgramComponent implements OnInit {
     this.getPrograms();
   }
 
-  public async navigateToEditProgramPage(program: Program) {
+  public async navigateToProgramPage(program: Program) {
     this.programService.setCurrentProgam(program);
-    await this.router.navigate(['career/plan/plan-edit']);
+    await this.router.navigate(['institution/career/program']);
   }
 
   public openEditCareerModal() {

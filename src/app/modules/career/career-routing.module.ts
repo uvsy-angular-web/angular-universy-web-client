@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MyCareersComponent} from './pages/my-career/my-careers.component';
+import {CareerComponent} from './pages/career/career.component';
 
 const routes: Routes = [
-  {path: '', component: MyCareersComponent},
+  {path: '', component: CareerComponent},
   {
-    path: 'plan',
-    loadChildren: () => import('../plan/plan.module').then(mod => mod.PlanModule)
+    path: 'program',
+    loadChildren: () => import('../program/program.module').then(mod => mod.ProgramModule)
   },
 ];
 

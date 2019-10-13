@@ -7,15 +7,15 @@ import {Program} from '../../../../shared/models/program.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
-import {SubjectModalComponent} from '../../components/subject-modal/subject-modal.component';
+import {SubjectModalComponent} from '../../../subject/components/subject-modal/subject-modal.component';
 
 
 @Component({
   selector: 'app-plan-edit',
-  templateUrl: './plan-edit.component.html',
-  styleUrls: ['./plan-edit.component.css']
+  templateUrl: './program.component.html',
+  styleUrls: ['./program.component.css']
 })
-export class PlanEditComponent implements OnInit {
+export class ProgramComponent implements OnInit {
   program: Program;
   subjects: Subject[];
 

@@ -5,6 +5,10 @@ import {InstitutionComponent} from './pages/institution/institution.component';
 
 const routes: Routes = [
   {path: '', component: InstitutionComponent},
+  {
+    path: 'career',
+    loadChildren: () => import('src/app/modules/career/career.module').then(mod => mod.CareerModule)
+  },
 ];
 
 @NgModule({
