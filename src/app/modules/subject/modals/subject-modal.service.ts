@@ -13,8 +13,8 @@ export class SubjectModalService {
 
   public openNewSubjectModal() {
     const modalRef = this.modalService.open(SubjectModalComponent, {backdrop: 'static'});
-    modalRef.componentInstance.title = 'Agregar carrera';
-    modalRef.componentInstance.confirmButtonText = ButtonText.Confirm;
+    modalRef.componentInstance.title = 'Agregar Materia';
+    modalRef.componentInstance.confirmButtonText = ButtonText.Add;
     return modalRef.componentInstance.confirmEvent;
   }
 }

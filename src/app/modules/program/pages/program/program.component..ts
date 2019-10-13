@@ -55,7 +55,8 @@ export class ProgramComponent implements OnInit {
       () => {
         this.getSubjects();
       }, ((error) => {
-        this.notificationService.showError(error);
+        this.notificationService.showError('Ocurrio un error tratando de agregar una materia');
+        console.error(error.message);
       })
     );
   }

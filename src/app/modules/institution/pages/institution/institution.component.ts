@@ -57,7 +57,8 @@ export class InstitutionComponent implements OnInit {
       () => {
         this.getCareers();
       }, ((error) => {
-        this.notificationService.showError(error);
+        this.notificationService.showError('Ocurrió un error tratando de agregar una nueva carrera.');
+        console.error(error.message);
       })
     );
   }
