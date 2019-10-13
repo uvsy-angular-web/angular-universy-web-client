@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorModalComponent} from './components/error-modal/error-modal.component';
 import {NameEditComponent} from './components/name-edit/name-edit.component';
-import {Career} from '../models/career.model';
 
 @Injectable({
   providedIn: 'root'
