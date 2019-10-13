@@ -8,12 +8,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../../shared/shared.module';
 import {ProgramModalComponent} from './components/add-program-modal/program-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { PostProgramModalComponent } from './components/post-program-modal/post-program-modal.component';
 
 @NgModule({
   declarations: [
     ProgramComponent,
     PlanEditComponent,
     ProgramModalComponent,
+    PostProgramModalComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   entryComponents: [
-    ProgramModalComponent
+    ProgramModalComponent,
+    PostProgramModalComponent
   ]
 })
 export class PlanModule {

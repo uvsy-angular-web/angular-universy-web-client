@@ -7,7 +7,6 @@ import {CoreModule} from './core/core.module';
 import {HttpClientModule} from '@angular/common/http';
 import {NotificationModule} from './shared/modals/notification.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,

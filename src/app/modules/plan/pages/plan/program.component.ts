@@ -8,6 +8,7 @@ import {NotificationService} from '../../../../shared/modals/notification.servic
 import {Program} from '../../../../shared/models/program.model';
 import {ProgramModalComponent} from '../../components/add-program-modal/program-modal.component';
 import {ProgramService} from '../../../../core/services/program.service';
+import {PostProgramModalComponent} from '../../components/post-program-modal/post-program-modal.component';
 
 
 @Component({
@@ -62,6 +63,12 @@ export class ProgramComponent implements OnInit {
     );
   }
 
+  public openConfirmPostModal() {
+    const modalRef = this.modalService.open(PostProgramModalComponent, {backdrop: 'static'});
+    modalRef.componentInstance.title = 'Publicar Plan';
+    modalRef.componentInstance.confirmButtonText = 'Publicar';
+  }
+  
   public showAddProgram(): boolean {
     return this.programs.length === 0 && !this.isThereProgramNotPublished();
   }
