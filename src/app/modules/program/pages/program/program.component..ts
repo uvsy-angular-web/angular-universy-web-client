@@ -7,9 +7,10 @@ import {Program} from '../../../../shared/models/program.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
-import {SubjectModalComponent} from '../../../subject/components/subject-modal/subject-modal.component';
+import {SubjectModalComponent} from '../../../subject/modals/subject-modal/subject-modal.component';
 import {ProgramModalService} from '../../modals/program-modal.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import {SubjectModalService} from '../../../subject/modals/subject-modal.service';
 
 
 @Component({
@@ -26,8 +27,8 @@ export class ProgramComponent implements OnInit {
               private programService: ProgramService,
               private notificationService: NotificationService,
               private programModalService: ProgramModalService,
-              private subjectService: SubjectService,
-              private modalService: NgbModal) {
+              private subjectModalService: SubjectModalService,
+              private subjectService: SubjectService) {
   }
 
   ngOnInit() {
@@ -37,8 +38,6 @@ export class ProgramComponent implements OnInit {
 
   public openEditProgramModal() {
     this.programModalService.openEditProgramModal(
-      'Editar plan',
-      ButtonText.Add,
       this.program
     ).subscribe(
       (editedProgram: Program) => this.editProgram(editedProgram.name)
@@ -46,10 +45,7 @@ export class ProgramComponent implements OnInit {
   }
 
   public openNewSubjectModal() {
-    const modalRef = this.modalService.open(SubjectModalComponent, {backdrop: 'static'});
-    modalRef.componentInstance.title = 'Agregar carrera';
-    modalRef.componentInstance.confirmButtonText = 'Agregar';
-    modalRef.componentInstance.confirmEvent.subscribe(
+    this.subjectModalService.openNewSubjectModal().subscribe(
       (newSubject: Program) => this.addSubject(newSubject)
     );
   }

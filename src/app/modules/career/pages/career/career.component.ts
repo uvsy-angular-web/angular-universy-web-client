@@ -26,7 +26,6 @@ export class CareerComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private careerService: CareerService,
               private programService: ProgramService,
-              private modalService: NgbModal,
               private location: Location,
               private programModalService: ProgramModalService,
               private institutionService: InstitutionService,
@@ -54,21 +53,15 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  public openNewPlanModal() {
-    const modalRef = this.modalService.open(ProgramModalComponent, {backdrop: 'static'});
-    modalRef.componentInstance.title = 'Agregar plan';
-    modalRef.componentInstance.confirmButtonText = 'Agregar';
-    modalRef.componentInstance.confirmEvent.subscribe(
+  public openNewProgramModal() {
+    this.programModalService.openNewProgramModal().subscribe(
       (newProgram: Program) => this.addProgram(newProgram)
     );
   }
 
 
   public openConfirmPublishModal() {
-    this.programModalService.openConfirmPublishModal(
-      'Publicar Plan',
-      ButtonText.Publish,
-    ).subscribe(
+    this.programModalService.openConfirmPublishModal().subscribe(
       (action) => {
         console.log('Desa publicar el plan');
         // TODO: Implement publish plan action

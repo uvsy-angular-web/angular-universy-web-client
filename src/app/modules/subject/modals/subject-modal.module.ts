@@ -1,15 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ProgramModalComponent} from './program-modal/program-modal.component';
-import {PublishProgramModalComponent} from './publish-program-modal/publish-program-modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 
 
 @NgModule({
   declarations: [
-    ProgramModalComponent,
-    PublishProgramModalComponent
+    SubjectModalComponent,
   ],
   imports: [
     CommonModule,
@@ -18,9 +16,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   entryComponents: [
-    ProgramModalComponent,
-    PublishProgramModalComponent
+    SubjectModalComponent,
   ]
 })
-export class ProgramModalModule {
-}
+export class SubjectModalModule { }

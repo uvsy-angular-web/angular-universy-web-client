@@ -13,7 +13,7 @@ import {SharedModule} from '../../shared/shared.module';
   imports: [
     CommonModule,
     InstitutionRoutingModule,
-    SharedModule
+    SharedModule,
   ],
 })
 export class InstitutionModule {

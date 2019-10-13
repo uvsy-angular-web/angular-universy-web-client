@@ -41,7 +41,6 @@ export class SubjectModalComponent implements OnInit {
     }
   }
 
-
   private createForm(): void {
     this.form = this.formBuilder.group({
       name: new FormControl(this.subject.name, SubjectModalComponent._getValidatorsForCareerName()),
