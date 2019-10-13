@@ -6,9 +6,11 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Program} from '../../../../shared/models/program.model';
-import {ProgramModalComponent} from '../../../program/components/program-modal/program-modal.component';
+import {ProgramModalComponent} from '../../../program/modals/program-modal/program-modal.component';
 import {ProgramService} from '../../../../core/services/program.service';
 import {Location} from '@angular/common';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import {ProgramModalService} from '../../../program/modals/program-modal.service';
 
 
 @Component({
@@ -26,6 +28,7 @@ export class CareerComponent implements OnInit {
               private programService: ProgramService,
               private modalService: NgbModal,
               private location: Location,
+              private programModalService: ProgramModalService,
               private institutionService: InstitutionService,
               private notificationService: NotificationService,
               private router: Router) {
@@ -60,10 +63,17 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  public openConfirmPostModal() {
-    const modalRef = this.modalService.open(PostProgramModalComponent, {backdrop: 'static'});
-    modalRef.componentInstance.title = 'Publicar Plan';
-    modalRef.componentInstance.confirmButtonText = 'Publicar';
+
+  public openConfirmPublishModal() {
+    this.programModalService.openConfirmPublishModal(
+      'Publicar Plan',
+      ButtonText.Publish,
+    ).subscribe(
+      (action) => {
+        console.log('Desa publicar el plan');
+        // TODO: Implement publish plan action
+      }
+    );
   }
 
   public showAddProgram(): boolean {

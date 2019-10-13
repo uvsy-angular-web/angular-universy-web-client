@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Subject} from '../../../../shared/models/subject.model';
 import {NotificationService} from '../../../../shared/modals/notification.service';
-import {ProgramModalComponent} from '../../components/program-modal/program-modal.component';
+import {ProgramModalComponent} from '../../modals/program-modal/program-modal.component';
 import {Program} from '../../../../shared/models/program.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
 import {SubjectModalComponent} from '../../../subject/components/subject-modal/subject-modal.component';
+import {ProgramModalService} from '../../modals/program-modal.service';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 
 @Component({
@@ -23,6 +25,7 @@ export class ProgramComponent implements OnInit {
   constructor(private location: Location,
               private programService: ProgramService,
               private notificationService: NotificationService,
+              private programModalService: ProgramModalService,
               private subjectService: SubjectService,
               private modalService: NgbModal) {
   }
@@ -33,11 +36,11 @@ export class ProgramComponent implements OnInit {
   }
 
   public openEditProgramModal() {
-    const modalRef = this.modalService.open(ProgramModalComponent, {backdrop: 'static'});
-    modalRef.componentInstance.title = 'Editar plan';
-    modalRef.componentInstance.confirmButtonText = 'Editar';
-    modalRef.componentInstance.program = this.program;
-    modalRef.componentInstance.confirmEvent.subscribe(
+    this.programModalService.openEditProgramModal(
+      'Editar plan',
+      ButtonText.Add,
+      this.program
+    ).subscribe(
       (editedProgram: Program) => this.editProgram(editedProgram.name)
     );
   }

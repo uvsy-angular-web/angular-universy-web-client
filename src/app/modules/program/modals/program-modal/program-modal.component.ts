@@ -18,7 +18,7 @@ export class ProgramModalComponent implements OnInit {
 
   @Input() title: string;
   @Input() confirmButtonText: string;
-  @Input() program = new Program();
+  @Input() program: Program;
   @Output() confirmEvent: EventEmitter<Program> = new EventEmitter();
   form: FormGroup;
 

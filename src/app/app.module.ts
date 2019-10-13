@@ -16,7 +16,6 @@ import {NotificationModule} from './shared/modals/notification.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NotificationModule,
     CoreModule,
     HttpClientModule,
   ],
