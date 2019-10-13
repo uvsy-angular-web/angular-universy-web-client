@@ -30,13 +30,26 @@ export class SubjectService {
     return career;
   }
 
+  public addSubject(subject: Subject) {
+    const body = {
+      programCode: subject.programCode,
+      name: subject.name,
+      level: subject.level,
+      correlatives: subject.correlatives,
+      careerKey: subject.careerKey,
+    };
+    const baseUrl = SubjectService.getBaseUrl();
+    const headers = this.getHeaders();
+    return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
+  }
+
   getSubjects(): Observable<Subject[]> {
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
 
     const currentProgramCode = this.programService.getCurrentProgam().uuid;
     const params = new HttpParams()
-      .set('planCode', currentProgramCode);
+      .set('programCode', currentProgramCode);
 
     return this.http.get(baseUrl + '/universy/institution/subjects', {headers, params})
       .map((data: any) => {

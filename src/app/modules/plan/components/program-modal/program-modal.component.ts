@@ -5,6 +5,8 @@ import {Program} from '../../../../shared/models/program.model';
 
 const DEFAULT_DAY_INIT_FROM = '01';
 const DEFAULT_MONTH_INIT_FROM = '01';
+const INIT_OF_YEAR_IN_STRING = 5;
+const EMPTY_YEAR = '';
 
 
 @Component({
@@ -15,7 +17,7 @@ const DEFAULT_MONTH_INIT_FROM = '01';
 export class ProgramModalComponent implements OnInit {
 
   @Input() title: string;
-  @Input() itemText: string;
+  @Input() confirmButtonText: string;
   @Input() program = new Program();
   @Output() confirmEvent: EventEmitter<Program> = new EventEmitter();
   form: FormGroup;
@@ -47,9 +49,10 @@ export class ProgramModalComponent implements OnInit {
   }
 
   private _createForm(): void {
+    const yearFrom = this.program.validFrom ? this.program.validFrom.substring(INIT_OF_YEAR_IN_STRING) : EMPTY_YEAR;
     this.form = this.formBuilder.group({
-      name: new FormControl(this.itemText, ProgramModalComponent._getValidatorsForCareerName()),
-      yearFrom: new FormControl(this.itemText, ProgramModalComponent._getValidatorsForYearFrom())
+      name: new FormControl(this.program.name, ProgramModalComponent._getValidatorsForCareerName()),
+      yearFrom: new FormControl(yearFrom, ProgramModalComponent._getValidatorsForYearFrom())
     });
   }
 

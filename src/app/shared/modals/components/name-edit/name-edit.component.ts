@@ -43,6 +43,9 @@ export class NameEditComponent implements OnInit {
   }
 
   private static _getValidatorsForCareerName(): Validators {
-    return Validators.compose([Validators.maxLength(35), Validators.required]);
+    return Validators.compose(
+      [
+        Validators.maxLength(35),
+        Validators.required]);
   }
 }

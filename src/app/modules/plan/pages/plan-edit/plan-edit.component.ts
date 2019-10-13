@@ -7,6 +7,7 @@ import {Program} from '../../../../shared/models/program.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
+import {SubjectModalComponent} from '../../components/subject-modal/subject-modal.component';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class PlanEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.program = this.programService.getCurrentProgam();
     this.getSubjects();
   }
 
@@ -37,6 +39,25 @@ export class PlanEditComponent implements OnInit {
     modalRef.componentInstance.program = this.program;
     modalRef.componentInstance.confirmEvent.subscribe(
       (editedProgram: Program) => this.editProgram(editedProgram.name)
+    );
+  }
+
+  public openNewSubjectModal() {
+    const modalRef = this.modalService.open(SubjectModalComponent, {backdrop: 'static'});
+    modalRef.componentInstance.title = 'Agregar carrera';
+    modalRef.componentInstance.confirmButtonText = 'Agregar';
+    modalRef.componentInstance.confirmEvent.subscribe(
+      (newSubject: Program) => this.addSubject(newSubject)
+    );
+  }
+
+  private addSubject(careerName) {
+    this.subjectService.addSubject(careerName).subscribe(
+      () => {
+        this.getSubjects();
+      }, ((error) => {
+        this.notificationService.showError(error);
+      })
     );
   }
 
@@ -64,6 +85,4 @@ export class PlanEditComponent implements OnInit {
       })
     );
   }
-
-
 }

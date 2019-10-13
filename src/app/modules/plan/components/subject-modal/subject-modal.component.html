@@ -15,13 +15,12 @@
   </div>
   <div class="form-group">
     <div class="col-4">
-      <label for="year-from">
-        Año de inicio:
-      </label>
-      <input id="year-from" class="form-control" type="number" maxlength="4" formControlName="yearFrom">
+        <label for="level-select">Nivel:</label>
+        <select class="form-control" id="level-select" formControlName="level">
+          <option *ngFor="let level of levels" value="level">{{level}}</option>
+        </select>
     </div>
   </div>
-
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>

@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 <div class="container">
-  <app-module-title [title]="'PlanName'" (editItem)="openEditProgramModal()"></app-module-title>
+  <app-module-title [title]="program.name" (editItem)="openEditProgramModal()"></app-module-title>
   <hr>
-<!--  <app-add-item [buttonTitle]="'Agregar Materia'" (buttonPressed)=""></app-add-item>-->
-
-  <!--<div class="row" *ngFor="let level of levels">
+  <app-add-item [buttonTitle]="'Agregar Materia'" (buttonPressed)="openNewSubjectModal()"></app-add-item>
+<!--
+  <div class="row" *ngFor="let level of levels">
     <div class="col-xs-12">
       <hr>
       <h4>{{level.name}}</h4>

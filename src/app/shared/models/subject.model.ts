@@ -1,14 +1,25 @@
+import {CareerKey} from './carreer-key.model';
+
 export class Subject {
-  planCode: string;
+  programCode: string;
   subjectCode: number;
+  name: string;
   level: string;
   correlatives: Correlative[];
+  careerKey: CareerKey;
 
-  constructor(planCode?: string, subjectCode?: number, level?: string, correlatives?: Correlative[]) {
-    this.planCode = planCode;
+  constructor(programCode?: string,
+              subjectCode?: number,
+              name?: string,
+              level?: string,
+              correlatives?: Correlative[],
+              careerKey?: CareerKey) {
+    this.programCode = programCode;
     this.subjectCode = subjectCode;
+    this.name = name;
     this.level = level;
     this.correlatives = correlatives;
+    this.careerKey = careerKey;
   }
 }
 

@@ -12,7 +12,7 @@ import {Location} from '@angular/common';
 
 
 @Component({
-  selector: 'app-plan',
+  selector: 'app-program',
   templateUrl: './program.component.html',
   styleUrls: ['./program.component.css']
 })
@@ -36,8 +36,9 @@ export class ProgramComponent implements OnInit {
     this.getPrograms();
   }
 
-  public navigateToViewPlanPage(plan) {
-    this.router.navigate(['/plan']);
+  public async navigateToEditProgramPage(program: Program) {
+    this.programService.setCurrentProgam(program);
+    await this.router.navigate(['career/plan/plan-edit']);
   }
 
   public openEditCareerModal() {

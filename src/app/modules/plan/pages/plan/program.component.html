@@ -6,7 +6,7 @@
   <div *ngIf="programs">
     <div *ngFor="let program of programs" class="row text-left program"
          [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }"
-         (click)="navigateToViewPlanPage(program)">
+         (click)="navigateToEditProgramPage(program)">
       <div class="col-8">
         <h3 class="program-name">
           {{program.name}}
