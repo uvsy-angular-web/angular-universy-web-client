@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p>careerName</p>
+            <h3>
+                <i class="material-icons" (click)="navigateCareerPage()">arrow_back</i>
+                <span class="career-title">nombre materia</span>
+                <i class="material-icons" (click)="openEditSubjectModal()">edit</i>
+                <i class="material-icons" (click)="openEditSubjectModal()">delete</i>
+            </h3>
+        </div>
+    </div>
+
+    <br>
+    <h4>Comisiones</h4>
+    <!-- <app-add-item (buttonPressed)="openNewComissionModal()"
+                [buttonTitle]="'Agregar Comisión'"></app-add-item> -->
+    <hr>
+    <div class="row">
+        <div class="col" *ngFor="let num of numbers">
+            <button class="btn btn-primary btn-commission">
+                {{num.name}}
+            </button>
+        </div>
+    </div>
+
+
+    <br>
+    <h4>Correlativas</h4>
+    <hr>
+    <button class="btn btn-primary">
+        Administrar Correlativas
+    </button>
+</div>

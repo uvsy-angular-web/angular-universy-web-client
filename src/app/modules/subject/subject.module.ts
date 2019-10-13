@@ -1,0 +1,14 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SubjectRoutingModule } from './subject-routing.module';
+import { SubjectComponent } from './pages/subject/subject.component';
+
+
+@NgModule({
+  declarations: [SubjectComponent],
+  imports: [
+    CommonModule,
+    SubjectRoutingModule
+  ],
+})
+export class SubjectModule { }

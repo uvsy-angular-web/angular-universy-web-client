@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/contact-info/contact-info.module').then(mod => mod.ContactInfoModule)
   },
   {
+    path: 'subject',
+    loadChildren: () => import('./modules/subject/subject.module').then(mod => mod.SubjectModule)
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'
