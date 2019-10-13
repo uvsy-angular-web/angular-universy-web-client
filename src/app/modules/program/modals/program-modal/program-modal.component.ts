@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {Program} from '../../../../shared/models/program.model';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 const DEFAULT_DAY_INIT_FROM = '01';
 const DEFAULT_MONTH_INIT_FROM = '01';
@@ -17,7 +18,7 @@ const EMPTY_YEAR = '';
 export class ProgramModalComponent implements OnInit {
 
   @Input() title: string;
-  @Input() confirmButtonText: string;
+  @Input() confirmButtonText: ButtonText;
   @Input() program: Program;
   @Output() confirmEvent: EventEmitter<Program> = new EventEmitter();
   form: FormGroup;

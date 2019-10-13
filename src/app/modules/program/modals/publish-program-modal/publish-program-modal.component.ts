@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {Program} from '../../../../shared/models/program.model';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 
 @Component({
@@ -11,6 +12,7 @@ import {Program} from '../../../../shared/models/program.model';
 export class PublishProgramModalComponent implements OnInit {
 
   @Input() title: string;
+  @Input() confirmButtonText: ButtonText;
   @Output() confirmEvent: EventEmitter<Program> = new EventEmitter();
 
   constructor(

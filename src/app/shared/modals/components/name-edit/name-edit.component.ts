@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Career} from '../../../models/career.model';
+import {ButtonText} from '../../../enums/button-text.enum';
 
 @Component({
   selector: 'app-career-modal',
@@ -10,7 +10,7 @@ import {Career} from '../../../models/career.model';
 export class NameEditComponent implements OnInit {
   @Input() title: string;
   @Input() itemText: string;
-  @Input() confirmButtonText: string;
+  @Input() confirmButtonText: ButtonText;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
 

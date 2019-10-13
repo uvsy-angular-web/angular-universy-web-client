@@ -4,6 +4,7 @@ import {Career, Institution} from '../../../../shared/models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Router} from '@angular/router';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class InstitutionComponent implements OnInit {
   public openNewCareerModal() {
     this.notificationService.openEditNameModal(
       'Agregar carrera',
-      'Agregar',
+      ButtonText.Edit,
     ).subscribe(
       (newCareerName) => this.addCareer(newCareerName)
     );

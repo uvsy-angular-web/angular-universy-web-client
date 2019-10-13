@@ -2,11 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Career} from '../../../../shared/models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Program} from '../../../../shared/models/program.model';
-import {ProgramModalComponent} from '../../../program/modals/program-modal/program-modal.component';
 import {ProgramService} from '../../../../core/services/program.service';
 import {Location} from '@angular/common';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
@@ -46,7 +44,7 @@ export class CareerComponent implements OnInit {
   public openEditCareerModal() {
     this.notificationService.openEditNameModal(
       'Modificar carrera',
-      'Modificar',
+      ButtonText.Edit,
       this.career.careerName
     ).subscribe(
       (newCareerName) => this.editCareer(newCareerName)

@@ -3,6 +3,7 @@ import {Program} from '../../../../shared/models/program.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {Subject} from '../../../../shared/models/subject.model';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 @Component({
   selector: 'app-career-modal',
@@ -11,7 +12,7 @@ import {Subject} from '../../../../shared/models/subject.model';
 })
 export class SubjectModalComponent implements OnInit {
   @Input() title: string;
-  @Input() confirmButtonText: string;
+  @Input() confirmButtonText: ButtonText;
   @Input() subject = new Subject();
 
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();

@@ -1,27 +1,27 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{title}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="cancelAction()">
-        <span aria-hidden="true">&times;</span>
-    </button>
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelAction()">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body" [formGroup]="form">
-    <div class="row">
-        <div class="col-2 text-center">
-            <i class="material-icons">warning</i>
-        </div>
-        <div class="col-10">
-            <label for="item-text">
-                <strong>¡Advertencia!</strong> 
-                Una vez publicado el plan, no se podrán realizar modificaciones. 
-                Solo podrán editarse las comisiones de las materias.
-                <br>
-                <strong>¿Está seguro que desea publicar el plan?</strong>
-            </label>
-        </div>
+  <div class="row">
+    <div class="col-2 text-center">
+      <i class="material-icons">warning</i>
     </div>
+    <div class="col-10">
+      <p>
+        <strong>¡Advertencia!</strong>
+        Una vez publicado el plan, no se podrán realizar modificaciones.
+        Solo podrán editarse las comisiones de las materias.
+        <br>
+        <strong>¿Está seguro que desea publicar el plan?</strong>
+      </p>
+    </div>
+  </div>
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)="confirmAction()">{{confirmButtonText}}</button>
+  <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>
+  <button type="button" class="btn btn-primary" (click)="confirmAction()">{{confirmButtonText}}</button>
 </div>
