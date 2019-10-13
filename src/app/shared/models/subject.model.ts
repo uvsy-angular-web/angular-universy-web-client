@@ -4,14 +4,14 @@ export class Subject {
   programCode: string;
   subjectCode: number;
   name: string;
-  level: string;
+  level: number;
   correlatives: Correlative[];
   careerKey: CareerKey;
 
   constructor(programCode?: string,
               subjectCode?: number,
               name?: string,
-              level?: string,
+              level?: number,
               correlatives?: Correlative[],
               careerKey?: CareerKey) {
     this.programCode = programCode;

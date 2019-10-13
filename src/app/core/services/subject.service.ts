@@ -5,6 +5,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {InstitutionService} from './institution.service';
 import {Subject} from '../../shared/models/subject.model';
 import {ProgramService} from './program.service';
+import {CareerService} from './career.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class SubjectService {
   constructor(private http: HttpClient,
               private systemConfigService: SystemConfigService,
               private programService: ProgramService,
-              private institutionService: InstitutionService) {
+              private careerService: CareerService) {
   }
 
   public setCurrentCareer(subject: Subject) {
@@ -31,16 +32,32 @@ export class SubjectService {
   }
 
   public addSubject(subject: Subject) {
+    /*    {
+          "programCode": "2b48be43-5be4-4823-bf51-6ff0ca54bd83",
+          "name": "Analisis Matematico I",
+          "level": 3,
+          "correlatives": [
+          {
+            "subjectCode": "9ea943fd-936d-4f23-a329-2ee0fb54db8e",
+            "correlativeRestriction": "TO_TAKE",
+            "correlativeCondition": "APPROVED"
+          }
+        ],
+          "careerKey": {
+          "institutionKey": "FRC",
+            "careerCode": "K"
+        }
+        }*/
     const body = {
-      programCode: subject.programCode,
+      programCode: this.programService.getCurrentProgam().uuid,
       name: subject.name,
       level: subject.level,
-      correlatives: subject.correlatives,
-      careerKey: subject.careerKey,
+      correlatives: subject.correlatives ? subject.correlatives : [],
+      careerKey: this.careerService.getCurrentCareer().careerKey,
     };
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
-    return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
+    return this.http.put(baseUrl + '/universy/institution/subjects', body, {headers});
   }
 
   getSubjects(): Observable<Subject[]> {
@@ -53,7 +70,7 @@ export class SubjectService {
 
     return this.http.get(baseUrl + '/universy/institution/subjects', {headers, params})
       .map((data: any) => {
-          return data.programs;
+          return data.subjects;
         }
       );
   }

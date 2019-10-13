@@ -2,16 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Subject} from '../../../../shared/models/subject.model';
 import {NotificationService} from '../../../../shared/modals/notification.service';
-import {ProgramModalComponent} from '../../modals/program-modal/program-modal.component';
 import {Program} from '../../../../shared/models/program.model';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
-import {SubjectModalComponent} from '../../../subject/modals/subject-modal/subject-modal.component';
 import {ProgramModalService} from '../../modals/program-modal.service';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {SubjectModalService} from '../../../subject/modals/subject-modal.service';
 
+const INITIAL_LEVEL = 0;
 
 @Component({
   selector: 'app-plan-edit',
@@ -21,7 +18,7 @@ import {SubjectModalService} from '../../../subject/modals/subject-modal.service
 export class ProgramComponent implements OnInit {
   program: Program;
   subjects: Subject[];
-
+  subjectsXLevel: SubjectsXLevel[] = [];
 
   constructor(private location: Location,
               private programService: ProgramService,
@@ -78,11 +75,58 @@ export class ProgramComponent implements OnInit {
   private getSubjects() {
     this.subjectService.getSubjects().subscribe(
       (subjects: Subject[]) => {
-        this.subjects = subjects;
+        if (subjects) {
+          this.subjects = subjects;
+          this.generateLevels();
+        }
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de obtener las materias del plan');
         console.error(error);
       })
     );
+  }
+
+  private generateLevels() {
+    const maximumLevel = this.getMaximumLevel();
+    for (let level = INITIAL_LEVEL; level <= maximumLevel; level++) {
+      const subjectsXLevel = this.getLevelSubjects(level);
+      this.subjectsXLevel.push(subjectsXLevel);
+    }
+  }
+
+  private getLevelSubjects(level) {
+    const subjectsXLevel = new SubjectsXLevel(level, []);
+    this.subjects.forEach((subject, index, list) => {
+      if (subject.level === level) {
+        subjectsXLevel.subjects.push(subject);
+        ProgramComponent.removeSubjectFromList(list, index);
+      }
+    });
+    return subjectsXLevel;
+  }
+
+
+  private getMaximumLevel() {
+    let maximumLevel = 1;
+    this.subjects.forEach((subject) => {
+      if (subject.level > maximumLevel) {
+        maximumLevel = subject.level;
+      }
+    });
+    return maximumLevel;
+  }
+
+  private static removeSubjectFromList(lista, index) {
+    lista.splice(index, 1);
+  }
+}
+
+export class SubjectsXLevel {
+  level: number;
+  subjects: Subject[];
+
+  constructor(level: number, subjects: Subject[]) {
+    this.level = level;
+    this.subjects = subjects;
   }
 }
