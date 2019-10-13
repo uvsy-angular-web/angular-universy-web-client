@@ -3,6 +3,7 @@
   <hr>
   <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewPlanModal()"
                 [buttonTitle]="'Agregar plan'"></app-add-item>
+                
   <div *ngIf="programs">
     <div *ngFor="let program of programs" class="row text-left program"
          [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }"
@@ -16,7 +17,7 @@
       </div>
       <div class="col-4 text-center not-pusblished" *ngIf="!program.published">
         <br>
-        <button class="btn btn-primary">Publicar</button>
+        <button class="btn btn-primary" (click)="openConfirmPostModal()">Publicar</button>
       </div>
     </div>
   </div>

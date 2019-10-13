@@ -4,10 +4,12 @@ import {SubjectModalComponent} from './components/subject-modal/subject-modal.co
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../../shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SubjectComponent} from './pages/subject/subject.component';
 
 
 @NgModule({
   declarations: [
+    SubjectComponent,
     SubjectModalComponent,
   ],
   imports: [

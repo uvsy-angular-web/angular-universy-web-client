@@ -60,6 +60,12 @@ export class CareerComponent implements OnInit {
     );
   }
 
+  public openConfirmPostModal() {
+    const modalRef = this.modalService.open(PostProgramModalComponent, {backdrop: 'static'});
+    modalRef.componentInstance.title = 'Publicar Plan';
+    modalRef.componentInstance.confirmButtonText = 'Publicar';
+  }
+
   public showAddProgram(): boolean {
     return this.programs.length === 0 && !this.isThereProgramNotPublished();
   }
