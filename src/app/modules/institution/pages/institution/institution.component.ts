@@ -41,7 +41,7 @@ export class InstitutionComponent implements OnInit {
   public openNewCareerModal() {
     this.notificationService.openEditNameModal(
       'Agregar carrera',
-      ButtonText.Edit,
+      ButtonText.Add,
     ).subscribe(
       (newCareerName) => this.addCareer(newCareerName)
     );

@@ -1,7 +1,7 @@
 export enum ButtonText {
-  Confirm = 'Aceptar',
+  Accept = 'Aceptar',
   Add = 'Agregar',
-  Delete = 'Delete',
-  Edit = 'Edit',
+  Delete = 'Eliminar',
+  Edit = 'Editar',
   Publish = 'Publicar'
 }

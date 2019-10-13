@@ -9,7 +9,7 @@ import {ButtonText} from '../../../enums/button-text.enum';
 })
 export class ErrorModalComponent implements OnInit {
   @Input() message: string;
-  confirmationButtonText = ButtonText.Confirm;
+  confirmationButtonText = ButtonText.Accept;
 
   constructor(public activeModal: NgbActiveModal) {
   }
