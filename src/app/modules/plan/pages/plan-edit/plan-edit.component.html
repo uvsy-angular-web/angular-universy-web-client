@@ -1,32 +1,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 <div class="container">
-    <div class="row">
-        <div class="col-xs-10">
-            <p>careerName</p>
-            <h3>
-                <span class="glyphicon glyphicon-circle-arrow-left"></span>
-                PlanName
-                <span class="glyphicon glyphicon-pencil"></span>
-                <span class="glyphicon glyphicon-trash"></span>
-            </h3>
-        </div>
-        <div class="col-xs-2">
-            <br><br>
-            <a href="#">+ Agregar Materia</a>
-        </div>
-    </div>
+  <app-module-title [title]="'PlanName'" (editItem)="openEditProgramModal()"></app-module-title>
+  <hr>
+<!--  <app-add-item [buttonTitle]="'Agregar Materia'" (buttonPressed)=""></app-add-item>-->
 
-    <div class="row" *ngFor="let level of levels">
-        <div class="col-xs-12">
-            <hr>
-            <h4>{{level.name}}</h4>
-            <br>
-            <div class="col-xs-2" *ngFor="let subject of level.subjects">
-                <button class="btn btn-primary btn-subject">
-                    {{subject.name}}
-                </button>
-            </div>
-        </div>
+  <!--<div class="row" *ngFor="let level of levels">
+    <div class="col-xs-12">
+      <hr>
+      <h4>{{level.name}}</h4>
+      <br>
+      <div class="col-xs-2" *ngFor="let subject of level.subjects">
+        <button class="btn btn-primary btn-subject">
+          {{subject.name}}
+        </button>
+      </div>
     </div>
+  </div>-->
 </div>

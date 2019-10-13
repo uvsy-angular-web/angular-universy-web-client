@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {Institution, Institutions} from '../../shared/models/career.model';
+import {Career, Institution, Institutions} from '../../shared/models/career.model';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './config/system-config.service';
 import {Program} from '../../shared/models/program.model';
@@ -55,6 +55,18 @@ export class ProgramService {
         }
       );
   }
+  updateProgram(program: Program) {
+    const body = {
+      careerKey: this.careerService.getCurrentCareer().careerKey,
+      uuid: program.uuid,
+      name: program.name,
+      validFrom: program.validFrom
+    };
+    const baseUrl = ProgramService._getBaseUrl();
+    const headers = this._getHeaders();
+    return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
+  }
+
 
   private _getHeaders() {
     return this.systemConfigService.getHeader();

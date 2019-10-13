@@ -1,14 +1,5 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h3>
-        <i class="material-icons" (click)="navigateCareerPage()">arrow_back</i>
-        <span class="career-title">{{career.careerName}}</span>
-        <i class="material-icons" (click)="openEditCareerModal()">edit</i>
-      </h3>
-    </div>
-
-  </div>
+  <app-module-title [title]="career.careerName" (editItem)="openEditCareerModal()"></app-module-title>
   <hr>
   <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewPlanModal()"
                 [buttonTitle]="'Agregar plan'"></app-add-item>

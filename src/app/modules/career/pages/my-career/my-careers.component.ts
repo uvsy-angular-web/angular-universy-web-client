@@ -13,7 +13,6 @@ import {Router} from '@angular/router';
 })
 
 export class MyCareersComponent implements OnInit {
-  public;
   institution: Institution = new Institution();
 
   constructor(
@@ -45,7 +44,6 @@ export class MyCareersComponent implements OnInit {
     ).subscribe(
       (newCareerName) => this.addCareer(newCareerName)
     );
-
   }
 
   public navigateToPlanPage(career: Career) {

@@ -6,7 +6,7 @@ import {ProgramComponent} from './pages/plan/program.component';
 import {PlanEditComponent} from './pages/plan-edit/plan-edit.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../../shared/shared.module';
-import {ProgramModalComponent} from './components/add-program-modal/program-modal.component';
+import {ProgramModalComponent} from './components/program-modal/program-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({

@@ -6,8 +6,9 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Program} from '../../../../shared/models/program.model';
-import {ProgramModalComponent} from '../../components/add-program-modal/program-modal.component';
+import {ProgramModalComponent} from '../../components/program-modal/program-modal.component';
 import {ProgramService} from '../../../../core/services/program.service';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class ProgramComponent implements OnInit {
               private careerService: CareerService,
               private programService: ProgramService,
               private modalService: NgbModal,
+              private location: Location,
               private institutionService: InstitutionService,
               private notificationService: NotificationService,
               private router: Router) {
@@ -37,11 +39,6 @@ export class ProgramComponent implements OnInit {
   public navigateToViewPlanPage(plan) {
     this.router.navigate(['/plan']);
   }
-
-  public navigateCareerPage() {
-    this.router.navigate(['/career']);
-  }
-
 
   public openEditCareerModal() {
     this.notificationService.openEditNameModal(

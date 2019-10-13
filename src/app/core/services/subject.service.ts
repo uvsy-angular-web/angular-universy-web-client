@@ -1,21 +1,23 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {SystemConfigService} from './config/system-config.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {InstitutionService} from './institution.service';
 import {Subject} from '../../shared/models/subject.model';
+import {ProgramService} from './program.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CareerService {
+export class SubjectService {
+  private subjectSource = new BehaviorSubject<Subject>(new Subject());
+  public currentSubject = this.subjectSource.asObservable();
 
   constructor(private http: HttpClient,
               private systemConfigService: SystemConfigService,
+              private programService: ProgramService,
               private institutionService: InstitutionService) {
   }
-  private subjectSource = new BehaviorSubject<Subject>(new Subject());
-  public currentSubject = this.subjectSource.asObservable();
 
   public setCurrentCareer(subject: Subject) {
     this.subjectSource.next(subject);
@@ -28,11 +30,26 @@ export class CareerService {
     return career;
   }
 
+  getSubjects(): Observable<Subject[]> {
+    const baseUrl = SubjectService.getBaseUrl();
+    const headers = this.getHeaders();
 
-  private _getHeaders() {
+    const currentProgramCode = this.programService.getCurrentProgam().uuid;
+    const params = new HttpParams()
+      .set('planCode', currentProgramCode);
+
+    return this.http.get(baseUrl + '/universy/institution/subjects', {headers, params})
+      .map((data: any) => {
+          return data.programs;
+        }
+      );
+  }
+
+  private getHeaders() {
     return this.systemConfigService.getHeader();
   }
-  private static _getBaseUrl() {
+
+  private static getBaseUrl() {
     return SystemConfigService.getBaseUrl();
   }
 }

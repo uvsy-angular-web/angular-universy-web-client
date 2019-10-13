@@ -1,5 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-
+import {Location} from '@angular/common';
+import {Subject} from '../../../../shared/models/subject.model';
+import {NotificationService} from '../../../../shared/modals/notification.service';
+import {ProgramModalComponent} from '../../components/program-modal/program-modal.component';
+import {Program} from '../../../../shared/models/program.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ProgramService} from '../../../../core/services/program.service';
+import {SubjectService} from '../../../../core/services/subject.service';
 
 
 @Component({
@@ -8,26 +15,55 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./plan-edit.component.css']
 })
 export class PlanEditComponent implements OnInit {
+  program: Program;
+  subjects: Subject[];
 
-/*  "subjects": [
-    {
-      "code": int,
-      "level": int,
-      "name": String,
-      "correlatives": [
-        {
-          "code": int,
-          "correlativeType": String,
-          "correlativeRestriction": String
-        }
-        ]
-    }*/
 
-  
-
-  constructor() { }
+  constructor(private location: Location,
+              private programService: ProgramService,
+              private notificationService: NotificationService,
+              private subjectService: SubjectService,
+              private modalService: NgbModal) {
+  }
 
   ngOnInit() {
+    this.getSubjects();
   }
+
+  public openEditProgramModal() {
+    const modalRef = this.modalService.open(ProgramModalComponent, {backdrop: 'static'});
+    modalRef.componentInstance.title = 'Editar plan';
+    modalRef.componentInstance.confirmButtonText = 'Editar';
+    modalRef.componentInstance.program = this.program;
+    modalRef.componentInstance.confirmEvent.subscribe(
+      (editedProgram: Program) => this.editProgram(editedProgram.name)
+    );
+  }
+
+  private editProgram(programName: string) {
+    if (programName) {
+      this.program.name = programName;
+      this.programService.updateProgram(this.program).subscribe(
+        () => {
+          this.programService.setCurrentProgam(this.program);
+        }, ((error) => {
+          this.notificationService.showError('Ocurrió un error tratando de modificar el plan');
+          console.error(error);
+        })
+      );
+    }
+  }
+
+  private getSubjects() {
+    this.subjectService.getSubjects().subscribe(
+      (subjects: Subject[]) => {
+        this.subjects = subjects;
+      }, ((error) => {
+        this.notificationService.showError('Ocurrió un error tratando de obtener las materias del plan');
+        console.error(error);
+      })
+    );
+  }
+
 
 }
