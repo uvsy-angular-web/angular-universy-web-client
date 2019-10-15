@@ -4,10 +4,10 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body" [formGroup]="form">
+<div class="modal-body">
   <div class="row">
     <div class="col-2 text-center">
-      <i class="material-icons">warning</i>
+      <i class="material-icons" id="warning-icon">warning</i>
     </div>
     <div class="col-10">
       <p>
@@ -15,12 +15,12 @@
         Una vez publicado el plan, no se podrán realizar modificaciones.
         Solo podrán editarse las comisiones de las materias.
         <br>
+        <br>
         <strong>¿Está seguro que desea publicar el plan?</strong>
       </p>
     </div>
   </div>
 </div>
-
 <div class="modal-footer">
   <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>
   <button type="button" class="btn btn-primary" (click)="confirmAction()">{{confirmButtonText}}</button>

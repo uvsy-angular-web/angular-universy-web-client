@@ -20,3 +20,7 @@
   transform: translateY(-0.2rem);
 }
 
+.clickeable {
+  cursor: pointer;
+}
+

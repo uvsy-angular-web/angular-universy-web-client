@@ -13,7 +13,7 @@ export class PublishProgramModalComponent implements OnInit {
 
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
-  @Output() confirmEvent: EventEmitter<Program> = new EventEmitter();
+  @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
   constructor(
     public activeModal: NgbActiveModal) {
@@ -28,7 +28,8 @@ export class PublishProgramModalComponent implements OnInit {
   }
 
   public confirmAction() {
-    this.confirmEvent.emit();
+    this.confirmEvent.emit(true);
+    this.activeModal.dismiss();
   }
 
 }

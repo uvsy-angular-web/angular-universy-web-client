@@ -58,17 +58,29 @@ export class CareerComponent implements OnInit {
   }
 
 
-  public openConfirmPublishModal() {
+  public openConfirmPublishModal(program: Program) {
     this.programModalService.openConfirmPublishModal().subscribe(
-      (action) => {
-        console.log('Desa publicar el plan');
-        // TODO: Implement publish plan action
+      (confirm) => {
+        if (confirm) {
+          this.publishProgram(program);
+        }
       }
     );
   }
 
   public showAddProgram(): boolean {
-    return this.programs.length === 0 && !this.isThereProgramNotPublished();
+    return this.programs.length === 0 || !this.isThereProgramNotPublished();
+  }
+
+  private publishProgram(program: Program) {
+    this.programService.publishProgram(program).subscribe(
+      () => {
+        this.getPrograms();
+      }, (error) => {
+        this.notificationService.showError('Ocurrió un problema tratando de publicar el plan');
+        console.error(error);
+      }
+    );
   }
 
   private isThereProgramNotPublished() {

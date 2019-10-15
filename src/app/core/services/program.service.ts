@@ -30,7 +30,6 @@ export class ProgramService {
     return program;
   }
 
-
   public addProgram(program: Program) {
     const body = {
       careerKey: this.careerService.getCurrentCareer().careerKey,
@@ -42,7 +41,7 @@ export class ProgramService {
     return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
   }
 
-  getPrograms(): Observable<Program[]> {
+  public getPrograms(): Observable<Program[]> {
     const baseUrl = SystemConfigService.getBaseUrl();
     const headers = this.systemConfigService.getHeader();
     const currentCareerKey = this.careerService.getCurrentCareer().careerKey;
@@ -55,7 +54,8 @@ export class ProgramService {
         }
       );
   }
-  updateProgram(program: Program) {
+
+  public updateProgram(program: Program) {
     const body = {
       careerKey: this.careerService.getCurrentCareer().careerKey,
       uuid: program.uuid,
@@ -67,6 +67,15 @@ export class ProgramService {
     return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
   }
 
+  public publishProgram(program: Program) {
+    const body = {
+      careerKey: this.careerService.getCurrentCareer().careerKey,
+      uuid: program.uuid,
+    };
+    const baseUrl = ProgramService._getBaseUrl();
+    const headers = this._getHeaders();
+    return this.http.post(baseUrl + '/universy/institution/programs/publish', body, {headers});
+  }
 
   private _getHeaders() {
     return this.systemConfigService.getHeader();

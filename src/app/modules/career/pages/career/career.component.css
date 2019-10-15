@@ -22,7 +22,7 @@
 }
 
 .program {
-  cursor: pointer;
+
   width: 100%;
   border-radius: 25px;
   margin: 2rem;
@@ -37,6 +37,9 @@
 
 .not-pusblished {
   border-left: 2px solid white;
+}
+#published-icon{
+  color: greenyellow;
 }
 
 .program-name {
