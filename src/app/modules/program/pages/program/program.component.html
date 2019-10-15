@@ -1,5 +1,10 @@
 <div class="container">
-  <app-module-title [title]="program.name" (editItem)="openEditProgramModal()"></app-module-title>
+  <app-module-title [title]="program.name"
+                    (editItem)="openEditProgramModal()"
+                    (deleteItem)="openDeleteProgramModal()"
+                    [showDeleteButton]="canEditProgram()"
+                    [showEditButton]="canEditProgram()"
+  ></app-module-title>
   <hr>
   <app-add-item [buttonTitle]="'Agregar Materia'" (buttonPressed)="openNewSubjectModal()"></app-add-item>
 

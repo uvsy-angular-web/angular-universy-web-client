@@ -9,7 +9,10 @@ import {Location} from '@angular/common';
 export class ModuleTitleComponent implements OnInit {
 
   @Input() title: string;
+  @Input() showDeleteButton = true;
+  @Input() showEditButton = true;
   @Output() editItem = new EventEmitter();
+  @Output() deleteItem = new EventEmitter();
 
   constructor(private location: Location) {
   }
@@ -23,6 +26,10 @@ export class ModuleTitleComponent implements OnInit {
 
   public editItemAction() {
     this.editItem.emit();
+  }
+
+  public deleteItemAction() {
+    this.deleteItem.emit();
   }
 
 }

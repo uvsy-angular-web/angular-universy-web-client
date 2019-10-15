@@ -8,6 +8,7 @@ import {SubjectService} from '../../../../core/services/subject.service';
 import {ProgramModalService} from '../../modals/program-modal.service';
 import {SubjectModalService} from '../../../subject/modals/subject-modal.service';
 import {Router} from '@angular/router';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 const INITIAL_LEVEL = 0;
 
@@ -49,9 +50,26 @@ export class ProgramComponent implements OnInit {
     );
   }
 
+  public openDeleteProgramModal() {
+    this.notificationService.openConfirmModal(
+      'Eliminar plan',
+      'Se eliminara el plan y todas las materias que hayan sido cargadas.',
+      '¿ Esta seguro que desea eliminarlo ?',
+      ButtonText.Delete
+    ).subscribe(
+      (confirm) => {
+        // TODO: implement delete program
+      }
+    );
+  }
+
   public navigateToSubjectView(subject: Subject) {
     this.subjectService.setCurrentSubject(subject);
     this.router.navigate(['institution/career/program/subject']);
+  }
+
+  public canEditProgram(): boolean {
+    return !this.program.published;
   }
 
   private addSubject(careerName) {

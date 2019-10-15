@@ -1,3 +1,7 @@
 i {
   cursor: pointer;
 }
+
+.space-right {
+  margin-right: 1rem;
+}

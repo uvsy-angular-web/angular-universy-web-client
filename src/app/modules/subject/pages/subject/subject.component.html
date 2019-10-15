@@ -1,11 +1,12 @@
 <div class="container">
-  <app-module-title [title]="subject.name"></app-module-title>
+  <app-module-title [title]="subject.name"
+                    (deleteItem)="openDeleteModal()"></app-module-title>
   <hr>
   <app-add-item [buttonTitle]="'Agregar comisión'"></app-add-item>
   <br>
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary btn-commission"  *ngFor="let course of courses">
+      <button class="btn btn-primary btn-commission" *ngFor="let course of courses">
         {{course.name}}
       </button>
     </div>

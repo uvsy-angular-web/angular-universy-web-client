@@ -5,12 +5,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorModalComponent} from './components/error-modal/error-modal.component';
 import {NameEditComponent} from './components/name-edit/name-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ConfirmActionModalComponent } from './components/confirm-action-modal/confirm-action-modal.component';
 
 
 @NgModule({
   declarations: [
     ErrorModalComponent,
-    NameEditComponent
+    NameEditComponent,
+    ConfirmActionModalComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   entryComponents: [
     ErrorModalComponent,
-    NameEditComponent
+    NameEditComponent,
+    ConfirmActionModalComponent
   ]
 })
 

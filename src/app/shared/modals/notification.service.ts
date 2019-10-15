@@ -3,6 +3,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorModalComponent} from './components/error-modal/error-modal.component';
 import {NameEditComponent} from './components/name-edit/name-edit.component';
 import {ButtonText} from '../enums/button-text.enum';
+import {ConfirmActionModalComponent} from './components/confirm-action-modal/confirm-action-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +25,14 @@ export class NotificationService {
     modalRef.componentInstance.confirmButtonText = confirmButtonText;
     return modalRef.componentInstance.confirmEvent;
   }
+
+  openConfirmModal(title: string, message = '', confirmationQuestion = '', confirmationButtonText: ButtonText) {
+    const modalRef = this.modalService.open(ConfirmActionModalComponent, {backdrop: 'static'});
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.message = message;
+    modalRef.componentInstance.confirmationQuestion = confirmationQuestion;
+    modalRef.componentInstance.confirmationButtonText = confirmationButtonText;
+    return modalRef.componentInstance.confirmEvent;
+  }
+
 }
