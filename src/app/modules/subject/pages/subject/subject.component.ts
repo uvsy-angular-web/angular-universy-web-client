@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {SubjectService} from '../../../../core/services/subject.service';
+import {Subject} from '../../../../shared/models/subject.model';
 
 @Component({
   selector: 'app-subject',
@@ -7,7 +9,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SubjectComponent implements OnInit {
 
-  numbers = [
+  public subject = new Subject();
+  courses = [
     {name: '1k1'},
     {name: '1k2'},
     {name: '1k3'},
@@ -17,10 +20,11 @@ export class SubjectComponent implements OnInit {
     {name: '1k7'}
   ];
 
-  constructor() {
+  constructor(private subjectService: SubjectService) {
   }
 
   ngOnInit() {
+    this.subject = this.subjectService.getCurrentSubject();
   }
 
 }

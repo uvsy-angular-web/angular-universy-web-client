@@ -10,7 +10,7 @@
       <h4>{{subjectXLevel.level}}</h4>
       <br>
       <div class="col-xs-2" *ngFor="let subject of subjectXLevel.subjects">
-        <button class="btn btn-primary btn-subject">
+        <button class="btn btn-primary btn-subject" (click)="navigateToSubjectView(subject)">
           {{subject.name}}
         </button>
       </div>

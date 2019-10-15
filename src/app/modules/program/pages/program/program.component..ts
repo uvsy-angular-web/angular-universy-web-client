@@ -7,6 +7,7 @@ import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
 import {ProgramModalService} from '../../modals/program-modal.service';
 import {SubjectModalService} from '../../../subject/modals/subject-modal.service';
+import {Router} from '@angular/router';
 
 const INITIAL_LEVEL = 0;
 
@@ -22,6 +23,7 @@ export class ProgramComponent implements OnInit {
 
   constructor(private location: Location,
               private programService: ProgramService,
+              private router: Router,
               private notificationService: NotificationService,
               private programModalService: ProgramModalService,
               private subjectModalService: SubjectModalService,
@@ -45,6 +47,11 @@ export class ProgramComponent implements OnInit {
     this.subjectModalService.openNewSubjectModal().subscribe(
       (newSubject: Program) => this.addSubject(newSubject)
     );
+  }
+
+  public navigateToSubjectView(subject: Subject) {
+    this.subjectService.setCurrentSubject(subject);
+    this.router.navigate(['institution/career/program/subject']);
   }
 
   private addSubject(careerName) {

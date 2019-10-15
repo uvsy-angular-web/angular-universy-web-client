@@ -20,34 +20,18 @@ export class SubjectService {
               private careerService: CareerService) {
   }
 
-  public setCurrentCareer(subject: Subject) {
+  public setCurrentSubject(subject: Subject) {
     this.subjectSource.next(subject);
   }
 
-  public getCurrentCareer(): Subject {
-    let career;
+  public getCurrentSubject(): Subject {
+    let subject;
     this.currentSubject
-      .subscribe((serviceCareer) => career = serviceCareer);
-    return career;
+      .subscribe((serviceCareer) => subject = serviceCareer);
+    return subject;
   }
 
   public addSubject(subject: Subject) {
-    /*    {
-          "programCode": "2b48be43-5be4-4823-bf51-6ff0ca54bd83",
-          "name": "Analisis Matematico I",
-          "level": 3,
-          "correlatives": [
-          {
-            "subjectCode": "9ea943fd-936d-4f23-a329-2ee0fb54db8e",
-            "correlativeRestriction": "TO_TAKE",
-            "correlativeCondition": "APPROVED"
-          }
-        ],
-          "careerKey": {
-          "institutionKey": "FRC",
-            "careerCode": "K"
-        }
-        }*/
     const body = {
       programCode: this.programService.getCurrentProgam().uuid,
       name: subject.name,
