@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Career} from '../../shared/models/career.model';
 import {BehaviorSubject} from 'rxjs';
-import {SystemConfigService} from './config/system-config.service';
+import {SystemConfigService} from './system/system-config.service';
 import {HttpClient} from '@angular/common/http';
 import {InstitutionService} from './institution.service';
+
+const ENDPOINT_CAREERS = '/universy/institution/careers';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +38,7 @@ export class CareerService {
     };
     const baseUrl = CareerService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.post(baseUrl + '/universy/institution/careers', body, {headers});
+    return this.http.post(baseUrl + ENDPOINT_CAREERS, body, {headers});
   }
 
   addCareer(careerName: string) {
@@ -46,8 +48,9 @@ export class CareerService {
     };
     const baseUrl = CareerService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.put(baseUrl + '/universy/institution/careers', body, {headers});
+    return this.http.put(baseUrl + ENDPOINT_CAREERS, body, {headers});
   }
+
 
   private _getHeaders() {
     return this.systemConfigService.getHeader();

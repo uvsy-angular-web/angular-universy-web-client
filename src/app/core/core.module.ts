@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {TopNavBarComponent} from './top-nav-bar/top-nav-bar.component';
 import {FooterComponent} from './footer/footer.component';
 import {CareerService} from './services/career.service';
-import {SystemConfigService} from './services/config/system-config.service';
+import {SystemConfigService} from './services/system/system-config.service';
 import { LoaderComponent } from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material';
 

@@ -9,6 +9,7 @@ import {ProgramService} from '../../../../core/services/program.service';
 import {Location} from '@angular/common';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {ProgramModalService} from '../../../program/modals/program-modal.service';
+import {NavigationService} from '../../../../core/services/system/navigation.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class CareerComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private careerService: CareerService,
               private programService: ProgramService,
-              private location: Location,
+              private navigationService: NavigationService,
               private programModalService: ProgramModalService,
               private institutionService: InstitutionService,
               private notificationService: NotificationService,
@@ -38,7 +39,7 @@ export class CareerComponent implements OnInit {
 
   public async navigateToProgramPage(program: Program) {
     this.programService.setCurrentProgam(program);
-    await this.router.navigate(['institution/career/program']);
+    this.navigationService.navigateToProgramPage();
   }
 
   public openEditCareerModal() {

@@ -5,6 +5,7 @@ import {CareerService} from '../../../../core/services/career.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Router} from '@angular/router';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import {NavigationService} from '../../../../core/services/system/navigation.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class InstitutionComponent implements OnInit {
   constructor(
     private institutionService: InstitutionService,
     private careerService: CareerService,
+    private navigationService: NavigationService,
     private notificationService: NotificationService,
     private router: Router) {
   }
@@ -49,7 +51,7 @@ export class InstitutionComponent implements OnInit {
 
   public navigateToCareerPage(career: Career) {
     this.careerService.setCurrentCareer(career);
-    this.router.navigate(['institution/career']);
+    this.navigationService.navigateToCareerPage();
   }
 
   private addCareer(careerName) {

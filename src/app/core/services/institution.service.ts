@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {SystemConfigService} from './config/system-config.service';
+import {SystemConfigService} from './system/system-config.service';
 import {Institution, Institutions} from '../../shared/models/career.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import 'rxjs-compat/add/operator/map';
 
 const FIRST_INSTITUTION_INDEX = 0;
 const MOCKED_INSTITUTION_KEY = 'FRC';
+const ENDPOINT_INSTITUTION = '/universy/institution';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class InstitutionService {
     const params = new HttpParams()
       .set('institutionKey', institutionKey);
 
-    return this.http.get(baseUrl + '/universy/institution', {headers, params})
+    return this.http.get(baseUrl + ENDPOINT_INSTITUTION, {headers, params})
       .map((institutions: Institutions) => {
           return institutions.institutions[FIRST_INSTITUTION_INDEX];
         }

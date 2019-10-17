@@ -9,6 +9,7 @@ import {ProgramModalService} from '../../modals/program-modal.service';
 import {SubjectModalService} from '../../../subject/modals/subject-modal.service';
 import {Router} from '@angular/router';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import {NavigationService} from '../../../../core/services/system/navigation.service';
 
 const INITIAL_LEVEL = 0;
 
@@ -24,7 +25,7 @@ export class ProgramComponent implements OnInit {
 
   constructor(private location: Location,
               private programService: ProgramService,
-              private router: Router,
+              private navigationService: NavigationService,
               private notificationService: NotificationService,
               private programModalService: ProgramModalService,
               private subjectModalService: SubjectModalService,
@@ -58,14 +59,27 @@ export class ProgramComponent implements OnInit {
       ButtonText.Delete
     ).subscribe(
       (confirm) => {
-        // TODO: implement delete program
+        this.deleteProgram();
       }
     );
   }
 
+  private deleteProgram() {
+    if (!this.program.published) {
+      this.programService.deleteProgram(this.program).subscribe(
+        () => {
+          this.navigationService.navigateToCareerPage();
+        },
+        (error) => {
+          this.notificationService.showError('Ocurrió un error intentando borrar el plan.');
+          console.error(error);
+        });
+    }
+  }
+
   public navigateToSubjectView(subject: Subject) {
     this.subjectService.setCurrentSubject(subject);
-    this.router.navigate(['institution/career/program/subject']);
+    this.navigationService.navigateToSubjectPage();
   }
 
   public canEditProgram(): boolean {

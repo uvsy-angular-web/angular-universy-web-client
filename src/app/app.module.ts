@@ -9,7 +9,7 @@ import {SharedModule} from './shared/shared.module';
 import {ProgramModalModule} from './modules/program/modals/program-modal.module';
 import {SubjectModalModule} from './modules/subject/modals/subject-modal.module';
 import {MatProgressSpinnerModule} from '@angular/material';
-import {LoaderService} from './core/services/config/loader.service';
+import {LoaderService} from './core/services/system/loader.service';
 import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
 
 @NgModule({

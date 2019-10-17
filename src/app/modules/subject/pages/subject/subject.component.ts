@@ -3,6 +3,8 @@ import {SubjectService} from '../../../../core/services/subject.service';
 import {Subject} from '../../../../shared/models/subject.model';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NotificationService} from '../../../../shared/modals/notification.service';
+import {Router} from '@angular/router';
+import {NavigationService} from '../../../../core/services/system/navigation.service';
 
 @Component({
   selector: 'app-subject',
@@ -23,8 +25,10 @@ export class SubjectComponent implements OnInit {
   ];
 
   constructor(private subjectService: SubjectService,
+              private navigationService: NavigationService,
               private notificationService: NotificationService) {
   }
+
   public openDeleteModal() {
     this.notificationService.openConfirmModal(
       'Eliminar materia',
@@ -33,12 +37,24 @@ export class SubjectComponent implements OnInit {
       ButtonText.Delete
     ).subscribe(
       (confirm) => {
-        // TODO: implement delete subject
+        this.deleteSubject();
       }
     );
   }
+
+
   ngOnInit() {
     this.subject = this.subjectService.getCurrentSubject();
   }
 
+  private deleteSubject() {
+    this.subjectService.deleteSubject(this.subject).subscribe(
+      () => {
+        this.navigationService.navigateToProgramPage();
+      },
+      (error) => {
+        this.notificationService.showError('Ocurrió un error intentando borrar la materia.');
+        console.error(error);
+      });
+  }
 }

@@ -2,9 +2,12 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Career, Institution, Institutions} from '../../shared/models/career.model';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {SystemConfigService} from './config/system-config.service';
+import {SystemConfigService} from './system/system-config.service';
 import {Program} from '../../shared/models/program.model';
 import {CareerService} from './career.service';
+
+const ENDPOINT_PROGRAMS = '/universy/institution/programs';
+const ENDPOINT_PROGRAMS_PUBLISH = ENDPOINT_PROGRAMS + '/publish';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +41,7 @@ export class ProgramService {
     };
     const baseUrl = ProgramService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
+    return this.http.put(baseUrl + ENDPOINT_PROGRAMS, body, {headers});
   }
 
   public getPrograms(): Observable<Program[]> {
@@ -48,11 +51,22 @@ export class ProgramService {
     const params = new HttpParams()
       .set('institutionKey', currentCareerKey.institutionKey)
       .set('careerCode', currentCareerKey.careerCode);
-    return this.http.get(baseUrl + '/universy/institution/programs', {headers, params})
+    return this.http.get(baseUrl + ENDPOINT_PROGRAMS, {headers, params})
       .map((data: any) => {
           return data.programs;
         }
       );
+  }
+
+  public deleteProgram(program: Program) {
+    const baseUrl = SystemConfigService.getBaseUrl();
+    const headers = this.systemConfigService.getHeader();
+    const currentCareerKey = this.careerService.getCurrentCareer().careerKey;
+    const params = new HttpParams()
+      .set('institutionKey', currentCareerKey.institutionKey)
+      .set('careerCode', currentCareerKey.careerCode)
+      .set('uuid', program.uuid);
+    return this.http.delete(baseUrl + ENDPOINT_PROGRAMS, {headers, params});
   }
 
   public updateProgram(program: Program) {
@@ -64,7 +78,7 @@ export class ProgramService {
     };
     const baseUrl = ProgramService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.put(baseUrl + '/universy/institution/programs', body, {headers});
+    return this.http.put(baseUrl + ENDPOINT_PROGRAMS, body, {headers});
   }
 
   public publishProgram(program: Program) {
@@ -74,7 +88,7 @@ export class ProgramService {
     };
     const baseUrl = ProgramService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.post(baseUrl + '/universy/institution/programs/publish', body, {headers});
+    return this.http.post(baseUrl + ENDPOINT_PROGRAMS_PUBLISH, body, {headers});
   }
 
   private _getHeaders() {

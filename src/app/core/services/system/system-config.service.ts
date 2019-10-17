@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import configJson from '@config/config.json';
 
