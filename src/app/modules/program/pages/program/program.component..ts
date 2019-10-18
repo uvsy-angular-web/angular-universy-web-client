@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 
-const INITIAL_LEVEL = 0;
+const INITIAL_LEVEL = 1;
 
 @Component({
   selector: 'app-plan-edit',

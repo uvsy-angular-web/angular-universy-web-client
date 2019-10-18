@@ -1,16 +1,25 @@
-.btn-subject{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    height: 8rem;
-    width: 100%;
-    border-radius: 15px;
-    background-color: #E5C028;
-    color: white;
-    border-color:  #E5C028;
-    margin: 0.5rem;
-    white-space: normal;
+.btn-subject {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 8rem;
+  width: 100%;
+  border-radius: 15px;
+  background-color: #E5C028;
+  color: white;
+  border-color: #E5C028;
+  margin: 0.5rem;
+  white-space: normal;
 }
 
-.btn:hover{
-    background-color: grey;
-    border-color: grey;
+.btn:hover {
+  background-color: grey;
+  border-color: grey;
+}
+
+.bottom-line {
+  border-bottom: 1px solid grey;
+}
+
+.no-subject-found {
+  padding: 1rem;
+  font-size: 1.5rem;
 }

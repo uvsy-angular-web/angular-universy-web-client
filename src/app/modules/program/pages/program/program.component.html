@@ -3,21 +3,21 @@
                     (editItem)="openEditProgramModal()"
                     (deleteItem)="openDeleteProgramModal()"
                     [showDeleteButton]="canEditProgram()"
-                    [showEditButton]="canEditProgram()"
-  ></app-module-title>
+                    [showEditButton]="canEditProgram()"></app-module-title>
   <hr>
   <app-add-item [buttonTitle]="'Agregar Materia'" (buttonPressed)="openNewSubjectModal()"></app-add-item>
 
-  <div class="row" *ngFor="let subjectXLevel of subjectsXLevel">
-
+  <div class="row bottom-line" *ngFor="let subjectXLevel of subjectsXLevel">
     <div class="col-xs-12">
-      <hr>
-      <h4>{{subjectXLevel.level}}</h4>
+      <h4>Nivel {{subjectXLevel.level}}</h4>
       <br>
       <div class="col-xs-2" *ngFor="let subject of subjectXLevel.subjects">
         <button class="btn btn-primary btn-subject" (click)="navigateToSubjectView(subject)">
           {{subject.name}}
         </button>
+      </div>
+      <div class="col no-subject-found" *ngIf="subjectXLevel.subjects.length === 0">
+        Aun no agregaste ninguna materia al nivel.
       </div>
     </div>
   </div>
