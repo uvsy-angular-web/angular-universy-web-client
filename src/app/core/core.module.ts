@@ -6,6 +6,7 @@ import {CareerService} from './services/career.service';
 import {SystemConfigService} from './services/system/system-config.service';
 import { LoaderComponent } from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {MatProgressSpinnerModule} from '@angular/material';
   ],
   imports: [
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    RouterModule
   ],
   exports: [
     TopNavBarComponent,

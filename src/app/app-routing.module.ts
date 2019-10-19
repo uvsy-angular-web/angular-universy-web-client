@@ -5,7 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 const routes: Routes = [
 
   {
-    path: '',
+    path: 'home',
     loadChildren: () => import('./modules/home/home.module').then(mod => mod.HomeModule)
   },
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'home',
     pathMatch: 'full'
   }
 ];
