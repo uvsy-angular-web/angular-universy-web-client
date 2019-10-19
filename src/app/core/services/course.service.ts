@@ -48,6 +48,18 @@ export class CourseService {
       );
   }
 
+  addCourse(courseName: string) {
+    const body = {
+      subjectCode: this.subjectService.getCurrentSubject().subjectCode,
+      active: true,
+      name: courseName,
+      periods: [],
+    };
+    const baseUrl = CourseService.getBaseUrl();
+    const headers = this.getHeaders();
+    return this.http.put(baseUrl + ENDPOINT_COURSES, body, {headers});
+  }
+
   private getHeaders() {
     return this.systemConfigService.getHeader();
   }

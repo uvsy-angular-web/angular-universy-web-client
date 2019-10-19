@@ -22,9 +22,28 @@ export class SubjectComponent implements OnInit {
               private courseService: CourseService,
               private notificationService: NotificationService) {
   }
-  public openNewCourseModal(){
 
+  public openNewCourseModal() {
+    this.notificationService.openEditNameModal('Agregar Comision',
+      ButtonText.Add).subscribe(
+      (courseName) => {
+        this.addCourse(courseName);
+      }
+    );
   }
+
+  private addCourse(courseName: string) {
+    this.courseService.addCourse(courseName).subscribe(
+      () => {
+        this.getCourses();
+      },
+      (error) => {
+        this.notificationService.showError('Ocurrió un error tratando de obtener los cursos.');
+        console.error(error);
+      }
+    );
+  }
+
   public openDeleteModal() {
     this.notificationService.openConfirmModal(
       'Eliminar materia',
