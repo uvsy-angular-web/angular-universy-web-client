@@ -6,7 +6,7 @@ import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 const DEFAULT_DAY_INIT_FROM = '01';
 const DEFAULT_MONTH_INIT_FROM = '01';
-const INIT_OF_YEAR_IN_STRING = 5;
+const INIT_OF_YEAR_IN_STRING = 6;
 const EMPTY_YEAR = '';
 
 
@@ -29,7 +29,7 @@ export class ProgramModalComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._createForm();
+    this.createForm();
   }
 
   public cancelAction(): void {
@@ -49,7 +49,7 @@ export class ProgramModalComponent implements OnInit {
     return `${DEFAULT_DAY_INIT_FROM}/${DEFAULT_MONTH_INIT_FROM}/${this.yearFrom.value}`;
   }
 
-  private _createForm(): void {
+  private createForm(): void {
     const yearFrom = this.program.validFrom ? this.program.validFrom.substring(INIT_OF_YEAR_IN_STRING) : EMPTY_YEAR;
     this.form = this.formBuilder.group({
       name: new FormControl(this.program.name, ProgramModalComponent._getValidatorsForCareerName()),

@@ -145,6 +145,9 @@ export class ProgramComponent implements OnInit {
     return subjectsXLevel;
   }
 
+  public showAddSubjectButton() {
+    return !this.program.published;
+  }
 
   private getMaximumLevel() {
     let maximumLevel = 1;
