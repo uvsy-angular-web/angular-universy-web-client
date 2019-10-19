@@ -3,8 +3,9 @@ import {SubjectService} from '../../../../core/services/subject.service';
 import {Subject} from '../../../../shared/models/subject.model';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NotificationService} from '../../../../shared/modals/notification.service';
-import {Router} from '@angular/router';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
+import {CourseService} from '../../../../core/services/course.service';
+import {Course} from '../../../../shared/models/course.model';
 
 @Component({
   selector: 'app-subject',
@@ -14,21 +15,16 @@ import {NavigationService} from '../../../../core/services/system/navigation.ser
 export class SubjectComponent implements OnInit {
 
   public subject = new Subject();
-  courses = [
-    {name: '1k1'},
-    {name: '1k2'},
-    {name: '1k3'},
-    {name: '1k4'},
-    {name: '1k5'},
-    {name: '1k6'},
-    {name: '1k7'}
-  ];
+  public courses: Course[] = [];
 
   constructor(private subjectService: SubjectService,
               private navigationService: NavigationService,
+              private courseService: CourseService,
               private notificationService: NotificationService) {
   }
+  public openNewCourseModal(){
 
+  }
   public openDeleteModal() {
     this.notificationService.openConfirmModal(
       'Eliminar materia',
@@ -45,6 +41,15 @@ export class SubjectComponent implements OnInit {
 
   ngOnInit() {
     this.subject = this.subjectService.getCurrentSubject();
+    this.getCourses();
+  }
+
+  private getCourses() {
+    this.courseService.getCourses()
+      .subscribe((courses) => {
+          this.courses = courses;
+        }
+      );
   }
 
   private deleteSubject() {
