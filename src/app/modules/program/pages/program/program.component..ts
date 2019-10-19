@@ -7,11 +7,12 @@ import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
 import {ProgramModalService} from '../../modals/program-modal.service';
 import {SubjectModalService} from '../../../subject/modals/subject-modal.service';
-import {Router} from '@angular/router';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 
 const INITIAL_LEVEL = 1;
+const NO_SUBJECTS_LEVEL_NO_PUBLISHED = 'Aun no agregaste ninguna materia al nivel.';
+const NO_SUBJECTS_LEVEL_PUBLISHED = 'No existen materias para este nivel.';
 
 @Component({
   selector: 'app-plan-edit',
@@ -22,6 +23,7 @@ export class ProgramComponent implements OnInit {
   program: Program;
   subjects: Subject[];
   subjectsXLevel: SubjectsXLevel[] = [];
+  noSubjectOnLevelMessage: string;
 
   constructor(private location: Location,
               private programService: ProgramService,
@@ -35,6 +37,13 @@ export class ProgramComponent implements OnInit {
   ngOnInit() {
     this.program = this.programService.getCurrentProgam();
     this.getSubjects();
+    this.fillSubjectOnLevelMessage();
+  }
+
+  private fillSubjectOnLevelMessage() {
+    this.noSubjectOnLevelMessage = this.program.published ?
+      NO_SUBJECTS_LEVEL_PUBLISHED :
+      NO_SUBJECTS_LEVEL_NO_PUBLISHED;
   }
 
   public openEditProgramModal() {
