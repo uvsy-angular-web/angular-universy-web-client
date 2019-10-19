@@ -126,6 +126,7 @@ export class ProgramComponent implements OnInit {
   }
 
   private generateLevels() {
+    this.subjectsXLevel = [];
     const maximumLevel = this.getMaximumLevel();
     for (let level = INITIAL_LEVEL; level <= maximumLevel; level++) {
       const subjectsXLevel = this.getLevelSubjects(level);
@@ -138,7 +139,7 @@ export class ProgramComponent implements OnInit {
     this.subjects.forEach((subject, index, list) => {
       if (subject.level === level) {
         subjectsXLevel.subjects.push(subject);
-        ProgramComponent.removeSubjectFromList(list, index);
+        // ProgramComponent.removeSubjectFromList(list, index);
       }
     });
     return subjectsXLevel;

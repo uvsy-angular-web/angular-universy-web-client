@@ -1,13 +1,14 @@
 .btn-subject {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 8rem;
-  width: 100%;
-  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 1px 4px 3px 0 rgba(0, 0, 0, 0.19);
+  height: 5rem;
+  width: 12rem;
+  border-radius: 20px;
   background-color: #E5C028;
   color: white;
-  border-color: #E5C028;
-  margin: 0.5rem;
+  border-color: transparent;
+  margin: 1rem;
   white-space: normal;
+  font-size: 1vw;
 }
 
 .btn:hover {
@@ -16,10 +17,14 @@
 }
 
 .bottom-line {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #b9b9b9;
+  margin-bottom: 1rem;
+}
+
+.subjects {
+  padding: 1.5rem;
 }
 
 .no-subject-found {
-  padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
