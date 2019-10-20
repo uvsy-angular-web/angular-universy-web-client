@@ -1,1 +1,31 @@
-<p>course works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <app-module-title [title]="" [showEditButton]="true" [showDeleteButton]="true"></app-module-title>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+    <hr>
+    <div class="content">
+        <div class="row">
+            <div class="col-10">
+                <h3>Períodos</h3>
+            </div>
+            <app-add-item (buttonPressed)="openNewPeriodModal()" [buttonTitle]="'Agregar Período'"></app-add-item>
+        </div>
+        
+        <!--
+      <div *ngIf="programs">
+        <div *ngFor="let program of programs" class="row text-left program"
+             [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }">
+      -->
+
+        <div *ngIf="courses.length === 0">
+            <h4 class="no-course-text">
+                La carrera no posee planes todavia, haz click en Agregar Período
+            </h4>
+        </div>
+    </div> 
+</div>

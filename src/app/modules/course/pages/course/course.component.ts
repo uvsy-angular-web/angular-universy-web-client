@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Course} from '../../../../shared/models/course.model';
+import {CourseService} from '../../../../core/services/course.service';
 
 @Component({
   selector: 'app-course',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  public course = new Course();
+
+  constructor(
+        private courseService: CourseService,
+  ) {}
 
   ngOnInit() {
   }
 
+  // public openNewPeriodModal() {
+  //   this.PeriodModalService.openNewPeriodModal().subscribe(
+  //     (newProgram: Period) => this.addPeriod(newProgram)
+  //   );
+  // }
 }

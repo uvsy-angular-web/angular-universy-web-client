@@ -4,13 +4,13 @@ export class Course {
   public subjectCode: string;
   public courseCode: string;
   public name: string;
-  public periods: Period;
+  public periods: Period[];
   public active: boolean;
 
   constructor(subjectCode?: string,
               courseCode?: string,
               name?: string,
-              periods?: Period,
+              periods?: Period[],
               active?: boolean) {
     this.subjectCode = subjectCode;
     this.courseCode = courseCode;
