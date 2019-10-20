@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Course} from '../../../../shared/models/course.model';
 import {CourseService} from '../../../../core/services/course.service';
 
@@ -9,13 +9,20 @@ import {CourseService} from '../../../../core/services/course.service';
 })
 export class CourseComponent implements OnInit {
 
-  public course = new Course();
+  public course: Course;
 
   constructor(
-        private courseService: CourseService,
-  ) {}
+    private courseService: CourseService,
+  ) {
+  }
 
   ngOnInit() {
+    this.getCurrentCourse();
+  }
+
+  private getCurrentCourse() {
+    this.course = this.courseService.getCurrentCourse();
+    console.log(this.course); // TODO: delete this
   }
 
   // public openNewPeriodModal() {

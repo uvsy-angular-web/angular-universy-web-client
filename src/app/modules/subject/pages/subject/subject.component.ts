@@ -66,6 +66,10 @@ export class SubjectComponent implements OnInit {
     );
   }
 
+  public openCoursePage(course: Course) {
+    this.courseService.setCurrentCourse(course);
+    this.navigationService.navigateToCoursePage();
+  }
 
   ngOnInit() {
     this.subject = this.subjectService.getCurrentSubject();

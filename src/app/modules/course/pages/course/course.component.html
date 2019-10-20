@@ -11,9 +11,9 @@
     <div class="content">
         <div class="row">
             <div class="col-10">
-                <h3>Períodos</h3>
+                <h3>{{course.name}}</h3>
             </div>
-            <app-add-item (buttonPressed)="openNewPeriodModal()" [buttonTitle]="'Agregar Período'"></app-add-item>
+<!--            <app-add-item (buttonPressed)="openNewPeriodModal()" [buttonTitle]="'Agregar Período'"></app-add-item>-->
         </div>
         
         <!--
@@ -22,10 +22,10 @@
              [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }">
       -->
 
-        <div *ngIf="courses.length === 0">
-            <h4 class="no-course-text">
-                La carrera no posee planes todavia, haz click en Agregar Período
-            </h4>
-        </div>
+<!--        <div *ngIf="courses.length === 0">-->
+<!--            <h4 class="no-course-text">-->
+<!--                La carrera no posee planes todavia, haz click en Agregar Período-->
+<!--            </h4>-->
+<!--        </div>-->
     </div> 
 </div>

@@ -3,5 +3,5 @@ export enum Routes {
   CAREER = 'institution/career',
   PROGRAM = 'institution/career/program',
   SUBJECT = 'institution/career/program/subject',
-  COURSE = '',
+  COURSE = 'institution/career/program/subject/course',
 }

@@ -3,9 +3,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {SystemConfigService} from './system/system-config.service';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Course} from '../../shared/models/course.model';
-import {CareerService} from './career.service';
 import {SubjectService} from './subject.service';
-import {Subject} from '../../shared/models/subject.model';
 
 const ENDPOINT_COURSES = '/universy/institution/courses';
 
@@ -25,7 +23,7 @@ export class CourseService {
     this.courseSource.next(course);
   }
 
-  public getCurrentCourse(): Subject {
+  public getCurrentCourse(): Course {
     let course;
     this.currentCourse
       .subscribe((serviceCourse) => course = serviceCourse);
