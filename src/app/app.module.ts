@@ -11,6 +11,7 @@ import {SubjectModalModule} from './modules/subject/modals/subject-modal.module'
 import {MatProgressSpinnerModule} from '@angular/material';
 import {LoaderService} from './core/services/system/loader.service';
 import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
+import {NotificationModule} from './shared/modals/notification.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
     HttpClientModule,
     SharedModule,
     ProgramModalModule,
+    NotificationModule,
     SubjectModalModule,
     BrowserModule,
     MatProgressSpinnerModule

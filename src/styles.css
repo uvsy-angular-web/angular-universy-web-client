@@ -27,3 +27,6 @@
 .content {
   padding-left: 3rem
 }
+form.submitted input.ng-invalid, input.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}

@@ -13,7 +13,7 @@ export class NameEditComponent implements OnInit {
   @Input() title: string;
   @Input() itemText: string;
   @Input() confirmButtonText: ButtonText;
-  @Input() maxLength: number;
+  @Input() maxLength;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
   public form: FormGroup;

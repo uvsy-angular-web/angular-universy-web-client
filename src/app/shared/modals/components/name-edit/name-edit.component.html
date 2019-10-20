@@ -4,15 +4,23 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body" [formGroup]="form">
-  <div class="form-group">
-    <div class="{{calculateColForInputSize()}}">
-      <label for="item-text">
-        Nombre:
-      </label>
-      <input id="item-text" class="form-control" maxLength="{{maxLength}}" type="text" formControlName="itemText">
+<div class="modal-body">
+  <appForm [formGroup]="form">
+    <div class="form-group">
+      <div class="{{calculateColForInputSize()}}">
+        <label for="item-text">
+          Nombre:
+        </label>
+        <div class="control">
+          <input appControlError
+            id="item-text"
+            class="form-control"
+            maxLength="{{maxLength}}"
+            type="text" formControlName="itemText">
+        </div>
+      </div>
     </div>
-  </div>
+  </appForm>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>

@@ -6,6 +6,7 @@ import {ErrorModalComponent} from './components/error-modal/error-modal.componen
 import {NameEditComponent} from './components/name-edit/name-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ConfirmActionModalComponent } from './components/confirm-action-modal/confirm-action-modal.component';
+import {SharedModule} from '../shared.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ConfirmActionModalComponent } from './components/confirm-action-modal/c
     CommonModule,
     NgbModule,
     NgbModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
   ],
   entryComponents: [
     ErrorModalComponent,
