@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SubjectModalComponent} from './subject-modal/subject-modal.component';
+import {SharedModule} from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {SubjectModalComponent} from './subject-modal/subject-modal.component';
     CommonModule,
     NgbModule,
     NgbModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   entryComponents: [
     SubjectModalComponent,

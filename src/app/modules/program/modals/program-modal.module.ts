@@ -4,6 +4,7 @@ import {ProgramModalComponent} from './program-modal/program-modal.component';
 import {PublishProgramModalComponent} from './publish-program-modal/publish-program-modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     NgbModule,
     NgbModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   entryComponents: [
     ProgramModalComponent,

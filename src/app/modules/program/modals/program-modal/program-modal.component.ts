@@ -79,7 +79,7 @@ export class ProgramModalComponent implements OnInit {
         Validators.maxLength(4),
         Validators.required,
         Validators.min(1920),
-        Validators.max(currentYear)
+        Validators.max(2060)
       ]);
   }
 }

@@ -3,8 +3,10 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ButtonText} from '../../../enums/button-text.enum';
 import {ColSize} from '../../../enums/col-size.enum';
+
 const SMALL_SIZE_TEXT_LENGHT = 15;
 const MEDIUM_SIZE_TEXT_LENGHT = 25;
+
 @Component({
   selector: 'app-career-modal',
   templateUrl: './name-edit.component.html',
@@ -28,7 +30,7 @@ export class NameEditComponent implements OnInit {
 
   private calculateColForInputSize(): string {
     if (this.maxLength <= SMALL_SIZE_TEXT_LENGHT) {
-      return  ColSize.SMALL;
+      return ColSize.SMALL;
     } else if (this.maxLength <= MEDIUM_SIZE_TEXT_LENGHT) {
       return ColSize.MEDIUM;
     } else {
@@ -49,7 +51,7 @@ export class NameEditComponent implements OnInit {
 
   private createForm(): void {
     this.form = this.formBuilder.group({
-      itemText: new FormControl(this.itemText, NameEditComponent._getValidatorsForCareerName())
+      itemText: new FormControl(this.itemText, this.getValidatorsForCareerName())
     });
   }
 
@@ -57,10 +59,10 @@ export class NameEditComponent implements OnInit {
     return this.form.get('itemText') as FormControl;
   }
 
-  private static _getValidatorsForCareerName(): Validators {
+  private  getValidatorsForCareerName(): Validators {
     return Validators.compose(
       [
-        Validators.maxLength(35),
+        Validators.maxLength(this.maxLength),
         Validators.required]);
   }
 }
