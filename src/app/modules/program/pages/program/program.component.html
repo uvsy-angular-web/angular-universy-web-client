@@ -5,9 +5,9 @@
                     [showDeleteButton]="canEditProgram()"
                     [showEditButton]="canEditProgram()"></app-module-title>
   <hr>
-  <app-add-item *ngIf="showAddSubjectButton()"
-    [buttonTitle]="'Agregar Materia'" (buttonPressed)="openNewSubjectModal()"></app-add-item>
   <div class="content">
+    <app-add-item *ngIf="showAddSubjectButton()"
+                  [buttonTitle]="'Agregar Materia'" (buttonPressed)="openNewSubjectModal()"></app-add-item>
     <div class="row bottom-line" *ngFor="let subjectXLevel of subjectsXLevel">
       <div class="col-xs-12">
         <h4>Nivel {{subjectXLevel.level}}</h4>
