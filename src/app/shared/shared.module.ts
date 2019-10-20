@@ -5,6 +5,9 @@ import {ModuleTitleComponent} from './components/module-title/module-title.compo
 import {ControlErrorComponent} from './control-error/control-error/control-error.component';
 import {ControlErrorsDirective} from './control-error/directives/control-error.directive';
 import {FormSubmitDirective} from './control-error/directives/form.directive';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CustomToggleComponent} from './components/custom-toggle/custom-toggle.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -13,17 +16,21 @@ import {FormSubmitDirective} from './control-error/directives/form.directive';
     ModuleTitleComponent,
     ControlErrorsDirective,
     FormSubmitDirective,
-    ControlErrorComponent
+    ControlErrorComponent,
+    CustomToggleComponent
   ],
   exports: [
     AddItemComponent,
     ModuleTitleComponent,
     ControlErrorsDirective,
     FormSubmitDirective,
-    ControlErrorComponent
+    ControlErrorComponent,
+    CustomToggleComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     ControlErrorComponent

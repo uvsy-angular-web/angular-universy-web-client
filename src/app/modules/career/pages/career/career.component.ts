@@ -40,13 +40,20 @@ export class CareerComponent implements OnInit {
     this.navigationService.navigateToProgramPage();
   }
 
+  public editStateOfCareer(state: boolean) {
+    if (state !== this.career.active) {
+      this.career.active = state;
+      this.updateCareer();
+    }
+  }
+
   public openEditCareerModal() {
     this.notificationService.openEditNameModal(
       'Modificar carrera',
       ButtonText.Edit,
       this.career.careerName
     ).subscribe(
-      (newCareerName) => this.editCareer(newCareerName)
+      (newCareerName) => this.editCareerName(newCareerName)
     );
   }
 
@@ -110,17 +117,21 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  private editCareer(careerName: string) {
+  private editCareerName(careerName: string) {
     if (careerName) {
       this.career.careerName = careerName;
-      this.careerService.updateCareer(this.career).subscribe(
-        () => {
-          this.careerService.setCurrentCareer(this.career);
-        }, ((error) => {
-          this.notificationService.showError('Ocurrió un error tratando de modificar la carrera');
-          console.error(error);
-        })
-      );
+      this.updateCareer();
     }
+  }
+
+  private updateCareer() {
+    this.careerService.updateCareer(this.career).subscribe(
+      () => {
+        this.careerService.setCurrentCareer(this.career);
+      }, ((error) => {
+        this.notificationService.showError('Ocurrió un error tratando de modificar la carrera');
+        console.error(error);
+      })
+    );
   }
 }

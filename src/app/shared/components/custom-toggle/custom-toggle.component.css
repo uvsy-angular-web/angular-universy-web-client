@@ -1,0 +1,11 @@
+
+.toggle-buttom {
+  background-color: #61137d;
+  color: white;
+  border-radius: 1rem;
+}
+
+.toggle-buttom .active {
+  background-color: #eec829;
+  color: white;
+}

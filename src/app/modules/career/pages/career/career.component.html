@@ -1,12 +1,17 @@
 <div class="container">
-  <app-module-title [title]="career.careerName"
-                    (editItem)="openEditCareerModal()"
-                    [showDeleteButton]="false"
-  ></app-module-title>
+  <div class="row">
+    <div class="col-7">
+      <app-module-title [title]="career.careerName"
+                        (editItem)="openEditCareerModal()"
+                        [showDeleteButton]="false"></app-module-title>
+    </div>
+    <div class="col-5">
+      <app-custom-toggle class="float-right" (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
+    </div>
+  </div>
   <hr>
   <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()"
                 [buttonTitle]="'Agregar plan'"></app-add-item>
-
   <div *ngIf="programs" class="content">
     <div *ngFor="let program of programs" class="row text-left program"
          [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }">
