@@ -18,8 +18,7 @@ export class CourseService {
 
   constructor(private http: HttpClient,
               private systemConfigService: SystemConfigService,
-              private subjectService: SubjectService,
-              private careerService: CareerService) {
+              private subjectService: SubjectService) {
   }
 
   public setCurrentCourse(course: Course) {

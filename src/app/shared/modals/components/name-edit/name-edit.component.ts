@@ -2,7 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ButtonText} from '../../../enums/button-text.enum';
-
+import {ColSize} from '../../../enums/col-size.enum';
+const SMALL_SIZE_TEXT_LENGHT = 15;
+const MEDIUM_SIZE_TEXT_LENGHT = 25;
 @Component({
   selector: 'app-career-modal',
   templateUrl: './name-edit.component.html',
@@ -11,14 +13,27 @@ export class NameEditComponent implements OnInit {
   @Input() title: string;
   @Input() itemText: string;
   @Input() confirmButtonText: ButtonText;
+  @Input() maxLength: number;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
-  form: FormGroup;
+
+  public form: FormGroup;
 
   constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder) {
   }
 
   public ngOnInit(): void {
-    this._createForm();
+    this.createForm();
+    this.calculateColForInputSize();
+  }
+
+  private calculateColForInputSize(): string {
+    if (this.maxLength <= SMALL_SIZE_TEXT_LENGHT) {
+      return  ColSize.SMALL;
+    } else if (this.maxLength <= MEDIUM_SIZE_TEXT_LENGHT) {
+      return ColSize.MEDIUM;
+    } else {
+      return ColSize.LARGE;
+    }
   }
 
   public cancelAction(): void {
@@ -32,7 +47,7 @@ export class NameEditComponent implements OnInit {
     }
   }
 
-  private _createForm(): void {
+  private createForm(): void {
     this.form = this.formBuilder.group({
       itemText: new FormControl(this.itemText, NameEditComponent._getValidatorsForCareerName())
     });

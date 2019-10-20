@@ -1,10 +1,16 @@
 .btn-commission {
-  width: 8rem;
-  height: 3rem;
-  margin: 0.5rem;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 1px 4px 3px 0 rgba(0, 0, 0, 0.19);
+  height: 4rem;
+  width: 12rem;
+  border-radius: 40px;
   background-color: #E5C028;
   color: white;
-  border-color: #E5C028;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-color: transparent;
+  margin: 1rem;
   white-space: normal;
+  font-size: 1.25vw;
+}
+
+.btn-commission:hover {
+  background-color: #3D1255;
 }

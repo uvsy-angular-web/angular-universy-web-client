@@ -18,10 +18,11 @@ export class NotificationService {
     modalRef.componentInstance.message = errorMessage;
   }
 
-  openEditNameModal(title: string, confirmButtonText: ButtonText, itemText = '') {
+  openEditNameModal(title: string, confirmButtonText: ButtonText, itemText = '', maxLength = 45) {
     const modalRef = this.modalService.open(NameEditComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.itemText = itemText;
+    modalRef.componentInstance.maxLength = maxLength;
     modalRef.componentInstance.confirmButtonText = confirmButtonText;
     return modalRef.componentInstance.confirmEvent;
   }

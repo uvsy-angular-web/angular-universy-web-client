@@ -24,8 +24,11 @@ export class SubjectComponent implements OnInit {
   }
 
   public openNewCourseModal() {
-    this.notificationService.openEditNameModal('Agregar Comision',
-      ButtonText.Add).subscribe(
+    this.notificationService.openEditNameModal(
+      'Agregar Comisión',
+      ButtonText.Add,
+      '',
+      15).subscribe(
       (courseName) => {
         this.addCourse(courseName);
       }
@@ -38,7 +41,7 @@ export class SubjectComponent implements OnInit {
         this.getCourses();
       },
       (error) => {
-        this.notificationService.showError('Ocurrió un error tratando de obtener los cursos.');
+        this.notificationService.showError('Ocurrió un error tratando de agrrgar una comisión.');
         console.error(error);
       }
     );

@@ -6,10 +6,12 @@
 </div>
 <div class="modal-body" [formGroup]="form">
   <div class="form-group">
-    <label for="item-text">
-      Nombre:
-    </label>
-    <input id="item-text" class="form-control" type="text" formControlName="itemText">
+    <div class="{{calculateColForInputSize()}}">
+      <label for="item-text">
+        Nombre:
+      </label>
+      <input id="item-text" class="form-control" maxLength="{{maxLength}}" type="text" formControlName="itemText">
+    </div>
   </div>
 </div>
 <div class="modal-footer">
