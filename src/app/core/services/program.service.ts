@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {Career, Institution, Institutions} from '../../shared/models/career.model';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './system/system-config.service';
 import {Program} from '../../shared/models/program.model';
@@ -22,11 +21,11 @@ export class ProgramService {
   }
 
 
-  public setCurrentProgam(program: Program) {
+  public setCurrentProgram(program: Program) {
     this.programSource.next(program);
   }
 
-  public getCurrentProgam(): Program {
+  public getCurrentProgram(): Program {
     let program;
     this.currentProgram
       .subscribe((serviceProgram) => program = serviceProgram);

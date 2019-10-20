@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Career} from '../../../../shared/models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Program} from '../../../../shared/models/program.model';
 import {ProgramService} from '../../../../core/services/program.service';
-import {Location} from '@angular/common';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {ProgramModalService} from '../../../program/modals/program-modal.service';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
@@ -28,8 +27,7 @@ export class CareerComponent implements OnInit {
               private navigationService: NavigationService,
               private programModalService: ProgramModalService,
               private institutionService: InstitutionService,
-              private notificationService: NotificationService,
-              private router: Router) {
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -38,7 +36,7 @@ export class CareerComponent implements OnInit {
   }
 
   public async navigateToProgramPage(program: Program) {
-    this.programService.setCurrentProgam(program);
+    this.programService.setCurrentProgram(program);
     this.navigationService.navigateToProgramPage();
   }
 

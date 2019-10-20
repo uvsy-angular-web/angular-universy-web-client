@@ -1,6 +1,8 @@
 <div class="container">
   <app-module-title [title]="subject.name"
-                    (deleteItem)="openDeleteModal()"></app-module-title>
+                    (deleteItem)="openDeleteModal()"
+                    [showEditButton]="canModifySubject()"
+                    [showDeleteButton]="canModifySubject()"></app-module-title>
   <hr>
   <div class="content">
     <app-add-item [buttonTitle]="'Agregar comisión'" (buttonPressed)="openNewCourseModal()"></app-add-item>

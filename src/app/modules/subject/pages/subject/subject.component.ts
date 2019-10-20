@@ -6,6 +6,7 @@ import {NotificationService} from '../../../../shared/modals/notification.servic
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 import {CourseService} from '../../../../core/services/course.service';
 import {Course} from '../../../../shared/models/course.model';
+import {ProgramService} from '../../../../core/services/program.service';
 
 @Component({
   selector: 'app-subject',
@@ -19,6 +20,7 @@ export class SubjectComponent implements OnInit {
 
   constructor(private subjectService: SubjectService,
               private navigationService: NavigationService,
+              private programService: ProgramService,
               private courseService: CourseService,
               private notificationService: NotificationService) {
   }
@@ -33,6 +35,10 @@ export class SubjectComponent implements OnInit {
         this.addCourse(courseName);
       }
     );
+  }
+
+  public canModifySubject() {
+    return !this.programService.getCurrentProgram().published;
   }
 
   private addCourse(courseName: string) {
@@ -54,7 +60,7 @@ export class SubjectComponent implements OnInit {
       '¿ Esta seguro que desea eliminarla ?',
       ButtonText.Delete
     ).subscribe(
-      (confirm) => {
+      () => {
         this.deleteSubject();
       }
     );

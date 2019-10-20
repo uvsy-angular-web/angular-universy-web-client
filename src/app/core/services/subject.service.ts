@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {SystemConfigService} from './system/system-config.service';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {InstitutionService} from './institution.service';
 import {Subject} from '../../shared/models/subject.model';
 import {ProgramService} from './program.service';
 import {CareerService} from './career.service';
-const ENDPOINT_SUBJECTS = '/universy/institution/subjects'
+
+const ENDPOINT_SUBJECTS = '/universy/institution/subjects';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +33,7 @@ export class SubjectService {
 
   public addSubject(subject: Subject) {
     const body = {
-      programCode: this.programService.getCurrentProgam().uuid,
+      programCode: this.programService.getCurrentProgram().uuid,
       name: subject.name,
       level: subject.level,
       correlatives: subject.correlatives ? subject.correlatives : [],
@@ -48,7 +48,7 @@ export class SubjectService {
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
 
-    const currentProgramCode = this.programService.getCurrentProgam().uuid;
+    const currentProgramCode = this.programService.getCurrentProgram().uuid;
     const params = new HttpParams()
       .set('programCode', currentProgramCode);
 
@@ -62,7 +62,7 @@ export class SubjectService {
   deleteSubject(subject: Subject) {
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
-    const currentProgramCode = this.programService.getCurrentProgam().uuid;
+    const currentProgramCode = this.programService.getCurrentProgram().uuid;
     const params = new HttpParams()
       .set('programCode', currentProgramCode)
       .set('subjectCode', subject.subjectCode.toString());

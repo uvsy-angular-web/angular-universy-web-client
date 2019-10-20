@@ -35,7 +35,7 @@ export class ProgramComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.program = this.programService.getCurrentProgam();
+    this.program = this.programService.getCurrentProgram();
     this.getSubjects();
     this.fillSubjectOnLevelMessage();
   }
@@ -67,7 +67,7 @@ export class ProgramComponent implements OnInit {
       '¿ Esta seguro que desea eliminarlo ?',
       ButtonText.Delete
     ).subscribe(
-      (confirm) => {
+      () => {
         this.deleteProgram();
       }
     );
@@ -111,7 +111,7 @@ export class ProgramComponent implements OnInit {
       this.program.name = programName;
       this.programService.updateProgram(this.program).subscribe(
         () => {
-          this.programService.setCurrentProgam(this.program);
+          this.programService.setCurrentProgram(this.program);
         }, ((error) => {
           this.notificationService.showError('Ocurrió un error tratando de modificar el plan');
           console.error(error);
@@ -145,10 +145,9 @@ export class ProgramComponent implements OnInit {
 
   private getLevelSubjects(level) {
     const subjectsXLevel = new SubjectsXLevel(level, []);
-    this.subjects.forEach((subject, index, list) => {
+    this.subjects.forEach((subject) => {
       if (subject.level === level) {
         subjectsXLevel.subjects.push(subject);
-        // ProgramComponent.removeSubjectFromList(list, index);
       }
     });
     return subjectsXLevel;
@@ -166,10 +165,6 @@ export class ProgramComponent implements OnInit {
       }
     });
     return maximumLevel;
-  }
-
-  private static removeSubjectFromList(lista, index) {
-    lista.splice(index, 1);
   }
 }
 
