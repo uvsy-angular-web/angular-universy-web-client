@@ -16,6 +16,12 @@ const routes: Routes = [
     path: 'contact-info',
     loadChildren: () => import('./modules/contact-info/contact-info.module').then(mod => mod.ContactInfoModule)
   },
+
+  // Eliminar linea cuando se realice correctamente el routing
+  {
+    path: 'course',
+    loadChildren: () => import('./modules/course/course.module').then(mod => mod.CourseModule)
+  },
   {
     path: '',
     redirectTo: 'home',
