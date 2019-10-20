@@ -35,6 +35,10 @@ export class CareerComponent implements OnInit {
     this.getPrograms();
   }
 
+  public getStateOfCareer(): boolean {
+    return this.career.active;
+  }
+
   public async navigateToProgramPage(program: Program) {
     this.programService.setCurrentProgram(program);
     this.navigationService.navigateToProgramPage();

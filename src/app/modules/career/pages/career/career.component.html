@@ -6,7 +6,7 @@
                         [showDeleteButton]="false"></app-module-title>
     </div>
     <div class="col-5">
-      <app-custom-toggle class="float-right" (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
+      <app-custom-toggle class="float-right" [activated]="getStateOfCareer()" (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
     </div>
   </div>
   <hr>
