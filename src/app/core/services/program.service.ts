@@ -78,7 +78,7 @@ export class ProgramService {
     };
     const baseUrl = ProgramService._getBaseUrl();
     const headers = this._getHeaders();
-    return this.http.put(baseUrl + ENDPOINT_PROGRAMS, body, {headers});
+    return this.http.post(baseUrl + ENDPOINT_PROGRAMS, body, {headers});
   }
 
   public publishProgram(program: Program) {

@@ -2,7 +2,6 @@
   <app-module-title [title]="career.careerName"
                     (editItem)="openEditCareerModal()"
                     [showDeleteButton]="false"
-                    [showEditButton]="false"
   ></app-module-title>
   <hr>
   <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()"
