@@ -14,3 +14,7 @@
 .btn-commission:hover {
   background-color: #3D1255;
 }
+
+#manage-correlatives-button {
+  padding: 0.5rem 1rem;
+}
