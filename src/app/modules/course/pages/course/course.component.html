@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-10">
-            <app-module-title [title]="" [showEditButton]="true" [showDeleteButton]="true"></app-module-title>
+            <app-module-title [title]="'Comisión: ' + course.name" [showEditButton]="true" [showDeleteButton]="true">
+            </app-module-title>
         </div>
         <div class="col-2">
             <button class="btn btn-primary">Guardar</button>
@@ -11,21 +12,31 @@
     <div class="content">
         <div class="row">
             <div class="col-10">
-                <h3>{{course.name}}</h3>
+                <h3>Períodos</h3>
             </div>
-<!--            <app-add-item (buttonPressed)="openNewPeriodModal()" [buttonTitle]="'Agregar Período'"></app-add-item>-->
+            <app-add-item (buttonPressed)="openNewPeriodModal()" [buttonTitle]="'Agregar Período'"></app-add-item>
         </div>
-        
-        <!--
-      <div *ngIf="programs">
-        <div *ngFor="let program of programs" class="row text-left program"
-             [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }">
-      -->
 
-<!--        <div *ngIf="courses.length === 0">-->
-<!--            <h4 class="no-course-text">-->
-<!--                La carrera no posee planes todavia, haz click en Agregar Período-->
-<!--            </h4>-->
-<!--        </div>-->
-    </div> 
+        <div class="content">
+            <div *ngIf="course">
+                <p>hay algo en curso</p>
+                <div class="row">
+                    <div class="col">
+                        <h3>
+                            <div *ngFor="let period of course.period">
+                                <p>{{period.beginMonth}}</p>
+                            </div>
+                            <i class="material-icons space-right">edit</i>
+                            <i class="material-icons space-right">delete</i>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="course.length === 0">
+                <h4 class="no-course-text">
+                    La carrera no posee planes todavia, haz click en Agregar Período
+                </h4>
+            </div>
+        </div>
+    </div>
 </div>
