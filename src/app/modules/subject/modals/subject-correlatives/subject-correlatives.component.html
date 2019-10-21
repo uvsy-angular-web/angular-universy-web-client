@@ -6,46 +6,54 @@
   </button>
 </div>
 <div class="modal-body">
-  <table class="table content">
-    <thead>
-    <tr>
-      <th colspan="2" scope="colgroup"><strong>Materias</strong></th>
-      <th colspan="2" scope="colgroup"><strong>Para Cursar</strong></th>
-      <th scope="col" class="text-center"><strong>Para Rendir</strong></th>
-    </tr>
-    <tr>
-      <th scope="col">Nivel</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Reg</th>
-      <th scope="col">Apr.</th>
-      <th scope="col" class="border-left text-center">Apr.</th>
-      <th scope="col" class="border-left text-center">Sin Corr.</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let subject of subjectsWithCorrelativeState"
-        [class.unchecked]="isNoCorrelativeChecked(subject)">
-      <th scope="row">{{subject.subject.level}}</th>
-      <td>{{subject.subject.name}}</td>
-      <td>
-        <input type="radio" [checked]="isToTakeRegularChecked(subject)"
-        (change)="changeCorrelativeState(subject,correlativeState.TO_TAKE_REGULAR)">
-      </td>
-      <td>
-        <input type="radio" [checked]="isToTakeApprovedChecked(subject)"
-        (change)="changeCorrelativeState(subject,correlativeState.TO_TAKE_APPROVED)">
-      </td>
-      <td class="border-left text-center">
-        <input type="radio" [checked]="isToAproveChecked(subject)"
-        (change)="changeCorrelativeState(subject,correlativeState.TO_APPROVE)">
-      </td>
-      <td class="border-left text-center">
-        <input type="radio" [checked]="isNoCorrelativeChecked(subject)"
-        (change)="changeCorrelativeState(subject,correlativeState.NO_CORRELATIVE)">
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="content">
+    <table class="table" [hidden]="!showTable()">
+      <thead>
+      <tr>
+        <th colspan="2" scope="colgroup"><strong>Materias</strong></th>
+        <th colspan="2" scope="colgroup"><strong>Para Cursar</strong></th>
+        <th scope="col" class="text-center"><strong>Para Rendir</strong></th>
+      </tr>
+      <tr>
+        <th scope="col">Nivel</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Reg</th>
+        <th scope="col">Apr.</th>
+        <th scope="col" class="border-left text-center">Apr.</th>
+        <th scope="col" class="border-left text-center">Sin Corr.</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let subject of subjectsWithCorrelativeState"
+          [class.unchecked]="isNoCorrelativeChecked(subject)">
+        <th scope="row">{{subject.subject.level}}</th>
+        <td>{{subject.subject.name}}</td>
+        <td>
+          <input type="radio" [checked]="isToTakeRegularChecked(subject)"
+                 (change)="changeCorrelativeState(subject,correlativeState.TO_TAKE_REGULAR)">
+        </td>
+        <td>
+          <input type="radio" [checked]="isToTakeApprovedChecked(subject)"
+                 (change)="changeCorrelativeState(subject,correlativeState.TO_TAKE_APPROVED)">
+        </td>
+        <td class="border-left text-center">
+          <input type="radio" [checked]="isToAproveChecked(subject)"
+                 (change)="changeCorrelativeState(subject,correlativeState.TO_APPROVE)">
+        </td>
+        <td class="border-left text-center">
+          <input type="radio" [checked]="isNoCorrelativeChecked(subject)"
+                 (change)="changeCorrelativeState(subject,correlativeState.NO_CORRELATIVE)">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div [hidden]="showTable()" class="text-center">
+      <span class="font-italic">No existen materias para administrar las correlativas.</span>
+    </div>
+    <div [hidden]="level != 1" class="text-center">
+      <span class="font-italic">La materia se encuentra en el primer nivel. No se le pueden asignar comisiones.</span>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline"

@@ -1,4 +1,5 @@
 import {CareerKey} from './carreer-key.model';
+import {Correlative} from './correlative.modal';
 
 export class Subject {
   programCode: string;
@@ -23,15 +24,4 @@ export class Subject {
   }
 }
 
-export class Correlative {
-  subjectCode: string;
-  correlativeRestriction: string;
-  correlativeCondition: string;
-
-  constructor(subjectCode?: string, correlativeRestriction?: string, correlativeCondition?: string) {
-    this.subjectCode = subjectCode;
-    this.correlativeRestriction = correlativeRestriction;
-    this.correlativeCondition = correlativeCondition;
-  }
-}
 

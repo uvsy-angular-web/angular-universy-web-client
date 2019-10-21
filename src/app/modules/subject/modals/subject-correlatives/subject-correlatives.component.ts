@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {Correlative, Subject} from '../../../../shared/models/subject.model';
+import {Subject} from '../../../../shared/models/subject.model';
 import {FormGroup} from '@angular/forms';
 import {SubjectService} from '../../../../core/services/subject.service';
+import {Correlative, CorrelativeCondition, CorrelativeRestriction, CorrelativeState} from '../../../../shared/models/correlative.modal';
 
 @Component({
   selector: 'app-subject-correlatives',
@@ -13,13 +14,13 @@ import {SubjectService} from '../../../../core/services/subject.service';
 export class SubjectCorrelativesComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal,
-              private subjectService: SubjectService,
-  ) {
+              private subjectService: SubjectService) {
   }
 
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
   @Input() correlatives: Correlative[];
+  @Input() level: number;
   @Output() confirmEvent: EventEmitter<Correlative[]> = new EventEmitter();
   subjects: Subject[];
   subjectsWithCorrelativeState: SubjectWithCorrelativeState[] = [];
@@ -30,6 +31,9 @@ export class SubjectCorrelativesComponent implements OnInit {
     this.getSubjects();
   }
 
+  public showTable() {
+    return this.subjectsWithCorrelativeState.length > 0;
+  }
 
   public emitCorrelatives() {
     const correlatives: Correlative[] = [];
@@ -72,12 +76,16 @@ export class SubjectCorrelativesComponent implements OnInit {
   private getSubjects() {
     this.subjectService.getSubjects().subscribe(
       (subjects) => {
-        this.subjects = subjects;
+        this.subjects = this.getFilteredSubjects(subjects);
         this.getSubjectsWithCorrelativeState();
       }
     );
-    // this.filtrateSubjects();
+  }
 
+  private getFilteredSubjects(subjects: Subject[]): Subject[] {
+    return subjects.filter((subject) => {
+      return subject.level < this.level;
+    });
   }
 
   private getSubjectsWithCorrelativeState() {
@@ -92,7 +100,6 @@ export class SubjectCorrelativesComponent implements OnInit {
         );
       }
     );
-    this.subjectsWithCorrelativeState.sort((subject) => subject.subject.level);
   }
 
 
@@ -149,19 +156,3 @@ class SubjectWithCorrelativeState {
   }
 }
 
-export enum CorrelativeState {
-  TO_TAKE_REGULAR = 1,
-  TO_TAKE_APPROVED = 2,
-  TO_APPROVE = 3,
-  NO_CORRELATIVE = 4,
-}
-
-export enum CorrelativeCondition {
-  REGULAR = 'REGULAR',
-  APPROVED = 'APPROVED'
-}
-
-export enum CorrelativeRestriction {
-  TO_TAKE = 'TO_TAKE',
-  TO_APPROVE = 'TO_APPROVE'
-}

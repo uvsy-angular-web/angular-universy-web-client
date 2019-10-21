@@ -98,7 +98,7 @@ export class SubjectComponent implements OnInit {
   }
 
   public openManageCorrelativesModal() {
-    this.subjectModalService.openSubjectCorrelatives(this.subject.correlatives).subscribe(
+    this.subjectModalService.openSubjectCorrelatives(this.subject.correlatives, this.subject.level).subscribe(
       (correlatives) => {
         if (this.subject.correlatives !== correlatives) {
           this.subject.correlatives = correlatives;
