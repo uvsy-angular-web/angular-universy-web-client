@@ -100,8 +100,24 @@ export class SubjectCorrelativesComponent implements OnInit {
         );
       }
     );
+    this.sortSubjectsWithCorrelativeByLevel();
   }
 
+  private sortSubjectsWithCorrelativeByLevel() {
+    if (this.subjectsWithCorrelativeState) {
+      function compare(subjectA, subjectB) {
+        if (subjectA.subject.level < subjectB.subject.level) {
+          return -1;
+        }
+        if (subjectA.subject.level > subjectB.subject.level) {
+          return 1;
+        }
+        return 0;
+      }
+
+      this.subjectsWithCorrelativeState.sort(compare);
+    }
+  }
 
   private static getCorrelative(subjectWithCorrelative: SubjectWithCorrelativeState): Correlative {
     const subjectCode = subjectWithCorrelative.subject.subjectCode;
