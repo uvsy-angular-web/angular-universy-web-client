@@ -2,16 +2,16 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ErrorModalComponent} from './components/error-modal/error-modal.component';
+import {InformationModalComponent} from './components/error-modal/information-modal.component';
 import {NameEditComponent} from './components/name-edit/name-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { ConfirmActionModalComponent } from './components/confirm-action-modal/confirm-action-modal.component';
+import {ConfirmActionModalComponent} from './components/confirm-action-modal/confirm-action-modal.component';
 import {SharedModule} from '../shared.module';
 
 
 @NgModule({
   declarations: [
-    ErrorModalComponent,
+    InformationModalComponent,
     NameEditComponent,
     ConfirmActionModalComponent
   ],
@@ -22,7 +22,7 @@ import {SharedModule} from '../shared.module';
     SharedModule,
   ],
   entryComponents: [
-    ErrorModalComponent,
+    InformationModalComponent,
     NameEditComponent,
     ConfirmActionModalComponent
   ]

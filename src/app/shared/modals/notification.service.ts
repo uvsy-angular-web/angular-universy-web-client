@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ErrorModalComponent} from './components/error-modal/error-modal.component';
+import {InformationModalComponent} from './components/error-modal/information-modal.component';
 import {NameEditComponent} from './components/name-edit/name-edit.component';
 import {ButtonText} from '../enums/button-text.enum';
 import {ConfirmActionModalComponent} from './components/confirm-action-modal/confirm-action-modal.component';
@@ -14,8 +14,17 @@ export class NotificationService {
   }
 
   showError(errorMessage: string) {
-    const modalRef = this.modalService.open(ErrorModalComponent);
+    const modalRef = this.modalService.open(InformationModalComponent);
+    modalRef.componentInstance.title = '¡Ocurrió un error!';
     modalRef.componentInstance.message = errorMessage;
+    modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
+  }
+
+  inform(title: string, message: string) {
+    const modalRef = this.modalService.open(InformationModalComponent);
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.message = message;
+    modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
   }
 
   openEditNameModal(title: string, confirmButtonText: ButtonText, itemText = '', maxLength = 45) {

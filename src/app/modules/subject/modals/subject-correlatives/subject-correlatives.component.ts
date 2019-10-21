@@ -20,7 +20,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
   @Input() correlatives: Correlative[];
-  @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
+  @Output() confirmEvent: EventEmitter<Correlative[]> = new EventEmitter();
   subjects: Subject[];
   subjectsWithCorrelativeState: SubjectWithCorrelativeState[] = [];
   form: FormGroup;
@@ -30,34 +30,23 @@ export class SubjectCorrelativesComponent implements OnInit {
     this.getSubjects();
   }
 
-  private getSubjects() {
-    this.subjectService.getSubjects().subscribe(
-      (subjects) => {
-        this.subjects = subjects;
-        this.getSubjectsWithCorrelativeState();
+
+  public emitCorrelatives() {
+    const correlatives: Correlative[] = [];
+    this.subjectsWithCorrelativeState.forEach(
+      (subjectWithCorrelative) => {
+        const correlative = SubjectCorrelativesComponent.getCorrelative(subjectWithCorrelative);
+        if (correlative) {
+          correlatives.push(correlative);
+        }
       }
     );
-    // this.filtrateSubjects();
-
+    this.confirmEvent.emit(correlatives);
+    this.activeModal.close();
   }
 
   public changeCorrelativeState(subject: SubjectWithCorrelativeState, state: CorrelativeState) {
     subject.correlativeState = state;
-  }
-
-  private getSubjectsWithCorrelativeState() {
-    this.subjects.forEach(
-      (subject) => {
-        const correlative = this.correlatives.find((cor) => {
-          return cor.subjectCode === subject.subjectCode;
-        });
-        const correlativeState = SubjectCorrelativesComponent.getCorrelativeState(correlative);
-        this.subjectsWithCorrelativeState.push(
-          new SubjectWithCorrelativeState(subject, correlativeState)
-        );
-      }
-    );
-    this.subjectsWithCorrelativeState.sort((subject) => subject.subject.level);
   }
 
   public cancelAction(): void {
@@ -78,6 +67,59 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   public isNoCorrelativeChecked(subject: SubjectWithCorrelativeState): boolean {
     return subject.correlativeState === CorrelativeState.NO_CORRELATIVE;
+  }
+
+  private getSubjects() {
+    this.subjectService.getSubjects().subscribe(
+      (subjects) => {
+        this.subjects = subjects;
+        this.getSubjectsWithCorrelativeState();
+      }
+    );
+    // this.filtrateSubjects();
+
+  }
+
+  private getSubjectsWithCorrelativeState() {
+    this.subjects.forEach(
+      (subject) => {
+        const correlative = this.correlatives.find((cor) => {
+          return cor.subjectCode === subject.subjectCode;
+        });
+        const correlativeState = SubjectCorrelativesComponent.getCorrelativeState(correlative);
+        this.subjectsWithCorrelativeState.push(
+          new SubjectWithCorrelativeState(subject, correlativeState)
+        );
+      }
+    );
+    this.subjectsWithCorrelativeState.sort((subject) => subject.subject.level);
+  }
+
+
+  private static getCorrelative(subjectWithCorrelative: SubjectWithCorrelativeState): Correlative {
+    const subjectCode = subjectWithCorrelative.subject.subjectCode;
+    if (subjectWithCorrelative.correlativeState === CorrelativeState.TO_TAKE_REGULAR) {
+      return new Correlative(
+        subjectCode,
+        CorrelativeRestriction.TO_TAKE,
+        CorrelativeCondition.REGULAR,
+      );
+    }
+    if (subjectWithCorrelative.correlativeState === CorrelativeState.TO_TAKE_APPROVED) {
+      return new Correlative(
+        subjectCode,
+        CorrelativeRestriction.TO_TAKE,
+        CorrelativeCondition.APPROVED,
+      );
+    }
+    if ((subjectWithCorrelative.correlativeState === CorrelativeState.TO_APPROVE)) {
+      return new Correlative(
+        subjectCode,
+        CorrelativeRestriction.TO_APPROVE,
+        CorrelativeCondition.APPROVED,
+      );
+    }
+    return null;
   }
 
   private static getCorrelativeState(correlative: Correlative): CorrelativeState {

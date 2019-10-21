@@ -25,13 +25,11 @@ export class Subject {
 
 export class Correlative {
   subjectCode: string;
-  name: string;
   correlativeRestriction: string;
   correlativeCondition: string;
 
-  constructor(subjectCode?: string, name?: string, correlativeRestriction?: string, correlativeCondition?: string) {
+  constructor(subjectCode?: string, correlativeRestriction?: string, correlativeCondition?: string) {
     this.subjectCode = subjectCode;
-    this.name = name;
     this.correlativeRestriction = correlativeRestriction;
     this.correlativeCondition = correlativeCondition;
   }

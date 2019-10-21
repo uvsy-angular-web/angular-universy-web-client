@@ -4,12 +4,13 @@ import {ButtonText} from '../../../enums/button-text.enum';
 
 @Component({
   selector: 'app-error-modal',
-  templateUrl: './error-modal.component.html',
-  styleUrls: ['./error-modal.component.css']
+  templateUrl: './information-modal.component.html',
+  styleUrls: ['./information-modal.component.css']
 })
-export class ErrorModalComponent implements OnInit {
+export class InformationModalComponent implements OnInit {
+  @Input() title: string;
   @Input() message: string;
-  confirmationButtonText = ButtonText.Accept;
+  @Input() confirmButtonText: ButtonText;
 
   constructor(public activeModal: NgbActiveModal) {
   }

@@ -44,6 +44,20 @@ export class SubjectService {
     return this.http.put(baseUrl + ENDPOINT_SUBJECTS, body, {headers});
   }
 
+  public updateSubject(subject: Subject) {
+    const body = {
+      subjectCode: subject.subjectCode,
+      programCode: this.programService.getCurrentProgram().uuid,
+      name: subject.name,
+      level: subject.level,
+      correlatives: subject.correlatives ? subject.correlatives : [],
+      careerKey: this.careerService.getCurrentCareer().careerKey,
+    };
+    const baseUrl = SubjectService.getBaseUrl();
+    const headers = this.getHeaders();
+    return this.http.post(baseUrl + ENDPOINT_SUBJECTS, body, {headers});
+  }
+
   getSubjects(): Observable<Subject[]> {
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();

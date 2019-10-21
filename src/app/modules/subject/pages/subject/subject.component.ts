@@ -98,6 +98,25 @@ export class SubjectComponent implements OnInit {
   }
 
   public openManageCorrelativesModal() {
-    this.subjectModalService.openSubjectCorrelatives(this.subject.correlatives);
+    this.subjectModalService.openSubjectCorrelatives(this.subject.correlatives).subscribe(
+      (correlatives) => {
+        if (this.subject.correlatives !== correlatives) {
+          this.subject.correlatives = correlatives;
+          this.updateSubject();
+        }
+      }
+    );
+  }
+
+  private updateSubject() {
+    this.subjectService.updateSubject(this.subject).subscribe(
+      () => {
+        this.notificationService.inform('¡Actualización con éxito!',
+          'Se actualizo el estado de las correlativas exitosamente.');
+      }, ((error) => {
+        this.notificationService.showError('Ocurrio un error tratando de actualizar las correlativas');
+        console.error(error.message);
+      })
+    );
   }
 }
