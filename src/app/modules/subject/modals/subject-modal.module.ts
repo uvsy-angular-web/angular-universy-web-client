@@ -4,20 +4,22 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 import {SharedModule} from '../../../shared/shared.module';
+import { SubjectCorrelativesComponent } from './subject-correlatives/subject-correlatives.component';
 
 
 @NgModule({
   declarations: [
     SubjectModalComponent,
+    SubjectCorrelativesComponent,
   ],
   imports: [
     CommonModule,
     NgbModule,
-    NgbModule.forRoot(),
     ReactiveFormsModule,
     SharedModule
   ],
   entryComponents: [
+    SubjectCorrelativesComponent,
     SubjectModalComponent,
   ]
 })

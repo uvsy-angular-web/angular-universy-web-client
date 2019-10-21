@@ -7,6 +7,7 @@ import {NavigationService} from '../../../../core/services/system/navigation.ser
 import {CourseService} from '../../../../core/services/course.service';
 import {Course} from '../../../../shared/models/course.model';
 import {ProgramService} from '../../../../core/services/program.service';
+import {SubjectModalService} from '../../modals/subject-modal.service';
 
 @Component({
   selector: 'app-subject',
@@ -21,6 +22,7 @@ export class SubjectComponent implements OnInit {
   constructor(private subjectService: SubjectService,
               private navigationService: NavigationService,
               private programService: ProgramService,
+              private subjectModalService: SubjectModalService,
               private courseService: CourseService,
               private notificationService: NotificationService) {
   }
@@ -93,5 +95,9 @@ export class SubjectComponent implements OnInit {
         this.notificationService.showError('Ocurrió un error intentando borrar la materia.');
         console.error(error);
       });
+  }
+
+  public openManageCorrelativesModal() {
+    this.subjectModalService.openSubjectCorrelatives();
   }
 }
