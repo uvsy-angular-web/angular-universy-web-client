@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 import {SharedModule} from '../../../shared/shared.module';
 import { SubjectCorrelativesComponent } from './subject-correlatives/subject-correlatives.component';
@@ -16,7 +16,8 @@ import { SubjectCorrelativesComponent } from './subject-correlatives/subject-cor
     CommonModule,
     NgbModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   entryComponents: [
     SubjectCorrelativesComponent,

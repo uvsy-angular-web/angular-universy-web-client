@@ -98,6 +98,6 @@ export class SubjectComponent implements OnInit {
   }
 
   public openManageCorrelativesModal() {
-    this.subjectModalService.openSubjectCorrelatives();
+    this.subjectModalService.openSubjectCorrelatives(this.subject.correlatives);
   }
 }

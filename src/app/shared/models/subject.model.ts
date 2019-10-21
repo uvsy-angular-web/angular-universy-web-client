@@ -2,14 +2,14 @@ import {CareerKey} from './carreer-key.model';
 
 export class Subject {
   programCode: string;
-  subjectCode: number;
+  subjectCode: string;
   name: string;
   level: number;
   correlatives: Correlative[];
   careerKey: CareerKey;
 
   constructor(programCode?: string,
-              subjectCode?: number,
+              subjectCode?: string,
               name?: string,
               level?: number,
               correlatives?: Correlative[],
