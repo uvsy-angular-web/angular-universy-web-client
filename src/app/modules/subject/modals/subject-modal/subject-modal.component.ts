@@ -59,7 +59,7 @@ export class SubjectModalComponent implements OnInit {
 
   private static _getValidatorsForCareerName(): Validators {
     return Validators.compose([
-      Validators.maxLength(35),
+      Validators.maxLength(50),
       Validators.required
     ]);
   }

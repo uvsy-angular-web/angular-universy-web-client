@@ -102,13 +102,25 @@ export class SubjectComponent implements OnInit {
       (correlatives) => {
         if (this.subject.correlatives !== correlatives) {
           this.subject.correlatives = correlatives;
-          this.updateSubject();
+          this.updateSubjectCorrelatives();
         }
       }
     );
   }
 
-  private updateSubject() {
+  public openEditModal() {
+    this.subjectModalService.openEditSubjectModal(this.subject).subscribe(
+      () => {
+        this.notificationService.inform('¡Modificación con éxito!',
+          'Se actualizo la materia exitosamente.');
+      }, ((error) => {
+        this.notificationService.showError('Ocurrio un error tratando de modificar la materia');
+        console.error(error.message);
+      })
+    );
+  }
+
+  private updateSubjectCorrelatives() {
     this.subjectService.updateSubject(this.subject).subscribe(
       () => {
         this.notificationService.inform('¡Actualización con éxito!',

@@ -1,6 +1,7 @@
 <div class="container">
   <app-module-title [title]="subject.name"
                     (deleteItem)="openDeleteModal()"
+                    (editItem)="openEditModal()"
                     [showEditButton]="canModifySubject()"
                     [showDeleteButton]="canModifySubject()"></app-module-title>
   <hr>

@@ -4,6 +4,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonText} from '../../../shared/enums/button-text.enum';
 import {SubjectCorrelativesComponent} from './subject-correlatives/subject-correlatives.component';
 import {Correlative} from '../../../shared/models/correlative.modal';
+import {Subject} from '../../../shared/models/subject.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,13 @@ export class SubjectModalService {
     const modalRef = this.modalService.open(SubjectModalComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = 'Agregar Materia';
     modalRef.componentInstance.confirmButtonText = ButtonText.Add;
+    return modalRef.componentInstance.confirmEvent;
+  }
+  public openEditSubjectModal(subject: Subject) {
+    const modalRef = this.modalService.open(SubjectModalComponent, {backdrop: 'static'});
+    modalRef.componentInstance.title = 'Modificar Materia';
+    modalRef.componentInstance.subject = subject;
+    modalRef.componentInstance.confirmButtonText = ButtonText.Edit;
     return modalRef.componentInstance.confirmEvent;
   }
 
