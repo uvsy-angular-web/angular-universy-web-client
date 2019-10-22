@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  public navigationServicePage() {
+  public navigateToInstitution() {
     this.navigationService.navigateToInstitutionPage();
   }
 }
