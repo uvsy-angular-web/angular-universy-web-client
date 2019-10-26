@@ -40,7 +40,7 @@ export class CareerComponent implements OnInit {
   }
 
   public async navigateToProgramPage(program: Program) {
-    this.programService.setCurrentProgram(program);
+    ProgramService.setCurrentProgram(program);
     this.navigationService.navigateToProgramPage();
   }
 

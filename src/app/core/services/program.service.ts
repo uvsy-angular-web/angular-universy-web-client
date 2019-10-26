@@ -1,36 +1,25 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './system/system-config.service';
 import {Program} from '../../shared/models/program.model';
 import {CareerService} from './career.service';
+import {LocalStorageService} from './local-storage.service';
 
 const ENDPOINT_PROGRAMS = '/universy/institution/programs';
 const ENDPOINT_PROGRAMS_PUBLISH = ENDPOINT_PROGRAMS + '/publish';
+const CURRENT_PROGRAM_KEY = 'current-program';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgramService {
-  private programSource = new BehaviorSubject<Program>(new Program());  // TODO. Stop Hardcoding the key
-  public currentProgram = this.programSource.asObservable();
 
   constructor(private http: HttpClient,
               private careerService: CareerService,
               private systemConfigService: SystemConfigService) {
   }
 
-
-  public setCurrentProgram(program: Program) {
-    this.programSource.next(program);
-  }
-
-  public getCurrentProgram(): Program {
-    let program;
-    this.currentProgram
-      .subscribe((serviceProgram) => program = serviceProgram);
-    return program;
-  }
 
   public addProgram(program: Program) {
     const body = {
@@ -96,5 +85,13 @@ export class ProgramService {
 
   private static _getBaseUrl() {
     return SystemConfigService.getBaseUrl();
+  }
+
+  public static setCurrentProgram(program: Program) {
+    LocalStorageService.saveObjectInLocalStorage(CURRENT_PROGRAM_KEY, program);
+  }
+
+  public static getCurrentProgram(): Program {
+    return LocalStorageService.getObjectFromInLocalStorage(CURRENT_PROGRAM_KEY) as Program;
   }
 }

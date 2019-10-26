@@ -14,13 +14,12 @@ const CURRENT_CAREER_KEY = 'current-career';
 export class CareerService {
 
   constructor(private http: HttpClient,
-              private systemConfigService: SystemConfigService,
-              private institutionService: InstitutionService) {
+              private systemConfigService: SystemConfigService) {
   }
 
   updateCareer(career: Career) {
     const body = {
-      institutionKey: this.institutionService.getCurrentInstitution().institutionKey,
+      institutionKey: InstitutionService.getCurrentInstitution().institutionKey,
       career
     };
     const baseUrl = CareerService._getBaseUrl();
@@ -30,7 +29,7 @@ export class CareerService {
 
   addCareer(careerName: string) {
     const body = {
-      institutionKey: this.institutionService.getCurrentInstitution().institutionKey,
+      institutionKey: InstitutionService.getCurrentInstitution().institutionKey,
       careerName
     };
     const baseUrl = CareerService._getBaseUrl();

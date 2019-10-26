@@ -40,7 +40,7 @@ export class SubjectComponent implements OnInit {
   }
 
   public canModifySubject() {
-    return !this.programService.getCurrentProgram().published;
+    return !ProgramService.getCurrentProgram().published;
   }
 
   private addCourse(courseName: string) {
@@ -69,12 +69,12 @@ export class SubjectComponent implements OnInit {
   }
 
   public openCoursePage(course: Course) {
-    this.courseService.setCurrentCourse(course);
+    CourseService.setCurrentCourse(course);
     this.navigationService.navigateToCoursePage();
   }
 
   ngOnInit() {
-    this.subject = this.subjectService.getCurrentSubject();
+    this.subject = SubjectService.getCurrentSubject();
     this.getCourses();
   }
 

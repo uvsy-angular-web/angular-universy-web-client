@@ -1,38 +1,27 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {SystemConfigService} from './system/system-config.service';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Subject} from '../../shared/models/subject.model';
 import {ProgramService} from './program.service';
 import {CareerService} from './career.service';
+import {LocalStorageService} from './local-storage.service';
 
 const ENDPOINT_SUBJECTS = '/universy/institution/subjects';
+const CURRENT_SUBJECT_KEY = 'current-subject';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectService {
-  private subjectSource = new BehaviorSubject<Subject>(new Subject());
-  public currentSubject = this.subjectSource.asObservable();
 
   constructor(private http: HttpClient,
-              private systemConfigService: SystemConfigService,
-              private programService: ProgramService) {
-  }
-
-  public setCurrentSubject(subject: Subject) {
-    this.subjectSource.next(subject);
-  }
-
-  public getCurrentSubject(): Subject {
-    let subject;
-    this.currentSubject
-      .subscribe((serviceCareer) => subject = serviceCareer);
-    return subject;
+              private systemConfigService: SystemConfigService) {
   }
 
   public addSubject(subject: Subject) {
     const body = {
-      programCode: this.programService.getCurrentProgram().uuid,
+      programCode: ProgramService.getCurrentProgram().uuid,
       name: subject.name,
       level: subject.level,
       correlatives: subject.correlatives ? subject.correlatives : [],
@@ -46,7 +35,7 @@ export class SubjectService {
   public updateSubject(subject: Subject) {
     const body = {
       subjectCode: subject.subjectCode,
-      programCode: this.programService.getCurrentProgram().uuid,
+      programCode: ProgramService.getCurrentProgram().uuid,
       name: subject.name,
       level: subject.level,
       correlatives: subject.correlatives ? subject.correlatives : [],
@@ -61,7 +50,7 @@ export class SubjectService {
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
 
-    const currentProgramCode = this.programService.getCurrentProgram().uuid;
+    const currentProgramCode = ProgramService.getCurrentProgram().uuid;
     const params = new HttpParams()
       .set('programCode', currentProgramCode);
 
@@ -75,7 +64,7 @@ export class SubjectService {
   deleteSubject(subject: Subject) {
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
-    const currentProgramCode = this.programService.getCurrentProgram().uuid;
+    const currentProgramCode = ProgramService.getCurrentProgram().uuid;
     const params = new HttpParams()
       .set('programCode', currentProgramCode)
       .set('subjectCode', subject.subjectCode.toString());
@@ -89,5 +78,13 @@ export class SubjectService {
 
   private static getBaseUrl() {
     return SystemConfigService.getBaseUrl();
+  }
+
+  public static setCurrentSubject(subject: Subject) {
+    LocalStorageService.saveObjectInLocalStorage(CURRENT_SUBJECT_KEY, subject);
+  }
+
+  public static getCurrentSubject(): Subject {
+    return LocalStorageService.getObjectFromInLocalStorage(CURRENT_SUBJECT_KEY) as Subject;
   }
 }

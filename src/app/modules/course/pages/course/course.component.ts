@@ -11,9 +11,7 @@ export class CourseComponent implements OnInit {
 
   public course: Course;
 
-  constructor(
-    private courseService: CourseService,
-  ) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -21,7 +19,7 @@ export class CourseComponent implements OnInit {
   }
 
   private getCurrentCourse() {
-    this.course = this.courseService.getCurrentCourse();
+    this.course = CourseService.getCurrentCourse();
     console.log(this.course); // TODO: delete this
   }
 
