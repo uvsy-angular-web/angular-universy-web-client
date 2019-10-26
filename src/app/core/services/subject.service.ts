@@ -16,8 +16,7 @@ export class SubjectService {
 
   constructor(private http: HttpClient,
               private systemConfigService: SystemConfigService,
-              private programService: ProgramService,
-              private careerService: CareerService) {
+              private programService: ProgramService) {
   }
 
   public setCurrentSubject(subject: Subject) {
@@ -37,7 +36,7 @@ export class SubjectService {
       name: subject.name,
       level: subject.level,
       correlatives: subject.correlatives ? subject.correlatives : [],
-      careerKey: this.careerService.getCurrentCareer().careerKey,
+      careerKey: CareerService.getCurrentCareer().careerKey,
     };
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
@@ -51,7 +50,7 @@ export class SubjectService {
       name: subject.name,
       level: subject.level,
       correlatives: subject.correlatives ? subject.correlatives : [],
-      careerKey: this.careerService.getCurrentCareer().careerKey,
+      careerKey: CareerService.getCurrentCareer().careerKey,
     };
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();

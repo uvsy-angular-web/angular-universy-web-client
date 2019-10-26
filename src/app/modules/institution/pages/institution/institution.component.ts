@@ -21,8 +21,7 @@ export class InstitutionComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private navigationService: NavigationService,
-    private notificationService: NotificationService,
-    private router: Router) {
+    private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -50,7 +49,7 @@ export class InstitutionComponent implements OnInit {
   }
 
   public navigateToCareerPage(career: Career) {
-    this.careerService.setCurrentCareer(career);
+    CareerService.setCurrentCareer(career);
     this.navigationService.navigateToCareerPage();
   }
 

@@ -34,7 +34,7 @@ export class ProgramService {
 
   public addProgram(program: Program) {
     const body = {
-      careerKey: this.careerService.getCurrentCareer().careerKey,
+      careerKey: CareerService.getCurrentCareer().careerKey,
       name: program.name,
       validFrom: program.validFrom
     };
@@ -46,7 +46,7 @@ export class ProgramService {
   public getPrograms(): Observable<Program[]> {
     const baseUrl = SystemConfigService.getBaseUrl();
     const headers = this.systemConfigService.getHeader();
-    const currentCareerKey = this.careerService.getCurrentCareer().careerKey;
+    const currentCareerKey = CareerService.getCurrentCareer().careerKey;
     const params = new HttpParams()
       .set('institutionKey', currentCareerKey.institutionKey)
       .set('careerCode', currentCareerKey.careerCode);
@@ -60,7 +60,7 @@ export class ProgramService {
   public deleteProgram(program: Program) {
     const baseUrl = SystemConfigService.getBaseUrl();
     const headers = this.systemConfigService.getHeader();
-    const currentCareerKey = this.careerService.getCurrentCareer().careerKey;
+    const currentCareerKey = CareerService.getCurrentCareer().careerKey;
     const params = new HttpParams()
       .set('institutionKey', currentCareerKey.institutionKey)
       .set('careerCode', currentCareerKey.careerCode)
@@ -70,7 +70,7 @@ export class ProgramService {
 
   public updateProgram(program: Program) {
     const body = {
-      careerKey: this.careerService.getCurrentCareer().careerKey,
+      careerKey: CareerService.getCurrentCareer().careerKey,
       uuid: program.uuid,
       name: program.name,
       validFrom: program.validFrom
@@ -82,7 +82,7 @@ export class ProgramService {
 
   public publishProgram(program: Program) {
     const body = {
-      careerKey: this.careerService.getCurrentCareer().careerKey,
+      careerKey: CareerService.getCurrentCareer().careerKey,
       uuid: program.uuid,
     };
     const baseUrl = ProgramService._getBaseUrl();
