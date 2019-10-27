@@ -6,6 +6,8 @@ import {FormGroup} from '@angular/forms';
 import {SubjectService} from '../../../../core/services/subject.service';
 import {Correlative, CorrelativeCondition, CorrelativeRestriction, CorrelativeState} from '../../../../shared/models/correlative.modal';
 
+const FIRST_LEVEL = 1;
+
 @Component({
   selector: 'app-subject-correlatives',
   templateUrl: './subject-correlatives.component.html',
@@ -19,11 +21,9 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
-  @Input() correlatives: Correlative[];
-  @Input() level: number;
+  @Input() subject: Subject;
   @Output() confirmEvent: EventEmitter<Correlative[]> = new EventEmitter();
-  subjects: Subject[];
-  subjectsWithCorrelativeState: SubjectWithCorrelativeState[] = [];
+  subjects: Subject[] = [];
   form: FormGroup;
   correlativeState = CorrelativeState;
 
@@ -32,143 +32,110 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   public showTable() {
-    return this.subjectsWithCorrelativeState.length > 0;
+    return this.subjects.length > 0;
   }
 
   public emitCorrelatives() {
     const correlatives: Correlative[] = [];
-    this.subjectsWithCorrelativeState.forEach(
-      (subjectWithCorrelative) => {
-        const correlative = SubjectCorrelativesComponent.getCorrelative(subjectWithCorrelative);
-        if (correlative) {
-          correlatives.push(correlative);
-        }
-      }
-    );
+    /*    this.subjectsWithCorrelativeState.forEach(
+          (subjectWithCorrelative) => {
+            const correlative = SubjectCorrelativesComponent.getCorrelative(subjectWithCorrelative);
+            if (correlative) {
+              correlatives.push(correlative);
+            }
+          }
+        );*/
     this.confirmEvent.emit(correlatives);
     this.activeModal.close();
   }
 
-  public changeCorrelativeState(subject: SubjectWithCorrelativeState, state: CorrelativeState) {
-    subject.correlativeState = state;
+  public changeCorrelativeToTake(subject: Subject, state: CorrelativeState) {
+    // subject.correlativeState = state;
+  }
+
+
+  public changeCorrelativeToApprove(subject: Subject, state: CorrelativeState) {
+    // subject.correlativeState = state;
   }
 
   public cancelAction(): void {
     this.activeModal.dismiss();
   }
 
-  public isToTakeRegularChecked(subject: SubjectWithCorrelativeState): boolean {
-    return subject.correlativeState === CorrelativeState.TO_TAKE_REGULAR;
+  public isToTakeRegularChecked(subject: Subject): boolean {
+    return subject.correlatives.find(
+      (correlative) => {
+        return correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
+          correlative.correlativeCondition === CorrelativeCondition.REGULAR;
+      }
+    ) != null;
   }
 
-  public isToTakeApprovedChecked(subject: SubjectWithCorrelativeState): boolean {
-    return subject.correlativeState === CorrelativeState.TO_TAKE_APPROVED;
+  public isToTakeApprovedChecked(subject: Subject): boolean {
+    return subject.correlatives.find(
+      (correlative) => {
+        return correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
+          correlative.correlativeCondition === CorrelativeCondition.APPROVED;
+      }
+    ) != null;
   }
 
-  public isToAproveChecked(subject: SubjectWithCorrelativeState): boolean {
-    return subject.correlativeState === CorrelativeState.TO_APPROVE;
+  public isToApproveChecked(subject: Subject): boolean {
+    return subject.correlatives.find(
+      (correlative) => {
+        return correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
+          correlative.correlativeCondition === CorrelativeCondition.APPROVED;
+      }
+    ) != null;
   }
 
-  public isNoCorrelativeChecked(subject: SubjectWithCorrelativeState): boolean {
-    return subject.correlativeState === CorrelativeState.NO_CORRELATIVE;
+  public isNoCorrelativeChecked(subject: Subject): boolean {
+    return subject.correlatives === [];
+  }
+
+  public isSubjectInFirstLevel() {
+    return this.subject.level !== FIRST_LEVEL;
   }
 
   private getSubjects() {
     this.subjectService.getSubjects().subscribe(
       (subjects) => {
-        this.subjects = this.getFilteredSubjects(subjects);
-        this.getSubjectsWithCorrelativeState();
+        this.subjects = subjects;
+        this.prepareSubjects();
       }
     );
   }
 
-  private getFilteredSubjects(subjects: Subject[]): Subject[] {
-    return subjects.filter((subject) => {
-      return subject.level < this.level;
-    });
+  private prepareSubjects() {
+    this.filterSubjectsByLevel();
+    this.filterCorrelatives();
+    this.sortSubjectsByLevel();
   }
 
-  private getSubjectsWithCorrelativeState() {
+  private filterCorrelatives() {
     this.subjects.forEach(
-      (subject) => {
-        const correlative = this.correlatives.find((cor) => {
-          return cor.subjectCode === subject.subjectCode;
-        });
-        const correlativeState = SubjectCorrelativesComponent.getCorrelativeState(correlative);
-        this.subjectsWithCorrelativeState.push(
-          new SubjectWithCorrelativeState(subject, correlativeState)
+      (subjects) => {
+        subjects.correlatives.filter(
+          (correlative) => {
+            return correlative.subjectCode === this.subject.subjectCode;
+          }
         );
       }
     );
-    this.sortSubjectsWithCorrelativeByLevel();
   }
 
-  private sortSubjectsWithCorrelativeByLevel() {
-    if (this.subjectsWithCorrelativeState) {
-      function compare(subjectA, subjectB) {
-        if (subjectA.subject.level < subjectB.subject.level) {
-          return -1;
-        }
-        if (subjectA.subject.level > subjectB.subject.level) {
-          return 1;
-        }
-        return 0;
-      }
-
-      this.subjectsWithCorrelativeState.sort(compare);
-    }
+  private filterSubjectsByLevel() {
+    this.subjects = this.subjects.filter((subject) => {
+      return this.isSubjectLevelLowerThatActual(subject);
+    });
   }
 
-  private static getCorrelative(subjectWithCorrelative: SubjectWithCorrelativeState): Correlative {
-    const subjectCode = subjectWithCorrelative.subject.subjectCode;
-    if (subjectWithCorrelative.correlativeState === CorrelativeState.TO_TAKE_REGULAR) {
-      return new Correlative(
-        subjectCode,
-        CorrelativeRestriction.TO_TAKE,
-        CorrelativeCondition.REGULAR,
-      );
-    }
-    if (subjectWithCorrelative.correlativeState === CorrelativeState.TO_TAKE_APPROVED) {
-      return new Correlative(
-        subjectCode,
-        CorrelativeRestriction.TO_TAKE,
-        CorrelativeCondition.APPROVED,
-      );
-    }
-    if ((subjectWithCorrelative.correlativeState === CorrelativeState.TO_APPROVE)) {
-      return new Correlative(
-        subjectCode,
-        CorrelativeRestriction.TO_APPROVE,
-        CorrelativeCondition.APPROVED,
-      );
-    }
-    return null;
+  private isSubjectLevelLowerThatActual(subject) {
+    return subject.level < this.subject.level;
   }
 
-  private static getCorrelativeState(correlative: Correlative): CorrelativeState {
-    if (correlative) {
-      if (correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE) {
-        if (correlative.correlativeCondition === CorrelativeCondition.REGULAR) {
-          return CorrelativeState.TO_TAKE_REGULAR;
-        } else {
-          return CorrelativeState.TO_TAKE_APPROVED;
-        }
-      } else if (correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE) {
-        return CorrelativeState.TO_APPROVE;
-      }
-    }
-    return CorrelativeState.NO_CORRELATIVE;
+  private sortSubjectsByLevel() {
+    this.subjects = SubjectService.sortSubjectsByLevel(this.subjects);
   }
 
 }
-
-class SubjectWithCorrelativeState {
-  subject: Subject;
-  correlativeState: CorrelativeState;
-
-  constructor(subject: Subject, correlativeState: CorrelativeState) {
-    this.subject = subject;
-    this.correlativeState = correlativeState;
-  }
-}
-

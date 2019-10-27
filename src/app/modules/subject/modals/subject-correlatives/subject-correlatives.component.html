@@ -20,29 +20,24 @@
         <th scope="col">Reg</th>
         <th scope="col">Apr.</th>
         <th scope="col" class="border-left text-center">Apr.</th>
-        <th scope="col" class="border-left text-center">Sin Corr.</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let subject of subjectsWithCorrelativeState"
+      <tr *ngFor="let subject of subjects"
           [class.unchecked]="isNoCorrelativeChecked(subject)">
-        <th scope="row">{{subject.subject.level}}</th>
-        <td>{{subject.subject.name}}</td>
+        <th scope="row">{{subject.level}}</th>
+        <td>{{subject.name}}</td>
         <td>
-          <input type="radio" [checked]="isToTakeRegularChecked(subject)"
-                 (change)="changeCorrelativeState(subject,correlativeState.TO_TAKE_REGULAR)">
+          <input type="checkbox" [checked]="isToTakeRegularChecked(subject)"
+                 (change)="changeCorrelativeToTake(subject,correlativeState.TO_TAKE_REGULAR)">
         </td>
         <td>
-          <input type="radio" [checked]="isToTakeApprovedChecked(subject)"
-                 (change)="changeCorrelativeState(subject,correlativeState.TO_TAKE_APPROVED)">
+          <input type="checkbox" [checked]="isToTakeApprovedChecked(subject)"
+                 (change)="changeCorrelativeToTake(subject,correlativeState.TO_TAKE_APPROVED)">
         </td>
         <td class="border-left text-center">
-          <input type="radio" [checked]="isToAproveChecked(subject)"
-                 (change)="changeCorrelativeState(subject,correlativeState.TO_APPROVE)">
-        </td>
-        <td class="border-left text-center">
-          <input type="radio" [checked]="isNoCorrelativeChecked(subject)"
-                 (change)="changeCorrelativeState(subject,correlativeState.NO_CORRELATIVE)">
+          <input type="checkbox" [checked]="isToApproveChecked(subject)"
+                 (change)="changeCorrelativeToApprove(subject,correlativeState.TO_APPROVE)">
         </td>
       </tr>
       </tbody>
@@ -50,7 +45,7 @@
     <div [hidden]="showTable()" class="text-center">
       <span class="font-italic">No existen materias para administrar las correlativas.</span>
     </div>
-    <div [hidden]="level != 1" class="text-center">
+    <div [hidden]="isSubjectInFirstLevel()" class="text-center">
       <span class="font-italic">La materia se encuentra en el primer nivel. No se le pueden asignar comisiones.</span>
     </div>
   </div>
