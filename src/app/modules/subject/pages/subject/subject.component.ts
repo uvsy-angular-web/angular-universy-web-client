@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {SubjectService} from '../../../../core/services/subject.service';
-import {Subject} from '../../../../shared/models/subject.model';
+import {Subject} from '../../../../models/subject.model';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 import {CourseService} from '../../../../core/services/course.service';
-import {Course} from '../../../../shared/models/course.model';
+import {Course} from '../../../../models/course.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectModalService} from '../../modals/subject-modal.service';
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InstitutionService} from '../../../../core/services/institution.service';
-import {Career, Institution} from '../../../../shared/models/career.model';
+import {Career, Institution} from '../../../../models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {Router} from '@angular/router';
@@ -21,8 +21,7 @@ export class InstitutionComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private navigationService: NavigationService,
-    private notificationService: NotificationService,
-    private router: Router) {
+    private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {

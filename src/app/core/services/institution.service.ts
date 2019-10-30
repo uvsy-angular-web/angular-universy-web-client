@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './system/system-config.service';
-import {Institution, Institutions} from '../../shared/models/career.model';
+import {Institution, Institutions} from '../../models/career.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import 'rxjs-compat/add/operator/map';
 

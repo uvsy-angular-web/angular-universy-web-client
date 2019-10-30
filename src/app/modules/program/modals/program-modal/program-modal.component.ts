@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {Program} from '../../../../shared/models/program.model';
+import {Program} from '../../../../models/program.model';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 const DEFAULT_DAY_INIT_FROM = '01';
@@ -73,7 +73,6 @@ export class ProgramModalComponent implements OnInit {
   }
 
   private static _getValidatorsForYearFrom(): Validators {
-    const currentYear = new Date().getFullYear();
     return Validators.compose(
       [
         Validators.maxLength(4),

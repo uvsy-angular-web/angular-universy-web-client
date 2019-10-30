@@ -3,8 +3,8 @@ import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonText} from '../../../shared/enums/button-text.enum';
 import {SubjectCorrelativesComponent} from './subject-correlatives/subject-correlatives.component';
-import {Correlative} from '../../../shared/models/correlative.modal';
-import {Subject} from '../../../shared/models/subject.model';
+import {Correlative} from '../../../models/correlative.modal';
+import {Subject} from '../../../models/subject.model';
 
 @Injectable({
   providedIn: 'root'

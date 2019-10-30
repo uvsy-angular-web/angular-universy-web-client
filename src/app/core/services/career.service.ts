@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Career} from '../../shared/models/career.model';
+import {Career} from '../../models/career.model';
 import {BehaviorSubject} from 'rxjs';
 import {SystemConfigService} from './system/system-config.service';
 import {HttpClient} from '@angular/common/http';
