@@ -12,7 +12,7 @@ const ENDPOINT_PROGRAMS_PUBLISH = ENDPOINT_PROGRAMS + '/publish';
   providedIn: 'root'
 })
 export class ProgramService {
-  private programSource = new BehaviorSubject<Program>(new Program());  // TODO. Stop Hardcoding the key
+  private programSource = new BehaviorSubject<Program>(new Program());
   public currentProgram = this.programSource.asObservable();
 
   constructor(private http: HttpClient,
