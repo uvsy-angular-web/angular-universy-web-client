@@ -16,10 +16,10 @@
 
   <div class="row justify-content-center">
     <div *ngFor="let contact of contacts" class="col-md-2 text-center">
-      <img [src]="contact.img" alt="foto de {{contact.name}}">
-      <p> {{ contact.lastname}} </p>
+      <img [src]="contact.imgUrl" alt="foto de {{contact.name}}">
+      <p> {{ contact.lastName}} </p>
       <p> {{ contact.name}} </p>
-      <b><p> {{ contact.rol}} </p></b>
+      <b> {{ contact.rol}} </b>
     </div>
   </div>
 </div>

@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close"
+          aria-label="Close" (click)="cancelAction()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
+  <div class="modal-body">
+    <div class="form-group">
+      <div class="col-8">
+        <label for="item-text"> Nombre: </label>
+        <input id="item-text" appControlError
+               class="form-control" type="text"
+               formControlName="name">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-4">
+        <label for="year-from"> Año de inicio: </label>
+        <input id="year-from" appControlError
+               class="form-control" type="number"
+               maxlength="4" formControlName="yearFrom">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>
+    <button type="submit" class="btn btn-primary">{{confirmButtonText}}</button>
+  </div>
+</form>

@@ -1,9 +1,13 @@
 
-.active {
-    color:grey;
-
+.active-link {
+  font-weight: bold;
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color:black;
+  color: black;
+  font-size: 1.2rem;
+}
+
+#contact-info {
+  color: #797878;
 }

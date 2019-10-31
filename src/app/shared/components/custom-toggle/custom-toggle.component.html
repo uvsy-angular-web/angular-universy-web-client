@@ -1,0 +1,10 @@
+<form [formGroup]="form">
+  <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="activate">
+    <label ngbButtonLabel class="btn toggle-buttom">
+      <input ngbButton type="radio" [value]="true"> Activa
+    </label>
+    <label ngbButtonLabel class="btn toggle-buttom desactivated">
+      <input ngbButton type="radio" [value]="false"> Inactiva
+    </label>
+  </div>
+</form>

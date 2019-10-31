@@ -1,49 +1,45 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
 <div class="container">
-    <div class="row">
-        <div class="col-sm-10">
-            <h3>Mis Carreras</h3>
-            <hr>
-        </div>
-        <div>
-            <a href="#" data-toggle="modal" data-target="#newCareer">+ Agregar Carrera</a>
-        </div>
+  <div class="row">
+    <div class="col-7">
+      <app-module-title [title]="career.careerName"
+                        (editItem)="openEditCareerModal()"
+                        [showDeleteButton]="false"></app-module-title>
     </div>
-    <br>
-
-    <div class="row justify-content-center">
-        <div *ngFor="let career of careers" class="col-sm-5 text-center">
-            <button class="btn button-career "> {{ career.name}} </button>
-        </div>
+    <div class="col-5">
+      <app-custom-toggle class="float-right" [activated]="getStateOfCareer()"
+                         (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
     </div>
-
+  </div>
+  <hr>
+  <div class="content">
+    <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()"
+                  [buttonTitle]="'Agregar plan'"></app-add-item>
+    <div *ngIf="programs">
+      <div *ngFor="let program of programs" class="row text-left program"
+           [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }">
+        <div class="col-8 clickeable" (click)="navigateToProgramPage(program)">
+          <h3 class="program-name">
+            {{program.name}}
+          </h3>
+          <h4 class="valid-from">
+            Desde: {{program.validFrom | date:'yyyy'}}</h4>
+        </div>
+        <div class="col-4 text-center not-pusblished" *ngIf="!program.published">
+          <br>
+          <button class="btn btn-primary" (click)="openConfirmPublishModal(program)">Publicar</button>
+        </div>
+        <div class="col-4 text-center align-self-center" *ngIf="program.published">
+          <h3 class="program-name ">
+            <i class="material-icons" id="published-icon">fiber_manual_record</i>
+            Publicado</h3>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="programs.length === 0">
+      <h4 class="no-program-text">
+        La carrera no posee planes todavia, haz click en Agregar plan
+      </h4>
+    </div>
+  </div>
 </div>
 
-<!-- Modal Registrar Carrera-->
-<div class="modal fade" id="newCareer" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Registrar Carrera</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group col-sm-6">
-                        <label>Nombre</label>
-                        <input type="text" class="form-control form-control-sm" id="careerName">
-                    </div>
-                </form>    
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-border" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary btn-border">Agregar</button>
-            </div>
-        </div>
-    </div>
-</div> 
-
-<img class="onda-footer" src="\assets\pictures\footer-onda.png" alt="footer-universy">

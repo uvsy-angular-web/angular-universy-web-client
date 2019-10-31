@@ -1,0 +1,9 @@
+.hide {
+  display: none;
+}
+
+.has-error {
+  font-style: italic;
+  color: red;
+  padding: 0.2rem;
+}

@@ -1,22 +1,54 @@
-.button-career{
-    background-color: #E5C028;
-    color: white;
-    padding: 5%;
-    font-size: 20px;
-    width:38rem;
-    height: 12rem;
+
+.btn-program-on {
+  background-color: #E5C028;
 }
 
-.btn-primary{
-    background-color:#3D1255;
-    border-color: #3D1255;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+.btn-program-on:hover {
+  background-color: #eec829;
 }
 
-.btn-border{
-    border-radius: 42px;
+.btn-program-off {
+  background-color: gray;
 }
-.onda-footer{
-    position: fixed;
-    top: 75%;
+
+.btn-program-off:hover {
+  background-color: #979797;
 }
+
+
+.career-title {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.program {
+
+  width: 100%;
+  border-radius: 25px;
+  margin: 2rem;
+  padding: 2rem;
+  transition: all 100ms ease-in-out;
+}
+
+.no-program-text {
+  font-weight: lighter;
+  font-style: italic;
+}
+
+.not-pusblished {
+  border-left: 2px solid white;
+}
+#published-icon{
+  color: greenyellow;
+}
+
+.program-name {
+  color: white;
+}
+
+.valid-from {
+  color: white;
+  font-style: italic;
+}
+
+

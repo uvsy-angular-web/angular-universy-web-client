@@ -1,31 +1,19 @@
-
 <div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Antes de Comenzar</h3>
-            <p>Necesitamos que cargues la información de tu Institución</p>
-            <form>
-                <div class="form-group col-sm-12">
-                    <label>Nombre</label>
-                    <input type="text" class="form-control form-control-sm" id="institutionName">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label>Código Representativo</label>
-                    <input type="text" class="form-control form-control-sm" id="institutionCode">
-                    <small class="form-text text-muted">Ej: "UTN", "UNC"..</small>
-                </div>
-                <br>
-                <div class="col">
-                    <button type="submit" class="btn btn-primary btn-sm">Crear Institución</button>
-                </div>
-            </form>
-
-        </div>
-        <div class="col-sm-6" style="text-align: center">
-            <img src="\assets\pictures\img-institution.png"
-                alt="logo-universy" width="90%">
-        </div>
+  <app-module-title [title]="'Mis Carreras'"
+                    [showDeleteButton]="false"
+                    [showEditButton]="false"></app-module-title>
+  <hr>
+  <br>
+  <app-add-item (buttonPressed)="openNewCareerModal()" [buttonTitle]="'Agregar carrera'"></app-add-item>
+  <div class="content">
+    <div class="row justify-content-center">
+      <div *ngFor="let career of institution.careers" class="col-sm-5 ">
+        <button class="btn button-career" [class.carrer-disabled]="!career.active" (click)="navigateToCareerPage(career)"> {{ career.careerName}} </button>
+      </div>
     </div>
+  </div>
+
 </div>
 
-<img class="onda-footer" src="\assets\pictures\footer-onda.png" alt="footer-universy">
+
+<!--<img class="onda-footer" src="\assets\pictures\footer-onda.png" alt="footer-universy">-->

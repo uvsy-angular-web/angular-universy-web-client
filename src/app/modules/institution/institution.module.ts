@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {InstitutionRoutingModule} from './institution-routing.module';
 import {InstitutionComponent} from './pages/institution/institution.component';
+import {SharedModule} from '../../shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import {InstitutionComponent} from './pages/institution/institution.component';
   ],
   imports: [
     CommonModule,
-    InstitutionRoutingModule
+    InstitutionRoutingModule,
+    SharedModule,
   ],
 })
 export class InstitutionModule {

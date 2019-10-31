@@ -1,0 +1,20 @@
+
+.toggle-buttom {
+  background-color: #dfdfdf;
+  color: #a9a9a9;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition: all 250ms ease-in-out;
+}
+.toggle-buttom:hover{
+  transform: translateY(-1px);
+}
+
+.toggle-buttom.active {
+  background-color: #2196f3;
+  color: white;
+}
+.desactivated.active{
+  background-color: #bd2130;
+}
