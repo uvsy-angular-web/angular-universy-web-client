@@ -111,8 +111,8 @@ export class SubjectComponent implements OnInit {
   public openEditModal() {
     this.subjectModalService.openEditSubjectModal(this.subject).subscribe(
       () => {
-        this.notificationService.inform('¡Modificación con éxito!',
-          'Se actualizo la materia exitosamente.');
+        this.subjectService.updateSubject(this.subject).subscribe(() => this.notificationService.inform('¡Modificación con éxito!',
+          'Se actualizó la materia exitosamente.'));
       }, ((error) => {
         this.notificationService.showError('Ocurrio un error tratando de modificar la materia');
         console.error(error.message);
@@ -126,7 +126,7 @@ export class SubjectComponent implements OnInit {
         this.notificationService.inform('¡Actualización con éxito!',
           'Se actualizo el estado de las correlativas exitosamente.');
       }, ((error) => {
-        this.notificationService.showError('Ocurrio un error tratando de actualizar las correlativas');
+        this.notificationService.showError('Ocurrió un error tratando de actualizar las correlativas');
         console.error(error.message);
       })
     );

@@ -30,7 +30,7 @@ export class SubjectModalService {
 
   public openSubjectCorrelatives(correlatives: Correlative[] = [], level: number) {
     const modalRef = this.modalService.open(SubjectCorrelativesComponent, {backdrop: 'static', size: 'lg'});
-    modalRef.componentInstance.title = 'Administrar correlativas';
+    modalRef.componentInstance.title = 'Administrar Correlativas';
     modalRef.componentInstance.level = level;
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
     modalRef.componentInstance.correlatives = correlatives;
