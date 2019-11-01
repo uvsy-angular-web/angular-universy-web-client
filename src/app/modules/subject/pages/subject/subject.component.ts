@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {SubjectService} from '../../../../core/services/subject.service';
-import {Subject} from '../../../../shared/models/subject.model';
+import {Subject} from '../../../../models/subject.model';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 import {CourseService} from '../../../../core/services/course.service';
-import {Course} from '../../../../shared/models/course.model';
+import {Course} from '../../../../models/course.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectModalService} from '../../modals/subject-modal.service';
 
@@ -49,7 +49,7 @@ export class SubjectComponent implements OnInit {
         this.getCourses();
       },
       (error) => {
-        this.notificationService.showError('Ocurrió un error tratando de agrrgar una comisión.');
+        this.notificationService.showError('Ocurrió un error tratando de agregar una comisión.');
         console.error(error);
       }
     );
@@ -58,8 +58,8 @@ export class SubjectComponent implements OnInit {
   public openDeleteModal() {
     this.notificationService.openConfirmModal(
       'Eliminar materia',
-      'Se eliminara la materia y sus comisiones.',
-      '¿ Esta seguro que desea eliminarla ?',
+      'Se eliminará la materia y sus comisiones.',
+      '¿ Está seguro que desea eliminarla ?',
       ButtonText.Delete
     ).subscribe(
       () => {
@@ -111,10 +111,10 @@ export class SubjectComponent implements OnInit {
   public openEditModal() {
     this.subjectModalService.openEditSubjectModal(this.subject).subscribe(
       () => {
-        this.notificationService.inform('¡Modificación con éxito!',
-          'Se actualizo la materia exitosamente.');
+        this.subjectService.updateSubject(this.subject).subscribe(() => this.notificationService.inform('¡Modificación con éxito!',
+          'Se actualizó la materia exitosamente.'));
       }, ((error) => {
-        this.notificationService.showError('Ocurrio un error tratando de modificar la materia');
+        this.notificationService.showError('Ocurrió un error tratando de modificar la materia');
         console.error(error.message);
       })
     );
@@ -124,9 +124,9 @@ export class SubjectComponent implements OnInit {
     this.subjectService.updateSubject(this.subject).subscribe(
       () => {
         this.notificationService.inform('¡Actualización con éxito!',
-          'Se actualizo el estado de las correlativas exitosamente.');
+          'Se actualizó el estado de las correlativas exitosamente.');
       }, ((error) => {
-        this.notificationService.showError('Ocurrio un error tratando de actualizar las correlativas');
+        this.notificationService.showError('Ocurrió un error tratando de actualizar las correlativas');
         console.error(error.message);
       })
     );

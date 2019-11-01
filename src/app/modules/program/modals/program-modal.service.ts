@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProgramModalComponent} from './program-modal/program-modal.component';
-import {Program} from '../../../shared/models/program.model';
+import {Program} from '../../../models/program.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonText} from '../../../shared/enums/button-text.enum';
 import {PublishProgramModalComponent} from './publish-program-modal/publish-program-modal.component';

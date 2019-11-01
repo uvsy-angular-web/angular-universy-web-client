@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-import {Subject} from '../../../../shared/models/subject.model';
+import {Subject} from '../../../../models/subject.model';
 import {NotificationService} from '../../../../shared/modals/notification.service';
-import {Program} from '../../../../shared/models/program.model';
+import {Program} from '../../../../models/program.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
 import {ProgramModalService} from '../../modals/program-modal.service';
@@ -63,8 +63,8 @@ export class ProgramComponent implements OnInit {
   public openDeleteProgramModal() {
     this.notificationService.openConfirmModal(
       'Eliminar plan',
-      'Se eliminara el plan y todas las materias que hayan sido cargadas.',
-      '¿ Esta seguro que desea eliminarlo ?',
+      'Se eliminará el plan y todas las materias que hayan sido cargadas.',
+      '¿ Está seguro que desea eliminarlo ?',
       ButtonText.Delete
     ).subscribe(
       () => {
@@ -100,7 +100,7 @@ export class ProgramComponent implements OnInit {
       () => {
         this.getSubjects();
       }, ((error) => {
-        this.notificationService.showError('Ocurrio un error tratando de agregar una materia');
+        this.notificationService.showError('Ocurrió un error tratando de agregar una materia');
         console.error(error.message);
       })
     );

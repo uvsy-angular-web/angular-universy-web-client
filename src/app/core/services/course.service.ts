@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {SystemConfigService} from './system/system-config.service';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Course} from '../../shared/models/course.model';
+import {Course} from '../../models/course.model';
 import {SubjectService} from './subject.service';
 import {LocalStorageService} from './local-storage.service';
 

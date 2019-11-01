@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InstitutionService} from '../../../../core/services/institution.service';
-import {Career, Institution} from '../../../../shared/models/career.model';
+import {Career, Institution} from '../../../../models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';

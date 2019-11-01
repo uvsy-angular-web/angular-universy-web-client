@@ -7,7 +7,7 @@
   <hr>
   <div class="content">
     <app-add-item [buttonTitle]="'Agregar comisión'" (buttonPressed)="openNewCourseModal()"></app-add-item>
-    <h4>Comisiónes</h4>
+    <h4>Comisiones</h4>
     <div class="row">
       <div class="col">
         <button class="btn btn-primary btn-commission" (click)="openCoursePage(course)" *ngFor="let course of courses">
@@ -20,7 +20,7 @@
     <button *ngIf="canModifySubject()"
             class="btn-primary" id="manage-correlatives-button"
             (click)="openManageCorrelativesModal()">
-      Administrar correlativas
+      Administrar Correlativas
     </button>
   </div>
 </div>

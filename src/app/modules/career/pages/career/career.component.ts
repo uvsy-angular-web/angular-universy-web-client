@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Career} from '../../../../shared/models/career.model';
+import {Career} from '../../../../models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
-import {Program} from '../../../../shared/models/program.model';
+import {Program} from '../../../../models/program.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {ProgramModalService} from '../../../program/modals/program-modal.service';

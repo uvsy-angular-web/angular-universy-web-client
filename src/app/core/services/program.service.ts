@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './system/system-config.service';
-import {Program} from '../../shared/models/program.model';
+import {Program} from '../../models/program.model';
 import {CareerService} from './career.service';
 import {LocalStorageService} from './local-storage.service';
 

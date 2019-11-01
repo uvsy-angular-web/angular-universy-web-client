@@ -56,12 +56,12 @@ export class ControlErrorsDirective implements OnInit, OnDestroy {
     return this.controlDir.control;
   }
 
-  setError(text: string) {
+  setError(errorMessage: string) {
     if (!this.ref) {
       const factory = this.resolver.resolveComponentFactory(ControlErrorComponent);
       this.ref = this.vcr.createComponent(factory);
     }
-    this.ref.instance.text = text;
+    this.ref.instance.setErrorMessage(errorMessage);
   }
 
   ngOnDestroy() {

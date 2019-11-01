@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 
 @Component({
   templateUrl: './control-error.component.html',
@@ -9,17 +9,17 @@ export class ControlErrorComponent implements OnInit {
   message;
   hide = true;
 
-  @Input() set text(value) {
-    if (value !== this.message) {
-      this.message = value;
-      this.hide = !value;
-      this.cdr.detectChanges();
-    }
+  constructor(private cdr: ChangeDetectorRef) {
   }
-
-  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
 
+  public setErrorMessage(message) {
+    if (message !== this.message) {
+      this.message = message;
+      this.hide = !message;
+      this.cdr.detectChanges();
+    }
+  }
 }
