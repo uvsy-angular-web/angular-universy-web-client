@@ -63,8 +63,8 @@ export class ProgramComponent implements OnInit {
   public openDeleteProgramModal() {
     this.notificationService.openConfirmModal(
       'Eliminar plan',
-      'Se eliminara el plan y todas las materias que hayan sido cargadas.',
-      '¿ Esta seguro que desea eliminarlo ?',
+      'Se eliminará el plan y todas las materias que hayan sido cargadas.',
+      '¿ Está seguro que desea eliminarlo ?',
       ButtonText.Delete
     ).subscribe(
       () => {
@@ -100,7 +100,7 @@ export class ProgramComponent implements OnInit {
       () => {
         this.getSubjects();
       }, ((error) => {
-        this.notificationService.showError('Ocurrio un error tratando de agregar una materia');
+        this.notificationService.showError('Ocurrió un error tratando de agregar una materia');
         console.error(error.message);
       })
     );
