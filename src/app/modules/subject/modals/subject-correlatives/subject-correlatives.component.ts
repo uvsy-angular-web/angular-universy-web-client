@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {Subject} from '../../../../shared/models/subject.model';
+import {Subject} from '../../../../models/subject.model';
 import {FormGroup} from '@angular/forms';
 import {SubjectService} from '../../../../core/services/subject.service';
-import {Correlative, CorrelativeCondition, CorrelativeRestriction, CorrelativeState} from '../../../../shared/models/correlative.modal';
+import {Correlative, CorrelativeCondition, CorrelativeRestriction, CorrelativeState} from '../../../../models/correlative.modal';
 
 const FIRST_LEVEL = 1;
 

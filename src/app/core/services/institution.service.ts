@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './system/system-config.service';
-import {Institution, Institutions} from '../../shared/models/career.model';
 import {Observable} from 'rxjs';
 import 'rxjs-compat/add/operator/map';
 import {LocalStorageService} from './local-storage.service';
+import {Institution, Institutions} from '../../models/career.model';
 
 const FIRST_INSTITUTION_INDEX = 0;
 const MOCKED_INSTITUTION_KEY = 'FRC';

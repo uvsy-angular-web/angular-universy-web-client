@@ -2,6 +2,7 @@
 
 # custom
 /config/config.json
+/package-lock.json
 
 # compiled output
 /dist
