@@ -29,15 +29,15 @@
         <td>{{subject.name}}</td>
         <td>
           <input type="checkbox" [checked]="isToTakeRegularChecked(subject)"
-                 (change)="changeCorrelativeToTake(subject,correlativeState.TO_TAKE_REGULAR)">
+                 (change)="changeCorrelativeToTakeRegular(subject)">
         </td>
         <td>
           <input type="checkbox" [checked]="isToTakeApprovedChecked(subject)"
-                 (change)="changeCorrelativeToTake(subject,correlativeState.TO_TAKE_APPROVED)">
+                 (change)="changeCorrelativeToTakeApproved(subject)">
         </td>
         <td class="border-left text-center">
           <input type="checkbox" [checked]="isToApproveChecked(subject)"
-                 (change)="changeCorrelativeToApprove(subject,correlativeState.TO_APPROVE)">
+                 (change)="changeCorrelativeToApprove(subject)">
         </td>
       </tr>
       </tbody>
