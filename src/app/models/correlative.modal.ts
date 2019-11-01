@@ -1,11 +1,11 @@
 export class Correlative {
-  level: number;
+  name: string;
   subjectCode: string;
   correlativeRestriction: CorrelativeRestriction;
   correlativeCondition: CorrelativeCondition;
 
-  constructor(level?: number, subjectCode?: string, correlativeRestriction?: CorrelativeRestriction, correlativeCondition?: CorrelativeCondition) {
-    this.level = level;
+  constructor(name?: string, subjectCode?: string, correlativeRestriction?: CorrelativeRestriction, correlativeCondition?: CorrelativeCondition) {
+    this.name = name;
     this.subjectCode = subjectCode;
     this.correlativeRestriction = correlativeRestriction;
     this.correlativeCondition = correlativeCondition;

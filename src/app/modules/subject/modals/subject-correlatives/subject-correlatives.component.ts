@@ -9,7 +9,7 @@ import {Correlative, CorrelativeCondition, CorrelativeRestriction} from '../../.
 const FIRST_LEVEL = 1;
 const ONE_CORRELATIVE_TO_TAKE = 1;
 const ONE_CORRELATIVE_TO_DELETE = 1;
-const NO_CORRELATIVE_FOUND = null;
+const NO_CORRELATIVE_FOUND = undefined;
 
 @Component({
   selector: 'app-subject-correlatives',
@@ -24,13 +24,18 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
-  @Input() subject: Subject;
   @Output() confirmEvent: EventEmitter<Correlative[]> = new EventEmitter();
+  subject: Subject;
   subjects: Subject[] = [];
   form: FormGroup;
 
   ngOnInit() {
     this.getSubjects();
+    this.getCurrentSubject();
+  }
+
+  private getCurrentSubject() {
+    this.subject = SubjectService.getCurrentSubject();
   }
 
   public showTable() {
@@ -104,7 +109,7 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   private addCorrelative(subject: Subject, correlativeRestriction: CorrelativeRestriction, correlativeCondition: CorrelativeCondition) {
     const newCorrelative = new Correlative(
-      subject.level,
+      subject.name,
       subject.subjectCode,
       correlativeRestriction,
       correlativeCondition);
@@ -134,27 +139,30 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   public isToTakeRegularChecked(subject: Subject): boolean {
-    return subject.correlatives.find(
+    return this.subject.correlatives.find(
       (correlative) => {
-        return correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
+        return correlative.subjectCode === subject.subjectCode &&
+          correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.REGULAR;
       }
     ) !== NO_CORRELATIVE_FOUND;
   }
 
   public isToTakeApprovedChecked(subject: Subject): boolean {
-    return subject.correlatives.find(
+    return this.subject.correlatives.find(
       (correlative) => {
-        return correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
+        return correlative.subjectCode === subject.subjectCode &&
+          correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
     ) !== NO_CORRELATIVE_FOUND;
   }
 
   public isToApproveChecked(subject: Subject): boolean {
-    return subject.correlatives.find(
+    return this.subject.correlatives.find(
       (correlative) => {
-        return correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
+        return correlative.subjectCode === subject.subjectCode &&
+          correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
     ) !== NO_CORRELATIVE_FOUND;

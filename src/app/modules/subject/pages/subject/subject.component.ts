@@ -8,6 +8,7 @@ import {CourseService} from '../../../../core/services/course.service';
 import {Course} from '../../../../models/course.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectModalService} from '../../modals/subject-modal.service';
+import {Correlative} from '../../../../models/correlative.modal';
 
 @Component({
   selector: 'app-subject',
@@ -99,13 +100,19 @@ export class SubjectComponent implements OnInit {
 
   public openManageCorrelativesModal() {
     this.subjectModalService.openSubjectCorrelatives(this.subject).subscribe(
-      (correlatives) => {
-        if (this.subject.correlatives !== correlatives) {
+      (correlatives: Correlative[]) => {
+        if (this.didCorrelativesChanged(correlatives)) {
           this.subject.correlatives = correlatives;
           this.updateSubjectCorrelatives();
+        } else {
+          this.notificationService.inform('No se guardaron los cambios', 'Al parecer no hubo cambios en las correlativas');
         }
       }
     );
+  }
+
+  private didCorrelativesChanged(correlatives: Correlative[]) {
+    return JSON.stringify(this.subject.correlatives) !== JSON.stringify(correlatives);
   }
 
   public openEditModal() {
