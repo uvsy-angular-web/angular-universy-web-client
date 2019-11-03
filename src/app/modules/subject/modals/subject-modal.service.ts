@@ -28,10 +28,19 @@ export class SubjectModalService {
     return modalRef.componentInstance.confirmEvent;
   }
 
-  public openSubjectCorrelatives(selectedSubject: Subject) {
+  public openModifySubjectCorrelatives(selectedSubject: Subject) {
     const modalRef = this.modalService.open(SubjectCorrelativesComponent, {backdrop: 'static', size: 'lg'});
     modalRef.componentInstance.title = 'Administrar Correlativas';
     modalRef.componentInstance.subject = selectedSubject;
+    modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
+    return modalRef.componentInstance.confirmEvent;
+  }
+
+  public openViewSubjectCorrelatives(selectedSubject: Subject) {
+    const modalRef = this.modalService.open(SubjectCorrelativesComponent, {backdrop: 'static', size: 'lg'});
+    modalRef.componentInstance.title = 'Ver Correlativas';
+    modalRef.componentInstance.subject = selectedSubject;
+    modalRef.componentInstance.viewMode = true;
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
     return modalRef.componentInstance.confirmEvent;
   }

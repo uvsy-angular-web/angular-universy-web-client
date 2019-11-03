@@ -23,19 +23,26 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let subject of subjects">
+      <tr *ngFor="let subject of subjects"
+          [class.view-mode]="viewMode">
         <th scope="row">{{subject.level}}</th>
         <td>{{subject.name}}</td>
         <td>
-          <input type="checkbox" [checked]="isToTakeRegularChecked(subject)"
+          <input type="checkbox"
+                 [disabled]="viewMode"
+                 [checked]="isToTakeRegularChecked(subject)"
                  (change)="changeCorrelativeToTakeRegular(subject)">
         </td>
         <td>
-          <input type="checkbox" [checked]="isToTakeApprovedChecked(subject)"
+          <input type="checkbox"
+                 [disabled]="viewMode"
+                 [checked]="isToTakeApprovedChecked(subject)"
                  (change)="changeCorrelativeToTakeApproved(subject)">
         </td>
         <td class="border-left text-center">
-          <input type="checkbox" [checked]="isToApproveChecked(subject)"
+          <input type="checkbox"
+                 [disabled]="viewMode"
+                 [checked]="isToApproveChecked(subject)"
                  (change)="changeCorrelativeToApprove(subject)">
         </td>
       </tr>
@@ -50,7 +57,7 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline"
+  <button type="button" class="btn btn-outline" *ngIf="!viewMode"
           (click)="cancelAction()">Cancelar
   </button>
   <button type="buttom" class="btn btn-primary"

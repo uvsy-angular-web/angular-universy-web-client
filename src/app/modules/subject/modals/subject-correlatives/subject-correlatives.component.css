@@ -7,4 +7,7 @@ input {
   height: 1.25rem;
 }
 
-
+.view-mode{
+  background-color: #f1f1f1;
+  color: #7b7b7b;
+}

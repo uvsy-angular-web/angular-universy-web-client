@@ -23,6 +23,7 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
+  @Input() viewMode = false;
   @Output() confirmEvent: EventEmitter<Correlative[]> = new EventEmitter();
   subject: Subject;
   subjects: Subject[] = [];

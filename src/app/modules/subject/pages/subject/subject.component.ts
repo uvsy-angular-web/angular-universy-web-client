@@ -99,7 +99,7 @@ export class SubjectComponent implements OnInit {
   }
 
   public openManageCorrelativesModal() {
-    this.subjectModalService.openSubjectCorrelatives(this.subject).subscribe(
+    this.subjectModalService.openModifySubjectCorrelatives(this.subject).subscribe(
       (correlatives: Correlative[]) => {
         if (this.didCorrelativesChanged(correlatives)) {
           this.subject.correlatives = correlatives;
@@ -109,6 +109,9 @@ export class SubjectComponent implements OnInit {
         }
       }
     );
+  }
+  public openViewCorrelativesModal() {
+    this.subjectModalService.openViewSubjectCorrelatives(this.subject);
   }
 
   private didCorrelativesChanged(correlatives: Correlative[]) {
