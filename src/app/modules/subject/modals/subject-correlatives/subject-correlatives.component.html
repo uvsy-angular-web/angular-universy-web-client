@@ -23,8 +23,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let subject of subjects"
-          [class.unchecked]="isNoCorrelativeChecked(subject)">
+      <tr *ngFor="let subject of subjects">
         <th scope="row">{{subject.level}}</th>
         <td>{{subject.name}}</td>
         <td>

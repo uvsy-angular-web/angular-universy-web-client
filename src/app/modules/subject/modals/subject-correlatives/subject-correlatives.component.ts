@@ -7,7 +7,6 @@ import {SubjectService} from '../../../../core/services/subject.service';
 import {Correlative, CorrelativeCondition, CorrelativeRestriction} from '../../../../models/correlative.modal';
 
 const FIRST_LEVEL = 1;
-const ONE_CORRELATIVE_TO_TAKE = 1;
 const ONE_CORRELATIVE_TO_DELETE = 1;
 const NO_CORRELATIVE_FOUND = undefined;
 
@@ -48,26 +47,19 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   public changeCorrelativeToTakeRegular(subject: Subject) {
-    const correlatives = this.getCorrelativesToTakeBySubject(subject);
-    if (correlatives.length > ONE_CORRELATIVE_TO_TAKE) {
-      this.removeCorrelativeToTakeRegular();
-    } else if (correlatives.length === ONE_CORRELATIVE_TO_TAKE) {
-      this.addCorrelativeToTakeRegular(subject);
-      this.removeCorrelativeToTakeApproved();
-    } else {
-      this.addCorrelativeToTakeRegular(subject);
-    }
+    this.removePreviousToTakeCorrelative(subject);
+    this.addCorrelativeToTakeRegular(subject);
   }
 
   public changeCorrelativeToTakeApproved(subject: Subject) {
-    const correlatives = this.getCorrelativesToTakeBySubject(subject);
-    if (correlatives.length > ONE_CORRELATIVE_TO_TAKE) {
-      this.removeCorrelativeToTakeApproved();
-    } else if (correlatives.length === ONE_CORRELATIVE_TO_TAKE) {
-      this.addCorrelativeToTakeApproved(subject);
-      this.removeCorrelativeToTakeRegular();
-    } else {
-      this.addCorrelativeToTakeApproved(subject);
+    this.removePreviousToTakeCorrelative(subject);
+    this.addCorrelativeToTakeApproved(subject);
+  }
+
+  private removePreviousToTakeCorrelative(subject: Subject) {
+    const correlative = this.getCorrelativeToTakeBySubject(subject);
+    if (correlative) {
+      this.removeCorrelativeOfTheList(correlative);
     }
   }
 
@@ -88,8 +80,8 @@ export class SubjectCorrelativesComponent implements OnInit {
     );
   }
 
-  private getCorrelativesToTakeBySubject(subject: Subject) {
-    return this.subject.correlatives.filter(
+  private getCorrelativeToTakeBySubject(subject: Subject) {
+    return this.subject.correlatives.find(
       (correlative) =>
         (correlative.subjectCode === subject.subjectCode &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE));
@@ -118,21 +110,8 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   private removeCorrelativeOfTheList(correlative) {
     const index = this.subject.correlatives.indexOf(correlative);
-    this.subject.correlatives.slice(index, ONE_CORRELATIVE_TO_DELETE);
+    this.subject.correlatives.splice(index, ONE_CORRELATIVE_TO_DELETE);
   }
-
-  private removeCorrelativeToTakeRegular() {
-    this.subject.correlatives = this.subject.correlatives.filter(
-      (correlative) => correlative.correlativeCondition !== CorrelativeCondition.REGULAR
-    );
-  }
-
-  private removeCorrelativeToTakeApproved() {
-    this.subject.correlatives = this.subject.correlatives.filter(
-      (correlative) => correlative.correlativeCondition !== CorrelativeCondition.APPROVED
-    );
-  }
-
 
   public cancelAction(): void {
     this.activeModal.dismiss();
@@ -166,10 +145,6 @@ export class SubjectCorrelativesComponent implements OnInit {
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
     ) !== NO_CORRELATIVE_FOUND;
-  }
-
-  public isNoCorrelativeChecked(subject: Subject): boolean {
-    return subject.correlatives === [];
   }
 
   public isSubjectInFirstLevel() {
