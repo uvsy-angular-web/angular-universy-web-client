@@ -3,6 +3,7 @@ import {Course} from '../../../../models/course.model';
 import {CourseService} from '../../../../core/services/course.service';
 import {CourseModalService} from '../../modals/course-modal.service';
 import {Period} from '../../../../models/period.model';
+import {TimeService} from '../../../../core/services/time.service';
 
 @Component({
   selector: 'app-course',
@@ -24,6 +25,12 @@ export class CourseComponent implements OnInit {
     this.course = CourseService.getCurrentCourse();
   }
 
+  public getPeriodRange(period: Period): string {
+    const beginMonthName = TimeService.getNameOfMonth(period.beginMonth);
+    const endMonthName = TimeService.getNameOfMonth(period.endMonth);
+    return `${beginMonthName} - ${endMonthName}`;
+  }
+
   public openNewPeriodModal() {
     this.courseModalService.openNewPeriodModal().subscribe(
       (newProgram: Period) => this.addPeriod(newProgram)
@@ -31,6 +38,6 @@ export class CourseComponent implements OnInit {
   }
 
   private addPeriod(period: Period) {
-    alert(period.beginMonth + period.endMonth);
+    this.course.periods.push(period);
   }
 }

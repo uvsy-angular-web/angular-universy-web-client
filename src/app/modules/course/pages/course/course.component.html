@@ -23,8 +23,8 @@
                 <div class="row">
                     <div class="col">
                         <h3>
-                            <div *ngFor="let period of course.period">
-                                <p>{{period.beginMonth}}</p>
+                            <div *ngFor="let period of course.periods">
+                                <p>{{getPeriodRange(period)}}</p>
                             </div>
                             <i class="material-icons space-right">edit</i>
                             <i class="material-icons space-right">delete</i>
@@ -32,9 +32,9 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="course.length === 0">
+            <div *ngIf="course.periods.length === 0">
                 <h4 class="no-course-text">
-                    La carrera no posee planes todavia, haz click en Agregar Período
+                    La carrera no posee periodso todavia, haz click en Agregar Período
                 </h4>
             </div>
         </div>

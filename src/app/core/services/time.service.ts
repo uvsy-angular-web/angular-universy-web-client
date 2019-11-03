@@ -18,7 +18,7 @@ export class TimeService {
     return months;
   }
 
-  private static getNameOfMonth(month: Months): string {
+  public static getNameOfMonth(month: Months): string {
     switch (month) {
       case Months.JANUARY:
         return 'Enero';
