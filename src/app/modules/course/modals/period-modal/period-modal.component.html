@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close"
+          aria-label="Close" (click)="cancelAction()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <div class="col-11">
+            <label for="begin-month">Mes de inicio:</label>
+            <select id="begin-month" appControlError
+                    class="form-control" formControlName="beginMonth">
+              <option *ngFor="let month of months" [ngValue]="month.id">{{month.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <div class="col-11">
+            <label for="end-month">Mes fin:</label>
+            <select id="end-month" appControlError
+                    class="form-control" formControlName="endMonth">
+              <option *ngFor="let month of months" [ngValue]="month.id">{{month.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline"
+            (click)="cancelAction()">Cancelar
+    </button>
+    <button type="submit" class="btn btn-primary">{{confirmButtonText}}</button>
+  </div>
+</form>

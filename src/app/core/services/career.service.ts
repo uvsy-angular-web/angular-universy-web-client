@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Career} from '../../shared/models/career.model';
 import {SystemConfigService} from './system/system-config.service';
 import {HttpClient} from '@angular/common/http';
 import {InstitutionService} from './institution.service';
 import {LocalStorageService} from './local-storage.service';
+import {Career} from '../../models/career.model';
 
 const ENDPOINT_CAREERS = '/universy/institution/careers';
 const CURRENT_CAREER_KEY = 'current-career';

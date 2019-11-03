@@ -13,6 +13,7 @@ import {LoaderService} from './core/services/system/loader.service';
 import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
 import {NotificationModule} from './shared/modals/notification.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CourseModalModule} from './modules/course/modals/course-modal.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ProgramModalModule,
     NotificationModule,
     SubjectModalModule,
+    CourseModalModule,
     BrowserModule,
     NgbModule,
     MatProgressSpinnerModule
