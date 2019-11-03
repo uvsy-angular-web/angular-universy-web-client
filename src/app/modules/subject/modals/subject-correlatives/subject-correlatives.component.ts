@@ -181,12 +181,17 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   private filterSubjectsByLevel() {
     this.subjects = this.subjects.filter((subject) => {
-      return this.isSubjectLevelLowerThatActual(subject);
+      return this.isSubjectLevelLowerThatActual(subject) &&
+        this.isCurrentSubjectNotIncluded(subject);
     });
   }
 
+  private isCurrentSubjectNotIncluded(subject) {
+    return subject.subjectCode !== this.subject.subjectCode;
+  }
+
   private isSubjectLevelLowerThatActual(subject) {
-    return subject.level < this.subject.level;
+    return subject.level <= this.subject.level;
   }
 
   private sortSubjectsByLevel() {
