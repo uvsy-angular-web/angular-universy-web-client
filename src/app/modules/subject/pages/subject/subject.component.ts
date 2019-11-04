@@ -8,6 +8,7 @@ import {CourseService} from '../../../../core/services/course.service';
 import {Course} from '../../../../models/course.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectModalService} from '../../modals/subject-modal.service';
+import {Correlative} from '../../../../models/correlative.modal';
 
 @Component({
   selector: 'app-subject',
@@ -98,21 +99,34 @@ export class SubjectComponent implements OnInit {
   }
 
   public openManageCorrelativesModal() {
-    this.subjectModalService.openSubjectCorrelatives(this.subject.correlatives, this.subject.level).subscribe(
-      (correlatives) => {
-        if (this.subject.correlatives !== correlatives) {
+    this.subjectModalService.openModifySubjectCorrelatives(this.subject).subscribe(
+      (correlatives: Correlative[]) => {
+        if (this.didCorrelativesChanged(correlatives)) {
           this.subject.correlatives = correlatives;
           this.updateSubjectCorrelatives();
+        } else {
+          this.notificationService.inform('No se guardaron los cambios', 'Al parecer no hubo cambios en las correlativas');
         }
       }
     );
+  }
+  public openViewCorrelativesModal() {
+    this.subjectModalService.openViewSubjectCorrelatives(this.subject);
+  }
+
+  private didCorrelativesChanged(correlatives: Correlative[]) {
+    return JSON.stringify(this.subject.correlatives) !== JSON.stringify(correlatives);
   }
 
   public openEditModal() {
     this.subjectModalService.openEditSubjectModal(this.subject).subscribe(
       () => {
-        this.subjectService.updateSubject(this.subject).subscribe(() => this.notificationService.inform('¡Modificación con éxito!',
-          'Se actualizó la materia exitosamente.'));
+        this.subjectService.updateSubject(this.subject).subscribe(() => {
+            this.notificationService.inform(
+              '¡Modificación con éxito!',
+              'Se actualizó la materia exitosamente.');
+          }
+        );
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de modificar la materia');
         console.error(error.message);
@@ -123,8 +137,10 @@ export class SubjectComponent implements OnInit {
   private updateSubjectCorrelatives() {
     this.subjectService.updateSubject(this.subject).subscribe(
       () => {
-        this.notificationService.inform('¡Actualización con éxito!',
+        this.notificationService.inform(
+          '¡Actualización con éxito!',
           'Se actualizó el estado de las correlativas exitosamente.');
+        SubjectService.setCurrentSubject(this.subject);
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de actualizar las correlativas');
         console.error(error.message);

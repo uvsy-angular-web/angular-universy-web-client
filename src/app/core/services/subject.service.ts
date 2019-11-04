@@ -76,6 +76,23 @@ export class SubjectService {
     return this.systemConfigService.getHeader();
   }
 
+  public static sortSubjectsByLevel(subjects: Subject[]) {
+    if (subjects) {
+      subjects.sort(SubjectService.isSubjectLevelGreater);
+    }
+    return subjects;
+  }
+
+  private static isSubjectLevelGreater(subjectA: Subject, subjectB: Subject) {
+    if (subjectA.level < subjectB.level) {
+      return -1;
+    }
+    if (subjectA.level > subjectB.level) {
+      return 1;
+    }
+    return 0;
+  }
+
   private static getBaseUrl() {
     return SystemConfigService.getBaseUrl();
   }

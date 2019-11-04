@@ -18,9 +18,14 @@
     </div>
     <hr>
     <button *ngIf="canModifySubject()"
-            class="btn-primary" id="manage-correlatives-button"
+            class="btn-primary correlatives-button" id="manage-correlatives-button"
             (click)="openManageCorrelativesModal()">
       Administrar Correlativas
+    </button>
+    <button *ngIf="!canModifySubject()"
+            class="btn-primary correlatives-button" id="view-correlatives-button"
+            (click)="openViewCorrelativesModal()">
+      Ver Correlativas
     </button>
   </div>
 </div>
