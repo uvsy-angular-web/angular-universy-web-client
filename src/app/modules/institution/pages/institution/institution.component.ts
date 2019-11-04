@@ -3,7 +3,6 @@ import {InstitutionService} from '../../../../core/services/institution.service'
 import {Career, Institution} from '../../../../models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
 import {NotificationService} from '../../../../shared/modals/notification.service';
-import {Router} from '@angular/router';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 
@@ -27,13 +26,12 @@ export class InstitutionComponent implements OnInit {
   ngOnInit(): void {
     this.getCareers();
   }
-
   private getCareers() {
     this.institutionService.getInstitution().subscribe(
       (institution: Institution) => {
         if (institution) {
           this.institution = institution;
-          this.institutionService.setCurrentInstitution(institution);
+          InstitutionService.setCurrentInstitution(institution);
         }
       }
     );
@@ -49,7 +47,7 @@ export class InstitutionComponent implements OnInit {
   }
 
   public navigateToCareerPage(career: Career) {
-    this.careerService.setCurrentCareer(career);
+    CareerService.setCurrentCareer(career);
     this.navigationService.navigateToCareerPage();
   }
 

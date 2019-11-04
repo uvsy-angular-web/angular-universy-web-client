@@ -1,19 +1,19 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SystemConfigService} from './system/system-config.service';
 import {Program} from '../../models/program.model';
 import {CareerService} from './career.service';
+import {LocalStorageService} from './local-storage.service';
 
 const ENDPOINT_PROGRAMS = '/universy/institution/programs';
 const ENDPOINT_PROGRAMS_PUBLISH = ENDPOINT_PROGRAMS + '/publish';
+const CURRENT_PROGRAM_KEY = 'current-program';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgramService {
-  private programSource = new BehaviorSubject<Program>(new Program());
-  public currentProgram = this.programSource.asObservable();
 
   constructor(private http: HttpClient,
               private careerService: CareerService,
@@ -21,20 +21,9 @@ export class ProgramService {
   }
 
 
-  public setCurrentProgram(program: Program) {
-    this.programSource.next(program);
-  }
-
-  public getCurrentProgram(): Program {
-    let program;
-    this.currentProgram
-      .subscribe((serviceProgram) => program = serviceProgram);
-    return program;
-  }
-
   public addProgram(program: Program) {
     const body = {
-      careerKey: this.careerService.getCurrentCareer().careerKey,
+      careerKey: CareerService.getCurrentCareer().careerKey,
       name: program.name,
       validFrom: program.validFrom
     };
@@ -46,7 +35,7 @@ export class ProgramService {
   public getPrograms(): Observable<Program[]> {
     const baseUrl = SystemConfigService.getBaseUrl();
     const headers = this.systemConfigService.getHeader();
-    const currentCareerKey = this.careerService.getCurrentCareer().careerKey;
+    const currentCareerKey = CareerService.getCurrentCareer().careerKey;
     const params = new HttpParams()
       .set('institutionKey', currentCareerKey.institutionKey)
       .set('careerCode', currentCareerKey.careerCode);
@@ -60,7 +49,7 @@ export class ProgramService {
   public deleteProgram(program: Program) {
     const baseUrl = SystemConfigService.getBaseUrl();
     const headers = this.systemConfigService.getHeader();
-    const currentCareerKey = this.careerService.getCurrentCareer().careerKey;
+    const currentCareerKey = CareerService.getCurrentCareer().careerKey;
     const params = new HttpParams()
       .set('institutionKey', currentCareerKey.institutionKey)
       .set('careerCode', currentCareerKey.careerCode)
@@ -70,7 +59,7 @@ export class ProgramService {
 
   public updateProgram(program: Program) {
     const body = {
-      careerKey: this.careerService.getCurrentCareer().careerKey,
+      careerKey: CareerService.getCurrentCareer().careerKey,
       uuid: program.uuid,
       name: program.name,
       validFrom: program.validFrom
@@ -82,7 +71,7 @@ export class ProgramService {
 
   public publishProgram(program: Program) {
     const body = {
-      careerKey: this.careerService.getCurrentCareer().careerKey,
+      careerKey: CareerService.getCurrentCareer().careerKey,
       uuid: program.uuid,
     };
     const baseUrl = ProgramService._getBaseUrl();
@@ -96,5 +85,13 @@ export class ProgramService {
 
   private static _getBaseUrl() {
     return SystemConfigService.getBaseUrl();
+  }
+
+  public static setCurrentProgram(program: Program) {
+    LocalStorageService.saveObjectInLocalStorage(CURRENT_PROGRAM_KEY, program);
+  }
+
+  public static getCurrentProgram(): Program {
+    return LocalStorageService.getObjectFromInLocalStorage(CURRENT_PROGRAM_KEY) as Program;
   }
 }

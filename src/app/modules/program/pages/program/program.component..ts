@@ -35,7 +35,7 @@ export class ProgramComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.program = this.programService.getCurrentProgram();
+    this.program = ProgramService.getCurrentProgram();
     this.getSubjects();
     this.fillSubjectOnLevelMessage();
   }
@@ -87,7 +87,7 @@ export class ProgramComponent implements OnInit {
   }
 
   public navigateToSubjectView(subject: Subject) {
-    this.subjectService.setCurrentSubject(subject);
+    SubjectService.setCurrentSubject(subject);
     this.navigationService.navigateToSubjectPage();
   }
 
@@ -111,7 +111,7 @@ export class ProgramComponent implements OnInit {
       this.program.name = programName;
       this.programService.updateProgram(this.program).subscribe(
         () => {
-          this.programService.setCurrentProgram(this.program);
+          ProgramService.setCurrentProgram(this.program);
         }, ((error) => {
           this.notificationService.showError('Ocurrió un error tratando de modificar el plan');
           console.error(error);

@@ -1,19 +1,15 @@
 export class Correlative {
+  name: string;
   subjectCode: string;
-  correlativeRestriction: string;
-  correlativeCondition: string;
+  correlativeRestriction: CorrelativeRestriction;
+  correlativeCondition: CorrelativeCondition;
 
-  constructor(subjectCode?: string, correlativeRestriction?: string, correlativeCondition?: string) {
+  constructor(name?: string, subjectCode?: string, correlativeRestriction?: CorrelativeRestriction, correlativeCondition?: CorrelativeCondition) {
+    this.name = name;
     this.subjectCode = subjectCode;
     this.correlativeRestriction = correlativeRestriction;
     this.correlativeCondition = correlativeCondition;
   }
-}
-export enum CorrelativeState {
-  TO_TAKE_REGULAR = 1,
-  TO_TAKE_APPROVED = 2,
-  TO_APPROVE = 3,
-  NO_CORRELATIVE = 4,
 }
 
 export enum CorrelativeCondition {

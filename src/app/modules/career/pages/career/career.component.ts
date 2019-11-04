@@ -31,7 +31,7 @@ export class CareerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.career = this.careerService.getCurrentCareer();
+    this.career = CareerService.getCurrentCareer();
     this.getPrograms();
   }
 
@@ -40,7 +40,7 @@ export class CareerComponent implements OnInit {
   }
 
   public async navigateToProgramPage(program: Program) {
-    this.programService.setCurrentProgram(program);
+    ProgramService.setCurrentProgram(program);
     this.navigationService.navigateToProgramPage();
   }
 
@@ -131,7 +131,7 @@ export class CareerComponent implements OnInit {
   private updateCareer() {
     this.careerService.updateCareer(this.career).subscribe(
       () => {
-        this.careerService.setCurrentCareer(this.career);
+        CareerService.setCurrentCareer(this.career);
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de modificar la carrera');
         console.error(error);

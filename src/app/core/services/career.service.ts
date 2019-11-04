@@ -1,39 +1,25 @@
 import {Injectable} from '@angular/core';
-import {Career} from '../../models/career.model';
-import {BehaviorSubject} from 'rxjs';
 import {SystemConfigService} from './system/system-config.service';
 import {HttpClient} from '@angular/common/http';
 import {InstitutionService} from './institution.service';
+import {LocalStorageService} from './local-storage.service';
+import {Career} from '../../models/career.model';
 
 const ENDPOINT_CAREERS = '/universy/institution/careers';
+const CURRENT_CAREER_KEY = 'current-career';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CareerService {
-  private careerSource = new BehaviorSubject<Career>(new Career());
-  public currentCareer = this.careerSource.asObservable();
 
   constructor(private http: HttpClient,
-              private systemConfigService: SystemConfigService,
-              private institutionService: InstitutionService) {
+              private systemConfigService: SystemConfigService) {
   }
-
-  public setCurrentCareer(career: Career) {
-    this.careerSource.next(career);
-  }
-
-  public getCurrentCareer(): Career {
-    let career;
-    this.currentCareer
-      .subscribe((serviceCareer) => career = serviceCareer);
-    return career;
-  }
-
 
   updateCareer(career: Career) {
     const body = {
-      institutionKey: this.institutionService.getCurrentInstitution().institutionKey,
+      institutionKey: InstitutionService.getCurrentInstitution().institutionKey,
       career
     };
     const baseUrl = CareerService._getBaseUrl();
@@ -43,7 +29,7 @@ export class CareerService {
 
   addCareer(careerName: string) {
     const body = {
-      institutionKey: this.institutionService.getCurrentInstitution().institutionKey,
+      institutionKey: InstitutionService.getCurrentInstitution().institutionKey,
       careerName
     };
     const baseUrl = CareerService._getBaseUrl();
@@ -58,6 +44,14 @@ export class CareerService {
 
   private static _getBaseUrl() {
     return SystemConfigService.getBaseUrl();
+  }
+
+  public static setCurrentCareer(career: Career) {
+    LocalStorageService.saveObjectInLocalStorage(CURRENT_CAREER_KEY, career);
+  }
+
+  public static getCurrentCareer(): Career {
+    return LocalStorageService.getObjectFromInLocalStorage(CURRENT_CAREER_KEY) as Career;
   }
 
 }
