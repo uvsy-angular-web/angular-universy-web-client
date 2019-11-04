@@ -1,0 +1,9 @@
+export enum Days {
+  MONDAY = 'MONDAY',
+  TUESDAY = 'TUESDAY',
+  WENDSDAY = 'WENDSDAY',
+  THURSDAY = 'THURSDAY',
+  FRIDAY = 'FRIDAY',
+  SATURDAY = 'SATURDAY',
+  SUNDAY = 'SUNDAY',
+}

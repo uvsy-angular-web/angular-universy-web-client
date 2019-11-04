@@ -9,6 +9,7 @@ import {TimeService} from '../../../../core/services/time.service';
 })
 export class PeriodComponent implements OnInit {
   @Input() periods: Period[] = [];
+  noPeriodMessage = 'La carrera no posee períodos todavia, haz click en Agregar Período';
 
   constructor() {
   }

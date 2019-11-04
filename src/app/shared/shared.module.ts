@@ -8,6 +8,7 @@ import {FormSubmitDirective} from './control-error/directives/form.directive';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CustomToggleComponent} from './components/custom-toggle/custom-toggle.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { NoItemMessageComponent } from './components/no-item-message/no-item-message.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ControlErrorsDirective,
     FormSubmitDirective,
     ControlErrorComponent,
-    CustomToggleComponent
+    CustomToggleComponent,
+    NoItemMessageComponent
   ],
   exports: [
     AddItemComponent,
@@ -25,7 +27,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ControlErrorsDirective,
     FormSubmitDirective,
     ControlErrorComponent,
-    CustomToggleComponent
+    CustomToggleComponent,
+    NoItemMessageComponent
   ],
   imports: [
     CommonModule,

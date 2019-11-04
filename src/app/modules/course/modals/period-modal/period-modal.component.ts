@@ -3,7 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {Period} from '../../../../models/period.model';
-import {Month, TimeService} from '../../../../core/services/time.service';
+import {TimeService} from '../../../../core/services/time.service';
+import {ComboBoxItem} from '../../../../shared/models/combo-box.model';
 
 @Component({
   selector: 'app-period-modal',
@@ -17,7 +18,7 @@ export class PeriodModalComponent implements OnInit {
 
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
-  months: Month[] = [];
+  months: ComboBoxItem[] = [];
 
   constructor(
     public activeModal: NgbActiveModal,

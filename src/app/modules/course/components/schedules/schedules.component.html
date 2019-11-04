@@ -1,0 +1,28 @@
+<h3>
+  Horarios
+</h3>
+<app-add-item (buttonPressed)="openNewScheduleModal()"
+              [buttonTitle]="addScheduleButtonTitle">
+</app-add-item>
+<div *ngIf="schedules.length === 0">
+  <app-no-item-message [message]="noScheduleMessage"></app-no-item-message>
+</div>
+
+<div *ngIf="schedules.length != 0 ">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Horario</th>
+      <th scope="col">Día de la Semana</th>
+      <th scope="col">Aula</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let schedule of schedules">
+      <td>{{ getHoursInReadable(schedule.beginTime)}} - {{ getHoursInReadable(schedule.endTime)}}</td>
+      <td>{{ getDayOfWeek(schedule.dayOfWeek)}}</td>
+      <td>{{ schedule.classroom}} </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
