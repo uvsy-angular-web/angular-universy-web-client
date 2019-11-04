@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-7">
-      <app-module-title [title]="career.careerName"
+      <app-custom-title [title]="career.careerName"
                         (editItem)="openEditCareerModal()"
-                        [showDeleteButton]="false"></app-module-title>
+                        [showDeleteButton]="false"></app-custom-title>
     </div>
     <div class="col-5">
       <app-custom-toggle class="float-right" [activated]="getStateOfCareer()"

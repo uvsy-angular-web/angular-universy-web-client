@@ -2,17 +2,18 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-module-title',
-  templateUrl: './module-title.component.html',
-  styleUrls: ['./module-title.component.css']
+  selector: 'app-custom-title',
+  templateUrl: './custom-title.component.html',
+  styleUrls: ['./custom-title.component.css']
 })
-export class ModuleTitleComponent implements OnInit {
+export class CustomTitleComponent implements OnInit {
 
   @Input() title: string;
-  @Input() showDeleteButton = true;
-  @Input() showEditButton = true;
   @Output() editItem = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
+  @Input() showDeleteButton = true;
+  @Input() showEditButton = true;
+  @Input() showNavigationArrow = true;
 
   constructor(private location: Location) {
   }

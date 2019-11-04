@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AddItemComponent} from './components/add-item/add-item.component';
-import {ModuleTitleComponent} from './components/module-title/module-title.component';
+import {CustomTitleComponent} from './components/custom-title/custom-title.component';
 import {ControlErrorComponent} from './control-error/control-error/control-error.component';
 import {ControlErrorsDirective} from './control-error/directives/control-error.directive';
 import {FormSubmitDirective} from './control-error/directives/form.directive';
@@ -13,7 +13,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AddItemComponent,
-    ModuleTitleComponent,
+    CustomTitleComponent,
     ControlErrorsDirective,
     FormSubmitDirective,
     ControlErrorComponent,
@@ -21,7 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   exports: [
     AddItemComponent,
-    ModuleTitleComponent,
+    CustomTitleComponent,
     ControlErrorsDirective,
     FormSubmitDirective,
     ControlErrorComponent,
