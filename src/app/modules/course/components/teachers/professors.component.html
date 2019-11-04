@@ -1,0 +1,25 @@
+<h3 class="margin-top-2">
+  Profesores
+</h3>
+<app-add-item (buttonPressed)="openNewScheduleModal()"
+              [buttonTitle]="addProfessorButtonTitle">
+</app-add-item>
+<div *ngIf="professors.length != 0 ">
+  <table class="table margin-top-2">
+    <thead>
+    <tr>
+      <th scope="col">Apellido</th>
+      <th scope="col">Nombre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let schedule of professors">
+      <td>{{schedule.name}}</td>
+      <td>{{schedule.lastName}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="professors.length === 0">
+  <app-no-item-message [message]="noProfessorMessage"></app-no-item-message>
+</div>

@@ -2,9 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {Schedule} from '../../../../models/period.model';
 import {TimeService} from '../../../../core/services/time.service';
 import {ComboBoxItem} from '../../../../shared/models/combo-box.model';
+import {Schedule} from '../../../../models/schedule.model';
 
 @Component({
   selector: 'app-period-modal',

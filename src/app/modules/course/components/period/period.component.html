@@ -5,6 +5,10 @@
 <!--      <app-schedules [schedules]="period.schedules"></app-schedules> TODO: put this line -->
       <app-schedules></app-schedules>
     </div>
+    <div class="content">
+<!--      <app-schedules [professors]="period.professors"></app-schedules> TODO: put this line -->
+      <app-professors></app-professors>
+    </div>
   </div>
   <div *ngIf="periods.length === 0">
     <app-no-item-message [message]="noPeriodMessage"></app-no-item-message>

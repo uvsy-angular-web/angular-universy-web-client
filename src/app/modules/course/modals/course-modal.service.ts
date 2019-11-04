@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {ButtonText} from '../../../shared/enums/button-text.enum';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PeriodModalComponent} from './period-modal/period-modal.component';
-import {Period, Schedule} from '../../../models/period.model';
+import {Period} from '../../../models/period.model';
 import {ScheduleModalComponent} from './schedule-modal/schedule-modal.component';
+import {Schedule} from '../../../models/schedule.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class CourseModalService {
   public openNewScheduleModal() {
     const modalRef = this.modalService.open(ScheduleModalComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = 'Agregar Horario';
-    modalRef.componentInstance.confirmButtonText = ButtonText.Edit;
+    modalRef.componentInstance.confirmButtonText = ButtonText.Add;
     return modalRef.componentInstance.confirmEvent;
   }
   public openEditScheduleModal(schedule: Schedule) {

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Schedule} from '../../../../models/period.model';
 import {TimeService} from '../../../../core/services/time.service';
 import {CourseModalService} from '../../modals/course-modal.service';
+import {Schedule} from '../../../../models/schedule.model';
 
 @Component({
   selector: 'app-schedules',
@@ -10,7 +10,7 @@ import {CourseModalService} from '../../modals/course-modal.service';
 })
 export class SchedulesComponent implements OnInit {
   @Input() schedules: Schedule[] = [];
-  noScheduleMessage = 'El período no posee horarios todavia, haz click en Agregar Horario';
+  noScheduleMessage = 'El período no posee horarios todavía, haz click en Agregar Horario';
   addScheduleButtonTitle = 'Agregar Horario';
 
   constructor(private courseModalService: CourseModalService) {

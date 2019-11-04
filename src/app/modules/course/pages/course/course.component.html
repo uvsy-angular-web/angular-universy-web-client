@@ -21,34 +21,6 @@
       <div *ngIf="course">
         <app-period [periods]="course.periods"></app-period>
       </div>
-<!--      <div *ngIf="course.periods.length != 0">-->
-
-<!--        <h4>-->
-<!--          Profesores-->
-<!--        </h4>-->
-<!--        <app-add-item (buttonPressed)="openNewProfessorModal()" [buttonTitle]="'Agregar Profesor'"></app-add-item>-->
-<!--        <div *ngIf="course.periods.proffesors.length === 0 ">-->
-<!--            <h4 class="no-course-text">-->
-<!--                El período no posee profesores todavia, haz click en Agregar Profesor-->
-<!--            </h4>-->
-<!--        </div>-->
-<!--        <div *ngIf="course.periods.proffesors.length != 0 ">-->
-<!--            <table class="table">-->
-<!--                <thead>-->
-<!--                  <tr>-->
-<!--                    <th scope="col">Apellido</th>-->
-<!--                    <th scope="col">Nombre</th>-->
-<!--                  </tr>-->
-<!--                </thead>-->
-<!--                <tbody *ngFor="let professor in course.periods.proffesors">-->
-<!--                  <tr>-->
-<!--                    <td>{{professor.name}} </td>-->
-<!--                    <td>{{professor.lastName}} <td>-->
-<!--                  </tr>-->
-<!--                </tbody>-->
-<!--             </table>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
   </div>
 </div>
