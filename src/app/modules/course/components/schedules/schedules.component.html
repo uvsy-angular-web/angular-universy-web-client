@@ -1,15 +1,11 @@
-<h3>
+<h3 class="margin-top">
   Horarios
 </h3>
 <app-add-item (buttonPressed)="openNewScheduleModal()"
               [buttonTitle]="addScheduleButtonTitle">
 </app-add-item>
-<div *ngIf="schedules.length === 0">
-  <app-no-item-message [message]="noScheduleMessage"></app-no-item-message>
-</div>
-
 <div *ngIf="schedules.length != 0 ">
-  <table class="table">
+  <table class="table margin-top">
     <thead>
     <tr>
       <th scope="col">Horario</th>
@@ -25,4 +21,7 @@
     </tr>
     </tbody>
   </table>
+  <div *ngIf="schedules.length === 0">
+    <app-no-item-message [message]="noScheduleMessage"></app-no-item-message>
+  </div>
 </div>

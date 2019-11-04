@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close"
+          aria-label="Close" (click)="cancelAction()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
+  <div class="modal-body">
+    <div class="row" id="time-row">
+      <div class="col-5">
+        <div class="form-group">
+          <label for="item-text">
+            Hora inicio:
+          </label>
+          <ngb-timepicker id="begin-time"
+                          [spinners]="false"
+                          appControlError
+                          formControlName="beginTime"></ngb-timepicker>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="form-group">
+          <label for="end-time">
+            Hora fin:
+          </label>
+          <ngb-timepicker id="end-time"
+                          [spinners]="false"
+                          appControlError
+                          formControlName="endTime"></ngb-timepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <div class="col-11">
+            <label for="item-text">
+              Aula:
+            </label>
+            <div class="control">
+              <input id="item-text" appControlError
+                     class="form-control"
+                     type="text" formControlName="classroom">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <div class="col-11">
+            <label for="begin-month">Dia de la semana: </label>
+            <select id="begin-month" appControlError
+                    class="form-control" formControlName="dayOfWeek">
+              <option *ngFor="let day of days" [ngValue]="day.id">{{day.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline"
+            (click)="cancelAction()">Cancelar
+    </button>
+    <button type="submit" class="btn btn-primary">{{confirmButtonText}}</button>
+  </div>
+</form>
