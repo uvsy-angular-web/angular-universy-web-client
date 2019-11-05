@@ -20,7 +20,7 @@
       <td>{{ getDayOfWeek(schedule.dayOfWeek)}}</td>
       <td>{{ schedule.classroom}} </td>
       <td>
-        <i class="material-icons space-right" (click)="editSchedule()">edit</i>
+        <i class="material-icons space-right" (click)="editSchedule(schedule)">edit</i>
         <i class="material-icons space-right" (click)="deleteSchedule(schedule)">delete</i>
       </td>
     </tr>

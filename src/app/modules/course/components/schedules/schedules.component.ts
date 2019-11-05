@@ -11,6 +11,7 @@ import {Schedule} from '../../../../models/schedule.model';
 export class SchedulesComponent implements OnInit {
   @Input() schedules: Schedule[] = [];
   @Output() scheduleAdded: EventEmitter<Schedule> = new EventEmitter<Schedule>();
+  @Output() scheduleEdited: EventEmitter<Schedule> = new EventEmitter<Schedule>();
   @Output() scheduleDeleted: EventEmitter<Schedule> = new EventEmitter<Schedule>();
   noScheduleMessage = 'El período no posee horarios todavía, haz click en Agregar Horario';
   addScheduleButtonTitle = 'Agregar Horario';
@@ -32,11 +33,13 @@ export class SchedulesComponent implements OnInit {
     return TimeService.formatHoursIntoReadable(hoursAndMinutes);
   }
 
-  editSchedule() {
-    alert('here to edit');
+  editSchedule(schedule: Schedule) {
+    this.courseModalService.openEditScheduleModal(schedule).subscribe(
+      (scheduleEdited) => this.scheduleEdited.emit(scheduleEdited)
+    );
   }
 
-  deleteSchedule(schedule) {
+  deleteSchedule(schedule: Schedule) {
     this.scheduleDeleted.emit(schedule);
   }
 

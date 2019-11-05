@@ -10,6 +10,7 @@ import {Professor} from '../../../../models/professor.model';
 export class ProfessorsComponent implements OnInit {
   @Input() professors: Professor[] = [];
   @Output() professorAdded: EventEmitter<Professor> = new EventEmitter<Professor>();
+  @Output() professorEdited: EventEmitter<Professor> = new EventEmitter<Professor>();
   @Output() professorDeleted: EventEmitter<Professor> = new EventEmitter<Professor>();
   noProfessorMessage = 'El período no posee profesores todavía, haz click en Agregar Profesor';
   addProfessorButtonTitle = 'Agregar Profesor';
@@ -27,11 +28,13 @@ export class ProfessorsComponent implements OnInit {
     );
   }
 
-  public editProfessor() {
-
+  public editProfessor(professor: Professor) {
+    this.courseModalService.openEditProfessorModal(professor).subscribe(
+      (professorEdited) => this.professorEdited.emit(professorEdited)
+    );
   }
 
-  public deleteProfessor(professor) {
+  public deleteProfessor(professor: Professor) {
     this.professorDeleted.emit(professor);
   }
 

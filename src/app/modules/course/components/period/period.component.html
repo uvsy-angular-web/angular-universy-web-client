@@ -5,12 +5,15 @@
       <app-schedules [schedules]="period.schedules"
                      (scheduleAdded)="addSchedule($event,period)"
                      (scheduleDeleted)="deleteSchedule($event,period)"
+                     (scheduleEdited)="editSchedule($event,period)"
       ></app-schedules>
     </div>
     <div class="content">
       <app-professors [professors]="period.professors"
                       (professorAdded)="addProfessor($event,period)"
-                      (professorDeleted)="deleteProfessor($event,period)"></app-professors>
+                      (professorDeleted)="deleteProfessor($event,period)"
+                      (professorEdited)="editProfessor($event,period)"
+      ></app-professors>
     </div>
   </div>
   <div *ngIf="periods.length === 0">

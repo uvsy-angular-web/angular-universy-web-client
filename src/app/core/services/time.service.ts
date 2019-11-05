@@ -81,7 +81,7 @@ export class TimeService {
         return 'Lunes';
       case Days.TUESDAY:
         return 'Martes';
-      case Days.WENDSDAY:
+      case Days.WEDNESDAY:
         return 'Miercoles';
       case Days.THURSDAY:
         return 'Jueves';

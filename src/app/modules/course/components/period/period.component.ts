@@ -25,6 +25,16 @@ export class PeriodComponent implements OnInit {
     period.professors.push(professor);
   }
 
+  public editSchedule(schedule, period: Period) {
+    const index = period.schedules.indexOf(schedule);
+    period.schedules[index] = schedule;
+  }
+
+  public editProfessor(professor: Professor, period: Period) {
+    const index = period.professors.indexOf(professor);
+    period.professors[index] = professor;
+  }
+
   public deleteProfessor(professor: Professor, period: Period) {
     const index = period.professors.indexOf(professor);
     period.professors.splice(index, ONE_ELEMENT);
