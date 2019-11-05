@@ -11,6 +11,7 @@
       <th scope="col">Horario</th>
       <th scope="col">Día de la Semana</th>
       <th scope="col">Aula</th>
+      <th scope="col">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +19,10 @@
       <td>{{ getHoursInReadable(schedule.beginTime)}} - {{ getHoursInReadable(schedule.endTime)}}</td>
       <td>{{ getDayOfWeek(schedule.dayOfWeek)}}</td>
       <td>{{ schedule.classroom}} </td>
+      <td>
+        <i class="material-icons space-right" (click)="editSchedule()">edit</i>
+        <i class="material-icons space-right" (click)="deleteSchedule(schedule)">delete</i>
+      </td>
     </tr>
     </tbody>
   </table>

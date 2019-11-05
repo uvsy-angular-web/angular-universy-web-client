@@ -3,11 +3,14 @@
     <app-custom-title [title]="getPeriodRangeTitle(period)" [showNavigationArrow]="false"></app-custom-title>
     <div class="content">
       <app-schedules [schedules]="period.schedules"
-                     (scheduleAdded)="addSchedule($event,period)"></app-schedules>
+                     (scheduleAdded)="addSchedule($event,period)"
+                     (scheduleDeleted)="deleteSchedule($event,period)"
+      ></app-schedules>
     </div>
     <div class="content">
       <app-professors [professors]="period.professors"
-                      (professorAdded)="addProfessor($event,period)"></app-professors>
+                      (professorAdded)="addProfessor($event,period)"
+                      (professorDeleted)="deleteProfessor($event,period)"></app-professors>
     </div>
   </div>
   <div *ngIf="periods.length === 0">

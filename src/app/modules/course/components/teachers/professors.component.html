@@ -10,12 +10,17 @@
     <tr>
       <th scope="col">Apellido/s</th>
       <th scope="col">Nombre/s</th>
+      <th scope="col">Acciones</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let schedule of professors">
-      <td>{{schedule.name}}</td>
-      <td>{{schedule.lastName}}</td>
+    <tr *ngFor="let professor of professors">
+      <td>{{professor.name}}</td>
+      <td>{{professor.lastName}}</td>
+      <td>
+        <i class="material-icons space-right" (click)="editProfessor()">edit</i>
+        <i class="material-icons space-right" (click)="deleteProfessor(professor)">delete</i>
+      </td>
     </tr>
     </tbody>
   </table>

@@ -4,6 +4,8 @@ import {TimeService} from '../../../../core/services/time.service';
 import {Professor} from '../../../../models/professor.model';
 import {Schedule} from '../../../../models/schedule.model';
 
+const ONE_ELEMENT = 1;
+
 @Component({
   selector: 'app-period',
   templateUrl: './period.component.html',
@@ -22,6 +24,17 @@ export class PeriodComponent implements OnInit {
   public addProfessor(professor: Professor, period: Period) {
     period.professors.push(professor);
   }
+
+  public deleteProfessor(professor: Professor, period: Period) {
+    const index = period.professors.indexOf(professor);
+    period.professors.splice(index, ONE_ELEMENT);
+  }
+
+  public deleteSchedule(schedule: Schedule, period: Period) {
+    const index = period.schedules.indexOf(schedule);
+    period.schedules.splice(index, ONE_ELEMENT);
+  }
+
   public addSchedule(schedule: Schedule, period: Period) {
     period.schedules.push(schedule);
   }

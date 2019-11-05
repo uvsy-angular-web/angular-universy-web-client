@@ -34,3 +34,7 @@ form.submitted input.ng-invalid, input.ng-dirty.ng-invalid {
 .margin-top-2{
   margin-top: 2rem;
 }
+
+i{
+  cursor: pointer;
+}
