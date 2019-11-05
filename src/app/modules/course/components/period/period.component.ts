@@ -3,6 +3,9 @@ import {Period} from '../../../../models/period.model';
 import {TimeService} from '../../../../core/services/time.service';
 import {Professor} from '../../../../models/professor.model';
 import {Schedule} from '../../../../models/schedule.model';
+import {CourseModalService} from '../../modals/course-modal.service';
+import {NotificationService} from '../../../../shared/modals/notification.service';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 const ONE_ELEMENT = 1;
 
@@ -15,10 +18,42 @@ export class PeriodComponent implements OnInit {
   @Input() periods: Period[] = [];
   noPeriodMessage = 'La carrera no posee períodos todavia, haz click en Agregar Período';
 
-  constructor() {
+  constructor(private courseModalService: CourseModalService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
+  }
+
+  public deletePeriod(period) {
+    this.notificationService.openConfirmModal(
+      'Eliminar Periodo',
+      'Se eliminará el periodo y todos sus datos.',
+      '¿ Está seguro que desea eliminarlo ?',
+      ButtonText.Delete
+    ).subscribe(
+      (confirmation) => {
+        if (confirmation) {
+          this.deletePeriodFromList(period);
+        }
+      }
+    );
+  }
+
+  public editPeriod(period) {
+    this.courseModalService.openEditPeriodModal(period).subscribe(
+      (periodEdited) => this.editPeriodFromList(period, periodEdited)
+    );
+  }
+
+  private editPeriodFromList(period, periodEdited) {
+    const index = this.periods.indexOf(period);
+    this.periods[index] = periodEdited;
+  }
+
+  private deletePeriodFromList(period) {
+    const index = this.periods.indexOf(period);
+    this.periods.splice(index, ONE_ELEMENT);
   }
 
   public addProfessor(professor: Professor, period: Period) {
