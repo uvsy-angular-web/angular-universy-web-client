@@ -16,9 +16,9 @@ export class ProfessorsComponent implements OnInit {
   }
 
   openNewScheduleModal() {
-    /*this.courseModalService.openNewProfessorModal().subscribe(
-      (schedule) => this.professors.push(schedule)
-    );*/
+    this.courseModalService.openNewProfessorModal().subscribe(
+      (professor) => this.professors.push(professor)
+    );
   }
 
   ngOnInit() {

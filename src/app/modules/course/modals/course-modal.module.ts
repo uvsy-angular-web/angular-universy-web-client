@@ -5,12 +5,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../../../shared/shared.module';
 import { ScheduleModalComponent } from './schedule-modal/schedule-modal.component';
 import {NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProfessorModalComponent } from './professor-modal/professor-modal.component';
 
 
 @NgModule({
   declarations: [
     PeriodModalComponent,
-    ScheduleModalComponent
+    ScheduleModalComponent,
+    ProfessorModalComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import {NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
   ],
   entryComponents: [
     PeriodModalComponent,
-    ScheduleModalComponent
+    ScheduleModalComponent,
+    ProfessorModalComponent
   ]
 })
 export class CourseModalModule {
