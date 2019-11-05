@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TimeService} from '../../../../core/services/time.service';
 import {CourseModalService} from '../../modals/course-modal.service';
 import {Schedule} from '../../../../models/schedule.model';
@@ -10,6 +10,7 @@ import {Schedule} from '../../../../models/schedule.model';
 })
 export class SchedulesComponent implements OnInit {
   @Input() schedules: Schedule[] = [];
+  @Output() scheduleAdded: EventEmitter<Schedule> = new EventEmitter<Schedule>();
   noScheduleMessage = 'El período no posee horarios todavía, haz click en Agregar Horario';
   addScheduleButtonTitle = 'Agregar Horario';
 
@@ -18,7 +19,7 @@ export class SchedulesComponent implements OnInit {
 
   openNewScheduleModal() {
     this.courseModalService.openNewScheduleModal().subscribe(
-      (schedule) => this.schedules.push(schedule)
+      (schedule) => this.scheduleAdded.emit(schedule)
     );
   }
 

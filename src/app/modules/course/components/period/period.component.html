@@ -2,12 +2,12 @@
   <div *ngFor="let period of periods" class="margin-top-2">
     <app-custom-title [title]="getPeriodRangeTitle(period)" [showNavigationArrow]="false"></app-custom-title>
     <div class="content">
-<!--      <app-schedules [schedules]="period.schedules"></app-schedules> TODO: put this line -->
-      <app-schedules></app-schedules>
+      <app-schedules [schedules]="period.schedules"
+                     (scheduleAdded)="addSchedule($event,period)"></app-schedules>
     </div>
     <div class="content">
-<!--      <app-schedules [professors]="period.professors"></app-schedules> TODO: put this line -->
-      <app-professors></app-professors>
+      <app-professors [professors]="period.professors"
+                      (professorAdded)="addProfessor($event,period)"></app-professors>
     </div>
   </div>
   <div *ngIf="periods.length === 0">

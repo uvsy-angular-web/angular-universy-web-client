@@ -7,12 +7,12 @@ export class Period {
   public beginMonth: number;
   public endMonth: number;
 
-  constructor(schedules?: Schedule[],
-              proffesors?: Professor[],
+  constructor(schedules: Schedule[] = [],
+              professors: Professor[] = [],
               beginMonth?: number,
               endMonth?: number) {
     this.schedules = schedules;
-    this.professors = proffesors;
+    this.professors = professors;
     this.beginMonth = beginMonth;
     this.endMonth = endMonth;
   }

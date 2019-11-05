@@ -26,8 +26,12 @@ export class CourseComponent implements OnInit {
 
   public openNewPeriodModal() {
     this.courseModalService.openNewPeriodModal().subscribe(
-      (newProgram: Period) => this.addPeriod(newProgram)
+      (newPeriod: Period) => this.addPeriod(newPeriod)
     );
+  }
+
+  saveCourse() {
+    console.table(this.course);
   }
 
   private addPeriod(period: Period) {

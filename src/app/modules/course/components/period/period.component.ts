@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Period} from '../../../../models/period.model';
 import {TimeService} from '../../../../core/services/time.service';
+import {Professor} from '../../../../models/professor.model';
+import {Schedule} from '../../../../models/schedule.model';
 
 @Component({
   selector: 'app-period',
@@ -15,6 +17,13 @@ export class PeriodComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public addProfessor(professor: Professor, period: Period) {
+    period.professors.push(professor);
+  }
+  public addSchedule(schedule: Schedule, period: Period) {
+    period.schedules.push(schedule);
   }
 
   public getPeriodRangeTitle(period: Period): string {
