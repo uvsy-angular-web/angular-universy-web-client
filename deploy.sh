@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export PROFILE=${AWS_PROFILE}
 export STAGE=${AWS_STAGE}
 
