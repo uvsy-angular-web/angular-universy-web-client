@@ -9,6 +9,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CustomToggleComponent} from './components/custom-toggle/custom-toggle.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { NoItemMessageComponent } from './components/no-item-message/no-item-message.component';
+import { TableActionsComponent } from './components/table/table-actions/table-actions.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NoItemMessageComponent } from './components/no-item-message/no-item-mes
     FormSubmitDirective,
     ControlErrorComponent,
     CustomToggleComponent,
-    NoItemMessageComponent
+    NoItemMessageComponent,
+    TableActionsComponent
   ],
   exports: [
     AddItemComponent,
@@ -28,7 +30,8 @@ import { NoItemMessageComponent } from './components/no-item-message/no-item-mes
     FormSubmitDirective,
     ControlErrorComponent,
     CustomToggleComponent,
-    NoItemMessageComponent
+    NoItemMessageComponent,
+    TableActionsComponent
   ],
   imports: [
     CommonModule,

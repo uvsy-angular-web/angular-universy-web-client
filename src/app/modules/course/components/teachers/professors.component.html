@@ -18,8 +18,8 @@
       <td>{{professor.lastName}}</td>
       <td>{{professor.name}}</td>
       <td>
-        <i class="material-icons space-right" (click)="editProfessor(professor)">edit</i>
-        <i class="material-icons space-right" (click)="deleteProfessor(professor)">delete</i>
+        <app-table-actions (editAction)="editProfessor(professor)"
+                           (deleteAction)="deleteProfessor(professor)"></app-table-actions>
       </td>
     </tr>
     </tbody>
