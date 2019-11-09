@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Location} from '@angular/common';
+import {NavigationService} from '../../../core/services/system/navigation.service';
 
 @Component({
   selector: 'app-custom-title',
@@ -15,14 +15,14 @@ export class CustomTitleComponent implements OnInit {
   @Input() showEditButton = true;
   @Input() showNavigationArrow = true;
 
-  constructor(private location: Location) {
+  constructor(private navigationService: NavigationService) {
   }
 
   ngOnInit() {
   }
 
   public navigateToPreviousPage() {
-    this.location.back();
+    this.navigationService.navigateToPreviousPage();
   }
 
   public editItemAction() {
