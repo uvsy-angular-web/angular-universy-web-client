@@ -58,6 +58,7 @@ export class ProfessorModalComponent implements OnInit {
     return Validators.compose(
       [
         Validators.maxLength(MAX_LENGTH),
-        Validators.required]);
+        Validators.required,
+        Validators.pattern('^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]*$')]);
   }
 }
