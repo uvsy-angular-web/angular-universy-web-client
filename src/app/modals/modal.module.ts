@@ -6,7 +6,7 @@ import {InformationModalComponent} from './components/error-modal/information-mo
 import {NameEditComponent} from './components/name-edit/name-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ConfirmActionModalComponent} from './components/confirm-action-modal/confirm-action-modal.component';
-import {SharedModule} from '../shared.module';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -28,5 +28,5 @@ import {SharedModule} from '../shared.module';
   ]
 })
 
-export class NotificationModule {
+export class ModalModule {
 }

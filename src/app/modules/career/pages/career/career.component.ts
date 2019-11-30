@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Career} from '../../../../models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
 import {InstitutionService} from '../../../../core/services/institution.service';
-import {NotificationService} from '../../../../shared/modals/notification.service';
+import {ModalService} from '../../../../modals/modal.service';
 import {Program} from '../../../../models/program.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
@@ -27,7 +27,7 @@ export class CareerComponent implements OnInit {
               private navigationService: NavigationService,
               private programModalService: ProgramModalService,
               private institutionService: InstitutionService,
-              private notificationService: NotificationService) {
+              private notificationService: ModalService) {
   }
 
   ngOnInit() {

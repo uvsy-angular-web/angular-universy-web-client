@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ButtonText} from '../../../enums/button-text.enum';
+import {ButtonText} from '../../../shared/enums/button-text.enum';
 
 @Component({
   selector: 'app-error-modal',

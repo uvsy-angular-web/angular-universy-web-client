@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {InformationModalComponent} from './components/error-modal/information-modal.component';
 import {NameEditComponent} from './components/name-edit/name-edit.component';
-import {ButtonText} from '../enums/button-text.enum';
+import {ButtonText} from '../shared/enums/button-text.enum';
 import {ConfirmActionModalComponent} from './components/confirm-action-modal/confirm-action-modal.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationService {
+export class ModalService {
 
   constructor(private modalService: NgbModal) {
   }

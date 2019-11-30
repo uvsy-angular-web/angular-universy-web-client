@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ButtonText} from '../../../enums/button-text.enum';
 import {FormGroup} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {ButtonText} from '../../../shared/enums/button-text.enum';
 
 @Component({
   selector: 'app-delete-modal',

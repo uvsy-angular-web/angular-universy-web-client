@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ButtonText} from '../../../enums/button-text.enum';
-import {ColSize} from '../../../enums/col-size.enum';
+import {ButtonText} from '../../../shared/enums/button-text.enum';
+import {ColSize} from '../../../shared/enums/col-size.enum';
 
 const SMALL_SIZE_TEXT_LENGHT = 15;
 const MEDIUM_SIZE_TEXT_LENGHT = 25;

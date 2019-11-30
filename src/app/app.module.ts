@@ -11,7 +11,7 @@ import {SubjectModalModule} from './modules/subject/modals/subject-modal.module'
 import {MatProgressSpinnerModule} from '@angular/material';
 import {LoaderService} from './core/services/system/loader.service';
 import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
-import {NotificationModule} from './shared/modals/notification.module';
+import {ModalModule} from './modals/modal.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CourseModalModule} from './modules/course/modals/course-modal.module';
 
@@ -26,7 +26,7 @@ import {CourseModalModule} from './modules/course/modals/course-modal.module';
     HttpClientModule,
     SharedModule,
     ProgramModalModule,
-    NotificationModule,
+    ModalModule,
     SubjectModalModule,
     CourseModalModule,
     BrowserModule,

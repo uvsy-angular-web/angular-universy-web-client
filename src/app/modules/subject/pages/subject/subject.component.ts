@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SubjectService} from '../../../../core/services/subject.service';
 import {Subject} from '../../../../models/subject.model';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {NotificationService} from '../../../../shared/modals/notification.service';
+import {ModalService} from '../../../../modals/modal.service';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 import {CourseService} from '../../../../core/services/course.service';
 import {Course} from '../../../../models/course.model';
@@ -25,7 +25,7 @@ export class SubjectComponent implements OnInit {
               private programService: ProgramService,
               private subjectModalService: SubjectModalService,
               private courseService: CourseService,
-              private notificationService: NotificationService) {
+              private notificationService: ModalService) {
   }
 
   public openNewCourseModal() {

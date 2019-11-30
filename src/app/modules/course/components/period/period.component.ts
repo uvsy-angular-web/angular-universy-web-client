@@ -4,7 +4,7 @@ import {TimeService} from '../../../../core/services/time.service';
 import {Professor} from '../../../../models/professor.model';
 import {Schedule} from '../../../../models/schedule.model';
 import {CourseModalService} from '../../modals/course-modal.service';
-import {NotificationService} from '../../../../shared/modals/notification.service';
+import {ModalService} from '../../../../modals/modal.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 const ONE_ELEMENT = 1;
@@ -19,7 +19,7 @@ export class PeriodComponent implements OnInit {
   noPeriodMessage = 'La carrera no posee períodos todavia, haz click en Agregar Período';
 
   constructor(private courseModalService: CourseModalService,
-              private notificationService: NotificationService) {
+              private notificationService: ModalService) {
   }
 
   ngOnInit() {

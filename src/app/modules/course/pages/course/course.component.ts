@@ -4,7 +4,7 @@ import {CourseService} from '../../../../core/services/course.service';
 import {CourseModalService} from '../../modals/course-modal.service';
 import {Period} from '../../../../models/period.model';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
-import {NotificationService} from '../../../../shared/modals/notification.service';
+import {ModalService} from '../../../../modals/modal.service';
 
 @Component({
   selector: 'app-course',
@@ -18,7 +18,7 @@ export class CourseComponent implements OnInit {
   constructor(private courseModalService: CourseModalService,
               private courseService: CourseService,
               private navigationService: NavigationService,
-              private notificationService: NotificationService) {
+              private notificationService: ModalService) {
   }
 
   ngOnInit() {
