@@ -2,9 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {TimeService} from '../../../../core/services/time.service';
+import {TimeService} from '../../../../core/services/time/time.service';
 import {ComboBoxItem} from '../../../../shared/models/combo-box.model';
 import {Schedule} from '../../../../models/schedule.model';
+import {DayService} from '../../../../core/services/time/day.service';
 
 @Component({
   selector: 'app-period-modal',
@@ -31,7 +32,7 @@ export class ScheduleModalComponent implements OnInit {
   }
 
   private getListOfDays() {
-    this.days = TimeService.getListOfDays();
+    this.days = DayService.getListOfDays();
   }
 
   public cancelAction(): void {

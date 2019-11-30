@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TimeService} from '../../../../core/services/time.service';
+import {TimeService} from '../../../../core/services/time/time.service';
 import {CourseModalService} from '../../modals/course-modal.service';
 import {Schedule} from '../../../../models/schedule.model';
+import {DayService} from '../../../../core/services/time/day.service';
 
 @Component({
   selector: 'app-schedules',
@@ -26,7 +27,7 @@ export class SchedulesComponent implements OnInit {
   }
 
   getDayOfWeek(dayOfWeek) {
-    return TimeService.getNameOfDay(dayOfWeek);
+    return DayService.getNameOfDay(dayOfWeek);
   }
 
   getHoursInReadable(hoursAndMinutes) {

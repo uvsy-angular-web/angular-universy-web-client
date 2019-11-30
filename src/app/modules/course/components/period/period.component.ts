@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Period} from '../../../../models/period.model';
-import {TimeService} from '../../../../core/services/time.service';
 import {Professor} from '../../../../models/professor.model';
 import {Schedule} from '../../../../models/schedule.model';
 import {CourseModalService} from '../../modals/course-modal.service';
 import {ModalService} from '../../../../modals/modal.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import {MonthService} from '../../../../core/services/time/month.service';
 
 const ONE_ELEMENT = 1;
 
@@ -85,8 +85,8 @@ export class PeriodComponent implements OnInit {
   }
 
   public getPeriodRangeTitle(period: Period): string {
-    const beginMonthName = TimeService.getNameOfMonth(period.beginMonth);
-    const endMonthName = TimeService.getNameOfMonth(period.endMonth);
+    const beginMonthName = MonthService.getNameOfMonth(period.beginMonth);
+    const endMonthName = MonthService.getNameOfMonth(period.endMonth);
     return `${beginMonthName} - ${endMonthName}`;
   }
 
