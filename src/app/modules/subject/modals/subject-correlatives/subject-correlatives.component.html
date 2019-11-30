@@ -24,24 +24,24 @@
       </thead>
       <tbody>
       <tr *ngFor="let subject of subjects"
-          [class.view-mode]="viewMode">
+          [class.view-mode]="readOnly">
         <th scope="row">{{subject.level}}</th>
         <td>{{subject.name}}</td>
         <td>
           <input type="checkbox"
-                 [disabled]="viewMode"
+                 [disabled]="readOnly"
                  [checked]="isToTakeRegularChecked(subject)"
                  (change)="changeCorrelativeToTakeRegular(subject)">
         </td>
         <td>
           <input type="checkbox"
-                 [disabled]="viewMode"
+                 [disabled]="readOnly"
                  [checked]="isToTakeApprovedChecked(subject)"
                  (change)="changeCorrelativeToTakeApproved(subject)">
         </td>
         <td class="border-left text-center">
           <input type="checkbox"
-                 [disabled]="viewMode"
+                 [disabled]="readOnly"
                  [checked]="isToApproveChecked(subject)"
                  (change)="changeCorrelativeToApprove(subject)">
         </td>
@@ -49,15 +49,13 @@
       </tbody>
     </table>
     <div [hidden]="showTable()" class="text-center">
-      <span class="font-italic">No existen materias para asignar como correlativas.</span>
-    </div>
-    <div [hidden]="isSubjectInFirstLevel()" class="text-center">
-      <span class="font-italic">La materia se encuentra en el primer nivel. No se le pueden asignar comisiones.</span>
+      <span class="font-italic" *ngIf="readOnly">No se registraron correlativas para esta materia.</span>
+      <span class="font-italic" *ngIf="!readOnly">No existen materias para asignar como correlativas.</span>
     </div>
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline" *ngIf="!viewMode"
+  <button type="button" class="btn btn-outline" *ngIf="!readOnly"
           (click)="cancelAction()">Cancelar
   </button>
   <button type="buttom" class="btn btn-primary"
