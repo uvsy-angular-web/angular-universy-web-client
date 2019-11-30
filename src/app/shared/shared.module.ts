@@ -10,6 +10,7 @@ import {CustomToggleComponent} from './components/custom-toggle/custom-toggle.co
 import {ReactiveFormsModule} from '@angular/forms';
 import { NoItemMessageComponent } from './components/no-item-message/no-item-message.component';
 import { TableActionsComponent } from './components/table/table-actions/table-actions.component';
+import {ModalHeaderComponent} from './components/modal-header/modal-header.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TableActionsComponent } from './components/table/table-actions/table-ac
     ControlErrorComponent,
     CustomToggleComponent,
     NoItemMessageComponent,
-    TableActionsComponent
+    TableActionsComponent,
+    ModalHeaderComponent
   ],
   exports: [
     AddItemComponent,
@@ -31,7 +33,8 @@ import { TableActionsComponent } from './components/table/table-actions/table-ac
     ControlErrorComponent,
     CustomToggleComponent,
     NoItemMessageComponent,
-    TableActionsComponent
+    TableActionsComponent,
+    ModalHeaderComponent
   ],
   imports: [
     CommonModule,
