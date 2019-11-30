@@ -4,7 +4,10 @@ export class Correlative {
   correlativeRestriction: CorrelativeRestriction;
   correlativeCondition: CorrelativeCondition;
 
-  constructor(name?: string, subjectCode?: string, correlativeRestriction?: CorrelativeRestriction, correlativeCondition?: CorrelativeCondition) {
+  constructor(name?: string,
+              subjectCode?: string,
+              correlativeRestriction?: CorrelativeRestriction,
+              correlativeCondition?: CorrelativeCondition) {
     this.name = name;
     this.subjectCode = subjectCode;
     this.correlativeRestriction = correlativeRestriction;

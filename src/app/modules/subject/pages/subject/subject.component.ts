@@ -8,7 +8,7 @@ import {CourseService} from '../../../../core/services/course.service';
 import {Course} from '../../../../models/course.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectModalService} from '../../modals/subject-modal.service';
-import {Correlative} from '../../../../models/correlative.modal';
+import {Correlative} from '../../../../models/correlative.model';
 
 @Component({
   selector: 'app-subject',
