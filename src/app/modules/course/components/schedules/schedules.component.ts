@@ -31,7 +31,7 @@ export class SchedulesComponent implements OnInit {
   }
 
   getHoursInReadable(hoursAndMinutes) {
-    return TimeService.formatHoursIntoReadable(hoursAndMinutes);
+    return TimeService.showTime(hoursAndMinutes);
   }
 
   editSchedule(schedule: Schedule) {
