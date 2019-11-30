@@ -4,7 +4,6 @@ const REG_EXP_ONLY_LETTERS = '^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]*$';
 export const defaultErrors = {
   required: () => `El campo es requerido.`,
   pattern: ({requiredPattern}) => {
-    console.log(requiredPattern);
     if (requiredPattern === REG_EXP_ONLY_LETTERS) {
       return 'Ingresar solo letras';
     }
