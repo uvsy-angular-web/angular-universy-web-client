@@ -1,0 +1,32 @@
+<div class="card" id="login-card">
+  <form appForm [formGroup]="form">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="username">
+          Usuario:
+        </label>
+        <div class="control">
+          <input id="username" appControlError
+                 class="form-control"
+                 type="text" formControlName="username">
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="password">
+          Contraseña:
+        </label>
+        <div class="control">
+          <input id="password" appControlError
+                 class="form-control"
+                 type="password" formControlName="password">
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-primary" id="login-button">Iniciar Sesión</button>
+    </div>
+  </form>
+</div>
