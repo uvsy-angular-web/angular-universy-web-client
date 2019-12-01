@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {NavigationService} from './core/services/system/navigation.service';
+import {Route} from './core/services/system/routes/routes.enum';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'universy-web';
+
+  constructor(private navigationService: NavigationService) {
+  }
+
+  isHomePageActive(): boolean {
+    return this.navigationService.isRouteCurrentOne(Route.HOME);
+  }
 }
