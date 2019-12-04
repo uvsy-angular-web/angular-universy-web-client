@@ -59,7 +59,8 @@ export class SubjectModalComponent implements OnInit {
   private static _getValidatorsForCareerName(): Validators {
     return Validators.compose([
       Validators.maxLength(50),
-      Validators.required
+      Validators.required,
+      Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
     ]);
   }
 

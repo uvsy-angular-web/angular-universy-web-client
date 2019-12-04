@@ -63,6 +63,8 @@ export class NameEditComponent implements OnInit {
     return Validators.compose(
       [
         Validators.maxLength(this.maxLength),
-        Validators.required]);
+        Validators.required,
+        Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
+      ]);
   }
 }
