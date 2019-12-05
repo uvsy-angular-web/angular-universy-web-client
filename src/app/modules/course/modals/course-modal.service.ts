@@ -8,6 +8,13 @@ import {Schedule} from '../../../models/schedule.model';
 import {Professor} from '../../../models/professor.model';
 import {ProfessorModalComponent} from './professor-modal/professor-modal.component';
 
+
+import {InformationModalComponent} from '../../../modals/components/error-modal/information-modal.component'
+import {CourseModalComponent} from './course-modal/course-modal.component';
+import {ConfirmActionModalComponent} from '../../../modals/components/confirm-action-modal/confirm-action-modal.component';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -59,6 +66,38 @@ export class CourseModalService {
     modalRef.componentInstance.title = 'Modificar Profesor';
     modalRef.componentInstance.professor = professor;
     modalRef.componentInstance.confirmButtonText = ButtonText.Edit;
+    return modalRef.componentInstance.confirmEvent;
+  }
+
+  //Course
+  showError(errorMessage: string) {
+    const modalRef = this.modalService.open(InformationModalComponent);
+    modalRef.componentInstance.title = '¡Ocurrió un error!';
+    modalRef.componentInstance.message = errorMessage;
+    modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
+  }
+
+  inform(title: string, message: string) {
+    const modalRef = this.modalService.open(InformationModalComponent);
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.message = message;
+    modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
+  }
+
+  openEditCommisionNameModal(title: string, confirmButtonText: ButtonText, itemText = '') {
+    const modalRef = this.modalService.open(CourseModalComponent, {backdrop: 'static'});
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.itemText = itemText;
+    modalRef.componentInstance.confirmButtonText = confirmButtonText;
+    return modalRef.componentInstance.confirmEvent;
+  }
+
+  openConfirmModal(title: string, message = '', confirmationQuestion = '', confirmationButtonText: ButtonText) {
+    const modalRef = this.modalService.open(ConfirmActionModalComponent, {backdrop: 'static'});
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.message = message;
+    modalRef.componentInstance.confirmationQuestion = confirmationQuestion;
+    modalRef.componentInstance.confirmationButtonText = confirmationButtonText;
     return modalRef.componentInstance.confirmEvent;
   }
 
