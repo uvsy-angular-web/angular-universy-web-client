@@ -1,5 +1,5 @@
 <div class="card" id="login-card">
-  <form appForm [formGroup]="form">
+  <form appForm [formGroup]="form" (ngSubmit)="login()">
     <div class="col-12">
       <div class="form-group">
         <label for="username">
