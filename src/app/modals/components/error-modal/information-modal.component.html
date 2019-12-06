@@ -1,0 +1,11 @@
+<app-modal-header [title]="title"
+                  (closeEvent)="closeModal()"></app-modal-header>
+<div class="modal-body">
+  <div class="form-group">
+    <p>{{message}}
+    </p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="closeModal()">{{confirmButtonText}}</button>
+</div>

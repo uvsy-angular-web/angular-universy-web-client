@@ -40,7 +40,7 @@ export class SubjectModalService {
     const modalRef = this.modalService.open(SubjectCorrelativesComponent, {backdrop: 'static', size: 'lg'});
     modalRef.componentInstance.title = 'Ver Correlativas';
     modalRef.componentInstance.subject = selectedSubject;
-    modalRef.componentInstance.viewMode = true;
+    modalRef.componentInstance.readOnly = true;
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
     return modalRef.componentInstance.confirmEvent;
   }

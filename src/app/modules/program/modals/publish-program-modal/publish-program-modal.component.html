@@ -1,9 +1,5 @@
-<div class="modal-header">
-  <h4 class="modal-title">{{title}}</h4>
-  <button type="button" class="close" aria-label="Close" (click)="cancelAction()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+<app-modal-header [title]="title"
+                  (closeEvent)="cancelAction()"></app-modal-header>
 <div class="modal-body">
   <div class="row">
     <div class="col-2 text-center">

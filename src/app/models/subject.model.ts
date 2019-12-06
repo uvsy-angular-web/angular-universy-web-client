@@ -1,5 +1,5 @@
 import {CareerKey} from './carreer-key.model';
-import {Correlative} from './correlative.modal';
+import {Correlative} from './correlative.model';
 
 export class Subject {
   programCode: string;

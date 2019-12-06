@@ -1,0 +1,25 @@
+<div class="periods-container">
+  <div *ngFor="let period of periods" class="margin-top-2">
+    <app-custom-title [title]="getPeriodRangeTitle(period)"
+                      [showNavigationArrow]="false"
+                      (deleteItem)="deletePeriod(period)"
+                      (editItem)="editPeriod(period)"></app-custom-title>
+    <div class="content">
+      <app-schedules [schedules]="period.schedules"
+                     (scheduleAdded)="addSchedule($event,period)"
+                     (scheduleDeleted)="deleteSchedule($event,period)"
+                     (scheduleEdited)="editSchedule($event,period)"
+      ></app-schedules>
+    </div>
+    <div class="content">
+      <app-professors [professors]="period.professors"
+                      (professorAdded)="addProfessor($event,period)"
+                      (professorDeleted)="deleteProfessor($event,period)"
+                      (professorEdited)="editProfessor($event,period)"
+      ></app-professors>
+    </div>
+  </div>
+  <div *ngIf="periods.length === 0">
+    <app-no-item-message [message]="noPeriodMessage"></app-no-item-message>
+  </div>
+</div>

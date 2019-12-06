@@ -4,7 +4,7 @@ import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {Subject} from '../../../../models/subject.model';
 import {FormGroup} from '@angular/forms';
 import {SubjectService} from '../../../../core/services/subject.service';
-import {Correlative, CorrelativeCondition, CorrelativeRestriction} from '../../../../models/correlative.modal';
+import {Correlative, CorrelativeCondition, CorrelativeRestriction} from '../../../../models/correlative.model';
 
 const FIRST_LEVEL = 1;
 const ONE_CORRELATIVE_TO_DELETE = 1;
@@ -23,7 +23,7 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
-  @Input() viewMode = false;
+  @Input() readOnly = false;
   @Output() confirmEvent: EventEmitter<Correlative[]> = new EventEmitter();
   subject: Subject;
   subjects: Subject[] = [];

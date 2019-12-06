@@ -1,0 +1,32 @@
+<h3 class="margin-top-2">
+  Horarios
+</h3>
+<app-add-item (buttonPressed)="openNewScheduleModal()"
+              [buttonTitle]="addScheduleButtonTitle">
+</app-add-item>
+<div *ngIf="schedules.length != 0 ">
+  <table class="table margin-top-2">
+    <thead>
+    <tr>
+      <th scope="col">Horario</th>
+      <th scope="col">Día de la Semana</th>
+      <th scope="col">Aula</th>
+      <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let schedule of schedules">
+      <td>{{ getHoursInReadable(schedule.beginTime)}} - {{ getHoursInReadable(schedule.endTime)}}</td>
+      <td>{{ getDayOfWeek(schedule.dayOfWeek)}}</td>
+      <td>{{ schedule.classroom}} </td>
+      <td>
+        <app-table-actions (editAction)="editSchedule(schedule)"
+                           (deleteAction)="deleteSchedule(schedule)"></app-table-actions>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="schedules.length === 0">
+  <app-no-item-message [message]="noScheduleMessage"></app-no-item-message>
+</div>

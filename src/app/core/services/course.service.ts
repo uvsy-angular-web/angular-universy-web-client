@@ -45,6 +45,12 @@ export class CourseService {
     return this.http.put(baseUrl + ENDPOINT_COURSES, body, {headers});
   }
 
+  updateCourse(course: Course) {
+    const baseUrl = CourseService.getBaseUrl();
+    const headers = this.getHeaders();
+    return this.http.post(baseUrl + ENDPOINT_COURSES, course, {headers});
+  }
+
   private getHeaders() {
     return this.systemConfigService.getHeader();
   }

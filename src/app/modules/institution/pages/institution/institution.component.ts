@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {Career, Institution} from '../../../../models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
-import {NotificationService} from '../../../../shared/modals/notification.service';
+import {ModalService} from '../../../../modals/modal.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 
@@ -20,7 +20,7 @@ export class InstitutionComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private navigationService: NavigationService,
-    private notificationService: NotificationService) {
+    private notificationService: ModalService) {
   }
 
   ngOnInit(): void {

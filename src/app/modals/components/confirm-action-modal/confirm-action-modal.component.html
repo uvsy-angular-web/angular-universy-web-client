@@ -1,0 +1,12 @@
+<app-modal-header [title]="title"
+                  (closeEvent)="closeModal()"></app-modal-header>
+<div class="modal-body">
+  <p>{{message}}</p>
+  <p><strong>{{confirmationQuestion}}</strong></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>
+  <button type="button" class="btn"
+          [ngClass]="{'btn-danger': isDeleteModal() , 'btn-primary': !isDeleteModal()}"
+          (click)="confirmAction()">{{confirmationButtonText}}</button>
+</div>

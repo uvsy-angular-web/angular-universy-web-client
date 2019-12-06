@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Subject} from '../../../../models/subject.model';
-import {NotificationService} from '../../../../shared/modals/notification.service';
+import {ModalService} from '../../../../modals/modal.service';
 import {Program} from '../../../../models/program.model';
 import {ProgramService} from '../../../../core/services/program.service';
 import {SubjectService} from '../../../../core/services/subject.service';
@@ -28,7 +28,7 @@ export class ProgramComponent implements OnInit {
   constructor(private location: Location,
               private programService: ProgramService,
               private navigationService: NavigationService,
-              private notificationService: NotificationService,
+              private notificationService: ModalService,
               private programModalService: ProgramModalService,
               private subjectModalService: SubjectModalService,
               private subjectService: SubjectService) {
