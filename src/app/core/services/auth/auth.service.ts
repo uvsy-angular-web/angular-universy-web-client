@@ -20,6 +20,9 @@ export class AuthService {
     this.navigationService.navigateToInstitutionPage();
   }
 
+  public static isLoggedIn() {
+    return LocalStorageService.getObjectFromInLocalStorage(CURRENT_USER_KEY);
+  }
   public static logout() {
     localStorage.removeItem(CURRENT_USER_KEY);
   }
