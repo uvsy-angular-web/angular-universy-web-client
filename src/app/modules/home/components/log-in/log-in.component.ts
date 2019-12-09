@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../../../core/services/auth/auth.service';
-import {User} from '../../../../models/user.model';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../../core/services/auth/auth.service';
+import { User } from '../../../../models/user.model';
 
 const USERNAME_MAX_LENGHT = 15;
 const PASSWORD_MAX_LENGHT = 8;
@@ -15,7 +15,7 @@ export class LogInComponent implements OnInit {
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService) {
+    private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -38,10 +38,12 @@ export class LogInComponent implements OnInit {
   }
 
   login() {
-    const username = this.username.value;
-    const password = this.password.value;
-    const user = new User(username, password);
-    this.authService.login(user);
+    if (this.form.valid) {
+      const username = this.username.value;
+      const password = this.password.value;
+      const user = new User(username, password);
+      this.authService.login(user);
+    }
   }
 
   static getValidators(maxLength: number) {
