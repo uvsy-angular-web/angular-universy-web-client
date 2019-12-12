@@ -1,4 +1,5 @@
-export enum Routes {
+export enum Route {
+  HOME = 'home',
   INSTITUTION = 'institution',
   CAREER = 'institution/career',
   PROGRAM = 'institution/career/program',

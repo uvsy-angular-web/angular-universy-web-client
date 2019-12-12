@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {NavigationService} from '../../../../core/services/system/navigation.service';
+import { Component, OnInit } from '@angular/core';
+import { NavigationService } from '../../../../core/services/system/navigation.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.verifyUserNotLoggedIn();
   }
 
-  public navigateToInstitution() {
+  private verifyUserNotLoggedIn() {
+    if (AuthService.isLoggedIn()) {
+      this.navigateToInstitutionPage();
+    }
+  }
+
+  public navigateToInstitutionPage() {
     this.navigationService.navigateToInstitutionPage();
   }
 }

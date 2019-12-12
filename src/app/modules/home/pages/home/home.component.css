@@ -1,12 +1,16 @@
-.logo-universy{
-    top:90px;
-    
-}
-.center{
-    text-align: center;
+#logo-universy {
+  max-width: 45%;
+  padding-bottom: 1rem;
 }
 
+.row {
+  min-height: 70vh;
+}
 
-.sentence{
-    top:130px;
+.sentence {
+  top: 130px;
+}
+
+h3 {
+  color: #241E08;
 }
