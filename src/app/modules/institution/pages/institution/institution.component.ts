@@ -5,6 +5,7 @@ import {CareerService} from '../../../../core/services/career.service';
 import {ModalService} from '../../../../modals/modal.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
+import { RepeatedTextService } from 'src/app/core/services/validator/repeated-text.service';
 
 
 @Component({
@@ -20,11 +21,14 @@ export class InstitutionComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private navigationService: NavigationService,
-    private notificationService: ModalService) {
+    private notificationService: ModalService,
+    private validator: RepeatedTextService) {
   }
 
   ngOnInit(): void {
     this.getCareers();
+    const result = this.validator.validateCareerName();
+    console.log(result);
   }
   private getCareers() {
     this.institutionService.getInstitution().subscribe(
