@@ -14,7 +14,12 @@ import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
 import {ModalModule} from './modals/modal.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CourseModalModule} from './modules/course/modals/course-modal.module';
+<<<<<<< HEAD
 import {CareerModalModule} from './modules/career/modals/career-modal.module';
+=======
+import {AuthGuard} from './shared/guards/auth.guard';
+import {TokenInterceptor} from './core/interceptors/token.interceptor';
+>>>>>>> 4224ef4a9db2da4ccc9e9fe0a01ccdd659deb1bf
 
 @NgModule({
   declarations: [
@@ -36,7 +41,9 @@ import {CareerModalModule} from './modules/career/modals/career-modal.module';
     CareerModalModule
   ],
   providers: [
+    AuthGuard,
     LoaderService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
   ],
   bootstrap: [
