@@ -14,6 +14,7 @@ import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
 import {ModalModule} from './modals/modal.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CourseModalModule} from './modules/course/modals/course-modal.module';
+import {CareerModalModule} from './modules/career/modals/career-modal.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {CourseModalModule} from './modules/course/modals/course-modal.module';
     CourseModalModule,
     BrowserModule,
     NgbModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    CareerModalModule
   ],
   providers: [
     LoaderService,

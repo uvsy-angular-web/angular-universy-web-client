@@ -7,7 +7,7 @@ import { ScheduleModalComponent } from './schedule-modal/schedule-modal.componen
 import {NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProfessorModalComponent } from './professor-modal/professor-modal.component';
 import { CourseModalComponent } from './course-modal/course-modal.component';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { CourseModalComponent } from './course-modal/course-modal.component';
   ],
   imports: [
     CommonModule,
+    NgbModule,
     ReactiveFormsModule,
     SharedModule,
     NgbTimepickerModule

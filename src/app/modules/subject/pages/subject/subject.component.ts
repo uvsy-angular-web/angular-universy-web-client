@@ -33,7 +33,8 @@ export class SubjectComponent implements OnInit {
       'Agregar Comisión',
       ButtonText.Add,
       '',
-      10).subscribe(
+      //10
+      ).subscribe(
       (courseName) => {
         this.addCourse(courseName);
       }

@@ -8,7 +8,7 @@ import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
-    InstitutionComponent
+    InstitutionComponent,
   ],
   imports: [
     CommonModule,

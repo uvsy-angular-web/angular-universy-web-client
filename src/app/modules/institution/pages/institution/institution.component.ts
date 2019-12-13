@@ -20,7 +20,7 @@ export class InstitutionComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private navigationService: NavigationService,
-    private notificationService: CareerModalService) {
+    private careerModalService: CareerModalService) {
   }
 
   ngOnInit(): void {
@@ -38,9 +38,10 @@ export class InstitutionComponent implements OnInit {
   }
 
   public openNewCareerModal() {
-    this.notificationService.openEditCareerNameModal(
+    this.careerModalService.openEditCareerNameModal(
       'Agregar carrera',
       ButtonText.Add,
+      ''
     ).subscribe(
       (newCareerName) => this.addCareer(newCareerName)
     );
@@ -56,7 +57,7 @@ export class InstitutionComponent implements OnInit {
       () => {
         this.getCareers();
       }, ((error) => {
-        this.notificationService.showError('Ocurrió un error tratando de agregar una nueva carrera.');
+        this.careerModalService.showError('Ocurrió un error tratando de agregar una nueva carrera.');
         console.error(error.message);
       })
     );

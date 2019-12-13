@@ -4,20 +4,18 @@ import {CommonModule} from '@angular/common';
 import {CareerRoutingModule} from './career-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {CareerComponent} from './pages/career/career.component';
-//import { ModalsComponent } from './../../modals/modals.component';
-import { CareerModalComponent } from './modals/career-modal/career-modal.component';
+//import {CareerModalModule} from './modals/career-modal.module';
 
 
 @NgModule({
   declarations: [
-    CareerComponent,
-    //ModalsComponent,
-    CareerModalComponent
+    CareerComponent
   ],
   imports: [
     CommonModule,
     CareerRoutingModule,
     SharedModule,
+    //CareerModalModule,
   ],
 })
 

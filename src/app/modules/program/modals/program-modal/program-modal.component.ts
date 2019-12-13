@@ -69,7 +69,6 @@ export class ProgramModalComponent implements OnInit {
     return Validators.compose([
       Validators.maxLength(35),
       Validators.required,
-      //Validators.pattern('^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9]*$')
       Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
     ]);
   }
@@ -82,7 +81,6 @@ export class ProgramModalComponent implements OnInit {
         Validators.min(1920),
         Validators.max(2060)
       ]);
-      
   }
   
 }
