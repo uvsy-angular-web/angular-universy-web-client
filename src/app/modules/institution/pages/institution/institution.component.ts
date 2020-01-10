@@ -5,7 +5,6 @@ import {CareerService} from '../../../../core/services/career.service';
 import {ModalService} from '../../../../modals/modal.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
-import { RepeatedTextService } from 'src/app/core/services/validator/repeated-text.service';
 
 
 @Component({

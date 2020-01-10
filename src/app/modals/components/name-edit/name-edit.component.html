@@ -14,6 +14,11 @@
         </div>
       </div>
     </div>
+    <div class="row" *ngIf="similarCareers != []">
+      <div class="col">
+        <div *ngFor="let career of similarCareers">{{career}}</div>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline"
