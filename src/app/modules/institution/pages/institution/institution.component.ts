@@ -21,14 +21,11 @@ export class InstitutionComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private navigationService: NavigationService,
-    private notificationService: ModalService,
-    private validator: RepeatedTextService) {
+    private notificationService: ModalService) {
   }
 
   ngOnInit(): void {
     this.getCareers();
-    const result = this.validator.validateCareerName();
-    console.log(result);
   }
   private getCareers() {
     this.institutionService.getInstitution().subscribe(
