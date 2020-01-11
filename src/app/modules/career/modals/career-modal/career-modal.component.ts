@@ -1,45 +1,33 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ButtonText} from '../../../shared/enums/button-text.enum';
-import {ColSize} from '../../../shared/enums/col-size.enum';
-import { CareerService } from 'src/app/core/services/career.service';
-
-const SMALL_SIZE_TEXT_LENGHT = 15;
-const MEDIUM_SIZE_TEXT_LENGHT = 25;
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import {ColSize} from '../../../../shared/enums/col-size.enum';
 
 @Component({
   selector: 'app-career-modal',
-  templateUrl: './name-edit.component.html',
+  templateUrl: './career-modal.component.html',
+  styleUrls: ['./career-modal.component.css']
 })
-export class NameEditComponent implements OnInit {
+export class CareerModalComponent implements OnInit {
   @Input() title: string;
   @Input() itemText: string;
   @Input() confirmButtonText: ButtonText;
-  @Input() maxLength;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
   public form: FormGroup;
-  public similarCareers = [];
 
-  constructor(public activeModal: NgbActiveModal,
-              private formBuilder: FormBuilder,
-              private careerService: CareerService) {
+  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder) {
   }
 
+  
   public ngOnInit(): void {
     this.createForm();
     this.calculateColForInputSize();
   }
 
   private calculateColForInputSize(): string {
-    if (this.maxLength <= SMALL_SIZE_TEXT_LENGHT) {
-      return ColSize.SMALL;
-    } else if (this.maxLength <= MEDIUM_SIZE_TEXT_LENGHT) {
-      return ColSize.MEDIUM;
-    } else {
-      return ColSize.LARGE;
-    }
+    return ColSize.MEDIUM;
   }
 
   public cancelAction(): void {
@@ -48,12 +36,8 @@ export class NameEditComponent implements OnInit {
 
   public confirmAction(): void {
     if (this.form.valid) {
-      // TODO: remove this once you pull from master
-      this.similarCareers = this.careerService.checkIfCarrerExist(this.itemTextControl.value);
-      if (this.similarCareers.length === 0) {
-         this.confirmEvent.emit(this.itemTextControl.value);
-         this.activeModal.dismiss();
-      }
+      this.confirmEvent.emit(this.itemTextControl.value);
+      this.activeModal.dismiss();
     }
   }
 
@@ -70,9 +54,11 @@ export class NameEditComponent implements OnInit {
   private  getValidatorsForCareerName(): Validators {
     return Validators.compose(
       [
-        Validators.maxLength(this.maxLength),
+        Validators.maxLength(25),
         Validators.required,
         Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
       ]);
   }
+
+
 }

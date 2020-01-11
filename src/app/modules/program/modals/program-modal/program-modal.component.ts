@@ -68,7 +68,8 @@ export class ProgramModalComponent implements OnInit {
   private static _getValidatorsForCareerName(): Validators {
     return Validators.compose([
       Validators.maxLength(35),
-      Validators.required
+      Validators.required,
+      Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
     ]);
   }
 
@@ -81,4 +82,5 @@ export class ProgramModalComponent implements OnInit {
         Validators.max(2060)
       ]);
   }
+  
 }

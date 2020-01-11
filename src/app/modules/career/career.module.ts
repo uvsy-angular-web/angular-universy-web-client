@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {CareerRoutingModule} from './career-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {CareerComponent} from './pages/career/career.component';
+//import {CareerModalModule} from './modals/career-modal.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {CareerComponent} from './pages/career/career.component';
     CommonModule,
     CareerRoutingModule,
     SharedModule,
+    //CareerModalModule,
   ],
 })
 
