@@ -1,0 +1,24 @@
+<app-modal-header [title]="title"
+                  (closeEvent)="cancelAction()"></app-modal-header>
+<form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
+  <div class="modal-body">
+    <div class="form-group">
+      <div class="{{calculateColForInputSize()}}">
+        <label for="item-text">
+          Nombre:
+        </label>
+        <div class="control">
+          <input id="item-text" appControlError
+                 class="form-control"
+                 type="text" formControlName="itemText">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline"
+            (click)="cancelAction()">Cancelar
+    </button>
+    <button type="submit" class="btn btn-primary">{{confirmButtonText}}</button>
+  </div>
+</form>

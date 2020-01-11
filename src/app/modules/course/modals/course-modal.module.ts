@@ -6,16 +6,19 @@ import {SharedModule} from '../../../shared/shared.module';
 import { ScheduleModalComponent } from './schedule-modal/schedule-modal.component';
 import {NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProfessorModalComponent } from './professor-modal/professor-modal.component';
-
+import { CourseModalComponent } from './course-modal/course-modal.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     PeriodModalComponent,
     ScheduleModalComponent,
-    ProfessorModalComponent
+    ProfessorModalComponent,
+    CourseModalComponent
   ],
   imports: [
     CommonModule,
+    NgbModule,
     ReactiveFormsModule,
     SharedModule,
     NgbTimepickerModule

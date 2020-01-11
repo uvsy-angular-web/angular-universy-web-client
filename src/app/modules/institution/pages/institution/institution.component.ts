@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {InstitutionService} from '../../../../core/services/institution.service';
 import {Career, Institution} from '../../../../models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
-import {ModalService} from '../../../../modals/modal.service';
+import {CareerModalService} from '../../../career/modals/career-modal.service';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {NavigationService} from '../../../../core/services/system/navigation.service';
 
@@ -20,7 +20,7 @@ export class InstitutionComponent implements OnInit {
     private institutionService: InstitutionService,
     private careerService: CareerService,
     private navigationService: NavigationService,
-    private notificationService: ModalService) {
+    private careerModalService: CareerModalService) {
   }
 
   ngOnInit(): void {
@@ -38,9 +38,10 @@ export class InstitutionComponent implements OnInit {
   }
 
   public openNewCareerModal() {
-    this.notificationService.openEditNameModal(
+    this.careerModalService.openEditCareerNameModal(
       'Agregar carrera',
       ButtonText.Add,
+      ''
     ).subscribe(
       (newCareerName) => this.addCareer(newCareerName)
     );
@@ -56,7 +57,7 @@ export class InstitutionComponent implements OnInit {
       () => {
         this.getCareers();
       }, ((error) => {
-        this.notificationService.showError('Ocurrió un error tratando de agregar una nueva carrera.');
+        this.careerModalService.showError('Ocurrió un error tratando de agregar una nueva carrera.');
         console.error(error.message);
       })
     );
