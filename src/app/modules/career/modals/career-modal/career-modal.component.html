@@ -1,6 +1,6 @@
 <app-modal-header [title]="title"
                   (closeEvent)="cancelAction()"></app-modal-header>
-<form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
+<form appForm [formGroup]="form">
   <div class="modal-body">
     <div class="form-group">
       <div class="{{calculateColForInputSize()}}">
@@ -10,15 +10,16 @@
         <div class="control">
           <input id="item-text" appControlError
                  class="form-control"
-                 type="text" formControlName="itemText">
+                 type="text" formControlName="careerName">
         </div>
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline"
-            (click)="cancelAction()">Cancelar
-    </button>
-    <button type="submit" class="btn btn-primary">{{confirmButtonText}}</button>
-  </div>
+  <app-modal-repeated-words-footer 
+    [defaultButtonText] = "confirmButtonText"
+    [similarWords] = "getSimilarCareerName()"
+    [repeatedWordText] = "'Ya existen las siguientes carreras con el mismo nombre: '"
+    (cancelAction)="cancelAction()"
+    (confirmAction)="confirmAction()">
+  </app-modal-repeated-words-footer>
 </form>

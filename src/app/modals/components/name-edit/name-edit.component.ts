@@ -48,12 +48,8 @@ export class NameEditComponent implements OnInit {
 
   public confirmAction(): void {
     if (this.form.valid) {
-      // TODO: remove this once you pull from master
-      this.similarCareers = this.careerService.checkIfCarrerExist(this.itemTextControl.value);
-      if (this.similarCareers.length === 0) {
-         this.confirmEvent.emit(this.itemTextControl.value);
-         this.activeModal.dismiss();
-      }
+      this.confirmEvent.emit(this.itemTextControl.value);
+      this.activeModal.dismiss();
     }
   }
 

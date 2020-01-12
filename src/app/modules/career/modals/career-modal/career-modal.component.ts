@@ -3,6 +3,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {ColSize} from '../../../../shared/enums/col-size.enum';
+import { CareerService } from 'src/app/core/services/career.service';
 
 @Component({
   selector: 'app-career-modal',
@@ -11,13 +12,15 @@ import {ColSize} from '../../../../shared/enums/col-size.enum';
 })
 export class CareerModalComponent implements OnInit {
   @Input() title: string;
-  @Input() itemText: string;
+  @Input() careerName: string;
   @Input() confirmButtonText: ButtonText;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
-  public form: FormGroup;
+  form: FormGroup;
 
-  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder) {
+  constructor(public activeModal: NgbActiveModal,
+              private formBuilder: FormBuilder,
+              private careerService: CareerService) {
   }
 
   
@@ -36,19 +39,24 @@ export class CareerModalComponent implements OnInit {
 
   public confirmAction(): void {
     if (this.form.valid) {
-      this.confirmEvent.emit(this.itemTextControl.value);
-      this.activeModal.dismiss();
+        this.confirmEvent.emit(this.careerNameControl.value);
+        this.activeModal.dismiss();
     }
+  }
+
+  public getSimilarCareerName() {
+    const careerName = this.careerNameControl.value;
+    return this.careerService.getSimilarCareers(careerName);
   }
 
   private createForm(): void {
     this.form = this.formBuilder.group({
-      itemText: new FormControl(this.itemText, this.getValidatorsForCareerName())
+      careerName: new FormControl(this.careerName, this.getValidatorsForCareerName())
     });
   }
 
-  public get itemTextControl(): FormControl {
-    return this.form.get('itemText') as FormControl;
+  public get careerNameControl(): FormControl {
+    return this.form.get('careerName') as FormControl;
   }
 
   private  getValidatorsForCareerName(): Validators {

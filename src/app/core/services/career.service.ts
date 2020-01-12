@@ -39,7 +39,7 @@ export class CareerService {
     return this.http.put(baseUrl + ENDPOINT_CAREERS, body, {headers});
   }
 
-  public checkIfCarrerExist(careerName: string): string[] {
+  public getSimilarCareers(careerName: string): string[] {
     const EMPTY_LIST = [];
     const currentInstitution = InstitutionService.getCurrentInstitution();
 
@@ -50,6 +50,11 @@ export class CareerService {
     }
 
     return EMPTY_LIST;
+  }
+
+  public getCareerNames(): string[] {
+    const currentInstitution = InstitutionService.getCurrentInstitution();
+    return currentInstitution.careers.map( (career: Career) => career.careerName);
   }
 
   private _getHeaders() {
