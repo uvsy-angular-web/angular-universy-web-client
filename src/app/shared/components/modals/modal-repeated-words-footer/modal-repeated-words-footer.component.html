@@ -1,6 +1,6 @@
 <app-modal-confirm-footer *ngIf="similarWords.length == 0"
     (confirmAction)="onConfirmAction()"
-    (confirmAction)="onCancelAction()"
+    (cancelAction)="onCancelAction()"
     [confirmButtonText]="defaultButtonText">
 </app-modal-confirm-footer>
 <div *ngIf="similarWords.length > 0">
@@ -12,7 +12,7 @@
     </div>
     <app-modal-confirm-footer 
         (confirmAction)="onConfirmAction()"
-        (confirmAction)="onCancelAction()"
+        (cancelAction)="onCancelAction()"
         [confirmButtonText]="getRepeatedConfirmButtonText()">
     </app-modal-confirm-footer>
 </div>
