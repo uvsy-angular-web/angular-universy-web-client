@@ -13,13 +13,14 @@ export class ProgramStatsComponent implements OnInit {
   backNavigationRoute: Route = Route.CAREER;
   programName: string = 'Plan 2008';
   careerName: string = 'Ingenierìa Quìmica';
+  tableTitle: string = 'Materias Cargadas';
   subjectCount: number = 45;
   levelCount: number = 4;
-  subjectsRow: SubjectsRow[] = [
-    new SubjectsRow(1, 'Matematica superior I', 0),
-    new SubjectsRow(2, 'Matematica superior II', 1),
-    new SubjectsRow(3, 'Matematica superior III', 2),
-    new SubjectsRow(4, 'Matematica superior IV', 3),
+  programStatsRow: ProgramStatsRow[] = [
+    new ProgramStatsRow(1, 'Matematica superior I', 0),
+    new ProgramStatsRow(2, 'Matematica superior II', 1),
+    new ProgramStatsRow(3, 'Matematica superior III', 2),
+    new ProgramStatsRow(4, 'Matematica superior IV', 3),
   ];
 
   constructor() { }
@@ -29,14 +30,14 @@ export class ProgramStatsComponent implements OnInit {
 
 }
 
-class SubjectsRow {
+export class ProgramStatsRow {
   level: number;
   name: string;
-  corelativesCount: number;
+  courseCount: number;
 
-  constructor(level: number, name: string, corelativesCount: number) {
+  constructor(level: number, name: string, courseCount: number) {
     this.level = level;
     this.name = name;
-    this.corelativesCount = corelativesCount;
+    this.courseCount = courseCount;
   }
 }
