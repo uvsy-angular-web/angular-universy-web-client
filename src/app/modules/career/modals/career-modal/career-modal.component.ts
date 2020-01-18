@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {ColSize} from '../../../../shared/enums/col-size.enum';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { ColSize } from '../../../../shared/enums/col-size.enum';
 import { CareerService } from 'src/app/core/services/career.service';
 
 @Component({
@@ -17,16 +17,19 @@ export class CareerModalComponent implements OnInit {
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
+  careerNames: string[];
 
-  constructor(public activeModal: NgbActiveModal,
-              private formBuilder: FormBuilder,
-              private careerService: CareerService) {
+  constructor(
+    public activeModal: NgbActiveModal,
+    private formBuilder: FormBuilder,
+    private careerService: CareerService) {
   }
 
-  
+
   public ngOnInit(): void {
     this.createForm();
     this.calculateColForInputSize();
+    this.getCareerNames();
   }
 
   private calculateColForInputSize(): string {
@@ -39,14 +42,13 @@ export class CareerModalComponent implements OnInit {
 
   public confirmAction(): void {
     if (this.form.valid) {
-        this.confirmEvent.emit(this.careerNameControl.value);
-        this.activeModal.dismiss();
+      this.confirmEvent.emit(this.careerNameControl.value);
+      this.activeModal.dismiss();
     }
   }
 
-  public getSimilarCareerName() {
-    const careerName = this.careerNameControl.value;
-    return this.careerService.getSimilarCareers(careerName);
+  private getCareerNames() {
+    this.careerNames = this.careerService.getCareersNames();
   }
 
   private createForm(): void {
@@ -59,7 +61,7 @@ export class CareerModalComponent implements OnInit {
     return this.form.get('careerName') as FormControl;
   }
 
-  private  getValidatorsForCareerName(): Validators {
+  private getValidatorsForCareerName(): Validators {
     return Validators.compose(
       [
         Validators.maxLength(25),

@@ -23,6 +23,6 @@ export class ModalConfirmFooterComponent implements OnInit {
   }
 
   onCancelAction() {
-    this.confirmAction.next();
+    this.cancelAction.next();
   }
 }

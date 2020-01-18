@@ -17,7 +17,8 @@
   </div>
   <app-modal-repeated-words-footer 
     [defaultButtonText] = "confirmButtonText"
-    [similarWords] = "getSimilarCareerName()"
+    [words] = "careerNames"
+    [wordToCompare] = "careerNameControl.value"
     [repeatedWordText] = "'Ya existen las siguientes carreras con el mismo nombre: '"
     (cancelAction)="cancelAction()"
     (confirmAction)="confirmAction()">

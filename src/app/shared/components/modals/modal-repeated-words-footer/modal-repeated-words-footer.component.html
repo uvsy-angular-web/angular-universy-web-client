@@ -1,5 +1,5 @@
 <app-modal-confirm-footer *ngIf="similarWords.length == 0"
-    (confirmAction)="onConfirmAction()"
+    (confirmAction)="searchSimilarWords()"
     (cancelAction)="onCancelAction()"
     [confirmButtonText]="defaultButtonText">
 </app-modal-confirm-footer>
