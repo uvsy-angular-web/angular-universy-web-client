@@ -1,0 +1,11 @@
+.statn-number {
+    font-weight: 300;
+    color: #383838;
+    font-size: 1.5rem;
+    padding-left: 1rem;
+}
+
+.level-count-row {
+    margin-left: 3rem;
+    font-style: italic;
+}

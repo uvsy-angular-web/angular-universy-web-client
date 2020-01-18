@@ -28,6 +28,13 @@ export class ProgramStatsComponent implements OnInit {
   ngOnInit() {
   }
 
+  getSubjectCount(): number {
+    return this.subjectCount;
+  }
+
+  getLevelCount() {
+    return this.levelCount;
+  }
 }
 
 export class ProgramStatsRow {

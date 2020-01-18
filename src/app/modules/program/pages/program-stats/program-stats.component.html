@@ -1,14 +1,17 @@
 <div class="container">
-    <app-custom-title [title]="title" [showDeleteButton]="false" [showEditButton]="false"
-        [backNavigationRoute]="backNavigationRoute">
+    <app-custom-title [title]="title" [showDeleteButton]="false" [showEditButton]="false" [backNavigationRoute]="backNavigationRoute">
     </app-custom-title>
     <div class="content">
         <h2>{{programName}}</h2>
         <h5>{{careerName}}</h5>
         <br>
+        <div class="stats-container">
+            <app-stats [subjectCount]="getSubjectCount()" [levelCount]="getLevelCount()">
+            </app-stats>
+        </div>
+        <br>
         <div class="table-container">
             <app-subjects-table [title]="tableTitle" [programStatsRow]="programStatsRow"></app-subjects-table>
         </div>
-
     </div>
 </div>
