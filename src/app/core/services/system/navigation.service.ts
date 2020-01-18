@@ -50,7 +50,7 @@ export class NavigationService {
     return currentPath === `/${route}`;
   }
 
-  private navigateToRoute(route: Route) {
+  public navigateToRoute(route: Route) {
     this.router.navigate([route]);
   }
 
