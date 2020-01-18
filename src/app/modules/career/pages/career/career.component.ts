@@ -44,6 +44,11 @@ export class CareerComponent implements OnInit {
     this.navigationService.navigateToProgramPage();
   }
 
+  public async navigateToProgramStats(program: Program) {
+    ProgramService.setCurrentProgram(program);
+    this.navigationService.navigateToProgramStats();
+  }
+
   public editStateOfCareer(state: boolean) {
     if (state !== this.career.active) {
       this.career.active = state;
@@ -55,7 +60,6 @@ export class CareerComponent implements OnInit {
     this.notificationService.openEditNameModal(
       'Modificar carrera',
       ButtonText.Edit,
-      //this.career.careerName
       '',
     ).subscribe(
       (newCareerName) => this.editCareerName(newCareerName)

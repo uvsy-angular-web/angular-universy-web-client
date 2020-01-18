@@ -12,6 +12,10 @@ export class NavigationService {
   constructor(private router: Router) {
   }
 
+  public navigateToProgramStats() {
+    this.navigateToRoute(Route.PROGRAM_STATS);
+  }
+
   public navigateToHomePage() {
     this.navigateToRoute(Route.HOME);
   }
