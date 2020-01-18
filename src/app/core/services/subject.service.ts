@@ -65,11 +65,9 @@ export class SubjectService {
   }
 
   getSubjectsName(): Observable<string[]> {
-
     return this.getSubjects().map((subjects) => {
       return subjects.map((subject: Subject) => subject.name);
     });
-
   }
 
   deleteSubject(subject: Subject) {
