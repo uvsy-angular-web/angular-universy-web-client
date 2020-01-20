@@ -1,0 +1,18 @@
+<app-modal-confirm-footer *ngIf="similarWords.length == 0"
+    (confirmAction)="searchSimilarWords()"
+    (cancelAction)="onCancelAction()"
+    [confirmButtonText]="defaultButtonText">
+</app-modal-confirm-footer>
+<div *ngIf="similarWords.length > 0">
+    <div id="repeated-word-message">
+        <label id="repeated-word-title">{{repeatedWordText}}</label>
+        <div *ngFor="let word of similarWords">
+            <span class="word-item">- {{word}} </span>
+        </div>
+    </div>
+    <app-modal-confirm-footer 
+        (confirmAction)="onConfirmAction()"
+        (cancelAction)="onCancelAction()"
+        [confirmButtonText]="getRepeatedConfirmButtonText()">
+    </app-modal-confirm-footer>
+</div>

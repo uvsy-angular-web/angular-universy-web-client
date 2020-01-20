@@ -3,6 +3,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ButtonText} from '../../../shared/enums/button-text.enum';
 import {ColSize} from '../../../shared/enums/col-size.enum';
+import { CareerService } from 'src/app/core/services/career.service';
 
 const SMALL_SIZE_TEXT_LENGHT = 15;
 const MEDIUM_SIZE_TEXT_LENGHT = 25;
@@ -19,8 +20,11 @@ export class NameEditComponent implements OnInit {
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
   public form: FormGroup;
+  public similarCareers = [];
 
-  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder) {
+  constructor(public activeModal: NgbActiveModal,
+              private formBuilder: FormBuilder,
+              private careerService: CareerService) {
   }
 
   public ngOnInit(): void {

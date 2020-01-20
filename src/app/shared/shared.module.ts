@@ -10,7 +10,9 @@ import {CustomToggleComponent} from './components/custom-toggle/custom-toggle.co
 import {ReactiveFormsModule} from '@angular/forms';
 import { NoItemMessageComponent } from './components/no-item-message/no-item-message.component';
 import { TableActionsComponent } from './components/table/table-actions/table-actions.component';
-import {ModalHeaderComponent} from './components/modal-header/modal-header.component';
+import { ModalHeaderComponent } from './components/modals/modal-header/modal-header.component';
+import { ModalConfirmFooterComponent } from './components/modals/modal-confirm-footer/modal-confirm-footer.component';
+import { ModalRepeatedWordsFooterComponent } from './components/modals/modal-repeated-words-footer/modal-repeated-words-footer.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {ModalHeaderComponent} from './components/modal-header/modal-header.compo
     CustomToggleComponent,
     NoItemMessageComponent,
     TableActionsComponent,
-    ModalHeaderComponent
+    ModalHeaderComponent,
+    ModalConfirmFooterComponent,
+    ModalRepeatedWordsFooterComponent
   ],
   exports: [
     AddItemComponent,
@@ -34,7 +38,9 @@ import {ModalHeaderComponent} from './components/modal-header/modal-header.compo
     CustomToggleComponent,
     NoItemMessageComponent,
     TableActionsComponent,
-    ModalHeaderComponent
+    ModalHeaderComponent,
+    ModalConfirmFooterComponent,
+    ModalRepeatedWordsFooterComponent
   ],
   imports: [
     CommonModule,

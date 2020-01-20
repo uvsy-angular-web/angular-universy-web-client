@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {ColSize} from '../../../../shared/enums/col-size.enum';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { ColSize } from '../../../../shared/enums/col-size.enum';
+import { CareerService } from 'src/app/core/services/career.service';
 
 @Component({
   selector: 'app-career-modal',
@@ -11,19 +12,24 @@ import {ColSize} from '../../../../shared/enums/col-size.enum';
 })
 export class CareerModalComponent implements OnInit {
   @Input() title: string;
-  @Input() itemText: string;
+  @Input() careerName: string;
   @Input() confirmButtonText: ButtonText;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
-  public form: FormGroup;
+  form: FormGroup;
+  careerNames: string[];
 
-  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder) {
+  constructor(
+    public activeModal: NgbActiveModal,
+    private formBuilder: FormBuilder,
+    private careerService: CareerService) {
   }
 
-  
+
   public ngOnInit(): void {
     this.createForm();
     this.calculateColForInputSize();
+    this.getCareerNames();
   }
 
   private calculateColForInputSize(): string {
@@ -36,22 +42,26 @@ export class CareerModalComponent implements OnInit {
 
   public confirmAction(): void {
     if (this.form.valid) {
-      this.confirmEvent.emit(this.itemTextControl.value);
+      this.confirmEvent.emit(this.careerNameControl.value);
       this.activeModal.dismiss();
     }
   }
 
+  private getCareerNames() {
+    this.careerNames = this.careerService.getCareersNames();
+  }
+
   private createForm(): void {
     this.form = this.formBuilder.group({
-      itemText: new FormControl(this.itemText, this.getValidatorsForCareerName())
+      careerName: new FormControl(this.careerName, this.getValidatorsForCareerName())
     });
   }
 
-  public get itemTextControl(): FormControl {
-    return this.form.get('itemText') as FormControl;
+  public get careerNameControl(): FormControl {
+    return this.form.get('careerName') as FormControl;
   }
 
-  private  getValidatorsForCareerName(): Validators {
+  private getValidatorsForCareerName(): Validators {
     return Validators.compose(
       [
         Validators.maxLength(25),

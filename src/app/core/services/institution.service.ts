@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import 'rxjs-compat/add/operator/map';
 import {LocalStorageService} from './local-storage.service';
 import {Institution, Institutions} from '../../models/career.model';
+import { SimilarWordService } from 'src/app/core/services/validator/repeated-text.service';
 
 const FIRST_INSTITUTION_INDEX = 0;
 const MOCKED_INSTITUTION_KEY = 'FRC';
@@ -17,7 +18,8 @@ const CURRENT_INSTITUTION_KEY = 'current-institution';
 export class InstitutionService {
 
   constructor(private http: HttpClient,
-              private systemConfigService: SystemConfigService) {
+              private systemConfigService: SystemConfigService,
+              private similarWordService: SimilarWordService) {
   }
 
 
@@ -36,7 +38,7 @@ export class InstitutionService {
       );
   }
 
-  private _getHeaders() {
+   private _getHeaders() {
     return this.systemConfigService.getHeader();
   }
 
