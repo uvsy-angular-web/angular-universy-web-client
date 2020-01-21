@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {Subject} from '../../../../models/subject.model';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from '../../../../models/subject.model';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { SubjectService } from 'src/app/core/services/subject.service';
 
 @Component({
   selector: 'app-career-modal',
@@ -18,14 +19,17 @@ export class SubjectModalComponent implements OnInit {
   form: FormGroup;
 
   levels = [1, 2, 3, 4, 5];
+  subjectsName: string[] = [];
 
   constructor(
     public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private subjectService: SubjectService) {
   }
 
   public ngOnInit(): void {
     this.createForm();
+    this.getSubjectNames();
   }
 
   public cancelAction(): void {
@@ -33,12 +37,21 @@ export class SubjectModalComponent implements OnInit {
   }
 
   public confirmAction(): void {
+
     if (this.form.valid) {
       this.subject.name = this.name.value;
       this.subject.level = this.level.value;
       this.confirmEvent.emit(this.subject);
       this.activeModal.dismiss();
     }
+  }
+
+  public getSubjectNames(): void {
+    this.subjectService.getSubjectsName().subscribe(
+      (names) => {
+        this.subjectsName = names;
+      }
+    );
   }
 
   private createForm(): void {

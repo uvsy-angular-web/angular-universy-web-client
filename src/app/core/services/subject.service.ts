@@ -1,11 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {SystemConfigService} from './system/system-config.service';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Subject} from '../../models/subject.model';
-import {ProgramService} from './program.service';
-import {CareerService} from './career.service';
-import {LocalStorageService} from './local-storage.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SystemConfigService } from './system/system-config.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Subject } from '../../models/subject.model';
+import { ProgramService } from './program.service';
+import { CareerService } from './career.service';
+import { LocalStorageService } from './local-storage.service';
+import { SimilarWordService } from './validator/repeated-text.service';
 
 const ENDPOINT_SUBJECTS = '/universy/institution/subjects';
 const CURRENT_SUBJECT_KEY = 'current-subject';
@@ -15,8 +16,10 @@ const CURRENT_SUBJECT_KEY = 'current-subject';
 })
 export class SubjectService {
 
-  constructor(private http: HttpClient,
-              private systemConfigService: SystemConfigService) {
+  constructor(
+    private http: HttpClient,
+    private systemConfigService: SystemConfigService,
+    private similarWordService: SimilarWordService) {
   }
 
   public addSubject(subject: Subject) {
@@ -29,7 +32,7 @@ export class SubjectService {
     };
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
-    return this.http.put(baseUrl + ENDPOINT_SUBJECTS, body, {headers});
+    return this.http.put(baseUrl + ENDPOINT_SUBJECTS, body, { headers });
   }
 
   public updateSubject(subject: Subject) {
@@ -43,7 +46,7 @@ export class SubjectService {
     };
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
-    return this.http.post(baseUrl + ENDPOINT_SUBJECTS, body, {headers});
+    return this.http.post(baseUrl + ENDPOINT_SUBJECTS, body, { headers });
   }
 
   getSubjects(): Observable<Subject[]> {
@@ -54,11 +57,17 @@ export class SubjectService {
     const params = new HttpParams()
       .set('programCode', currentProgramCode);
 
-    return this.http.get(baseUrl + ENDPOINT_SUBJECTS, {headers, params})
+    return this.http.get(baseUrl + ENDPOINT_SUBJECTS, { headers, params })
       .map((data: any) => {
-          return data.subjects;
-        }
+        return data.subjects;
+      }
       );
+  }
+
+  getSubjectsName(): Observable<string[]> {
+    return this.getSubjects().map((subjects) => {
+      return subjects.map((subject: Subject) => subject.name);
+    });
   }
 
   deleteSubject(subject: Subject) {
@@ -69,7 +78,7 @@ export class SubjectService {
       .set('programCode', currentProgramCode)
       .set('subjectCode', subject.subjectCode.toString());
 
-    return this.http.delete(baseUrl + ENDPOINT_SUBJECTS, {headers, params});
+    return this.http.delete(baseUrl + ENDPOINT_SUBJECTS, { headers, params });
   }
 
   private getHeaders() {

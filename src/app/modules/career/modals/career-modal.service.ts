@@ -27,13 +27,14 @@ export class CareerModalService {
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
   }
 
-  openEditCareerNameModal(title: string, confirmButtonText: ButtonText, itemText = '') {
+  openEditCareerNameModal(title: string, confirmButtonText: ButtonText, careerName = '') {
     const modalRef = this.modalService.open(CareerModalComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = title;
-    modalRef.componentInstance.itemText = itemText;
+    modalRef.componentInstance.careerName = careerName;
     modalRef.componentInstance.confirmButtonText = confirmButtonText;
     return modalRef.componentInstance.confirmEvent;
   }
+
 
   openConfirmModal(title: string, message = '', confirmationQuestion = '', confirmationButtonText: ButtonText) {
     const modalRef = this.modalService.open(ConfirmActionModalComponent, {backdrop: 'static'});
