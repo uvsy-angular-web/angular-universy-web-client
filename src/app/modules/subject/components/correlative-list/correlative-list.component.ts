@@ -24,13 +24,17 @@ export class CorrelativeListComponent implements OnInit {
 
   toTakeText = 'Para cursar';
   toApproveText = 'Para Rendir';
-  takeText = 'Reg.';
-  approveText = 'Apr.';
+  takeText = 'Regular';
+  approveText = 'Aprobada';
+  levelText = 'Nvl.: ';
 
   ngOnInit() {
   }
 
-  public isToTakeRegularChecked(subject: Subject): boolean {
+  getSubjectInfo(subject: Subject) {
+    return subject.name + ' Nivel: ' + subject.level;
+  }
+  isToTakeRegularChecked(subject: Subject): boolean {
     return this.subject.correlatives.find(
       (correlative) => {
         return correlative.subjectCode === subject.subjectCode &&
@@ -40,7 +44,7 @@ export class CorrelativeListComponent implements OnInit {
     ) !== NO_CORRELATIVE_FOUND;
   }
 
-  public isToTakeApprovedChecked(subject: Subject): boolean {
+  isToTakeApprovedChecked(subject: Subject): boolean {
     return this.subject.correlatives.find(
       (correlative) => {
         return correlative.subjectCode === subject.subjectCode &&
@@ -50,7 +54,7 @@ export class CorrelativeListComponent implements OnInit {
     ) !== NO_CORRELATIVE_FOUND;
   }
 
-  public isToApproveChecked(subject: Subject): boolean {
+  isToApproveChecked(subject: Subject): boolean {
     return this.subject.correlatives.find(
       (correlative) => {
         return correlative.subjectCode === subject.subjectCode &&

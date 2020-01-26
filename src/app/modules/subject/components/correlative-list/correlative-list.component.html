@@ -1,31 +1,42 @@
 <div class="content">
-    <table class="table">
-        <thead>
-            <tr>
-                <th colspan="2" scope="colgroup"><strong>{{toTakeText}}</strong></th>
-                <th scope="col" class="text-center"><strong>{{toApproveText}}</strong></th>
-            </tr>
-            <tr>
-                <th scope="col">{{takeText}}</th>
-                <th scope="col">{{toApproveText}}</th>
-                <th scope="col" class="border-left text-center">{{toApproveText}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let subject of subjects">
-                <td>
-                    {{isToTakeRegularChecked(subject) ? subject.name : ""}}
-                </td>
-                <td>
-                    {{isToTakeApprovedChecked(subject) ? subject.name : ""}}
-                </td>
-                <td class="border-left text-center">
-                    {{isToApproveChecked(subject) ? subject.name : ""}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="header">
+        <div class="row">
+            <div class="col-6"><strong>{{toTakeText}}</strong></div>
+            <div class="col-6 text-right"><strong>{{toApproveText}}</strong></div>
+        </div>
+        <div class="row">
+            <div class="col-3">{{takeText}}</div>
+            <div class="col-3">{{approveText}}</div>
+            <div class="col-6 text-right">{{approveText}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <div *ngFor="let subject of subjects">
+                <div class="row" *ngIf="isToTakeRegularChecked(subject)">
+                    <div class="col-4 level-col">{{levelText + subject.level}}</div>
+                    <div class="col-8">{{subject.name}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div *ngFor="let subject of subjects">
+                <div class="row" *ngIf="isToTakeApprovedChecked(subject)">
+                    <div class="col-4 level-col">{{levelText + subject.level}}</div>
+                    <div class="col-8">{{subject.name}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 border-left">
+            <div *ngFor="let subject of subjects">
+                <div class="row" *ngIf="isToApproveChecked(subject)">
+                    <div class="col-4 level-col text-right">{{levelText + subject.level}}</div>
+                    <div class="col-8 text-right">{{subject.name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="text-center">
-        <span class="font-italic" *ngIf="readOnly">No se registraron correlativas para esta materia.</span>
+        <span class="font-italic">No se registraron correlativas para esta materia.</span>
     </div>
 </div>
