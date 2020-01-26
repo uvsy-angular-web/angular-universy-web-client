@@ -28,6 +28,8 @@ export class CorrelativeListComponent implements OnInit {
   approveText = 'Aprobada';
   levelText = 'Nvl.: ';
 
+  atLeastOneCorrelative = false;
+
   ngOnInit() {
   }
 
@@ -35,34 +37,43 @@ export class CorrelativeListComponent implements OnInit {
     return subject.name + ' Nivel: ' + subject.level;
   }
   isToTakeRegularChecked(subject: Subject): boolean {
-    return this.subject.correlatives.find(
+    const isToTakeRegularChecked = this.subject.correlatives.find(
       (correlative) => {
         return correlative.subjectCode === subject.subjectCode &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.REGULAR;
       }
     ) !== NO_CORRELATIVE_FOUND;
+    this.checkAtLeastOneCorrelative(isToTakeRegularChecked);
+    return isToTakeRegularChecked;
   }
 
   isToTakeApprovedChecked(subject: Subject): boolean {
-    return this.subject.correlatives.find(
+    const isToTakeApprovedChecked = this.subject.correlatives.find(
       (correlative) => {
         return correlative.subjectCode === subject.subjectCode &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
     ) !== NO_CORRELATIVE_FOUND;
+    this.checkAtLeastOneCorrelative(isToTakeApprovedChecked);
+    return isToTakeApprovedChecked;
   }
 
   isToApproveChecked(subject: Subject): boolean {
-    return this.subject.correlatives.find(
+    const isToApproveChecked = this.subject.correlatives.find(
       (correlative) => {
         return correlative.subjectCode === subject.subjectCode &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
     ) !== NO_CORRELATIVE_FOUND;
+    this.checkAtLeastOneCorrelative(isToApproveChecked);
+    return isToApproveChecked;
   }
 
+  private checkAtLeastOneCorrelative(value: boolean) {
+    this.atLeastOneCorrelative = value || this.atLeastOneCorrelative;
+  }
 
 }

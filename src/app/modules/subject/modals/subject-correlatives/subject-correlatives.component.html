@@ -1,7 +1,7 @@
 <app-modal-header [title]="title" (closeEvent)="cancelAction()"></app-modal-header>
 <div class="modal-body">
     <div class="content">
-        <table class="table" [hidden]="!showTable()">
+        <table class="table" [hidden]="!showTable() || readOnly">
             <thead>
                 <tr>
                     <th colspan="2" scope="colgroup"><strong>Materias</strong></th>
@@ -17,30 +17,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let subject of subjects" [class.view-mode]="readOnly">
+                <tr *ngFor="let subject of subjects">
                     <th scope="row">{{subject.level}}</th>
                     <td>{{subject.name}}</td>
                     <td>
-                        <input type="checkbox" [disabled]="readOnly" [checked]="isToTakeRegularChecked(subject)" (change)="changeCorrelativeToTakeRegular(subject)">
+                        <input type="checkbox" [checked]="isToTakeRegularChecked(subject)" (change)="changeCorrelativeToTakeRegular(subject)">
                     </td>
                     <td>
-                        <input type="checkbox" [disabled]="readOnly" [checked]="isToTakeApprovedChecked(subject)" (change)="changeCorrelativeToTakeApproved(subject)">
+                        <input type="checkbox" [checked]="isToTakeApprovedChecked(subject)" (change)="changeCorrelativeToTakeApproved(subject)">
                     </td>
                     <td class="border-left text-center">
-                        <input type="checkbox" [disabled]="readOnly" [checked]="isToApproveChecked(subject)" (change)="changeCorrelativeToApprove(subject)">
+                        <input type="checkbox" [checked]="isToApproveChecked(subject)" (change)="changeCorrelativeToApprove(subject)">
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div [hidden]="!readOnly">
+            <app-correlative-list [subject]="subject" [subjects]="subjects"></app-correlative-list>
+        </div>
         <div [hidden]="showTable()" class="text-center">
-            <span class="font-italic" *ngIf="readOnly">No se registraron correlativas para esta materia.</span>
-            <span class="font-italic" *ngIf="!readOnly">No existen materias para asignar como correlativas.</span>
+            <span class="font-italic" [hidden]="readOnly">No existen materias para asignar como correlativas.</span>
         </div>
     </div>
-    <app-correlative-list [subject]="subject" [subjects]="subjects"></app-correlative-list>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline" *ngIf="!readOnly" (click)="cancelAction()">Cancelar
+    <button type="button" class="btn btn-outline" [hidden]="readOnly" (click)="cancelAction()">Cancelar
   </button>
     <button type="buttom" class="btn btn-primary" (click)="emitCorrelatives()">{{confirmButtonText}}</button>
 </div>

@@ -1,4 +1,4 @@
-<div class="content">
+<div [hidden]="!atLeastOneCorrelative">
     <div class="header">
         <div class="row">
             <div class="col-6"><strong>{{toTakeText}}</strong></div>
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="text-center">
-        <span class="font-italic">No se registraron correlativas para esta materia.</span>
-    </div>
+</div>
+<div class="text-center" [hidden]="atLeastOneCorrelative">
+    <span class="font-italic">No se registraron correlativas para esta materia.</span>
 </div>
