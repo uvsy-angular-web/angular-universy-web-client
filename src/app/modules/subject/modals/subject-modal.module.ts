@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 import {SharedModule} from '../../../shared/shared.module';
 import { SubjectCorrelativesComponent } from './subject-correlatives/subject-correlatives.component';
+import { SubjectModule } from '../subject.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SubjectCorrelativesComponent } from './subject-correlatives/subject-cor
     NgbModule,
     ReactiveFormsModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    SubjectModule,
   ],
   entryComponents: [
     SubjectCorrelativesComponent,
