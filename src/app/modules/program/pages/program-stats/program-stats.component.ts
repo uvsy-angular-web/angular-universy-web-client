@@ -8,8 +8,24 @@ import { NavigationService } from 'src/app/core/services/system/navigation.servi
 import { CareerService } from 'src/app/core/services/career.service';
 import { Subject } from 'src/app/models/subject.model';
 import { SubjectService } from 'src/app/core/services/subject.service';
+import { CourseService } from 'src/app/core/services/course.service';
+import { Course } from 'src/app/models/course.model';
 
 const FIRST_INDEX = 0;
+
+export class ProgramStatsRow {
+  level: number;
+  name: string;
+  courseCount: number;
+  courses: Course[];
+
+  constructor(level: number, name: string, courses: Course[]) {
+    this.level = level;
+    this.name = name;
+    this.courses = courses;
+    this.courseCount = courses.length;
+  }
+}
 
 @Component({
   selector: 'app-program-stats',
@@ -25,20 +41,16 @@ export class ProgramStatsComponent implements OnInit {
   // careerName: string = 'Ingenierìa Quìmica';
   careerName: string;
   tableTitle: string = 'Materias Cargadas';
-  subjectCount: number = 45;
-  levelCount: number = 4;
-  programStatsRow: ProgramStatsRow[] = [
-    new ProgramStatsRow(1, 'Matematica superior I', 0),
-    new ProgramStatsRow(2, 'Matematica superior II', 1),
-    new ProgramStatsRow(3, 'Matematica superior III', 2),
-    new ProgramStatsRow(4, 'Matematica superior IV', 3),
-  ];
-  subjects: Subject[];
+  subjectCount: number;
+  levelCount: number;
+  programStatsRow: ProgramStatsRow[] = [];
+  subjects: Subject[] = [];
 
   constructor(
     private programModalService: ProgramModalService,
     private programService: ProgramService,
     private subjectService: SubjectService,
+    private courseService: CourseService,
     private navigationService: NavigationService,
     private notificationService: ModalService) { }
 
@@ -64,24 +76,48 @@ export class ProgramStatsComponent implements OnInit {
       }
     );
   }
+
   private initVariables() {
-    // init program;
+    this.initProgram();
+    this.initCareer();
+    this.initSubjects();
+  }
+
+  private initProgram() {
     this.program = ProgramService.getCurrentProgram();
     this.programName = this.program.name;
 
-    // init career
+  }
+  private initCareer() {
     this.careerName = CareerService.getCurrentCareer().careerName;
 
-    // init subjects
+  }
+  private initSubjects() {
     this.subjectService.getSubjects().subscribe(
       (subjects: Subject[]) => {
         if (subjects) {
           this.subjects = subjects;
           this.subjectCount = this.subjects.length;
           this.calculateLevelCount();
+          this.generateProgramStatsRow();
         }
       }
     );
+
+  }
+  private generateProgramStatsRow() {
+    if (this.subjects) {
+      this.subjects.forEach(
+        (sbj) => {
+          this.courseService.getCoursesBySubject(sbj)
+            .subscribe((courses: Course[]) => {
+              const newRow = new ProgramStatsRow(sbj.level, sbj.name, courses);
+              this.programStatsRow.push(newRow);
+              this.programStatsRow.sort((a, b) => a.level - b.level);
+            });
+        }
+      );
+    }
   }
 
   private calculateLevelCount() {
@@ -105,14 +141,3 @@ export class ProgramStatsComponent implements OnInit {
   }
 }
 
-export class ProgramStatsRow {
-  level: number;
-  name: string;
-  courseCount: number;
-
-  constructor(level: number, name: string, courseCount: number) {
-    this.level = level;
-    this.name = name;
-    this.courseCount = courseCount;
-  }
-}
