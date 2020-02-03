@@ -1,0 +1,13 @@
+<app-custom-title [title]="componentTitle" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
+<div class="content">
+    <h5 class="text-right">{{correlativeCountText}}
+        <span id="correlative-total">{{correlativesCount}}/{{subjects.length}}</span></h5>
+    <div *ngFor="let subject of subjects" class="subject-detail">
+        <div *ngIf="subject.correlatives && subject.correlatives.length > 0">
+            <h5>{{subject.name}}</h5>
+            <p class="level-row">{{levelText}}<span class="level-number">{{subject.level}}</span></p>
+            <h6>{{correlativesTitle}}</h6>
+            <app-correlative-list class="correlative-list" [subject]="subject" [subject]="subjects"></app-correlative-list>
+        </div>
+    </div>
+</div>

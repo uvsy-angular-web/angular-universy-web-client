@@ -58,6 +58,10 @@ export class ProgramStatsComponent implements OnInit {
     this.initVariables();
   }
 
+  navigateToProgramSummaryPage() {
+    this.navigationService.navigateToRoute(Route.PROGRAM_SUMMARY)
+  }
+
   getSubjectCount(): number {
     return this.subjectCount;
   }
