@@ -13,12 +13,17 @@ export class ProgramSummaryComponent implements OnInit {
   levelText = 'Nivel: ';
   correlativesTitle = 'Correlativas';
   correlativeCountText = 'Materias cargadas con correlativas:';
+  printButtonText = 'Imprimir';
   correlativesCount = 0;
 
   constructor(private subjectService: SubjectService) { }
 
   ngOnInit() {
     this.getCurrentSubjects();
+  }
+  
+  printPage() {
+    alert('ASDDAS');
   }
 
   private getCurrentSubjects() {

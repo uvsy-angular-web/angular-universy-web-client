@@ -4,12 +4,15 @@
     margin-right: auto;
 }
 
-.correlative-container {
-    padding-left: 2rem;
+.correlative-list {
+    margin-left: 5%;
+    width: 90%;
 }
 
 #correlative-total {
     font-style: italic;
     font-weight: 300;
     padding-left: 2rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }

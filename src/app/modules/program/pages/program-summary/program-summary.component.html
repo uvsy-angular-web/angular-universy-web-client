@@ -7,7 +7,12 @@
             <h5>{{subject.name}}</h5>
             <p class="level-row">{{levelText}}<span class="level-number">{{subject.level}}</span></p>
             <h6>{{correlativesTitle}}</h6>
-            <app-correlative-list class="correlative-list" [subject]="subject" [subject]="subjects"></app-correlative-list>
+            <div class="correlative-list">
+                <app-correlative-list [subject]="subject" [subjects]="subjects"></app-correlative-list>
+            </div>
         </div>
+    </div>
+    <div class="text-right publish-btn-container">
+        <button class="btn btn-primary" (click)="printPage()">{{printButtonText}}</button>
     </div>
 </div>
