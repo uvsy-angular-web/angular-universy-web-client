@@ -10,6 +10,8 @@ import { StatsComponent } from './components/stats/stats.component';
 import { SubjectStatsComponent } from './components/subject-stats/subject-stats.component';
 import { ProgramSummaryComponent } from './pages/program-summary/program-summary.component';
 import { SubjectModule } from '../subject/subject.module';
+import { NgxPrintModule } from 'ngx-print';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { SubjectModule } from '../subject/subject.module';
     ProgramSummaryComponent,
   ],
   imports: [
+    NgxPrintModule,
     CommonModule,
     ProgramRoutingModule,
     SubjectModule,

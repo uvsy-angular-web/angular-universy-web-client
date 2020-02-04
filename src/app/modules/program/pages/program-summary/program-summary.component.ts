@@ -15,13 +15,16 @@ export class ProgramSummaryComponent implements OnInit {
   correlativeCountText = 'Materias cargadas con correlativas:';
   printButtonText = 'Imprimir';
   correlativesCount = 0;
-
+  printStyle = {
+    i: { opacity: 0 },
+    button: { opacity: 0 }
+  };
   constructor(private subjectService: SubjectService) { }
 
   ngOnInit() {
     this.getCurrentSubjects();
   }
-  
+
   printPage() {
     alert('ASDDAS');
   }
