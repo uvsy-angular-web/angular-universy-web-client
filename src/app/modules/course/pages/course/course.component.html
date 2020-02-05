@@ -6,9 +6,6 @@
                         [showDeleteButton]="true">
       </app-custom-title>
     </div>
-    <div class="col-2">
-      <button class="btn btn-primary" (click)="saveCourse()">Guardar</button>
-    </div>
   </div>
   <hr>
   <div class="content">
@@ -24,5 +21,9 @@
         <app-period [periods]="course.periods"></app-period>
       </div>
     </div>
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary btn-guardar" (click)="saveCourse()">Guardar</button>
   </div>
 </div>
