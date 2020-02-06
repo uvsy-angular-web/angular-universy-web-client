@@ -1,6 +1,6 @@
 <div id="print-section">
-    <app-custom-title [title]="componentTitle" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
     <div class="content">
+        <app-custom-title [title]="componentTitle" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
         <h5 class="text-right">{{correlativeCountText}}
             <span id="correlative-total">{{correlativesCount}}/{{subjects.length}}</span></h5>
         <div *ngFor="let subject of subjects" class="subject-detail">

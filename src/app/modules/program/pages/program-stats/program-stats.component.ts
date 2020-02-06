@@ -34,17 +34,17 @@ export class ProgramStatsRow {
 })
 export class ProgramStatsComponent implements OnInit {
   program: Program;
-  title: string = 'Publicar Plan';
   backNavigationRoute: Route = Route.CAREER;
-  // programName: string = 'Plan 2008';
   programName: string;
-  // careerName: string = 'Ingenierìa Quìmica';
   careerName: string;
-  tableTitle: string = 'Materias Cargadas';
   subjectCount: number;
   levelCount: number;
   programStatsRow: ProgramStatsRow[] = [];
   subjects: Subject[] = [];
+  title = 'Publicar Plan';
+  tableTitle = 'Materias Cargadas';
+  correlativeBtnTxt = 'Ver correlativas cargadas';
+  publishBtnTxt = 'Publicar';
 
   constructor(
     private programModalService: ProgramModalService,

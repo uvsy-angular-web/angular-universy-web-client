@@ -1,8 +1,8 @@
-<h4 class="margin-top-1">
+<h5 class="margin-top-1">
     {{title}}
-</h4>
+</h5>
 <div *ngIf="programStatsRow.length != 0 ">
-    <table class="table margin-top-2">
+    <table class="table margin-top-1">
         <thead>
             <tr>
                 <th scope="col">{{ levelRowTitle }}</th>
@@ -19,6 +19,6 @@
         </tbody>
     </table>
 </div>
-<div *ngIf="programStatsRow.length === 0">
+<div *ngIf="programStatsRow.length === 0" class="margin-top-1">
     <app-no-item-message [message]="noRowMessage"></app-no-item-message>
 </div>
