@@ -18,10 +18,9 @@
         </div>
         <hr>
         <div class="text-right publish-btn-container">
+            <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
+                <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
             <button class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
-        </div>
-        <div class="text-right publish-btn-container">
-            <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
         </div>
     </div>
 </div>

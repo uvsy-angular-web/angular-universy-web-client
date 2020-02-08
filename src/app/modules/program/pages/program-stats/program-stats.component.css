@@ -19,3 +19,11 @@
 #careerName {
     font-weight: 300;
 }
+
+.btn-secondary {
+    margin-right: 1rem;
+}
+
+.btn-secondary i {
+    vertical-align: bottom;
+}
