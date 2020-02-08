@@ -45,7 +45,12 @@ export class ProgramStatsComponent implements OnInit {
   tableTitle = 'Materias Cargadas';
   correlativeBtnTxt = 'Ver correlativas cargadas';
   publishBtnTxt = 'Publicar';
-
+  printButtonText = 'Imprimir';
+  printStyle = {
+    a: { opacity: 0 },
+    button: { opacity: 0 }
+  };
+  
   constructor(
     private programModalService: ProgramModalService,
     private programService: ProgramService,
