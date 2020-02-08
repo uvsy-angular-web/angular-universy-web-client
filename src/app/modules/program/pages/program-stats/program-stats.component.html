@@ -5,8 +5,8 @@
         <div class="row  flex-row-reverse">
             <a href="" class="add-item" id="subject-btn" (click)="navigateToProgramSummaryPage()" data-toggle="modal">{{correlativeBtnTxt}}</a>
         </div>
+        <h5 id="careerName">{{careerName}}</h5>
         <h2>{{programName}}</h2>
-        <h5>{{careerName}}</h5>
         <br>
         <div class="stats-container">
             <app-stats [subjectCount]="getSubjectCount()" [levelCount]="getLevelCount()">
