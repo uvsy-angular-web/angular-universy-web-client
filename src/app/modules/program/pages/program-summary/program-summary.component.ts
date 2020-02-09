@@ -29,13 +29,15 @@ export class ProgramSummaryComponent implements OnInit {
   }
 
   private getCurrentSubjects() {
-    if (this.subjects.length !== NO_SUBJECT_LENGTH) {
+    if (this.subjects.length === NO_SUBJECT_LENGTH) {
       this.subjectService.getSubjects().subscribe(
         (subjects: Subject[]) => {
           this.subjects = subjects;
           this.calculateCorrelativesCount();
         }
       );
+    } else {
+      this.calculateCorrelativesCount();
     }
   }
 
