@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'src/app/models/subject.model';
 import { SubjectService } from 'src/app/core/services/subject.service';
+
+const NO_SUBJECT_LENGTH = 0;
 
 @Component({
   selector: 'app-program-summary',
@@ -8,7 +10,8 @@ import { SubjectService } from 'src/app/core/services/subject.service';
   styleUrls: ['./program-summary.component.css']
 })
 export class ProgramSummaryComponent implements OnInit {
-  subjects: Subject[] = [];
+  @Input() isInsideComponent = false;
+  @Input() subjects: Subject[] = [];
   componentTitle = 'Correlativas cargadas';
   levelText = 'Nivel: ';
   correlativesTitle = 'Correlativas';
@@ -25,17 +28,15 @@ export class ProgramSummaryComponent implements OnInit {
     this.getCurrentSubjects();
   }
 
-  printPage() {
-    alert('ASDDAS');
-  }
-
   private getCurrentSubjects() {
-    this.subjectService.getSubjects().subscribe(
-      (subjects: Subject[]) => {
-        this.subjects = subjects;
-        this.calculateCorrelativesCount();
-      }
-    );
+    if (this.subjects.length !== NO_SUBJECT_LENGTH) {
+      this.subjectService.getSubjects().subscribe(
+        (subjects: Subject[]) => {
+          this.subjects = subjects;
+          this.calculateCorrelativesCount();
+        }
+      );
+    }
   }
 
   private calculateCorrelativesCount() {
@@ -45,6 +46,6 @@ export class ProgramSummaryComponent implements OnInit {
           this.correlativesCount++;
         }
       }
-    )
+    );
   }
 }

@@ -46,11 +46,14 @@ export class ProgramStatsComponent implements OnInit {
   correlativeBtnTxt = 'Ver correlativas cargadas';
   publishBtnTxt = 'Publicar';
   printButtonText = 'Imprimir';
+  subjectCountStatTxt = 'Cantidad de materias';
+  levelCountStatTxt = 'Cantidad de niveles';
   printStyle = {
+    body: { 'margin-left': '3rem'},
     a: { opacity: 0 },
     button: { opacity: 0 }
   };
-  
+
   constructor(
     private programModalService: ProgramModalService,
     private programService: ProgramService,
@@ -65,14 +68,6 @@ export class ProgramStatsComponent implements OnInit {
 
   navigateToProgramSummaryPage() {
     this.navigationService.navigateToRoute(Route.PROGRAM_SUMMARY)
-  }
-
-  getSubjectCount(): number {
-    return this.subjectCount;
-  }
-
-  getLevelCount() {
-    return this.levelCount;
   }
 
   openConfirmPublishModal(program: Program) {

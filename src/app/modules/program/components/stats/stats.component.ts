@@ -6,11 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
-  @Input() subjectCount: number;
-  @Input() levelCount: number;
+  @Input() title: number;
+  @Input() value: string;
 
-  levelCountTitle = 'Cantidad de niveles';
-  subjectCountTitle = 'Cantidad de materias';
+
 
   constructor() { }
 

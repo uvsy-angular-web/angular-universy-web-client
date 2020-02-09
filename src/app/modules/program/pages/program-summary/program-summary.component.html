@@ -1,11 +1,13 @@
 <div id="print-section">
-    <div class="content">
-        <app-custom-title [title]="componentTitle" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
-        <h5 class="text-right">{{correlativeCountText}}
-            <span id="correlative-total">{{correlativesCount}}/{{subjects.length}}</span></h5>
+    <div [ngClass]="{'content':!isInsideComponent}">
+        <app-custom-title *ngIf="!isInsideComponent" [title]="componentTitle" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
+        <h3 *ngIf="isInsideComponent">{{componentTitle}}</h3>
+        <div class="margin-top-2">
+            <app-stats [title]="correlativeCountText" [value]="correlativesCount+'/'+subjects.length"> </app-stats>
+        </div>
         <div *ngFor="let subject of subjects" class="subject-detail">
-            <div *ngIf="subject.correlatives && subject.correlatives.length > 0">
-                <h3>{{subject.name}}</h3>
+            <div *ngIf="subject.correlatives && subject.correlatives.length > 0" class="subject-table">
+                <h4>{{subject.name}}</h4>
                 <p class="level-row">{{levelText}}<span class="level-number">{{subject.level}}</span></p>
                 <h6 class="correlative-title">{{correlativesTitle}}</h6>
                 <div class="correlative-list">
@@ -13,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-right publish-btn-container">
+        <div class="text-right publish-btn-container" *ngIf="!isInsideComponent">
             <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
         </div>
     </div>
