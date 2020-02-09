@@ -69,7 +69,6 @@ export class CourseModalService {
     return modalRef.componentInstance.confirmEvent;
   }
 
-  //Course
   showError(errorMessage: string) {
     const modalRef = this.modalService.open(InformationModalComponent);
     modalRef.componentInstance.title = '¡Ocurrió un error!';

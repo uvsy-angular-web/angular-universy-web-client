@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {SubjectService} from '../../../../core/services/subject.service';
-import {Subject} from '../../../../models/subject.model';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {ModalService} from '../../../../modals/modal.service';
-import {NavigationService} from '../../../../core/services/system/navigation.service';
-import {CourseService} from '../../../../core/services/course.service';
-import {Course} from '../../../../models/course.model';
-import {ProgramService} from '../../../../core/services/program.service';
-import {SubjectModalService} from '../../modals/subject-modal.service';
-import {Correlative} from '../../../../models/correlative.model';
+import { Component, OnInit } from '@angular/core';
+import { SubjectService } from '../../../../core/services/subject.service';
+import { Subject } from '../../../../models/subject.model';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { ModalService } from '../../../../modals/modal.service';
+import { NavigationService } from '../../../../core/services/system/navigation.service';
+import { CourseService } from '../../../../core/services/course.service';
+import { Course } from '../../../../models/course.model';
+import { ProgramService } from '../../../../core/services/program.service';
+import { SubjectModalService } from '../../modals/subject-modal.service';
+import { Correlative } from '../../../../models/correlative.model';
 
 @Component({
   selector: 'app-subject',
@@ -20,25 +20,23 @@ export class SubjectComponent implements OnInit {
   public subject = new Subject();
   public courses: Course[] = [];
 
-  constructor(private subjectService: SubjectService,
-              private navigationService: NavigationService,
-              private programService: ProgramService,
-              private subjectModalService: SubjectModalService,
-              private courseService: CourseService,
-              private notificationService: ModalService) {
+  constructor(
+    private subjectService: SubjectService,
+    private navigationService: NavigationService,
+    private subjectModalService: SubjectModalService,
+    private courseService: CourseService,
+    private notificationService: ModalService) {
   }
 
   public openNewCourseModal() {
     this.notificationService.openEditNameModal(
       'Agregar Comisión',
       ButtonText.Add,
-      '',
-      //10
-      ).subscribe(
-      (courseName) => {
-        this.addCourse(courseName);
-      }
-    );
+      '').subscribe(
+        (courseName) => {
+          this.addCourse(courseName);
+        }
+      );
   }
 
   public canModifySubject() {
@@ -83,8 +81,8 @@ export class SubjectComponent implements OnInit {
   private getCourses() {
     this.courseService.getCourses()
       .subscribe((courses) => {
-          this.courses = courses;
-        }
+        this.courses = courses;
+      }
       );
   }
 
@@ -123,10 +121,10 @@ export class SubjectComponent implements OnInit {
     this.subjectModalService.openEditSubjectModal(this.subject).subscribe(
       () => {
         this.subjectService.updateSubject(this.subject).subscribe(() => {
-            this.notificationService.inform(
-              '¡Modificación con éxito!',
-              'Se actualizó la materia exitosamente.');
-          }
+          this.notificationService.inform(
+            '¡Modificación con éxito!',
+            'Se actualizó la materia exitosamente.');
+        }
         );
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de modificar la materia');

@@ -68,7 +68,7 @@ export class ProgramStatsComponent implements OnInit {
   }
 
   navigateToProgramSummaryPage() {
-    this.navigationService.navigateToRoute(Route.PROGRAM_SUMMARY)
+    this.navigationService.navigateToRoute(Route.PROGRAM_SUMMARY);
   }
 
   openConfirmPublishModal() {
@@ -92,7 +92,6 @@ export class ProgramStatsComponent implements OnInit {
     this.program = ProgramService.getCurrentProgram();
     this.programName = this.program.name;
     this.isProgramPublished = this.program.published;
-    console.log('isProgrampublished', this.program)
     this.title = this.isProgramPublished ? 'Visualizar plan' : 'Publicar plan';
 
   }
