@@ -1,54 +1,55 @@
-
 .btn-program-on {
-  background-color: #E5C028;
+    background-color: #E5C028;
 }
 
 .btn-program-on:hover {
-  background-color: #eec829;
+    background-color: #eec829;
 }
 
 .btn-program-off {
-  background-color: gray;
+    background-color: gray;
 }
 
 .btn-program-off:hover {
-  background-color: #979797;
+    background-color: #979797;
 }
 
-
 .career-title {
-  margin-left: 1rem;
-  margin-right: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .program {
-
-  width: 100%;
-  border-radius: 25px;
-  margin: 2rem;
-  padding: 2rem;
-  transition: all 100ms ease-in-out;
+    width: 100%;
+    border-radius: 25px;
+    margin: 2rem;
+    padding: 2rem;
+    transition: all 100ms ease-in-out;
 }
 
 .no-program-text {
-  font-weight: lighter;
-  font-style: italic;
+    font-weight: lighter;
+    font-style: italic;
 }
 
 .not-pusblished {
-  border-left: 2px solid white;
+    border-left: 2px solid white;
 }
-#published-icon{
-  color: greenyellow;
+
+#published-icon {
+    color: greenyellow;
 }
 
 .program-name {
-  color: white;
+    color: white;
 }
 
 .valid-from {
-  color: white;
-  font-style: italic;
+    color: white;
+    font-style: italic;
 }
 
-
+#program-stat-link {
+    color: white;
+    padding-left: 2rem;
+}

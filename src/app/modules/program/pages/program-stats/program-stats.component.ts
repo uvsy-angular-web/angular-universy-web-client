@@ -41,7 +41,7 @@ export class ProgramStatsComponent implements OnInit {
   levelCount: number;
   programStatsRow: ProgramStatsRow[] = [];
   subjects: Subject[] = [];
-  title = 'Publicar Plan';
+  title: string;
   tableTitle = 'Materias Cargadas';
   correlativeBtnTxt = 'Ver correlativas cargadas';
   publishBtnTxt = 'Publicar';
@@ -53,6 +53,7 @@ export class ProgramStatsComponent implements OnInit {
     a: { opacity: 0 },
     button: { opacity: 0 }
   };
+  isProgramPublished = true;
 
   constructor(
     private programModalService: ProgramModalService,
@@ -90,6 +91,9 @@ export class ProgramStatsComponent implements OnInit {
   private initProgram() {
     this.program = ProgramService.getCurrentProgram();
     this.programName = this.program.name;
+    this.isProgramPublished = this.program.published;
+    console.log('isProgrampublished', this.program)
+    this.title = this.isProgramPublished ? 'Visualizar plan' : 'Publicar plan';
 
   }
   private initCareer() {

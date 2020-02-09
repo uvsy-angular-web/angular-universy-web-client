@@ -6,11 +6,8 @@
         <div class="text-right publish-btn-container">
             <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
                 <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
-            <button class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
+            <button *ngIf="!isProgramPublished" class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
         </div>
-        <!-- <div class="row  flex-row-reverse">
-            <a href="" class="add-item" id="subject-btn" (click)="navigateToProgramSummaryPage()" data-toggle="modal">{{correlativeBtnTxt}}</a>
-        </div> -->
         <h5 id="careerName">{{careerName}}</h5>
         <h2>{{programName}}</h2>
         <br>
@@ -35,7 +32,7 @@
         <div class="text-right publish-btn-container">
             <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
                 <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
-            <button class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
+            <button *ngIf="!isProgramPublished" class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
         </div>
     </body>
 </div>
