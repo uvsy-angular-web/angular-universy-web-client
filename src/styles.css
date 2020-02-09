@@ -1,44 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-html, body {
-  margin:0;
-  padding:0;
-  height: 100vh;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }
+
 .add-item {
-  font-size: 1.2rem;
-  color: black;
+    font-size: 1.2rem;
+    color: black;
 }
 
 .btn-primary {
-  background-color: #3D1255;
-  border-color: #3D1255;
-  border-radius: 42px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transition: all 150ms ease-in-out;
+    background-color: #3D1255;
+    border-color: #3D1255;
+    border-radius: 42px;
+    transition: all 150ms ease-in-out;
 }
 
 .btn-primary:hover {
-  background-color: #61137d;
-  border-color: #61137d;
-  transform: translateY(-0.2rem);
+    background-color: #61137d;
+    border-color: #61137d;
+    transform: translateY(-0.2rem);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: #3D1255;
+    color: #3D1255;
+    border-radius: 42px;
+    transition: all 150ms ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: transparent;
+    border-color: #61137d;
+    color: #61137d;
+    transform: translateY(-0.1rem);
 }
 
 .clickeable {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .content {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-form.submitted input.ng-invalid, input.ng-dirty.ng-invalid {
-  border: 1px solid red;
-}
-.margin-top-2{
-  margin-top: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
-i{
-  cursor: pointer;
+form.submitted input.ng-invalid,
+input.ng-dirty.ng-invalid {
+    border: 1px solid red;
+}
+
+.margin-top-1 {
+    margin-top: 1rem;
+}
+
+.margin-top-2 {
+    margin-top: 2rem;
+}
+
+.margin-top-3 {
+    margin-top: 3rem;
+}
+
+.margin-top-4 {
+    margin-top: 4rem;
+}
+
+.margin-top-5 {
+    margin-top: 5rem;
+}
+
+i {
+    cursor: pointer;
 }

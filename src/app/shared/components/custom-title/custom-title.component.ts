@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NavigationService} from '../../../core/services/system/navigation.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NavigationService } from '../../../core/services/system/navigation.service';
+import { Route } from 'src/app/core/services/system/routes/routes.enum';
 
 @Component({
   selector: 'app-custom-title',
@@ -14,6 +15,7 @@ export class CustomTitleComponent implements OnInit {
   @Input() showDeleteButton = true;
   @Input() showEditButton = true;
   @Input() showNavigationArrow = true;
+  @Input() backNavigationRoute: Route;
 
   constructor(private navigationService: NavigationService) {
   }
@@ -22,7 +24,11 @@ export class CustomTitleComponent implements OnInit {
   }
 
   public navigateToPreviousPage() {
-    this.navigationService.navigateToPreviousPage();
+    if (this.backNavigationRoute) {
+      this.navigationService.navigateToRoute(this.backNavigationRoute);
+    } else {
+      this.navigationService.navigateToPreviousPage();
+    }
   }
 
   public editItemAction() {

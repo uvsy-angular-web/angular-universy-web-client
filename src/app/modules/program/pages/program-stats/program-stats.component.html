@@ -1,0 +1,38 @@
+<div class="container">
+    <app-custom-title [title]="title" [showDeleteButton]="false" [showEditButton]="false" [backNavigationRoute]="backNavigationRoute">
+    </app-custom-title>
+
+    <body class="content" id="print-section">
+        <div class="text-right publish-btn-container">
+            <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
+                <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
+            <button *ngIf="!isProgramPublished" class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
+        </div>
+        <h5 id="careerName">{{careerName}}</h5>
+        <h2>{{programName}}</h2>
+        <br>
+        <div class="stats-container">
+            <div class="row">
+                <div class="col-md-5 col-xs-12">
+                    <app-stats [title]="subjectCountStatTxt" [value]="subjectCount"> </app-stats>
+                </div>
+                <div class="col-md-7 col-xs-12">
+                    <app-stats [title]="levelCountStatTxt" [value]="levelCount"> </app-stats>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="table-container">
+            <app-subjects-table [title]="tableTitle" [programStatsRow]="programStatsRow"></app-subjects-table>
+        </div>
+        <div class="margin-top-3">
+            <app-program-summary [subjects]="subjects" [isInsideComponent]="true"></app-program-summary>
+        </div>
+        <hr>
+        <div class="text-right publish-btn-container">
+            <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
+                <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
+            <button *ngIf="!isProgramPublished" class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
+        </div>
+    </body>
+</div>

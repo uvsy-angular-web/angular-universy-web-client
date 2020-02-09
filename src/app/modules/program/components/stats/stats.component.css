@@ -1,0 +1,17 @@
+.stat-number {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+}
+
+.stat-chip {
+    background: #ffc729;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    border-radius: 16px;
+    max-width: max-content;
+    margin-left: 3rem;
+}

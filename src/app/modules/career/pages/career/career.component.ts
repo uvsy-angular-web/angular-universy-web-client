@@ -21,12 +21,10 @@ export class CareerComponent implements OnInit {
   programs: Program[] = [];
 
 
-  constructor(private route: ActivatedRoute,
-              private careerService: CareerService,
+  constructor(private careerService: CareerService,
               private programService: ProgramService,
               private navigationService: NavigationService,
               private programModalService: ProgramModalService,
-              private institutionService: InstitutionService,
               private notificationService: ModalService) {
   }
 
@@ -44,6 +42,11 @@ export class CareerComponent implements OnInit {
     this.navigationService.navigateToProgramPage();
   }
 
+  public async navigateToProgramStats(program: Program) {
+    ProgramService.setCurrentProgram(program);
+    this.navigationService.navigateToProgramStats();
+  }
+
   public editStateOfCareer(state: boolean) {
     if (state !== this.career.active) {
       this.career.active = state;
@@ -55,7 +58,6 @@ export class CareerComponent implements OnInit {
     this.notificationService.openEditNameModal(
       'Modificar carrera',
       ButtonText.Edit,
-      //this.career.careerName
       '',
     ).subscribe(
       (newCareerName) => this.editCareerName(newCareerName)
@@ -69,29 +71,8 @@ export class CareerComponent implements OnInit {
   }
 
 
-  public openConfirmPublishModal(program: Program) {
-    this.programModalService.openConfirmPublishModal().subscribe(
-      (confirm) => {
-        if (confirm) {
-          this.publishProgram(program);
-        }
-      }
-    );
-  }
-
   public showAddProgram(): boolean {
     return this.programs.length === 0 || !this.isThereProgramNotPublished();
-  }
-
-  private publishProgram(program: Program) {
-    this.programService.publishProgram(program).subscribe(
-      () => {
-        this.getPrograms();
-      }, (error) => {
-        this.notificationService.showError('Ocurrió un problema tratando de publicar el plan');
-        console.error(error);
-      }
-    );
   }
 
   private isThereProgramNotPublished() {

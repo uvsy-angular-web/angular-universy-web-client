@@ -1,12 +1,13 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {SystemConfigService} from './system/system-config.service';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Course} from '../../models/course.model';
-import {SubjectService} from './subject.service';
-import {LocalStorageService} from './local-storage.service';
-import {Subject} from '../../models/subject.model';
-import {ProgramService} from './program.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SystemConfigService } from './system/system-config.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Course } from '../../models/course.model';
+import { SubjectService } from './subject.service';
+import { LocalStorageService } from './local-storage.service';
+import { Subject } from '../../models/subject.model';
+import { ProgramService } from './program.service';
+
 
 const ENDPOINT_COURSES = '/universy/institution/courses';
 const CURRENT_COURSE_KEY = 'current-course';
@@ -16,24 +17,29 @@ const CURRENT_COURSE_KEY = 'current-course';
 })
 export class CourseService {
 
-  constructor(private http: HttpClient,
-              private systemConfigService: SystemConfigService) {
+  constructor(
+    private http: HttpClient,
+    private systemConfigService: SystemConfigService) {
   }
 
   getCourses(): Observable<Course[]> {
+    const currentSubject = SubjectService.getCurrentSubject();
+    return this.getCoursesBySubject(currentSubject);
+  }
+
+  getCoursesBySubject(subject: Subject): Observable<Course[]> {
     const baseUrl = CourseService.getBaseUrl();
     const headers = this.getHeaders();
-
-    const currentSubject = SubjectService.getCurrentSubject();
     const params = new HttpParams()
-      .set('subjectCode', currentSubject.subjectCode.toString());
+      .set('subjectCode', subject.subjectCode.toString());
 
-    return this.http.get(baseUrl + ENDPOINT_COURSES, {headers, params})
+    return this.http.get(baseUrl + ENDPOINT_COURSES, { headers, params })
       .map((data: any) => {
-          return data.courses;
-        }
+        return data.courses;
+      }
       );
   }
+
 
   addCourse(courseName: string) {
     const body = {
@@ -44,13 +50,13 @@ export class CourseService {
     };
     const baseUrl = CourseService.getBaseUrl();
     const headers = this.getHeaders();
-    return this.http.put(baseUrl + ENDPOINT_COURSES, body, {headers});
+    return this.http.put(baseUrl + ENDPOINT_COURSES, body, { headers });
   }
 
   updateCourse(course: Course) {
     const baseUrl = CourseService.getBaseUrl();
     const headers = this.getHeaders();
-    return this.http.post(baseUrl + ENDPOINT_COURSES, course, {headers});
+    return this.http.post(baseUrl + ENDPOINT_COURSES, course, { headers });
   }
 
   deleteCourse(course: Course) {

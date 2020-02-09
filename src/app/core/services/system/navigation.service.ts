@@ -12,6 +12,10 @@ export class NavigationService {
   constructor(private router: Router) {
   }
 
+  public navigateToProgramStats() {
+    this.navigateToRoute(Route.PROGRAM_STATS);
+  }
+
   public navigateToHomePage() {
     this.navigateToRoute(Route.HOME);
   }
@@ -46,7 +50,7 @@ export class NavigationService {
     return currentPath === `/${route}`;
   }
 
-  private navigateToRoute(route: Route) {
+  public navigateToRoute(route: Route) {
     this.router.navigate([route]);
   }
 
