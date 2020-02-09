@@ -16,11 +16,11 @@
       </div>
     </div>
   </div>
-  <app-modal-repeated-words-footer 
+  <app-modal-repeated-words-footer
     [defaultButtonText]="confirmButtonText"
     [words]="subjectsName"
     [wordToCompare]="name.value"
-    [repeatedWordText]="'Ya existen las siguientes materias con el mismo nombre: '"
+    [repeatedWordText]="'Existen materias con un nombre similar: '"
     (cancelAction)="cancelAction()"
     (confirmAction)="confirmAction()">
   </app-modal-repeated-words-footer>
