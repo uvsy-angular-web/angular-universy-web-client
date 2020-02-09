@@ -26,7 +26,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   entryComponents: [
     PeriodModalComponent,
     ScheduleModalComponent,
-    ProfessorModalComponent
+    ProfessorModalComponent,
+    CourseModalComponent
   ]
 })
 export class CourseModalModule {

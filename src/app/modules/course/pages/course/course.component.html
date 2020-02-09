@@ -3,6 +3,7 @@
     <div class="col-10">
       <app-custom-title [title]="'Comisión: ' + course.name"
                         [showEditButton]="true"
+                        (editItem)="openEditModalCourse()"
                         [showDeleteButton]="true">
       </app-custom-title>
     </div>
