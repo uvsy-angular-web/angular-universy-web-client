@@ -49,7 +49,7 @@ export class ProgramStatsComponent implements OnInit {
   subjectCountStatTxt = 'Cantidad de materias';
   levelCountStatTxt = 'Cantidad de niveles';
   printStyle = {
-    body: { 'margin-left': '3rem'},
+    body: { 'margin-left': '3rem' },
     a: { opacity: 0 },
     button: { opacity: 0 }
   };
@@ -70,12 +70,12 @@ export class ProgramStatsComponent implements OnInit {
     this.navigationService.navigateToRoute(Route.PROGRAM_SUMMARY)
   }
 
-  openConfirmPublishModal(program: Program) {
+  openConfirmPublishModal() {
+    const program = ProgramService.getCurrentProgram();
     this.programModalService.openConfirmPublishModal().subscribe(
       (confirm) => {
         if (confirm) {
-          // TODO: add the link to the real program
-          // this.publishProgram(program);
+          this.publishProgram(program);
         }
       }
     );
