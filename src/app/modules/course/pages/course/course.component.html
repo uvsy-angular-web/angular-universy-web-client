@@ -4,7 +4,9 @@
       <app-custom-title [title]="'Comisión: ' + course.name"
                         [showEditButton]="true"
                         (editItem)="openEditModalCourse()"
-                        [showDeleteButton]="true">
+                        [showDeleteButton]="true"
+                        (deleteItem)="openDeleteModal()">
+
       </app-custom-title>
     </div>
   </div>

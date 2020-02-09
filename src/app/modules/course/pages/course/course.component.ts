@@ -68,4 +68,29 @@ export class CourseComponent implements OnInit {
       })
     );
   }
+
+  public openDeleteModal() {
+    this.notificationService.openConfirmModal(
+      'Eliminar comisión',
+      'Se eliminará la comisión con sus períodos, profesores y horarios.',
+      '¿ Está seguro que desea eliminarla ?',
+      ButtonText.Delete
+    ).subscribe(
+      () => {
+        this.deleteCourse();
+      }
+    );
+  }
+
+  private deleteCourse() {
+    this.courseService.deleteCourse(this.course).subscribe(
+      () => {
+        this.navigationService.navigateToProgramPage();
+      },
+      (error) => {
+        this.notificationService.showError('Ocurrió un error intentando borrar la comisión.');
+        console.error(error);
+      });
+  }
+
 }
