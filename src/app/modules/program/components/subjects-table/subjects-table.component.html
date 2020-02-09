@@ -1,0 +1,24 @@
+<h4 class="margin-top-2">
+    {{title}}
+</h4>
+<div *ngIf="programStatsRow.length != 0 ">
+    <table class="table margin-top-1 table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">{{ levelRowTitle }}</th>
+                <th scope="col" class="text-center">{{ nameRowTitle }}</th>
+                <th scope="col" class="text-right">{{ courseCountRowTitle }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of programStatsRow">
+                <td>{{ row.level }}</td>
+                <td class="text-center">{{ row.name }}</td>
+                <td class="text-right">{{ row.courseCount }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="programStatsRow.length === 0" class="margin-top-1">
+    <app-no-item-message [message]="noRowMessage"></app-no-item-message>
+</div>

@@ -1,45 +1,42 @@
 <div class="container">
-  <div class="row">
-    <div class="col-7">
-      <app-custom-title [title]="career.careerName"
-                        (editItem)="openEditCareerModal()"
-                        [showDeleteButton]="false"></app-custom-title>
-    </div>
-    <div class="col-5">
-      <app-custom-toggle class="float-right" [activated]="getStateOfCareer()"
-                         (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
-    </div>
-  </div>
-  <hr>
-  <div class="content">
-    <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()"
-                  [buttonTitle]="'Agregar plan'"></app-add-item>
-    <div *ngIf="programs">
-      <div *ngFor="let program of programs" class="row text-left program"
-           [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }">
-        <div class="col-8 clickeable" (click)="navigateToProgramPage(program)">
-          <h3 class="program-name">
-            {{program.name}}
-          </h3>
-          <h4 class="valid-from">
-            Desde: {{program.validFrom | date:'yyyy'}}</h4>
+    <div class="row">
+        <div class="col-7">
+            <app-custom-title [title]="career.careerName" (editItem)="openEditCareerModal()" [showDeleteButton]="false"></app-custom-title>
         </div>
-        <div class="col-4 text-center not-pusblished" *ngIf="!program.published">
-          <br>
-          <button class="btn btn-primary" (click)="openConfirmPublishModal(program)">Publicar</button>
+        <div class="col-5">
+            <app-custom-toggle class="float-right" [activated]="getStateOfCareer()" (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
         </div>
-        <div class="col-4 text-center align-self-center" *ngIf="program.published">
-          <h3 class="program-name ">
-            <i class="material-icons" id="published-icon">fiber_manual_record</i>
-            Publicado</h3>
+    </div>
+    <hr>
+    <div class="content">
+        <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()" [buttonTitle]="'Agregar plan'"></app-add-item>
+        <div *ngIf="programs">
+            <div *ngFor="let program of programs" class="row text-left program" [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }">
+                <div class="col-8 clickeable" (click)="navigateToProgramPage(program)">
+                    <h3 class="program-name">
+                        {{program.name}}
+                    </h3>
+                    <h4 class="valid-from">
+                        Desde: {{program.validFrom | date:'yyyy'}}</h4>
+                </div>
+                <div class="col-4 text-center not-pusblished" *ngIf="!program.published">
+                    <br>
+                    <button class="btn btn-primary" (click)="navigateToProgramStats(program)">Publicar</button>
+                </div>
+                <div class="col-4 text-center align-self-center" *ngIf="program.published">
+                    <h3 class="program-name ">
+                        <i class="material-icons" id="published-icon">fiber_manual_record</i> Publicado
+                    </h3>
+                    <div class="text-center">
+                        <a href="" class="add-item" id="program-stat-link" (click)="navigateToProgramStats(program)" data-toggle="modal">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <div *ngIf="programs.length === 0">
+            <h4 class="no-program-text">
+                La carrera no posee planes todavía, haz click en Agregar plan.
+            </h4>
+        </div>
     </div>
-    <div *ngIf="programs.length === 0">
-      <h4 class="no-program-text">
-        La carrera no posee planes todavía, haz click en Agregar plan.
-      </h4>
-    </div>
-  </div>
 </div>
-

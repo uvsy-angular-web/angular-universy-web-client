@@ -1,0 +1,29 @@
+.table-container {
+    max-width: 70%;
+    margin-left: 2%;
+}
+
+.stats-container {
+    margin-left: 4%;
+}
+
+.publish-btn-container {
+    margin-bottom: 2%;
+    margin-right: 2%;
+}
+
+#subject-btn {
+    color: #3D1255;
+}
+
+#careerName {
+    font-weight: 300;
+}
+
+.btn-secondary {
+    margin-right: 1rem;
+}
+
+.btn-secondary i {
+    vertical-align: bottom;
+}

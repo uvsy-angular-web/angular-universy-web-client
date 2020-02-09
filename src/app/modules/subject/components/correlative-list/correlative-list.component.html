@@ -1,0 +1,42 @@
+<div [hidden]="!atLeastOneCorrelative">
+    <div class="header">
+        <div class="row">
+            <div class="col-6"><strong>{{toTakeText}}</strong></div>
+            <div class="col-6 text-right"><strong>{{toApproveText}}</strong></div>
+        </div>
+        <div class="row">
+            <div class="col-3">{{takeText}}</div>
+            <div class="col-3">{{approveText}}</div>
+            <div class="col-6 text-right">{{approveText}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <div *ngFor="let subject of subjects">
+                <div class="row" *ngIf="isToTakeRegularChecked(subject)">
+                    <div class="col-4 level-col">{{levelText + subject.level}}</div>
+                    <div class="col-8">{{subject.name}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div *ngFor="let subject of subjects">
+                <div class="row" *ngIf="isToTakeApprovedChecked(subject)">
+                    <div class="col-4 level-col">{{levelText + subject.level}}</div>
+                    <div class="col-8">{{subject.name}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 border-left">
+            <div *ngFor="let subject of subjects">
+                <div class="row" *ngIf="isToApproveChecked(subject)">
+                    <div class="col-4 level-col text-right">{{levelText + subject.level}}</div>
+                    <div class="col-8 text-right">{{subject.name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center" [hidden]="atLeastOneCorrelative">
+    <span class="font-italic">No se registraron correlativas para esta materia.</span>
+</div>

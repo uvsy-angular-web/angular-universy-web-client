@@ -1,0 +1,33 @@
+.subject-detail {
+    width: 80%;
+    margin-bottom: 3rem;
+}
+
+.correlative-list {
+    margin-left: 5%;
+    width: 90%;
+    margin-top: 1rem;
+}
+
+#correlative-total {
+    font-style: italic;
+    font-weight: 300;
+    padding-left: 2rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.level-row {
+    padding-left: 2rem;
+    font-style: italic;
+}
+
+.correlative-title {
+    padding-left: 1rem;
+}
+
+.subject-table {
+    background-color: #f1f0f0;
+    padding: 0.5rem;
+    border-radius: 9px;
+}
