@@ -83,7 +83,7 @@ export class CourseModalService {
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
   }
 
-  public openEditCommisionNameModal(title: string, course: Course) {
+  public openEditCourseNameModal(title: string, course: Course) {
     const modalRef = this.modalService.open(CourseModalComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.itemText = course.name;

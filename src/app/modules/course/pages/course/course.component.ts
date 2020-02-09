@@ -54,7 +54,7 @@ export class CourseComponent implements OnInit {
   }
 
   public openEditModalCourse() {
-    this.courseModalService.openEditCommisionNameModal('Editar Comisión', this.course).subscribe(
+    this.courseModalService.openEditCourseNameModal('Editar Comisión', this.course).subscribe(
       () => {
         this.courseService.updateCourse(this.course).subscribe(() => {
             this.notificationService.inform(
