@@ -55,7 +55,8 @@ export class CourseComponent implements OnInit {
 
   public openEditModalCourse() {
     this.courseModalService.openEditCourseNameModal('Editar Comisión', this.course).subscribe(
-      () => {
+      (courseName: string) => {
+        this.course.name = courseName;
         this.courseService.updateCourse(this.course).subscribe(() => {
             this.notificationService.inform(
               '¡Modificación con éxito!',
@@ -85,7 +86,7 @@ export class CourseComponent implements OnInit {
   private deleteCourse() {
     this.courseService.deleteCourse(this.course).subscribe(
       () => {
-        this.navigationService.navigateToProgramPage();
+        this.navigationService.navigateToSubjectPage();
       },
       (error) => {
         this.notificationService.showError('Ocurrió un error intentando borrar la comisión.');

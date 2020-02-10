@@ -62,8 +62,10 @@ export class CourseService {
   deleteCourse(course: Course) {
     const baseUrl = CourseService.getBaseUrl();
     const headers = this.getHeaders();
+    const currentSubject = SubjectService.getCurrentSubject();
     const params = new HttpParams()
-      .set('courseCode', course.courseCode.toString());
+      .set('courseCode', course.courseCode.toString())
+      .set('subjectCode', currentSubject.subjectCode);
     return this.http.delete(baseUrl + ENDPOINT_COURSES, { headers, params });
   }
 
