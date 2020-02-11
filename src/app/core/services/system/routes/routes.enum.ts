@@ -1,6 +1,7 @@
 export enum Route {
   HOME = 'home',
   INSTITUTION = 'institution',
+  INSTITUTION_STATS = 'institution/stats',
   CAREER = 'institution/career',
   PROGRAM = 'institution/career/program',
   PROGRAM_STATS = 'institution/career/program/stats',
