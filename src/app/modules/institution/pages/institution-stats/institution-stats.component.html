@@ -1,8 +1,10 @@
 <div class="container">
     <app-custom-title [title]="title" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
     <div class="content">
-        <div *ngFor="let career of institution.careers" class="career-stat-card">
-            <app-career-stats-card [career]="career"></app-career-stats-card>
-        </div>
+        <ngx-masonry>
+            <div ngxMasonryItem *ngFor="let career of institution.careers" class="career-stat-card">
+                <app-career-stats-card [career]="career"></app-career-stats-card>
+            </div>
+        </ngx-masonry>
     </div>
 </div>

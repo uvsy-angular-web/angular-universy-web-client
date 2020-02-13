@@ -1,20 +1,3 @@
 .career-stat-card {
-    width: 300px;
-    widows: 20;
-}
-
-
-/* 
-.content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: stretch;
-} */
-
-.content {
-    width: 100%;
-    height: 100%;
-    column-count: 3;
-    display: table-cell
+    width: 21rem;
 }

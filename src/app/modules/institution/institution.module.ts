@@ -7,7 +7,7 @@ import {SharedModule} from '../../shared/shared.module';
 import { InstitutionStatsComponent } from './pages/institution-stats/institution-stats.component';
 import { CareerStatsCardComponent } from './components/career-stats-card/career-stats-card.component';
 import { ProgramItemComponent } from './components/program-item/program-item.component';
-
+import { NgxMasonryModule } from 'ngx-masonry';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { ProgramItemComponent } from './components/program-item/program-item.com
     ProgramItemComponent,
   ],
   imports: [
+    NgxMasonryModule,
     CommonModule,
     InstitutionRoutingModule,
     SharedModule,
