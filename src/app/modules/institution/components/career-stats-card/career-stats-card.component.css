@@ -1,7 +1,6 @@
 .career-card {
     background-color: #f6f6f6;
     border-radius: 0.5rem;
-    height: 10rem;
     margin: 1rem 0.5rem 1rem 0.5rem;
     padding: 1rem 2rem 1rem 2rem;
     justify-content: center;
@@ -32,4 +31,10 @@
 .display-number,
 .subtitle {
     text-align: center;
+}
+
+.program-item {
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }

@@ -9,7 +9,6 @@ import { InstitutionService } from 'src/app/core/services/institution.service';
 })
 export class InstitutionStatsComponent implements OnInit {
   title = 'Mis estadisticas';
-  careerListTxt = 'Mis carreras';
   institution: Institution;
   constructor() { }
 
