@@ -11,6 +11,7 @@ import { ProgramService } from 'src/app/core/services/program.service';
 })
 export class CareerStatsCardComponent implements OnInit {
   @Input() career: Career;
+  noProgramTxt = 'no posee programas';
 
   programs: Program[] = [];
 
@@ -18,7 +19,6 @@ export class CareerStatsCardComponent implements OnInit {
 
   ngOnInit() {
     this.getPrograms();
-    // this.getOverallRate();
   }
 
   private getPrograms() {

@@ -32,5 +32,6 @@
 }
 
 hr {
+    border-top: 1px solid #e1baff;
     margin: 0;
 }
