@@ -1,0 +1,19 @@
+.subject-item {
+    padding: 1rem;
+    transition: all 100ms ease-in-out;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.subject-item:hover {
+    background-color: #efeeee;
+}
+
+.subject-active {
+    background-color: #E5C028;
+    color: white;
+}
+
+.subject-active:hover {
+    background-color: #e6c649;
+}

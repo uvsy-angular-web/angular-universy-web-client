@@ -11,7 +11,7 @@
                 </div>
             </form>
             <div *ngFor="let subject of subjects">
-                <div class="subject-item " (click)="selectSubject(subject)" [class.subject-active]="selectedSubject === subject">{{subject.name}}</div>
+                <app-subject-item [subject]="subject" (subjectSelected)="selectSubject(subject)" [active]="selectedSubject === subject"></app-subject-item>
             </div>
         </div>
         <div class="col-8"></div>
