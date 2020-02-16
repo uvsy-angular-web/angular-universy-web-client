@@ -7,6 +7,7 @@ import { ProgramService } from './program.service';
 import { CareerService } from './career.service';
 import { LocalStorageService } from './local-storage.service';
 import { SimilarWordService } from './validator/repeated-text.service';
+import { Program } from 'src/app/models/program.model';
 
 const ENDPOINT_SUBJECTS = '/universy/institution/subjects';
 const CURRENT_SUBJECT_KEY = 'current-subject';
@@ -47,6 +48,19 @@ export class SubjectService {
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
     return this.http.post(baseUrl + ENDPOINT_SUBJECTS, body, { headers });
+  }
+
+  getSubjectsByProgram(program: Program): Observable<Subject[]> {
+    const baseUrl = SubjectService.getBaseUrl();
+    const headers = this.getHeaders();
+    const params = new HttpParams()
+      .set('programCode', program.uuid);
+
+    return this.http.get(baseUrl + ENDPOINT_SUBJECTS, { headers, params })
+      .map((data: any) => {
+        return data.subjects;
+      }
+      );
   }
 
   getSubjects(): Observable<Subject[]> {

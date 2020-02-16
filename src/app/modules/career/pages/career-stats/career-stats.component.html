@@ -1,7 +1,16 @@
 <div class="container">
     <app-custom-title [title]="career.careerName" [showDeleteButton]="false" [showEditButton]="false" [backNavigationRoute]="backNavigationRoute"></app-custom-title>
     <div class="content">
-        <div class="col-4"></div>
+        <div class="col-4">
+            <form appForm [formGroup]="form">
+                <div class="form-group">
+                    <label for="level-select">Plan:</label>
+                    <select id="level-select" appControlError class="form-control" formControlName="program">
+                    <option *ngFor="let program of programs" [ngValue]="program">{{program.name}}</option>
+                  </select>
+                </div>
+            </form>
+        </div>
         <div class="col-8"></div>
     </div>
 </div>
