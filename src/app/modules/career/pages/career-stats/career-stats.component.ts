@@ -8,7 +8,7 @@ import { ProgramService } from 'src/app/core/services/program.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { CareerService } from 'src/app/core/services/career.service';
 
-const FIRST_PROGRAM_INDEX = 0;
+const FIRST_ITEM_INDEX = 0;
 
 @Component({
   selector: 'app-career-stats',
@@ -20,6 +20,7 @@ export class CareerStatsComponent implements OnInit {
   backNavigationRoute = Route.INSTITUTION_STATS;
   programs: Program[] = [];
   subjects: Subject[] = [];
+  selectedSubject: Subject;
   form: FormGroup;
 
   constructor(
@@ -34,14 +35,17 @@ export class CareerStatsComponent implements OnInit {
     this.createForm();
   }
 
+  selectSubject(subject: Subject) {
+    this.selectedSubject = subject;
+  }
+
   private getCareer() {
     this.career = CareerService.getCurrentCareer();
   }
 
   private createForm() {
-    const firstProgram = this.programs ? this.programs[FIRST_PROGRAM_INDEX] : null;
     this.form = this.formBuilder.group({
-      program: new FormControl(firstProgram)
+      program: new FormControl()
     });
 
     this.subscribeToProgramChange();
@@ -60,12 +64,18 @@ export class CareerStatsComponent implements OnInit {
 
   private getSubjects(selectedProgram: Program) {
     this.subjectService.getSubjectsByProgram(selectedProgram)
-      .subscribe((subjects: Subject[]) => this.subjects = subjects);
+      .subscribe((subjects: Subject[]) => {
+        this.subjects = subjects;
+        this.selectedSubject = this.subjects[FIRST_ITEM_INDEX];
+      });
   }
 
   private getPrograms() {
     this.programService.getProgramsByCareer(this.career)
-      .subscribe((programs: Program[]) => this.programs = programs);
+      .subscribe((programs: Program[]) => {
+        this.programs = programs;
+        this.program.setValue(this.programs[FIRST_ITEM_INDEX]);
+      });
   }
 
 }
