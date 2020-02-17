@@ -1,0 +1,14 @@
+.subject-rate-number {
+    font-size: 2.3rem;
+    padding-left: 1rem;
+    font-weight: 200;
+}
+
+.subject-rate {
+    font-weight: 100;
+    font-size: 1.5rem;
+}
+
+.subject-rate-number i {
+    color: #3D1255;
+}

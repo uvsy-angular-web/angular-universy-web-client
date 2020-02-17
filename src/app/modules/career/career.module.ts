@@ -8,12 +8,14 @@ import { CareerStatsComponent } from './pages/career-stats/career-stats.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SubjectItemComponent } from './components/subject-item/subject-item.component';
+import { SubjectStatComponent } from './components/subject-stat/subject-stat.component';
 
 @NgModule({
   declarations: [
     CareerComponent,
     CareerStatsComponent,
-    SubjectItemComponent
+    SubjectItemComponent,
+    SubjectStatComponent
   ],
   imports: [
     CommonModule,
