@@ -9,6 +9,7 @@ const MAX_PERCENTAGE = 100;
 export class GraphBarComponent implements OnInit {
   @Input() title: string;
   @Input() items: GraphItem[] = [];
+  @Input() percentage = false;
   maxValue: number;
   maxValuePercentage: number;
   constructor() { }

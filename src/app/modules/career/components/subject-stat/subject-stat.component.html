@@ -5,5 +5,15 @@
         <i class="material-icons">star</i>
     </span>
 </div>
-<app-graph-bar [title]="dificultGraphTitle" [items]="courseDificultsItems">
-</app-graph-bar>
+<div class="graph-bar">
+    <app-graph-bar [title]="dificultGraphTitle" [items]="dificultsItems">
+    </app-graph-bar>
+</div>
+<div class="graph-bar">
+    <app-graph-bar [title]="overallGraphTitle" [items]="overallItems">
+    </app-graph-bar>
+</div>
+<div class="graph-bar">
+    <app-graph-bar [percentage]="true" [title]="wouldTakeAgainGraphTitle" [items]="wouldTakeAgainItems">
+    </app-graph-bar>
+</div>
