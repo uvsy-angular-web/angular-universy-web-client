@@ -8,6 +8,7 @@ import { InstitutionStatsComponent } from './pages/institution-stats/institution
 import { CareerStatsCardComponent } from './components/career-stats-card/career-stats-card.component';
 import { ProgramItemComponent } from './components/program-item/program-item.component';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
     ProgramItemComponent,
   ],
   imports: [
+    NgxPrintModule,
     NgxMasonryModule,
     CommonModule,
     InstitutionRoutingModule,

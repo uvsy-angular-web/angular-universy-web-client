@@ -10,6 +10,11 @@ import { InstitutionService } from 'src/app/core/services/institution.service';
 export class InstitutionStatsComponent implements OnInit {
   title = 'Mis estadisticas';
   institution: Institution;
+  printButtonText = 'Imprimir';
+  printStyle = {
+    i: { opacity: 0 },
+    button: { opacity: 0 }
+  };
   constructor() { }
 
   ngOnInit() {
