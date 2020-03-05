@@ -16,7 +16,9 @@ export class ModalRepeatedWordsFooterComponent implements OnInit {
   @Input() wordToCompare: string;
   @Output() cancelAction = new EventEmitter();
   @Output() confirmAction = new EventEmitter();
-
+  onlySearch = false;
+  searchAgainTitle = 'Volver a buscar';
+  noRepeatedWordFounded = 'No se encontraron materias similares';
   similarWords: string[] = [];
 
   constructor(private similarWordService: SimilarWordService) { }
@@ -24,9 +26,10 @@ export class ModalRepeatedWordsFooterComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchSimilarWords() {
+  searchSimilarWords(onlySearch = false) {
+    this.onlySearch = onlySearch;
     this.similarWords = this.similarWordService.getSimilarWords(this.words, this.wordToCompare);
-    if (this.similarWords.length === 0) {
+    if (this.similarWords.length === 0 && !this.onlySearch) {
       this.onConfirmAction();
     }
   }
