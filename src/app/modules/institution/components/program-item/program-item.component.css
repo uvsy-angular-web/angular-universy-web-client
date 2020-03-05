@@ -1,0 +1,37 @@
+.program-container {
+    width: 100%;
+}
+
+#overall-rate-txt {
+    padding-right: 2rem;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+#overall-rate-container {
+    display: flex;
+    padding-bottom: 0.2rem;
+}
+
+#overall-rate {
+    font-size: 2rem;
+    margin-top: auto;
+}
+
+#subject-count-txt {
+    padding-top: 0.2rem;
+}
+
+#subject-count-txt,
+#overall-rate-txt {
+    text-transform: lowercase;
+}
+
+#subject-count {
+    font-size: 1rem;
+}
+
+hr {
+    border-top: 1px solid #e1baff;
+    margin: 0;
+}

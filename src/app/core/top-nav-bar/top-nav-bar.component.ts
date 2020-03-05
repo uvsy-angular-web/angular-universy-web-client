@@ -7,18 +7,20 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./top-nav-bar.component.css']
 })
 export class TopNavBarComponent implements OnInit {
+  isLoggedIn = false;
 
   constructor() {
   }
 
   ngOnInit() {
+    this.checkLogIn();
   }
 
   logoutEvent() {
     AuthService.logout();
   }
 
-  isLoggedIn(): boolean {
-    return AuthService.isLoggedIn();
+  private checkLogIn() {
+    this.isLoggedIn = AuthService.isLoggedIn();
   }
 }

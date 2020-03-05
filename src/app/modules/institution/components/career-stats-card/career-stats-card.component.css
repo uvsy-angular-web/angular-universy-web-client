@@ -1,0 +1,58 @@
+.career-card {
+    background-color: #E5C028;
+    color: white;
+    border-radius: 0.5rem;
+    margin: 1rem 0.5rem 1rem 0.5rem;
+    padding-top: 1rem;
+    justify-content: center;
+    box-shadow: -1px 1px 2px 0 #d1d1d1;
+    transition: all 300ms ease-in-out;
+}
+
+.career-card:hover {
+    cursor: pointer;
+    background-color: #eec829;
+    transform: translateY(-0.2rem);
+}
+
+#career-name {
+    font-size: 1.5rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    vertical-align: middle;
+}
+
+.display-number {
+    font-size: 3rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+}
+
+.display-number,
+.subtitle {
+    text-align: center;
+}
+
+.program-container {
+    background-color: white;
+    color: black;
+}
+
+.program-item {
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+hr {
+    margin-bottom: 0;
+    color: red;
+}
+
+#career-name,
+.program-container,
+.no-program-container {
+    padding: 0 2rem 0.3rem 2rem;
+}

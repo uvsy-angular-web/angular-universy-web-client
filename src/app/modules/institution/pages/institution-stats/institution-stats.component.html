@@ -1,0 +1,16 @@
+<div class="container" id="print-section">
+    <app-custom-title [title]="title" [showNavigationArrow]="false" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
+    <div class="text-right publish-btn-container">
+        <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
+    </div>
+    <div class="content">
+        <ngx-masonry>
+            <div ngxMasonryItem *ngFor="let career of institution.careers" class="career-stat-card">
+                <app-career-stats-card [career]="career"></app-career-stats-card>
+            </div>
+        </ngx-masonry>
+    </div>
+    <div class="text-right publish-btn-container">
+        <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
+    </div>
+</div>

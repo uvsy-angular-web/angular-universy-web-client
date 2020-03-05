@@ -1,9 +1,26 @@
-#repeated-word-message{
+.repeated-word-message {
     margin-left: 2rem;
     padding-bottom: 2rem;
 }
 
-.word-item{
+.word-item {
     margin-left: 1rem;
     font-style: italic;
+}
+
+.add-item {
+    font-size: 1rem;
+    padding-right: 3rem;
+    color: darkgray;
+}
+
+.row-reverse {
+    padding-bottom: 0.2rem;
+}
+
+.add-item i {
+    font-size: 1rem;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+    padding-bottom: 0.2rem;
 }
