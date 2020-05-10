@@ -7,13 +7,13 @@ import {ScheduleModalComponent} from './schedule-modal/schedule-modal.component'
 import {Schedule} from '../../../models/schedule.model';
 import {Professor} from '../../../models/professor.model';
 import {ProfessorModalComponent} from './professor-modal/professor-modal.component';
+import {Course} from '../../../models/course.model';
 
-
-import {InformationModalComponent} from '../../../modals/components/error-modal/information-modal.component'
+import {InformationModalComponent} from '../../../modals/components/error-modal/information-modal.component';
 import {CourseModalComponent} from './course-modal/course-modal.component';
 import {ConfirmActionModalComponent} from '../../../modals/components/confirm-action-modal/confirm-action-modal.component';
-
-
+import {Subject} from '../../../models/subject.model';
+import {SubjectModalComponent} from '../../subject/modals/subject-modal/subject-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -83,11 +83,11 @@ export class CourseModalService {
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
   }
 
-  openEditCommisionNameModal(title: string, confirmButtonText: ButtonText, itemText = '') {
+  public openEditCourseNameModal(title: string, course: Course) {
     const modalRef = this.modalService.open(CourseModalComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = title;
-    modalRef.componentInstance.itemText = itemText;
-    modalRef.componentInstance.confirmButtonText = confirmButtonText;
+    modalRef.componentInstance.itemText = course.name;
+    modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
     return modalRef.componentInstance.confirmEvent;
   }
 

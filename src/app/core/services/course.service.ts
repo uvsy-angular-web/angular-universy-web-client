@@ -5,7 +5,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Course } from '../../models/course.model';
 import { SubjectService } from './subject.service';
 import { LocalStorageService } from './local-storage.service';
-import { Subject } from 'src/app/models/subject.model';
+import { Subject } from '../../models/subject.model';
+import { ProgramService } from './program.service';
+
 
 const ENDPOINT_COURSES = '/universy/institution/courses';
 const CURRENT_COURSE_KEY = 'current-course';
@@ -15,7 +17,8 @@ const CURRENT_COURSE_KEY = 'current-course';
 })
 export class CourseService {
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private systemConfigService: SystemConfigService) {
   }
 
@@ -54,6 +57,16 @@ export class CourseService {
     const baseUrl = CourseService.getBaseUrl();
     const headers = this.getHeaders();
     return this.http.post(baseUrl + ENDPOINT_COURSES, course, { headers });
+  }
+
+  deleteCourse(course: Course) {
+    const baseUrl = CourseService.getBaseUrl();
+    const headers = this.getHeaders();
+    const currentSubject = SubjectService.getCurrentSubject();
+    const params = new HttpParams()
+      .set('courseCode', course.courseCode.toString())
+      .set('subjectCode', currentSubject.subjectCode);
+    return this.http.delete(baseUrl + ENDPOINT_COURSES, { headers, params });
   }
 
   private getHeaders() {

@@ -17,10 +17,11 @@ export class CourseModalComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder) {
+  constructor(
+    public activeModal: NgbActiveModal,
+    private formBuilder: FormBuilder) {
   }
 
-  
   public ngOnInit(): void {
     this.createForm();
     this.calculateColForInputSize();

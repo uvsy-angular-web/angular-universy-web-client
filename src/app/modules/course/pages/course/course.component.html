@@ -3,11 +3,11 @@
     <div class="col-10">
       <app-custom-title [title]="'Comisión: ' + course.name"
                         [showEditButton]="true"
-                        [showDeleteButton]="true">
+                        (editItem)="openEditModalCourse()"
+                        [showDeleteButton]="true"
+                        (deleteItem)="openDeleteModal()">
+
       </app-custom-title>
-    </div>
-    <div class="col-2">
-      <button class="btn btn-primary" (click)="saveCourse()">Guardar</button>
     </div>
   </div>
   <hr>
@@ -24,5 +24,9 @@
         <app-period [periods]="course.periods"></app-period>
       </div>
     </div>
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary btn-guardar" (click)="saveCourse()">Guardar</button>
   </div>
 </div>

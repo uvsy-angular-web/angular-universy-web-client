@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CourseModalService} from '../../modals/course-modal.service';
 import {Professor} from '../../../../models/professor.model';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import {ModalService} from '../../../../modals/modal.service';
 
 @Component({
   selector: 'app-professors',
@@ -16,7 +18,7 @@ export class ProfessorsComponent implements OnInit {
   addProfessorButtonTitle = 'Agregar Profesor';
 
   constructor(
-    private courseModalService: CourseModalService) {
+    private courseModalService: CourseModalService,  private modalService: ModalService) {
   }
 
   public ngOnInit() {
@@ -35,7 +37,15 @@ export class ProfessorsComponent implements OnInit {
   }
 
   public deleteProfessor(professor: Professor) {
-    this.professorDeleted.emit(professor);
+    this.modalService.openConfirmModal(
+      'Eliminar Profesor',
+      'Usted está por eliminar un Profesor.',
+      '¿Está seguro que desea eliminar el Profesor seleccionado?',
+      ButtonText.Delete
+    ).subscribe(
+      () => {
+        this.professorDeleted.emit(professor);
+      }
+    );
   }
-
 }
