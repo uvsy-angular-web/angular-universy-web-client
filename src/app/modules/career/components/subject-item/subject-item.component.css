@@ -1,0 +1,37 @@
+.subject-item {
+    padding: 1rem;
+    transition: all 100ms ease-in-out;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.subject-item:hover {
+    background-color: #efeeee;
+}
+
+.subject-active {
+    background-color: #E5C028;
+    color: white;
+}
+
+.subject-active:hover {
+    background-color: #e6c649;
+}
+
+::ng-deep .progress {
+    background-color: #cfcfcf !important;
+    border-radius: 15px !important;
+}
+
+::ng-deep .progress-bar {
+    border-radius: 15px !important;
+}
+
+#subject-name {
+    padding-bottom: 0.5rem;
+}
+
+.subject-progress {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

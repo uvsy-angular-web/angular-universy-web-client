@@ -1,0 +1,14 @@
+<div class="career-card" (click)="navigateToCareerStats()">
+    <div id="career-name">{{career.careerName}}</div>
+    <div *ngIf="programs.length > 0" class="program-container">
+        <div class="program-item" *ngFor="let program of programs">
+            <app-program-item [program]="program"></app-program-item>
+        </div>
+    </div>
+    <div *ngIf="programs.length == 0" class="no-program-container">
+        <hr>
+        <div class="col-12 text-right">
+            {{noProgramTxt}}
+        </div>
+    </div>
+</div>
