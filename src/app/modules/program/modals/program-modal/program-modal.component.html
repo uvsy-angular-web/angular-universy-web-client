@@ -1,26 +1,47 @@
-<app-modal-header [title]="title"
-                  (closeEvent)="cancelAction()"></app-modal-header>
+<app-modal-header [title]="title" (closeEvent)="cancelAction()"></app-modal-header>
 <form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
-  <div class="modal-body">
-    <div class="form-group">
-      <div class="col-8">
-        <label for="item-text"> Nombre: </label>
-        <input id="item-text" appControlError
-               class="form-control" type="text"
-               formControlName="name">
-      </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-8">
+                <label for="item-text">  {{nameInputText}} </label>
+                <input id="item-text" appControlError class="form-control" type="text" formControlName="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-4">
+                <label for="year-from"> {{yearFromInputText}} </label>
+                <input id="year-from" appControlError class="form-control" type="number" maxlength="4" formControlName="yearFrom">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12">
+                <label> {{optativeQuestionText}}</label>
+                <div class="form-group">
+                    <label class="raddio-btn-label"> {{requiresOptativesText}}</label>
+                    <input id="requires-optatives" type="radio" [value]="true" formControlName="requiresOptatives">
+                    <label class="raddio-btn-label"> {{doesNotRequiresOptativesText}}</label>
+                    <input id="requires-optatives" type="radio" [value]="false" formControlName="requiresOptatives">
+                </div>
+            </div>
+        </div>
+        <div class="form-group requires-optatives" *ngIf="requiresOptatives.value">
+            <div class="row">
+                <label for="item-text" class="col-5">  {{amountOfHoursInputText}} </label>
+                <input id="item-text" appControlError class="form-control amount-input col-6" type="number" formControlName="amountOfHours">
+            </div>
+            <div class="row">
+                <label for="item-text" class="col-5">  {{amountOfPointsInputText}} </label>
+                <input id="item-text" appControlError class="form-control amount-input col-6" type="number" formControlName="amountOfPoints">
+            </div>
+            <div class="row">
+                <label for="item-text" class="col-5">  {{amountOfSubjectInputText}} </label>
+                <input id="item-text" appControlError class="form-control amount-input col-6" type="number" formControlName="amountOfSubjects">
+            </div>
+            <label *ngIf="showsOptativesErrorMessage" class="warning">{{optativesErrorMessage}}</label>
+        </div>
     </div>
-    <div class="form-group">
-      <div class="col-4">
-        <label for="year-from"> Año de inicio: </label>
-        <input id="year-from" appControlError
-               class="form-control" type="number"
-               maxlength="4" formControlName="yearFrom">
-      </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">{{confirmButtonText}}</button>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="cancelAction()">Cancelar</button>
-    <button type="submit" class="btn btn-primary">{{confirmButtonText}}</button>
-  </div>
 </form>
