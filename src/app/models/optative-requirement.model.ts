@@ -4,9 +4,9 @@ export class OptativeRequirement {
      amountOfSubjects: number;
 
      constructor(
-        amountOfHours: number,
-        amountOfPoints: number,
-        amountOfSubjects: number) {
+        amountOfHours?: number,
+        amountOfPoints?: number,
+        amountOfSubjects?: number) {
       this.amountOfHours = amountOfHours;
       this.amountOfPoints = amountOfPoints;
       this.amountOfSubjects = amountOfSubjects;

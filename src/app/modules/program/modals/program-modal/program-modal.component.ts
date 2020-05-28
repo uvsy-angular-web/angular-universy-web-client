@@ -15,10 +15,12 @@ const CAREER_NAME_MAX_LENGTH = 35;
 
 const AMOUNT_VALIDATORS_MAX_LENGHT = 3;
 const AMOUNT_VALIDATORS_MIN_VALUE = 0;
+const DEFAULT_AMOUNT_VALUE = 0;
 
 const YEAR_FROM_MAX_LENGTH = 4;
 const YEAR_FROM_MIN_YEAR = 1920;
 const YEAR_FROM_MAX_YEAR = 2060;
+
 
 @Component({
   selector: 'app-add-program-modal',
@@ -32,10 +34,10 @@ export class ProgramModalComponent implements OnInit {
   requiresOptativesText = 'Si';
   doesNotRequiresOptativesText = 'No';
   showsOptativesErrorMessage = false;
-  optativesErrorMessage = 'Debe ingresar al menos un campo en requerimientos.';
-  amountOfHoursInputText = 'Cantidad de horas';
-  amountOfPointsInputText = 'Cantidad de puntos';
-  amountOfSubjectInputText = 'Cantidad de materias';
+  optativesErrorMessage = '* Debe ingresar al menos un campo en requerimientos.';
+  amountOfHoursInputText = 'Cantidad de horas: ';
+  amountOfPointsInputText = 'Cantidad de puntos: ';
+  amountOfSubjectInputText = 'Cantidad de materias: ';
   form: FormGroup;
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
@@ -118,7 +120,7 @@ export class ProgramModalComponent implements OnInit {
     const amountOfPoints = +this.amountOfPoints.value;
     const amountOfSubjects = +this.amountOfSubjects.value;
 
-    if (this.program.requiresOptatives()) {
+    if (this.program.optativeRequirement) {
       this.program.optativeRequirement.amountOfHours = amountOfHours;
       this.program.optativeRequirement.amountOfPoints = amountOfPoints;
       this.program.optativeRequirement.amountOfSubjects = amountOfSubjects;
@@ -134,14 +136,19 @@ export class ProgramModalComponent implements OnInit {
   }
 
   private _createForm(): void {
+    const optativeRequirement = this.program.optativeRequirement;
+    const amountOfHours = optativeRequirement ? optativeRequirement : DEFAULT_AMOUNT_VALUE;
+    const amountOfPoints = optativeRequirement ? optativeRequirement : DEFAULT_AMOUNT_VALUE;
+    const amountOfSubjects = optativeRequirement ? optativeRequirement : DEFAULT_AMOUNT_VALUE;
     const yearFrom = this.program.validFrom ? this.program.validFrom.substring(INIT_OF_YEAR_IN_STRING) : EMPTY_YEAR;
+    
     this.form = this.formBuilder.group({
       name: new FormControl(this.program.name, ProgramModalComponent._getValidatorsForCareerName()),
       yearFrom: new FormControl(yearFrom, ProgramModalComponent._getValidatorsForYearFrom()),
-      requiresOptatives: new FormControl(this.program.requiresOptatives(), Validators.required),
-      amountOfHours: new FormControl(this.program.getAmountOfHours(), ProgramModalComponent._getAmountOfValidators()),
-      amountOfPoints: new FormControl(this.program.getAmountOfPoints(), ProgramModalComponent._getAmountOfValidators()),
-      amountOfSubjects: new FormControl(this.program.getAmountOfSubjects(), ProgramModalComponent._getAmountOfValidators()),
+      requiresOptatives: new FormControl(this.program.optativeRequirement != null, Validators.required),
+      amountOfHours: new FormControl(amountOfHours, ProgramModalComponent._getAmountOfValidators()),
+      amountOfPoints: new FormControl(amountOfPoints, ProgramModalComponent._getAmountOfValidators()),
+      amountOfSubjects: new FormControl(amountOfSubjects, ProgramModalComponent._getAmountOfValidators()),
     });
   }
 

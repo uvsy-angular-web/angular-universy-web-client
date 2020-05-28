@@ -26,11 +26,9 @@ export class ProgramService {
 
 
   public addProgram(program: Program) {
-    const body = {
-      careerKey: CareerService.getCurrentCareer().careerKey,
-      name: program.name,
-      validFrom: program.validFrom
-    };
+    const body = { ...program };
+    body.careerKey = CareerService.getCurrentCareer().careerKey;
+
     const baseUrl = ProgramService._getBaseUrl();
     const headers = this._getHeaders();
     return this.http.put(baseUrl + ENDPOINT_PROGRAMS, body, { headers });
@@ -75,12 +73,9 @@ export class ProgramService {
   }
 
   public updateProgram(program: Program) {
-    const body = {
-      careerKey: CareerService.getCurrentCareer().careerKey,
-      uuid: program.uuid,
-      name: program.name,
-      validFrom: program.validFrom
-    };
+    const body = { ...program };
+    body.careerKey = CareerService.getCurrentCareer().careerKey;
+
     const baseUrl = ProgramService._getBaseUrl();
     const headers = this._getHeaders();
     return this.http.post(baseUrl + ENDPOINT_PROGRAMS, body, { headers });
@@ -99,6 +94,7 @@ export class ProgramService {
   private _getHeaders() {
     return this.systemConfigService.getHeader();
   }
+
 
   private static _getBaseUrl() {
     return SystemConfigService.getBaseUrl();

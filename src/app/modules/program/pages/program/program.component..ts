@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
-import {Subject} from '../../../../models/subject.model';
-import {ModalService} from '../../../../modals/modal.service';
-import {Program} from '../../../../models/program.model';
-import {ProgramService} from '../../../../core/services/program.service';
-import {SubjectService} from '../../../../core/services/subject.service';
-import {ProgramModalService} from '../../modals/program-modal.service';
-import {SubjectModalService} from '../../../subject/modals/subject-modal.service';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {NavigationService} from '../../../../core/services/system/navigation.service';
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Subject } from '../../../../models/subject.model';
+import { ModalService } from '../../../../modals/modal.service';
+import { Program } from '../../../../models/program.model';
+import { ProgramService } from '../../../../core/services/program.service';
+import { SubjectService } from '../../../../core/services/subject.service';
+import { ProgramModalService } from '../../modals/program-modal.service';
+import { SubjectModalService } from '../../../subject/modals/subject-modal.service';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { NavigationService } from '../../../../core/services/system/navigation.service';
+import { OptativeRequirement } from 'src/app/models/optative-requirement.model';
 
 const INITIAL_LEVEL = 1;
 const NO_SUBJECTS_LEVEL_NO_PUBLISHED = 'Aun no agregaste ninguna materia al nivel.';
@@ -25,13 +26,13 @@ export class ProgramComponent implements OnInit {
   subjectsXLevel: SubjectsXLevel[] = [];
   noSubjectOnLevelMessage: string;
 
-  constructor(private location: Location,
-              private programService: ProgramService,
-              private navigationService: NavigationService,
-              private notificationService: ModalService,
-              private programModalService: ProgramModalService,
-              private subjectModalService: SubjectModalService,
-              private subjectService: SubjectService) {
+  constructor(
+    private programService: ProgramService,
+    private navigationService: NavigationService,
+    private notificationService: ModalService,
+    private programModalService: ProgramModalService,
+    private subjectModalService: SubjectModalService,
+    private subjectService: SubjectService) {
   }
 
   ngOnInit() {

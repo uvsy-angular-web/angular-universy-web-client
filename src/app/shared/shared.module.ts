@@ -14,6 +14,7 @@ import { ModalHeaderComponent } from './components/modals/modal-header/modal-hea
 import { ModalConfirmFooterComponent } from './components/modals/modal-confirm-footer/modal-confirm-footer.component';
 import { ModalRepeatedWordsFooterComponent } from './components/modals/modal-repeated-words-footer/modal-repeated-words-footer.component';
 import { GraphBarComponent } from './components/graph-bar/graph-bar.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { GraphBarComponent } from './components/graph-bar/graph-bar.component';
     ModalHeaderComponent,
     ModalConfirmFooterComponent,
     ModalRepeatedWordsFooterComponent,
-    GraphBarComponent
+    GraphBarComponent,
+    ErrorMessageComponent
   ],
   exports: [
     GraphBarComponent,
@@ -43,7 +45,8 @@ import { GraphBarComponent } from './components/graph-bar/graph-bar.component';
     TableActionsComponent,
     ModalHeaderComponent,
     ModalConfirmFooterComponent,
-    ModalRepeatedWordsFooterComponent
+    ModalRepeatedWordsFooterComponent,
+    ErrorMessageComponent
   ],
   imports: [
     CommonModule,
