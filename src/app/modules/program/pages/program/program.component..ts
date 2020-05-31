@@ -9,7 +9,16 @@ import { ProgramModalService } from '../../modals/program-modal.service';
 import { SubjectModalService } from '../../../subject/modals/subject-modal.service';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { NavigationService } from '../../../../core/services/system/navigation.service';
-import { OptativeRequirement } from 'src/app/models/optative-requirement.model';
+
+export class SubjectsXLevel {
+  level: number;
+  subjects: Subject[];
+
+  constructor(level: number, subjects: Subject[]) {
+    this.level = level;
+    this.subjects = subjects;
+  }
+}
 
 const INITIAL_LEVEL = 1;
 const NO_SUBJECTS_LEVEL_NO_PUBLISHED = 'Aun no agregaste ninguna materia al nivel.';
@@ -166,15 +175,5 @@ export class ProgramComponent implements OnInit {
       }
     });
     return maximumLevel;
-  }
-}
-
-export class SubjectsXLevel {
-  level: number;
-  subjects: Subject[];
-
-  constructor(level: number, subjects: Subject[]) {
-    this.level = level;
-    this.subjects = subjects;
   }
 }
