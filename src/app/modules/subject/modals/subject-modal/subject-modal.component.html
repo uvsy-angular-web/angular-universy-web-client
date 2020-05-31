@@ -15,13 +15,34 @@
         </select>
       </div>
     </div>
+    <div class="form-group">
+      <div class="col-12">
+        <label> {{optativeQuestionText}}</label>
+        <div class="form-group">
+          <label class="raddio-btn-label"> {{isOptativeText}}</label>
+          <input id="requires-optatives" type="radio" [value]="true" formControlName="isOptative">
+          <label class="raddio-btn-label"> {{isNotOptativeText}}</label>
+          <input id="requires-optatives" type="radio" [value]="false" formControlName="isOptative">
+        </div>
+      </div>
+    </div>
+    <div class="form-group requires-optatives" [hidden]="!isOptative.value">
+      <div class="row">
+        <label for="item-text" class="col-5"> {{hoursInputText}} </label>
+        <input id="item-text" appControlError class="form-control amount-input col-6" type="number"
+          formControlName="hours">
+      </div>
+      <div class="row">
+        <label for="item-text" class="col-5"> {{pointsInputText}} </label>
+        <input id="item-text" appControlError class="form-control amount-input col-6" type="number"
+          formControlName="points">
+      </div>
+      <app-error-message [hidden]="!showsOptativesErrorMessage" [errorMessage]="optativesErrorMessage">
+      </app-error-message>
+    </div>
   </div>
-  <app-modal-repeated-words-footer 
-    [defaultButtonText]="confirmButtonText"
-    [words]="subjectsName"
-    [wordToCompare]="name.value"
-    [repeatedWordText]="'Ya existen las siguientes materias con el mismo nombre: '"
-    (cancelAction)="cancelAction()"
-    (confirmAction)="confirmAction()">
+  <app-modal-repeated-words-footer [defaultButtonText]="confirmButtonText" [words]="subjectsName"
+    [wordToCompare]="name.value" [repeatedWordText]="'Ya existen las siguientes materias con el mismo nombre: '"
+    (cancelAction)="cancelAction()" (confirmAction)="confirmAction()">
   </app-modal-repeated-words-footer>
 </form>
