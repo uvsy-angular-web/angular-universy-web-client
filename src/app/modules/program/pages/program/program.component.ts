@@ -30,6 +30,7 @@ const NO_SUBJECTS_LEVEL_PUBLISHED = 'No existen materias para este nivel.';
   styleUrls: ['./program.component.css']
 })
 export class ProgramComponent implements OnInit {
+  optativeHeader = 'Optativa';
   program: Program;
   subjects: Subject[];
   subjectsXLevel: SubjectsXLevel[] = [];
