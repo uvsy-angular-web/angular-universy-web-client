@@ -21,6 +21,7 @@ export class SubjectModalComponent implements OnInit {
   optativesErrorMessage = '* Debe ingresar al menos un campo en requerimientos.';
   hoursInputText = 'Cantidad de horas: ';
   pointsInputText = 'Cantidad de puntos: ';
+  @Input() isProgramPublished = false;
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
   @Input() subject = new Subject();
@@ -85,10 +86,15 @@ export class SubjectModalComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: new FormControl(this.subject.name, SubjectModalComponent._getValidatorsForCareerName()),
       level: new FormControl(this.subject.level, Validators.required),
-      isOptative: new FormControl(this.subject.isOptative, Validators.required),
+      isOptative: new FormControl(this.subject.isOptative === true, Validators.required),
       hours: new FormControl(this.subject.hours, SubjectModalComponent._getAmountOfValidators()),
       points: new FormControl(this.subject.points, SubjectModalComponent._getAmountOfValidators()),
     });
+
+    if (this.isProgramPublished) {
+      this.isOptative.setValue(true);
+      this.isOptative.disable();
+    }
   }
 
   private static _getAmountOfValidators(): Validators {

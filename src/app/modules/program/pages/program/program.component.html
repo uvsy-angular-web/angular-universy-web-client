@@ -3,7 +3,9 @@
     [showDeleteButton]="canEditProgram()" [showEditButton]="canEditProgram()"></app-custom-title>
   <hr>
   <div class="content">
-    <app-add-item *ngIf="showAddSubjectButton()" [buttonTitle]="'Agregar Materia'"
+    <app-add-item *ngIf="showAddSubjectButton" [buttonTitle]="addSubjectText"
+      (buttonPressed)="openNewSubjectModal()"></app-add-item>
+    <app-add-item *ngIf="!showAddSubjectButton" [buttonTitle]="addOptativeSubjectText"
       (buttonPressed)="openNewSubjectModal()"></app-add-item>
     <div class="row bottom-line" *ngFor="let subjectXLevel of subjectsXLevel">
       <div class="col-xs-12">
