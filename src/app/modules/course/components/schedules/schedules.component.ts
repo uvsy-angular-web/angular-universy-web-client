@@ -3,6 +3,8 @@ import {TimeService} from '../../../../core/services/time/time.service';
 import {CourseModalService} from '../../modals/course-modal.service';
 import {Schedule} from '../../../../models/schedule.model';
 import {DayService} from '../../../../core/services/time/day.service';
+import {ModalService} from '../../../../modals/modal.service';
+import {ButtonText} from '../../../../shared/enums/button-text.enum';
 
 @Component({
   selector: 'app-schedules',
@@ -17,7 +19,7 @@ export class SchedulesComponent implements OnInit {
   noScheduleMessage = 'El período no posee horarios todavía, haz click en Agregar Horario';
   addScheduleButtonTitle = 'Agregar Horario';
 
-  constructor(private courseModalService: CourseModalService) {
+  constructor(private courseModalService: CourseModalService, private modalService: ModalService) {
   }
 
   openNewScheduleModal() {
@@ -41,7 +43,16 @@ export class SchedulesComponent implements OnInit {
   }
 
   deleteSchedule(schedule: Schedule) {
-    this.scheduleDeleted.emit(schedule);
+    this.modalService.openConfirmModal(
+      'Eliminar Horario',
+      'Usted está por eliminar un Horario.',
+      '¿Está seguro que desea eliminar el Horario seleccionado?',
+      ButtonText.Delete
+    ).subscribe(
+      () => {
+        this.scheduleDeleted.emit(schedule);
+    }
+  );
   }
 
   ngOnInit() {
