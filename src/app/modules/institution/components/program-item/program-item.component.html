@@ -1,15 +1,20 @@
 <div class="program-container">
     <h5> {{ program.name }}</h5>
-    <div id="overall-rate-container">
-        <div class="col-10 text-right" id="overall-rate-txt">
+    <div class="overall-rate-container">
+        <div class="col-10 text-right overall-rate-txt">
             {{overallRateTxt}}
         </div>
-        <div class="col-2 text-center" id="overall-rate">
+        <div class="col-2 text-center overall-rate">
             {{overallRate}}
         </div>
     </div>
     <hr>
-    <div id="subject-count-txt" class="text-right">
-        <span id="subject-count">{{subjectCount}}</span> {{subjectCountTxt}}
+    <div class="row">
+        <div class="col-6 text-left  subject-count-txt">
+            <span class="subject-count">{{subjectCount}}</span> {{subjectCountTxt}}
+        </div>
+        <div class="col-6 text-right subject-count-txt optative">
+            <span class="subject-count">{{optativeSubjectCount}}</span> {{optativeSubjectCountTxt}}
+        </div>
     </div>
 </div>
