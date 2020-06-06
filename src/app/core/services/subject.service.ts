@@ -24,27 +24,22 @@ export class SubjectService {
   }
 
   public addSubject(subject: Subject) {
-    const body = {
-      programCode: ProgramService.getCurrentProgram().uuid,
-      name: subject.name,
-      level: subject.level,
-      correlatives: subject.correlatives ? subject.correlatives : [],
-      careerKey: CareerService.getCurrentCareer().careerKey,
-    };
+    const body = { ...subject };
+    body.programCode = ProgramService.getCurrentProgram().uuid;
+    body.correlatives = subject.correlatives ? subject.correlatives : [];
+    body.careerKey = CareerService.getCurrentCareer().careerKey;
+
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
     return this.http.put(baseUrl + ENDPOINT_SUBJECTS, body, { headers });
   }
 
-  public updateSubject(subject: Subject) {
-    const body = {
-      subjectCode: subject.subjectCode,
-      programCode: ProgramService.getCurrentProgram().uuid,
-      name: subject.name,
-      level: subject.level,
-      correlatives: subject.correlatives ? subject.correlatives : [],
-      careerKey: CareerService.getCurrentCareer().careerKey,
-    };
+  updateSubject(subject: Subject) {
+    const body = { ...subject };
+    body.programCode = ProgramService.getCurrentProgram().uuid;
+    body.correlatives = subject.correlatives ? subject.correlatives : [];
+    body.careerKey = CareerService.getCurrentCareer().careerKey;
+
     const baseUrl = SubjectService.getBaseUrl();
     const headers = this.getHeaders();
     return this.http.post(baseUrl + ENDPOINT_SUBJECTS, body, { headers });

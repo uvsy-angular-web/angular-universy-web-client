@@ -8,6 +8,7 @@ const PERCENTAGE_CONSTANT = 20;
   styleUrls: ['./subject-item.component.css']
 })
 export class SubjectItemComponent implements OnInit {
+  isOptativeMessage = 'Optativa';
   @Input() active = false;
   @Input() subject: Subject;
   @Input() subjectRate = Math.floor(Math.random() * 5) + 0 ;
@@ -16,6 +17,7 @@ export class SubjectItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.subject)
     this.calculateProgress();
   }
 

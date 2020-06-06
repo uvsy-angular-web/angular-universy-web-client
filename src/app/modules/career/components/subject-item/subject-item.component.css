@@ -3,6 +3,7 @@
     transition: all 100ms ease-in-out;
     border-radius: 15px;
     cursor: pointer;
+    margin-bottom: 1.3rem;
 }
 
 .subject-item:hover {
@@ -35,3 +36,36 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+
+.optative-message-container {
+    position: relative;
+    top: 1.5rem;
+    left: 70%;
+}
+
+.optative-message {
+    max-width: 6rem;
+    border-color: #8046b6;
+    border-width: 1px;
+    border-style: solid;
+    color:#8046b6;
+    text-align: center;
+    border-radius: 0.5rem;
+    transition: all 100ms ease-in-out;
+}
+
+.subject-item:hover .optative-message{
+    background-color: #efeeee;
+}
+
+.subject-active .optative-message {
+    background-color: #8046b6;
+    border-color: #7a3bb4;
+    color: white;
+    font-weight: bold;
+}
+
+.subject-active:hover .optative-message {
+    background-color: #9061bd;
+}
+

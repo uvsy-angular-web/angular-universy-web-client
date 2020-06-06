@@ -40,7 +40,7 @@ export class SubjectComponent implements OnInit {
   }
 
   public canModifySubject() {
-    return !ProgramService.getCurrentProgram().published;
+    return !ProgramService.getCurrentProgram().published || this.subject.isOptative;
   }
 
   private addCourse(courseName: string) {
@@ -118,7 +118,8 @@ export class SubjectComponent implements OnInit {
   }
 
   public openEditModal() {
-    this.subjectModalService.openEditSubjectModal(this.subject).subscribe(
+    const isProgramPublished = ProgramService.getCurrentProgram().published;
+    this.subjectModalService.openEditSubjectModal(this.subject, isProgramPublished).subscribe(
       () => {
         this.subjectService.updateSubject(this.subject).subscribe(() => {
           this.notificationService.inform(

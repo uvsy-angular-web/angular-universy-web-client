@@ -14,6 +14,7 @@ const CAREER_NAME_MAX_LENGTH = 35;
 
 const AMOUNT_VALIDATORS_MAX_LENGHT = 3;
 const AMOUNT_VALIDATORS_MIN_VALUE = 0;
+const AMOUNT_VALIDATORS_MAX_VALUE = 999;
 const ZERO_AMOUNT_VALUE = 0;
 
 const YEAR_FROM_MAX_LENGTH = 4;
@@ -151,6 +152,7 @@ export class ProgramModalComponent implements OnInit {
   private static _getAmountOfValidators(): Validators {
     return Validators.compose([
       Validators.maxLength(AMOUNT_VALIDATORS_MAX_LENGHT),
+      Validators.max(AMOUNT_VALIDATORS_MAX_VALUE),
       Validators.min(AMOUNT_VALIDATORS_MIN_VALUE),
     ]);
   }

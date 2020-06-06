@@ -1,6 +1,10 @@
 <div class="subject-item " (click)="selectSubject()" [class.subject-active]="active">
     <div id="subject-name">{{subject.name}}</div>
     <div class="subject-progress">
-        <ngb-progressbar [height]="'0.7rem'" type="{{active ? 'light': 'warning' }}" [value]="progress"></ngb-progressbar>
+        <ngb-progressbar [height]="'0.7rem'" type="{{active ? 'light': 'warning' }}" [value]="progress">
+        </ngb-progressbar>
+    </div>
+    <div class="optative-message-container" *ngIf="subject.isOptative">
+        <div class="optative-message">{{isOptativeMessage}}</div>
     </div>
 </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { Subject } from '../../../../models/subject.model';
 import { ModalService } from '../../../../modals/modal.service';
 import { Program } from '../../../../models/program.model';
@@ -23,6 +22,7 @@ export class SubjectsXLevel {
 const INITIAL_LEVEL = 1;
 const NO_SUBJECTS_LEVEL_NO_PUBLISHED = 'Aun no agregaste ninguna materia al nivel.';
 const NO_SUBJECTS_LEVEL_PUBLISHED = 'No existen materias para este nivel.';
+const ERROR_ON_SUBJECT_MODAL = 'Ocurrió un error tratando de abrir el modal de materia';
 
 @Component({
   selector: 'app-plan-edit',
@@ -30,11 +30,14 @@ const NO_SUBJECTS_LEVEL_PUBLISHED = 'No existen materias para este nivel.';
   styleUrls: ['./program.component.css']
 })
 export class ProgramComponent implements OnInit {
+  optativeHeader = 'Optativa';
+  addSubjectText = 'Agregar materia';
+  addOptativeSubjectText = 'Agregar materia optativa';
   program: Program;
   subjects: Subject[];
   subjectsXLevel: SubjectsXLevel[] = [];
   noSubjectOnLevelMessage: string;
-
+  showAddSubjectButton: boolean;
   constructor(
     private programService: ProgramService,
     private navigationService: NavigationService,
@@ -46,6 +49,7 @@ export class ProgramComponent implements OnInit {
 
   ngOnInit() {
     this.program = ProgramService.getCurrentProgram();
+    this.showAddSubjectButton = !this.isProgramPublished()
     this.getSubjects();
     this.fillSubjectOnLevelMessage();
   }
@@ -65,9 +69,14 @@ export class ProgramComponent implements OnInit {
   }
 
   public openNewSubjectModal() {
-    this.subjectModalService.openNewSubjectModal().subscribe(
-      (newSubject: Program) => this.addSubject(newSubject)
-    );
+    try {
+      const isProgramPublished = ProgramService.getCurrentProgram().published;
+      this.subjectModalService.openNewSubjectModal(isProgramPublished).subscribe(
+        (newSubject: Program) => this.addSubject(newSubject)
+      );
+    } catch (_) {
+      this.notificationService.showError(ERROR_ON_SUBJECT_MODAL);
+    }
   }
 
   public openDeleteProgramModal() {
@@ -163,8 +172,8 @@ export class ProgramComponent implements OnInit {
     return subjectsXLevel;
   }
 
-  public showAddSubjectButton() {
-    return !this.program.published;
+  public isProgramPublished() {
+    return this.program.published;
   }
 
   private getMaximumLevel() {

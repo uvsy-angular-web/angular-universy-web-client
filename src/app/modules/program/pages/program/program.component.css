@@ -11,13 +11,36 @@
   font-size: 1vw;
 }
 
-.btn:hover {
-  background-color: grey;
+.btn-subject:hover {
+  background-color: #e7c94f;
+  
 }
+
 
 .bottom-line {
   border-bottom: 1px solid #b9b9b9;
   margin-bottom: 1rem;
+}
+
+.optative-header{
+  font-size: small;
+  font-style: italic;
+  position: absolute;
+  font-weight: bolder;
+  top: -2.5rem;
+  left: 8.8rem;
+  color: white;
+  background-color: #3D1255;
+  padding: 0.5rem;
+  border-radius: 20px 20px 20px 5px
+}
+
+.btn-subject:hover .optative-header{
+  background-color: #551777;
+}
+
+.optative-decorator{
+  position: relative;
 }
 
 .subjects {
