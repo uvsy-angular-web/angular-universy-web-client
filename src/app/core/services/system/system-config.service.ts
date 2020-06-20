@@ -1,27 +1,62 @@
-import {HttpHeaders} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import configJson from '@config/config.json';
+import { Observable } from 'rxjs';
+
+const APPLICATION_JSON = 'application/json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SystemConfigService {
-
-
-  constructor() {
+  constructor(private http: HttpClient) {
   }
-  readonly APPLICATION_JSON = 'application/json';
 
-  public getHeader(): HttpHeaders {
+  httpDelete(endpointName: string): Observable<any> {
+    const baseUrl = this.getBaseUrl();
+    const headers = this.getHeaders();
+
+    const url = baseUrl + endpointName;
+    return this.http.delete(url, { headers });
+  }
+
+  httpPut(endpointName: string, body?: any): Observable<any> {
+    const baseUrl = this.getBaseUrl();
+    const headers = this.getHeaders();
+
+    const url = baseUrl + endpointName;
+    return this.http.put(url, body, { headers });
+  }
+
+  httpPost(endpointName: string, body?: any): Observable<any> {
+    const baseUrl = this.getBaseUrl();
+    const headers = this.getHeaders();
+
+    const url = baseUrl + endpointName;
+    return this.http.post(url, body, { headers });
+  }
+
+  httpGet(endpointName: string, params?: HttpParams): Observable<any> {
+    const baseUrl = this.getBaseUrl();
+    const headers = this.getHeaders();
+
+    const url = baseUrl + endpointName;
+    return this.http.get(url, { headers, params })
+      .map((response: any) => {
+        return response.data;
+      }
+      );
+  }
+
+  getHeaders(): HttpHeaders {
     let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('Content-type', this.APPLICATION_JSON);
+    headers = headers.append('Content-type', APPLICATION_JSON);
     headers = headers.append('x-api-key', configJson.apiKey);
     return headers;
   }
 
-  public static getBaseUrl(): string {
+  getBaseUrl(): string {
     return `${configJson.baseEndpoint}/${configJson.stage}`;
+
   }
-
 }
-
