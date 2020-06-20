@@ -91,7 +91,7 @@ export class ProgramStatsComponent implements OnInit {
   private initProgram() {
     this.program = ProgramService.getCurrentProgram();
     this.programName = this.program.name;
-    this.isProgramPublished = this.program.published;
+    this.isProgramPublished = this.program.active;
     this.title = this.isProgramPublished ? 'Visualizar plan' : 'Publicar plan';
 
   }

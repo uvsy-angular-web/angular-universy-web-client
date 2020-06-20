@@ -74,7 +74,7 @@ export class CareerComponent implements OnInit {
   }
 
   private isThereProgramNotPublished() {
-    return this.programs.find((program: Program) => program.published === false);
+    return this.programs.find((program: Program) => program.active === false);
   }
 
   private addProgram(newProgram: Program) {

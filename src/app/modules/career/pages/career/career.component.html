@@ -11,7 +11,7 @@
     <div class="content">
         <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()" [buttonTitle]="'Agregar plan'"></app-add-item>
         <div *ngIf="programs">
-            <div *ngFor="let program of programs" class="row text-left program" [ngClass]="{'btn-program-off' :program.published , 'btn-program-on': !program.published }">
+            <div *ngFor="let program of programs" class="row text-left program" [ngClass]="{'btn-program-off' :program.active , 'btn-program-on': !program.active }">
                 <div class="col-8 clickeable" (click)="navigateToProgramPage(program)">
                     <h3 class="program-name">
                         {{program.name}}
@@ -19,13 +19,13 @@
                     <h4 class="valid-from">
                         Desde: {{program.validFrom | date:'yyyy'}}</h4>
                 </div>
-                <div class="col-4 text-center not-pusblished" *ngIf="!program.published">
+                <div class="col-4 text-center not-pusblished" *ngIf="!program.active">
                     <br>
                     <button class="btn btn-primary" (click)="navigateToProgramStats(program)">Publicar</button>
                 </div>
-                <div class="col-4 text-center align-self-center" *ngIf="program.published">
+                <div class="col-4 text-center align-self-center" *ngIf="program.active">
                     <h3 class="program-name ">
-                        <i class="material-icons" id="published-icon">fiber_manual_record</i> Publicado
+                        <i class="material-icons" id="active-icon">fiber_manual_record</i> Publicado
                     </h3>
                     <div class="text-center">
                         <a href="" class="add-item" id="program-stat-link" (click)="navigateToProgramStats(program)" data-toggle="modal">Ver detalles</a>
