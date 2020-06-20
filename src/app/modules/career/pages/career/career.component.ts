@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {Career} from '../../../../models/career.model';
 import {CareerService} from '../../../../core/services/career.service';
-import {InstitutionService} from '../../../../core/services/institution.service';
 import {ModalService} from '../../../../modals/modal.service';
 import {Program} from '../../../../models/program.model';
 import {ProgramService} from '../../../../core/services/program.service';

@@ -39,6 +39,10 @@ export class CareerService {
     return this.http.put(baseUrl + ENDPOINT_CAREERS, body, { headers });
   }
 
+  getAllCareers() {
+
+  }
+
   public getCareersNames(): string[] {
     const currentInstitution = InstitutionService.getCurrentInstitution();
     return currentInstitution.careers.map((career: Career) => career.careerName);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Institution } from 'src/app/models/career.model';
+import { Institution } from 'src/app/models/institution.model';
 import { InstitutionService } from 'src/app/core/services/institution.service';
 
 @Component({
@@ -15,13 +15,13 @@ export class InstitutionStatsComponent implements OnInit {
     i: { opacity: 0 },
     button: { opacity: 0 }
   };
-  constructor() { }
+  constructor(private institutionService: InstitutionService) { }
 
   ngOnInit() {
     this.getCurrentInstitution();
   }
 
   private getCurrentInstitution() {
-    this.institution = InstitutionService.getCurrentInstitution();
+    this.institution = this.institutionService.getCurrentInstitution();
   }
 }
