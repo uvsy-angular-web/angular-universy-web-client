@@ -96,7 +96,7 @@ export class ProgramStatsComponent implements OnInit {
 
   }
   private initCareer() {
-    this.careerName = CareerService.getCurrentCareer().careerName;
+    this.careerName = CareerService.getCurrentCareer().name;
 
   }
   private initSubjects() {

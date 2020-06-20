@@ -4,56 +4,54 @@ import { HttpClient } from '@angular/common/http';
 import { InstitutionService } from './institution.service';
 import { LocalStorageService } from './local-storage.service';
 import { Career } from '../../models/career.model';
-import { SimilarWordService } from './validator/repeated-text.service';
+import { CRUDEndpointsService } from './system/crud-endpoints.service';
+import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
+import { Endpoint } from 'src/app/models/endpoint.model';
+import { Observable } from 'rxjs';
 
-const ENDPOINT_CAREERS = '/universy/institution/careers';
 const CURRENT_CAREER_KEY = 'current-career';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CareerService {
+  private endpoint = new Endpoint(EndpointName.CAREERS, EndpointName.INSTITUTIONS);
 
   constructor(
-    private http: HttpClient,
-    private systemConfigService: SystemConfigService) {
+    private institutionService: InstitutionService,
+    private crudEndpointService: CRUDEndpointsService) {
   }
 
   updateCareer(career: Career) {
-    const body = {
-      institutionKey: InstitutionService.getCurrentInstitution().institutionKey,
-      career
-    };
-    const baseUrl = CareerService._getBaseUrl();
-    const headers = this._getHeaders();
-    return this.http.post(baseUrl + ENDPOINT_CAREERS, body, { headers });
+    return this.crudEndpointService.update(this.endpoint, career.id, career);
   }
 
   addCareer(careerName: string) {
-    const body = {
-      institutionKey: InstitutionService.getCurrentInstitution().institutionKey,
-      careerName
-    };
-    const baseUrl = CareerService._getBaseUrl();
-    const headers = this._getHeaders();
-    return this.http.put(baseUrl + ENDPOINT_CAREERS, body, { headers });
+    const institutionId = this.getInstitutionId();
+
+    const career = new Career();
+    career.name = careerName;
+
+    return this.crudEndpointService.createOnParent(institutionId, this.endpoint, career);
   }
 
-  getAllCareers() {
+  getAllCareers(): Observable<Career[]> {
+    const institutionId = this.getInstitutionId();
 
+    return this.crudEndpointService.getAllFromParent(institutionId, this.endpoint);
   }
 
-  public getCareersNames(): string[] {
-    const currentInstitution = InstitutionService.getCurrentInstitution();
-    return currentInstitution.careers.map((career: Career) => career.careerName);
+  getCareersNames(): Observable<string[]> {
+    const currentInstitution = this.institutionService.getCurrentInstitution();
+
+    return this.getAllCareers().map(
+      (careers: Career[]) => careers.map((career: Career) => career.name)
+    );
   }
 
-  private _getHeaders() {
-    return this.systemConfigService.getHeader();
-  }
-
-  private static _getBaseUrl() {
-    return SystemConfigService.getBaseUrl();
+  private getInstitutionId(): string {
+    const currentInstitution = this.institutionService.getCurrentInstitution();
+    return currentInstitution.id;
   }
 
   public static setCurrentCareer(career: Career) {

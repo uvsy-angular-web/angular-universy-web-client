@@ -103,7 +103,7 @@ export class CareerComponent implements OnInit {
 
   private editCareerName(careerName: string) {
     if (careerName) {
-      this.career.careerName = careerName;
+      this.career.name = careerName;
       this.updateCareer();
     }
   }

@@ -48,7 +48,9 @@ export class CareerModalComponent implements OnInit {
   }
 
   private getCareerNames() {
-    this.careerNames = this.careerService.getCareersNames();
+    this.careerService.getCareersNames().subscribe(
+      (careerNames: string[]) => this.careerNames = careerNames
+    );
   }
 
   private createForm(): void {

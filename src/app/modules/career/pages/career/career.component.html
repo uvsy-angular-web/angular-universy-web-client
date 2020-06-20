@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-7">
-            <app-custom-title [title]="career.careerName" (editItem)="openEditCareerModal()" [showDeleteButton]="false"></app-custom-title>
+            <app-custom-title [title]="career.name" (editItem)="openEditCareerModal()" [showDeleteButton]="false"></app-custom-title>
         </div>
         <div class="col-5">
             <app-custom-toggle class="float-right" [activated]="getStateOfCareer()" (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>

@@ -33,22 +33,22 @@ export class CRUDEndpointsService {
         return this.systemConfigService.httpGet(url);
     }
 
+    getAllFromParent(parentId: string, endpoint: Endpoint): Observable<any> {
+        const url = this.buildParentUrl(parentId, endpoint);
+
+        return this.systemConfigService.httpGet(url);
+    }
+
     get(endpoint: Endpoint, id: string): Observable<any> {
         const url = this.buildIdUrl(endpoint, id);
 
         return this.systemConfigService.httpGet(url);
     }
 
-    put(endpoint: Endpoint, id: string): Observable<any> {
+    update(endpoint: Endpoint, id: string, body: any): Observable<any> {
         const url = this.buildIdUrl(endpoint, id);
 
-        return this.systemConfigService.httpPut(url);
-    }
-
-    post(endpoint: Endpoint, id: string): Observable<any> {
-        const url = this.buildIdUrl(endpoint, id);
-
-        return this.systemConfigService.httpPost(url);
+        return this.systemConfigService.httpPut(url, body);
     }
 
     delete(endpoint: Endpoint, id: string): Observable<any> {

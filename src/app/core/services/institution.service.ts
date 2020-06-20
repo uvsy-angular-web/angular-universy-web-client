@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
-import { SystemConfigService } from './system/system-config.service';
 import { Observable } from 'rxjs';
 import 'rxjs-compat/add/operator/map';
 import { LocalStorageService } from './local-storage.service';
-import { SimilarWordService } from 'src/app/core/services/validator/repeated-text.service';
 import { Institution } from '../../models/institution.model';
 import { Endpoint } from 'src/app/models/endpoint.model';
+import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { CRUDEndpointsService } from './system/crud-endpoints.service';
 const FIRST_INSTITUTION_INDEX = 0;
 const CURRENT_INSTITUTION_KEY = 'current-institution';
 
-const BASE_ENDPOINT_NAME = '/institutions';
 @Injectable({
   providedIn: 'root'
 })
 export class InstitutionService {
-  private endpoint = new Endpoint(BASE_ENDPOINT_NAME);
+  private endpoint = new Endpoint(EndpointName.INSTITUTIONS);
 
   constructor(
     private crudEndpointsService: CRUDEndpointsService) {
