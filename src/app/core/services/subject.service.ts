@@ -1,76 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SystemConfigService } from './system/system-config.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Subject } from '../../models/subject.model';
 import { ProgramService } from './program.service';
-import { CareerService } from './career.service';
 import { LocalStorageService } from './local-storage.service';
-import { SimilarWordService } from './validator/repeated-text.service';
 import { Program } from 'src/app/models/program.model';
+import { CRUDEndpointsService } from './system/crud-endpoints.service';
+import { Endpoint } from 'src/app/models/endpoint.model';
+import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 
-const ENDPOINT_SUBJECTS = '/universy/institution/subjects';
 const CURRENT_SUBJECT_KEY = 'current-subject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectService {
+  private endpoint = new Endpoint(EndpointName.SUBJECT, EndpointName.PROGRAMS);
 
   constructor(
-    private http: HttpClient,
-    private systemConfigService: SystemConfigService,
-    private similarWordService: SimilarWordService) {
+    private crudEndpointService: CRUDEndpointsService) {
   }
 
-  public addSubject(subject: Subject) {
-    const body = { ...subject };
-    body.programCode = ProgramService.getCurrentProgram().uuid;
-    body.correlatives = subject.correlatives ? subject.correlatives : [];
-    body.careerKey = CareerService.getCurrentCareer().careerKey;
+  addSubject(subject: Subject) {
+    const parentId = this.getParentId();
 
-    const baseUrl = SubjectService.getBaseUrl();
-    const headers = this.getHeaders();
-    return this.http.put(baseUrl + ENDPOINT_SUBJECTS, body, { headers });
+    return this.crudEndpointService.createOnParent(parentId, this.endpoint, subject);
   }
 
   updateSubject(subject: Subject) {
-    const body = { ...subject };
-    body.programCode = ProgramService.getCurrentProgram().uuid;
-    body.correlatives = subject.correlatives ? subject.correlatives : [];
-    body.careerKey = CareerService.getCurrentCareer().careerKey;
-
-    const baseUrl = SubjectService.getBaseUrl();
-    const headers = this.getHeaders();
-    return this.http.post(baseUrl + ENDPOINT_SUBJECTS, body, { headers });
+    return this.crudEndpointService.update(this.endpoint, subject.id, subject);
   }
 
   getSubjectsByProgram(program: Program): Observable<Subject[]> {
-    const baseUrl = SubjectService.getBaseUrl();
-    const headers = this.getHeaders();
-    const params = new HttpParams()
-      .set('programCode', program.uuid);
-
-    return this.http.get(baseUrl + ENDPOINT_SUBJECTS, { headers, params })
-      .map((data: any) => {
-        return data.subjects;
-      }
-      );
+    return this.crudEndpointService.getAllFromParent(program.id, this.endpoint);
   }
 
   getSubjects(): Observable<Subject[]> {
-    const baseUrl = SubjectService.getBaseUrl();
-    const headers = this.getHeaders();
+    const parentId = this.getParentId();
 
-    const currentProgramCode = ProgramService.getCurrentProgram().uuid;
-    const params = new HttpParams()
-      .set('programCode', currentProgramCode);
-
-    return this.http.get(baseUrl + ENDPOINT_SUBJECTS, { headers, params })
-      .map((data: any) => {
-        return data.subjects;
-      }
-      );
+    return this.crudEndpointService.getAllFromParent(parentId, this.endpoint);
   }
 
   getSubjectsName(): Observable<string[]> {
@@ -80,21 +47,22 @@ export class SubjectService {
   }
 
   deleteSubject(subject: Subject) {
-    const baseUrl = SubjectService.getBaseUrl();
-    const headers = this.getHeaders();
-    const currentProgramCode = ProgramService.getCurrentProgram().uuid;
-    const params = new HttpParams()
-      .set('programCode', currentProgramCode)
-      .set('subjectCode', subject.subjectCode.toString());
-
-    return this.http.delete(baseUrl + ENDPOINT_SUBJECTS, { headers, params });
+    return this.crudEndpointService.delete(this.endpoint, subject.id);
   }
 
-  private getHeaders() {
-    return this.systemConfigService.getHeader();
+  private getParentId(): string {
+    return ProgramService.getCurrentProgram().id;
   }
 
-  public static sortSubjectsByLevel(subjects: Subject[]) {
+  static getCurrentSubject(): Subject {
+    return LocalStorageService.getObjectFromInLocalStorage(CURRENT_SUBJECT_KEY) as Subject;
+  }
+
+  static setCurrentSubject(subject: Subject) {
+    LocalStorageService.saveObjectInLocalStorage(CURRENT_SUBJECT_KEY, subject);
+  }
+
+  static sortSubjectsByLevel(subjects: Subject[]) {
     if (subjects) {
       subjects.sort(SubjectService.isSubjectLevelGreater);
     }
@@ -111,15 +79,4 @@ export class SubjectService {
     return 0;
   }
 
-  private static getBaseUrl() {
-    return SystemConfigService.getBaseUrl();
-  }
-
-  public static setCurrentSubject(subject: Subject) {
-    LocalStorageService.saveObjectInLocalStorage(CURRENT_SUBJECT_KEY, subject);
-  }
-
-  public static getCurrentSubject(): Subject {
-    return LocalStorageService.getObjectFromInLocalStorage(CURRENT_SUBJECT_KEY) as Subject;
-  }
 }

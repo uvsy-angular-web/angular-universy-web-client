@@ -20,30 +20,29 @@ export class ProgramService {
     private crudEndpointService: CRUDEndpointsService) {
   }
 
-
-  public addProgram(program: Program) {
+  addProgram(program: Program) {
     return this.crudEndpointService.createOnParent(program.careerId, this.endpoint, program);
   }
 
-  public getPrograms(): Observable<Program[]> {
+  getPrograms(): Observable<Program[]> {
     const careerId = this.getCareerId();
 
     return this.crudEndpointService.getAllFromParent(careerId, this.endpoint);
   }
 
-  public getProgramsByCareer(career: Career): Observable<Program[]> {
+  getProgramsByCareer(career: Career): Observable<Program[]> {
     return this.crudEndpointService.getAllFromParent(career.id, this.endpoint);
   }
 
-  public deleteProgram(program: Program) {
+  deleteProgram(program: Program) {
     return this.crudEndpointService.delete(this.endpoint, program.id);
   }
 
-  public updateProgram(program: Program) {
+  updateProgram(program: Program) {
     return this.crudEndpointService.update(this.endpoint, program.id, program);
   }
 
-  public publishProgram(program: Program) {
+  publishProgram(program: Program) {
     return this.crudEndpointService.activate(this.endpoint, program.id);
   }
 
@@ -52,11 +51,11 @@ export class ProgramService {
     return currentInstitution.id;
   }
 
-  public static setCurrentProgram(program: Program) {
+  static setCurrentProgram(program: Program) {
     LocalStorageService.saveObjectInLocalStorage(CURRENT_PROGRAM_KEY, program);
   }
 
-  public static getCurrentProgram(): Program {
+  static getCurrentProgram(): Program {
     return LocalStorageService.getObjectFromInLocalStorage(CURRENT_PROGRAM_KEY) as Program;
   }
 }
