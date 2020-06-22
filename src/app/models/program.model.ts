@@ -6,6 +6,7 @@ export class Program {
   validTo: number;
   hours: number;
   points: number;
+  amountOfSubjects: number;
   active: boolean;
   createdAt: number;
   updatedAt: number;

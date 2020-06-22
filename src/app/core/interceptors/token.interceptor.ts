@@ -8,13 +8,13 @@ const BEARER = 'Bearer';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor() {
+  constructor(private systemConfigService: SystemConfigService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const currentUser = AuthService.getCurrentUser();
     const isLoggedIn = currentUser && currentUser.token;
-    const baseUrl = TokenInterceptor.getBaseUrl();
+    const baseUrl = this.getBaseUrl();
     const isApiUrl = request.url.startsWith(baseUrl);
 
     if (isLoggedIn && isApiUrl) {
@@ -27,8 +27,8 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 
-  static getBaseUrl() {
-    return SystemConfigService.getBaseUrl();
+  getBaseUrl() {
+    return this.systemConfigService.getBaseUrl();
   }
 }
 
