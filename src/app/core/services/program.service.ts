@@ -21,7 +21,9 @@ export class ProgramService {
   }
 
   addProgram(program: Program) {
-    return this.crudEndpointService.createOnParent(program.careerId, this.endpoint, program);
+    const careerId = this.getCareerId();
+
+    return this.crudEndpointService.createOnParent(careerId, this.endpoint, program);
   }
 
   getPrograms(): Observable<Program[]> {

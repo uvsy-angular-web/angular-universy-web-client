@@ -22,6 +22,10 @@ export class CareerService {
     private crudEndpointService: CRUDEndpointsService) {
   }
 
+  activateCareer(career: Career) {
+    return this.crudEndpointService.activate(this.endpoint, career.id);
+  }
+
   updateCareer(career: Career) {
     return this.crudEndpointService.update(this.endpoint, career.id, career);
   }

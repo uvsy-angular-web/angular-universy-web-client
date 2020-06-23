@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import 'rxjs-compat/add/operator/map';
 import { Endpoint } from '../../../models/endpoint.model';
 
-const ACTIVATE_SUFIX = '/activate';
+const ACTIVATE_SUFIX = 'activate';
 
 @Injectable({
     providedIn: 'root'
