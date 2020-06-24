@@ -29,7 +29,7 @@ export class CourseService {
     const baseUrl = this.getBaseUrl();
     const headers = this.getHeaders();
     const params = new HttpParams()
-      .set('subjectCode', subject.subjectCode.toString());
+      .set('subjectCode', subject.codename.toString());
 
     return this.http.get(baseUrl + ENDPOINT_COURSES, { headers, params })
       .map((data: any) => {
@@ -41,7 +41,7 @@ export class CourseService {
 
   addCourse(courseName: string) {
     const body = {
-      subjectCode: SubjectService.getCurrentSubject().subjectCode,
+      subjectCode: SubjectService.getCurrentSubject().codename,
       active: true,
       name: courseName,
       periods: [],
@@ -63,7 +63,7 @@ export class CourseService {
     const currentSubject = SubjectService.getCurrentSubject();
     const params = new HttpParams()
       .set('courseCode', course.courseCode.toString())
-      .set('subjectCode', currentSubject.subjectCode);
+      .set('subjectCode', currentSubject.codename);
     return this.http.delete(baseUrl + ENDPOINT_COURSES, { headers, params });
   }
 

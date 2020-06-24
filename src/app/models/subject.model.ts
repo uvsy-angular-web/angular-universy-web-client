@@ -1,40 +1,45 @@
-import { CareerKey } from './carreer-key.model';
 import { Correlative } from './correlative.model';
 
 export class Subject {
   id: string;
-  programCode: string;
-  subjectCode: string;
   name: string;
-  level: number;
-  correlatives: Correlative[];
-  careerKey: CareerKey;
-  isOptative: boolean;
+  codename: string;
+  programId: string;
   hours: number;
   points: number;
+  level: number;
+  active: boolean;
+  optative: boolean;
+  correlatives: Correlative[];
+  createdAt: number;
+  updatedAt: number;
 
   constructor(
     id?: string,
-    programCode?: string,
-    subjectCode?: string,
     name?: string,
-    level?: number,
-    correlatives?: Correlative[],
-    careerKey?: CareerKey,
-    isOptative?: boolean,
+    codename?: string,
+    programId?: string,
     hours?: number,
     points?: number,
+    level?: number,
+    active?: boolean,
+    optative?: boolean,
+    correlatives?: Correlative[],
+    createdAt?: number,
+    updatedAt?: number,
   ) {
     this.id = id;
-    this.programCode = programCode;
-    this.subjectCode = subjectCode;
     this.name = name;
-    this.level = level;
-    this.correlatives = correlatives;
-    this.careerKey = careerKey;
-    this.isOptative = isOptative;
+    this.codename = codename;
+    this.programId = programId;
     this.hours = hours;
     this.points = points;
+    this.level = level;
+    this.active = active;
+    this.optative = optative;
+    this.correlatives = correlatives;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 }
 

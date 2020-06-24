@@ -39,7 +39,7 @@ export class CorrelativeListComponent implements OnInit {
   isToTakeRegularChecked(subject: Subject): boolean {
     const isToTakeRegularChecked = this.subject.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.REGULAR;
       }
@@ -51,7 +51,7 @@ export class CorrelativeListComponent implements OnInit {
   isToTakeApprovedChecked(subject: Subject): boolean {
     const isToTakeApprovedChecked = this.subject.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
@@ -63,7 +63,7 @@ export class CorrelativeListComponent implements OnInit {
   isToApproveChecked(subject: Subject): boolean {
     const isToApproveChecked = this.subject.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }

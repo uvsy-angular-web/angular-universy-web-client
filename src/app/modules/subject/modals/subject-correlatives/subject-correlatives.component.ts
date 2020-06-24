@@ -76,7 +76,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   private getCorrelativeToApprove(subject: Subject) {
     return this.subject.correlatives.find(
       (correlative) =>
-        correlative.subjectCode === subject.subjectCode &&
+        correlative.correlativeSubjectId === subject.id &&
         correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE
     );
   }
@@ -84,7 +84,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   private getCorrelativeToTakeBySubject(subject: Subject) {
     return this.subject.correlatives.find(
       (correlative) =>
-        (correlative.subjectCode === subject.subjectCode &&
+        (correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE));
   }
 
@@ -102,10 +102,10 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   private addCorrelative(subject: Subject, correlativeRestriction: CorrelativeRestriction, correlativeCondition: CorrelativeCondition) {
     const newCorrelative = new Correlative(
-      subject.name,
-      subject.subjectCode,
-      correlativeRestriction,
-      correlativeCondition);
+      null,
+      subject.id,
+      correlativeCondition,
+      correlativeRestriction);
     this.subject.correlatives.push(newCorrelative);
   }
 
@@ -121,7 +121,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   public isToTakeRegularChecked(subject: Subject): boolean {
     return this.subject.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.REGULAR;
       }
@@ -131,7 +131,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   public isToTakeApprovedChecked(subject: Subject): boolean {
     return this.subject.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
@@ -141,7 +141,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   public isToApproveChecked(subject: Subject): boolean {
     return this.subject.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
@@ -172,7 +172,7 @@ export class SubjectCorrelativesComponent implements OnInit {
       (subjects) => {
         subjects.correlatives.filter(
           (correlative) => {
-            return correlative.subjectCode === this.subject.subjectCode;
+            return correlative.correlativeSubjectId === this.subject.id;
           }
         );
       }
@@ -187,7 +187,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   private isCurrentSubjectNotIncluded(subject) {
-    return subject.subjectCode !== this.subject.subjectCode;
+    return subject.id !== this.subject.id;
   }
 
   private isSubjectLevelLowerThatActual(subject) {

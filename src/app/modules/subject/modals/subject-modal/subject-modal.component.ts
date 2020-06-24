@@ -63,7 +63,7 @@ export class SubjectModalComponent implements OnInit {
         this.points.value > 0;
 
       if (atLeastOneAmountLoaded) {
-        this.subject.isOptative = this.isOptative.value;
+        this.subject.optative = this.isOptative.value;
         this.subject.hours = this.hours.value;
         this.subject.points = this.points.value;
       } else {
@@ -86,7 +86,7 @@ export class SubjectModalComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: new FormControl(this.subject.name, SubjectModalComponent._getValidatorsForCareerName()),
       level: new FormControl(this.subject.level, Validators.required),
-      isOptative: new FormControl(this.subject.isOptative === true, Validators.required),
+      isOptative: new FormControl(this.subject.optative === true, Validators.required),
       hours: new FormControl(this.subject.hours, SubjectModalComponent._getAmountOfValidators()),
       points: new FormControl(this.subject.points, SubjectModalComponent._getAmountOfValidators()),
     });

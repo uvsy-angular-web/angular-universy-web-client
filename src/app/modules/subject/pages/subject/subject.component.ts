@@ -40,7 +40,7 @@ export class SubjectComponent implements OnInit {
   }
 
   public canModifySubject() {
-    return !ProgramService.getCurrentProgram().active || this.subject.isOptative;
+    return !ProgramService.getCurrentProgram().active || this.subject.optative;
   }
 
   private addCourse(courseName: string) {

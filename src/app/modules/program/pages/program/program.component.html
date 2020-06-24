@@ -12,10 +12,10 @@
         <h4>Nivel {{subjectXLevel.level}}</h4>
         <div class="row subjects">
           <div class="col-xs-2" *ngFor="let subject of subjectXLevel.subjects">
-              <button *ngIf="!subject.isOptative"  class="btn-subject"  (click)="navigateToSubjectView(subject)">
+              <button *ngIf="!subject.optative"  class="btn-subject"  (click)="navigateToSubjectView(subject)">
                 {{subject.name}}
               </button>
-              <button *ngIf="subject.isOptative" class="btn-subject" (click)="navigateToSubjectView(subject)">
+              <button *ngIf="subject.optative" class="btn-subject" (click)="navigateToSubjectView(subject)">
               <div class="optative-decorator">
                 <p class="optative-header">{{optativeHeader}}</p>
               </div>

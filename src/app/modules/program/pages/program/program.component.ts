@@ -49,7 +49,7 @@ export class ProgramComponent implements OnInit {
 
   ngOnInit() {
     this.program = ProgramService.getCurrentProgram();
-    this.showAddSubjectButton = !this.isProgramPublished()
+    this.showAddSubjectButton = !this.isProgramPublished();
     this.getSubjects();
     this.fillSubjectOnLevelMessage();
   }
