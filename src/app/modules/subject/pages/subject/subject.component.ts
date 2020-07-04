@@ -9,6 +9,7 @@ import { Course } from '../../../../models/course.model';
 import { ProgramService } from '../../../../core/services/program.service';
 import { SubjectModalService } from '../../modals/subject-modal.service';
 import { Correlative } from '../../../../models/correlative.model';
+import { CorrelativeService } from 'src/app/core/services/correlative.service';
 
 @Component({
   selector: 'app-subject',
@@ -19,9 +20,11 @@ export class SubjectComponent implements OnInit {
 
   public subject = new Subject();
   public courses: Course[] = [];
+  public correlatives: Correlative[] = [];
 
   constructor(
     private subjectService: SubjectService,
+    private correlativeService: CorrelativeService,
     private navigationService: NavigationService,
     private subjectModalService: SubjectModalService,
     private courseService: CourseService,
@@ -101,20 +104,20 @@ export class SubjectComponent implements OnInit {
     this.subjectModalService.openModifySubjectCorrelatives(this.subject).subscribe(
       (correlatives: Correlative[]) => {
         if (this.didCorrelativesChanged(correlatives)) {
-          this.subject.correlatives = correlatives;
-          this.updateSubjectCorrelatives();
+          this.updateSubjectCorrelatives(correlatives);
         } else {
           this.notificationService.inform('No se guardaron los cambios', 'Al parecer no hubo cambios en las correlativas');
         }
       }
     );
   }
+
   public openViewCorrelativesModal() {
     this.subjectModalService.openViewSubjectCorrelatives(this.subject);
   }
 
   private didCorrelativesChanged(correlatives: Correlative[]) {
-    return JSON.stringify(this.subject.correlatives) !== JSON.stringify(correlatives);
+    return JSON.stringify(this.correlatives) !== JSON.stringify(correlatives);
   }
 
   public openEditModal() {
@@ -134,17 +137,8 @@ export class SubjectComponent implements OnInit {
     );
   }
 
-  private updateSubjectCorrelatives() {
-    this.subjectService.updateSubject(this.subject).subscribe(
-      () => {
-        this.notificationService.inform(
-          '¡Actualización con éxito!',
-          'Se actualizó el estado de las correlativas exitosamente.');
-        SubjectService.setCurrentSubject(this.subject);
-      }, ((error) => {
-        this.notificationService.showError('Ocurrió un error tratando de actualizar las correlativas');
-        console.error(error.message);
-      })
-    );
+  private updateSubjectCorrelatives(correlatives: Correlative[]) {
+    this.correlativeService.updatesCorrelativeList(this.subject, correlatives);
+    this.correlatives = correlatives;
   }
 }

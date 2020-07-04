@@ -5,6 +5,7 @@ import { Endpoint } from 'src/app/models/endpoint.model';
 import { Subject } from 'src/app/models/subject.model';
 import { SubjectService } from './subject.service';
 import { Correlative } from 'src/app/models/correlative.model';
+import { ModalService } from 'src/app/modals/modal.service';
 
 const CURRENT_CORRELATIVES_KEY = 'current-correlatives';
 
@@ -15,11 +16,12 @@ export class CorrelativeService {
   private endpoint = new Endpoint(EndpointName.CORRELATIVES, EndpointName.SUBJECT);
 
   constructor(
-    private crudEndpointService: CRUDEndpointsService) {
-  }
+    private crudEndpointService: CRUDEndpointsService,
+    private notificationService: ModalService,
+  ) { }
 
   getCorrelatives(subject: Subject) {
-    const subjectId = this.getSubjectId();
+    const subjectId = subject ? subject.id : this.getSubjectId();
 
     return this.crudEndpointService.getAllFromParent(subjectId, this.endpoint);
   }
@@ -39,13 +41,17 @@ export class CorrelativeService {
   }
 
   updatesCorrelativeList(subject: Subject, newCorrelatives: Correlative[]) {
-    const currentCorrelatives = this.getCorrelatives(subject);
-    currentCorrelatives.forEach(
-      (currentCorrelative) => this.deleteCorrelative(currentCorrelative)
-    );
-    newCorrelatives.forEach(
-      (newCorrelative) => this.addCorrelative(newCorrelative)
-    );
+    try {
+      const currentCorrelatives = this.getCorrelatives(subject);
+      currentCorrelatives.forEach(
+        (currentCorrelative) => this.deleteCorrelative(currentCorrelative)
+      );
+      newCorrelatives.forEach(
+        (newCorrelative) => this.addCorrelative(newCorrelative)
+      );
+    } catch (e) {
+      this.notificationService.showError('Ocurrió un error tratando de actualizar las correlativas');
+    }
   }
 
   private getSubjectId(): string {
