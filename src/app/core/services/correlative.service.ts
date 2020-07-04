@@ -6,7 +6,7 @@ import { Subject } from 'src/app/models/subject.model';
 import { SubjectService } from './subject.service';
 import { Correlative } from 'src/app/models/correlative.model';
 
-const CURRENT_PROGRAM_KEY = 'current-program';
+const CURRENT_CORRELATIVES_KEY = 'current-correlatives';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,15 @@ export class CorrelativeService {
     return this.crudEndpointService.createOnParent(parentId, this.endpoint, correlative);
   }
 
+  updatesCorrelativeList(subject: Subject, newCorrelatives: Correlative[]) {
+    const currentCorrelatives = this.getCorrelatives(subject);
+    currentCorrelatives.forEach(
+      (currentCorrelative) => this.deleteCorrelative(currentCorrelative)
+    );
+    newCorrelatives.forEach(
+      (newCorrelative) => this.addCorrelative(newCorrelative)
+    );
+  }
 
   private getSubjectId(): string {
     const currentSubject = SubjectService.getCurrentSubject();
