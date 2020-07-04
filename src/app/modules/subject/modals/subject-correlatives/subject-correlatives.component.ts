@@ -25,7 +25,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
   @Input() readOnly = false;
-  @Input() correlatives: Correlative[];
+  @Input() correlatives: Correlative[] = [];
   @Input() subject: Subject;
   @Output() confirmEvent: EventEmitter<Correlative[]> = new EventEmitter();
   subjects: Subject[] = [];
@@ -49,27 +49,27 @@ export class SubjectCorrelativesComponent implements OnInit {
     this.activeModal.close();
   }
 
-  public changeCorrelativeToTakeRegular(subject: Subject) {
+  public changeCorrelativeToTakeRegular(subject: Subject, isChecked: boolean) {
     this.removePreviousToTakeCorrelative(subject);
-    this.addCorrelativeToTakeRegular(subject);
+    if (isChecked) { this.addCorrelativeToTakeRegular(subject); }
   }
 
-  public changeCorrelativeToTakeApproved(subject: Subject) {
+  public changeCorrelativeToTakeApproved(subject: Subject, isChecked: boolean) {
     this.removePreviousToTakeCorrelative(subject);
-    this.addCorrelativeToTakeApproved(subject);
+    if (isChecked) { this.addCorrelativeToTakeApproved(subject); }
   }
 
   private removePreviousToTakeCorrelative(subject: Subject) {
     const correlative = this.getCorrelativeToTakeBySubject(subject);
     if (correlative) {
-      this.removeCorrelativeOfTheList(correlative);
+      this.removeCorrelativeOfList(correlative);
     }
   }
 
   public changeCorrelativeToApprove(subject: Subject) {
     const correlative = this.getCorrelativeToApprove(subject);
     if (correlative) {
-      this.removeCorrelativeOfTheList(correlative);
+      this.removeCorrelativeOfList(correlative);
     } else {
       this.addCorrelativeToApprove(subject);
     }
@@ -111,7 +111,7 @@ export class SubjectCorrelativesComponent implements OnInit {
     this.correlatives.push(newCorrelative);
   }
 
-  private removeCorrelativeOfTheList(correlative) {
+  private removeCorrelativeOfList(correlative) {
     const index = this.correlatives.indexOf(correlative);
     this.correlatives.splice(index, ONE_CORRELATIVE_TO_DELETE);
   }

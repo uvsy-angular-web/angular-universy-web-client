@@ -15,12 +15,11 @@ const NO_CORRELATIVE_FOUND = undefined;
 })
 export class CorrelativeListComponent implements OnInit {
 
-
   constructor() {
   }
 
   @Input() subject: Subject;
-  @Input() correlatives: Correlative[];
+  @Input() correlatives: Correlative[] = [];
   @Input() subjects: Subject[] = [];
 
   toTakeText = 'Para cursar';
