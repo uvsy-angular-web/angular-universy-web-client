@@ -18,9 +18,9 @@ import { CorrelativeService } from 'src/app/core/services/correlative.service';
 })
 export class SubjectComponent implements OnInit {
 
-  public subject = new Subject();
-  public courses: Course[] = [];
-  public correlatives: Correlative[] = [];
+  subject = new Subject();
+  courses: Course[] = [];
+  correlatives: Correlative[] = [];
 
   constructor(
     private subjectService: SubjectService,
@@ -31,7 +31,13 @@ export class SubjectComponent implements OnInit {
     private notificationService: ModalService) {
   }
 
-  public openNewCourseModal() {
+  ngOnInit() {
+    this.subject = SubjectService.getCurrentSubject();
+    this.getCorrelatives();
+    this.getCourses();
+  }
+
+  openNewCourseModal() {
     this.notificationService.openEditNameModal(
       'Agregar Comisión',
       ButtonText.Add,
@@ -42,23 +48,12 @@ export class SubjectComponent implements OnInit {
       );
   }
 
-  public canModifySubject() {
+  canModifySubject() {
     return !ProgramService.getCurrentProgram().active || this.subject.optative;
   }
 
-  private addCourse(courseName: string) {
-    this.courseService.addCourse(courseName).subscribe(
-      () => {
-        this.getCourses();
-      },
-      (error) => {
-        this.notificationService.showError('Ocurrió un error tratando de agregar una comisión.');
-        console.error(error);
-      }
-    );
-  }
 
-  public openDeleteModal() {
+  openDeleteModal() {
     this.notificationService.openConfirmModal(
       'Eliminar materia',
       'Se eliminará la materia y sus comisiones.',
@@ -71,20 +66,67 @@ export class SubjectComponent implements OnInit {
     );
   }
 
-  public openCoursePage(course: Course) {
+  openCoursePage(course: Course) {
     CourseService.setCurrentCourse(course);
     this.navigationService.navigateToCoursePage();
   }
 
-  ngOnInit() {
-    this.subject = SubjectService.getCurrentSubject();
-    this.getCourses();
+  openManageCorrelativesModal() {
+    this.subjectModalService.openModifySubjectCorrelatives(this.subject, this.correlatives).subscribe(
+      (correlatives: Correlative[]) => {
+        if (this.didCorrelativesChanged(correlatives)) {
+          this.updateSubjectCorrelatives(correlatives);
+        } else {
+          this.notificationService.inform('No se guardaron los cambios', 'Al parecer no hubo cambios en las correlativas');
+        }
+      }
+    );
+  }
+
+  openViewCorrelativesModal() {
+    this.subjectModalService.openViewSubjectCorrelatives(this.subject, this.correlatives);
+  }
+
+  openEditModal() {
+    const isProgramPublished = ProgramService.getCurrentProgram().active;
+    this.subjectModalService.openEditSubjectModal(this.subject, isProgramPublished).subscribe(
+      () => {
+        this.subjectService.updateSubject(this.subject).subscribe(() => {
+          this.notificationService.inform(
+            '¡Modificación con éxito!',
+            'Se actualizó la materia exitosamente.');
+        }
+        );
+      }, ((error) => {
+        this.notificationService.showError('Ocurrió un error tratando de modificar la materia');
+        console.error(error.message);
+      })
+    );
+  }
+  private addCourse(courseName: string) {
+    this.courseService.addCourse(courseName).subscribe(
+      () => {
+        this.getCourses();
+      },
+      (error) => {
+        this.notificationService.showError('Ocurrió un error tratando de agregar una comisión.');
+        console.error(error);
+      }
+    );
   }
 
   private getCourses() {
     this.courseService.getCourses()
       .subscribe((courses) => {
         this.courses = courses;
+      }
+      );
+  }
+
+  private getCorrelatives() {
+    this.correlativeService.getCorrelatives(this.subject)
+      .subscribe((correlatives) => {
+        this.correlatives = correlatives;
       }
       );
   }
@@ -100,41 +142,9 @@ export class SubjectComponent implements OnInit {
       });
   }
 
-  public openManageCorrelativesModal() {
-    this.subjectModalService.openModifySubjectCorrelatives(this.subject).subscribe(
-      (correlatives: Correlative[]) => {
-        if (this.didCorrelativesChanged(correlatives)) {
-          this.updateSubjectCorrelatives(correlatives);
-        } else {
-          this.notificationService.inform('No se guardaron los cambios', 'Al parecer no hubo cambios en las correlativas');
-        }
-      }
-    );
-  }
-
-  public openViewCorrelativesModal() {
-    this.subjectModalService.openViewSubjectCorrelatives(this.subject);
-  }
 
   private didCorrelativesChanged(correlatives: Correlative[]) {
     return JSON.stringify(this.correlatives) !== JSON.stringify(correlatives);
-  }
-
-  public openEditModal() {
-    const isProgramPublished = ProgramService.getCurrentProgram().active;
-    this.subjectModalService.openEditSubjectModal(this.subject, isProgramPublished).subscribe(
-      () => {
-        this.subjectService.updateSubject(this.subject).subscribe(() => {
-          this.notificationService.inform(
-            '¡Modificación con éxito!',
-            'Se actualizó la materia exitosamente.');
-        }
-        );
-      }, ((error) => {
-        this.notificationService.showError('Ocurrió un error tratando de modificar la materia');
-        console.error(error.message);
-      })
-    );
   }
 
   private updateSubjectCorrelatives(correlatives: Correlative[]) {

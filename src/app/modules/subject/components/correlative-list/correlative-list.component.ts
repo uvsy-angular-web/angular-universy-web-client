@@ -20,6 +20,7 @@ export class CorrelativeListComponent implements OnInit {
   }
 
   @Input() subject: Subject;
+  @Input() correlatives: Correlative[];
   @Input() subjects: Subject[] = [];
 
   toTakeText = 'Para cursar';
@@ -37,7 +38,7 @@ export class CorrelativeListComponent implements OnInit {
     return subject.name + ' Nivel: ' + subject.level;
   }
   isToTakeRegularChecked(subject: Subject): boolean {
-    const isToTakeRegularChecked = this.subject.correlatives.find(
+    const isToTakeRegularChecked = this.correlatives.find(
       (correlative) => {
         return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
@@ -49,7 +50,7 @@ export class CorrelativeListComponent implements OnInit {
   }
 
   isToTakeApprovedChecked(subject: Subject): boolean {
-    const isToTakeApprovedChecked = this.subject.correlatives.find(
+    const isToTakeApprovedChecked = this.correlatives.find(
       (correlative) => {
         return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
@@ -61,7 +62,7 @@ export class CorrelativeListComponent implements OnInit {
   }
 
   isToApproveChecked(subject: Subject): boolean {
-    const isToApproveChecked = this.subject.correlatives.find(
+    const isToApproveChecked = this.correlatives.find(
       (correlative) => {
         return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
