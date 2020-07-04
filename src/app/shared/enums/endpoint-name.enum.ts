@@ -4,4 +4,5 @@ export enum EndpointName {
     PROGRAMS = 'programs',
     SUBJECT = 'subjects',
     COURSES = 'courses',
+    CORRELATIVES = 'correlatives'
 }
