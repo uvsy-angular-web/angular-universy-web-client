@@ -36,7 +36,7 @@
             </tbody>
         </table>
         <div [hidden]="!readOnly">
-            <app-correlative-list [subject]="subject" [subjects]="subjects"></app-correlative-list>
+            <app-correlative-list [correlatives]="correlatives" [subject]="subject" [subjects]="subjects"></app-correlative-list>
         </div>
         <div [hidden]="showTable()" class="text-center">
             <span class="font-italic" [hidden]="readOnly">No existen materias para asignar como correlativas.</span>
