@@ -72,9 +72,10 @@ export class SubjectComponent implements OnInit {
   }
 
   openManageCorrelativesModal() {
+    const oldCorrelatives = { ...this.correlatives };
     this.subjectModalService.openModifySubjectCorrelatives(this.subject, this.correlatives).subscribe(
       (correlatives: Correlative[]) => {
-        if (this.didCorrelativesChanged(correlatives)) {
+        if (this.didCorrelativesChanged(oldCorrelatives, correlatives)) {
           this.updateSubjectCorrelatives(correlatives);
         } else {
           this.notificationService.inform('No se guardaron los cambios', 'Al parecer no hubo cambios en las correlativas');
@@ -143,8 +144,8 @@ export class SubjectComponent implements OnInit {
   }
 
 
-  private didCorrelativesChanged(correlatives: Correlative[]) {
-    return JSON.stringify(this.correlatives) !== JSON.stringify(correlatives);
+  private didCorrelativesChanged(oldCorrelatives: Correlative[], newCorrelatives: Correlative[]) {
+    return JSON.stringify(oldCorrelatives) !== JSON.stringify(newCorrelatives);
   }
 
   private updateSubjectCorrelatives(correlatives: Correlative[]) {

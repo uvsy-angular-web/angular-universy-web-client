@@ -42,13 +42,17 @@ export class CorrelativeService {
 
   updatesCorrelativeList(subject: Subject, newCorrelatives: Correlative[]) {
     try {
-      const currentCorrelatives = this.getCorrelatives(subject);
-      currentCorrelatives.forEach(
-        (currentCorrelative) => this.deleteCorrelative(currentCorrelative)
-      );
-      newCorrelatives.forEach(
-        (newCorrelative) => this.addCorrelative(newCorrelative)
-      );
+      this.getCorrelatives(subject)
+        .subscribe(
+          (currentCorrelatives) => {
+            currentCorrelatives.forEach(
+              (currentCorrelative) => this.deleteCorrelative(currentCorrelative).subscribe()
+            );
+            newCorrelatives.forEach(
+              (newCorrelative) => this.addCorrelative(newCorrelative).subscribe()
+            );
+          }
+        );
     } catch (e) {
       this.notificationService.showError('Ocurrió un error tratando de actualizar las correlativas');
     }
