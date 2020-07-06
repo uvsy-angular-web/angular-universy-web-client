@@ -1,1 +1,24 @@
-<p>comission-list works!</p>
+<div class="add-comission-btn">
+    <app-add-item [buttonTitle]="addComissionBtnTxt"></app-add-item>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">{{ comissionsRowTitle }}</th>
+            <th scope="col" class="text-right">Acciones</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="comissions.length != 0 ">
+        <tr *ngFor="let comission of comissions">
+            <td>{{ comission.name }}</td>
+            <td class="text-right">
+                <app-table-actions></app-table-actions>
+            </td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="comissions.length === 0" class="margin-top-1">
+        <tr>
+            <td class="no-row-message" colspan="2">{{noRowMessage}}</td>
+        </tr>
+    </tbody>
+</table>

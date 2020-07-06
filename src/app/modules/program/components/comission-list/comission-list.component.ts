@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-comission-list',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comission-list.component.css']
 })
 export class ComissionListComponent implements OnInit {
+  addComissionBtnTxt = 'Agregar comisión';
+  comissionsRowTitle = 'Comisiones';
+  @Input() comissions = [];
+  noRowMessage = 'No se cargó ninguna comisión';
 
   constructor() { }
 
