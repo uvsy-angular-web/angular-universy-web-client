@@ -10,16 +10,7 @@ import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { NavigationService } from '../../../../core/services/system/navigation.service';
 import { Commission } from 'src/app/models/commission.model';
 import { CommissionService } from 'src/app/core/services/commission.service';
-
-export class SubjectsXLevel {
-  level: number;
-  subjects: Subject[];
-
-  constructor(level: number, subjects: Subject[]) {
-    this.level = level;
-    this.subjects = subjects;
-  }
-}
+import { Level } from 'src/app/models/level';
 
 const INITIAL_LEVEL = 1;
 const NO_SUBJECTS_LEVEL_NO_PUBLISHED = 'Aun no agregaste ninguna materia al nivel.';
@@ -41,8 +32,9 @@ export class ProgramComponent implements OnInit {
   addSubjectText = 'Agregar materia';
   addOptativeSubjectText = 'Agregar materia optativa';
   program: Program;
-  subjects: Subject[];
-  subjectsXLevel: SubjectsXLevel[] = [];
+  subjects: Subject[] = [];
+  levels: Level[] = [];
+  commissions: Commission[] = [];
   noSubjectOnLevelMessage: string;
   showAddSubjectButton: boolean;
   constructor(
@@ -58,7 +50,7 @@ export class ProgramComponent implements OnInit {
   ngOnInit() {
     this.program = ProgramService.getCurrentProgram();
     this.showAddSubjectButton = !this.isProgramPublished();
-    this.getSubjects();
+    this.getData();
     this.fillSubjectOnLevelMessage();
   }
 
@@ -72,7 +64,7 @@ export class ProgramComponent implements OnInit {
           newCommission.name = name;
           newCommission.level = level;
           this.commissionService.addCommission(newCommission, this.program)
-          .subscribe();
+            .subscribe();
         }
       );
   }
@@ -172,7 +164,7 @@ export class ProgramComponent implements OnInit {
   private addSubject(careerName) {
     this.subjectService.addSubject(careerName).subscribe(
       () => {
-        this.getSubjects();
+        this.getData();
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de agregar una materia');
         console.error(error.message);
@@ -194,45 +186,51 @@ export class ProgramComponent implements OnInit {
     }
   }
 
-  private getSubjects() {
+  private getData() {
     this.subjectService.getSubjects().subscribe(
       (subjects: Subject[]) => {
-        if (subjects) {
-          this.subjects = subjects;
-          this.generateLevels();
-        }
-      }, ((error) => {
-        this.notificationService.showError('Ocurrió un error tratando de obtener las materias del plan');
-        console.error(error);
-      })
+        this.subjects = subjects;
+        this.getCommissions();
+      }
+    );
+  }
+
+  private getCommissions() {
+    this.commissionService.getCommissions(this.program).subscribe(
+      (commissions: Commission[]) => {
+        this.commissions = commissions;
+        this.generateLevels();
+      }
     );
   }
 
   private generateLevels() {
-    this.subjectsXLevel = [];
-    const maximumLevel = this.getMaximumLevel();
+    this.levels = [];
+    const subjectstMaxLevel = this.getMaximumLevel(this.subjects);
+    const commissionsMaxLevel = this.getMaximumLevel(this.commissions);
+    const maximumLevel = Math.max(subjectstMaxLevel, commissionsMaxLevel);
     for (let level = INITIAL_LEVEL; level <= maximumLevel; level++) {
-      const subjectsXLevel = this.getLevelSubjects(level);
-      this.subjectsXLevel.push(subjectsXLevel);
+      const subjects = this.subjects.map((subject) => this.isCurrentLevel(subject, level));
+      const commissions = this.commissions.map((commission) => this.isCurrentLevel(commission, level));
+      const newLevel = new Level();
+      newLevel.levelNumber = level;
+      newLevel.subjects = subjects;
+      newLevel.commissions = commissions;
+      this.levels.push(newLevel);
     }
   }
 
-  private getLevelSubjects(level) {
-    const subjectsXLevel = new SubjectsXLevel(level, []);
-    this.subjects.forEach((subject) => {
-      if (subject.level === level) {
-        subjectsXLevel.subjects.push(subject);
-      }
-    });
-    return subjectsXLevel;
+  private isCurrentLevel(object, level) {
+    if (object.level === level) {
+      return object;
+    }
   }
 
-
-  private getMaximumLevel() {
+  private getMaximumLevel(list: any[]) {
     let maximumLevel = 1;
-    this.subjects.forEach((subject) => {
-      if (subject.level > maximumLevel) {
-        maximumLevel = subject.level;
+    list.forEach((object: any) => {
+      if (object.level > maximumLevel) {
+        maximumLevel = object.level;
       }
     });
     return maximumLevel;
