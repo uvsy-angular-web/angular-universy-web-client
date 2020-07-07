@@ -11,7 +11,7 @@ import { SubjectStatsComponent } from './components/subject-stats/subject-stats.
 import { ProgramSummaryComponent } from './pages/program-summary/program-summary.component';
 import { SubjectModule } from '../subject/subject.module';
 import { NgxPrintModule } from 'ngx-print';
-import { ComissionListComponent } from './components/comission-list/comission-list.component';
+import { CommissionListComponent } from './components/commission-list/commission-list.component';
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import { ComissionListComponent } from './components/comission-list/comission-li
     StatsComponent,
     SubjectStatsComponent,
     ProgramSummaryComponent,
-    ComissionListComponent,
+    CommissionListComponent,
   ],
   imports: [
     NgxPrintModule,

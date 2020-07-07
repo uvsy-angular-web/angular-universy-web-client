@@ -8,6 +8,8 @@ import { ProgramModalService } from '../../modals/program-modal.service';
 import { SubjectModalService } from '../../../subject/modals/subject-modal.service';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { NavigationService } from '../../../../core/services/system/navigation.service';
+import { Commission } from 'src/app/models/commission.model';
+import { CommissionService } from 'src/app/core/services/commission.service';
 
 export class SubjectsXLevel {
   level: number;
@@ -23,6 +25,11 @@ const INITIAL_LEVEL = 1;
 const NO_SUBJECTS_LEVEL_NO_PUBLISHED = 'Aun no agregaste ninguna materia al nivel.';
 const NO_SUBJECTS_LEVEL_PUBLISHED = 'No existen materias para este nivel.';
 const ERROR_ON_SUBJECT_MODAL = 'Ocurrió un error tratando de abrir el modal de materia';
+const ADD_COMMISSION_MODAL_TITLE = 'Agregar comisión';
+const EDIT_COMMISSION_MODAL_TITLE = 'Modificar comisión';
+const DELETE_COMMISSION_MODAL_TITLE = 'Borrar comisión';
+const DELETE_COMMISSION_MODAL_MESSAGE = 'Usted esta por eliminar una comisión, se perdera toda información cargada a la misma.';
+const DELETE_COMMISSION_MODAL_QUESTION = '¿ Está segure que desea continuar ?';
 
 @Component({
   selector: 'app-plan-edit',
@@ -41,6 +48,7 @@ export class ProgramComponent implements OnInit {
   constructor(
     private programService: ProgramService,
     private navigationService: NavigationService,
+    private commissionService: CommissionService,
     private notificationService: ModalService,
     private programModalService: ProgramModalService,
     private subjectModalService: SubjectModalService,
@@ -54,13 +62,50 @@ export class ProgramComponent implements OnInit {
     this.fillSubjectOnLevelMessage();
   }
 
-  private fillSubjectOnLevelMessage() {
-    this.noSubjectOnLevelMessage = this.program.active ?
-      NO_SUBJECTS_LEVEL_PUBLISHED :
-      NO_SUBJECTS_LEVEL_NO_PUBLISHED;
+  addCommission(level: number) {
+    this.notificationService.openEditNameModal(
+      ADD_COMMISSION_MODAL_TITLE,
+      ButtonText.Add)
+      .subscribe(
+        (name: string) => {
+          const newCommission = new Commission();
+          newCommission.name = name;
+          newCommission.level = level;
+          this.commissionService.addCommission(newCommission, this.program)
+          .subscribe();
+        }
+      );
   }
 
-  public openEditProgramModal() {
+  editCommission(commission: Commission) {
+    this.notificationService.openEditNameModal(
+      EDIT_COMMISSION_MODAL_TITLE,
+      ButtonText.Edit,
+      commission.name)
+      .subscribe(
+        (newName: string) => {
+          commission.name = newName;
+          this.commissionService.updateCommission(commission);
+        }
+      );
+  }
+
+  deleteCommission(commission: Commission) {
+    this.notificationService.openConfirmModal(
+      DELETE_COMMISSION_MODAL_TITLE,
+      DELETE_COMMISSION_MODAL_MESSAGE,
+      DELETE_COMMISSION_MODAL_QUESTION,
+      ButtonText.Delete)
+      .subscribe(
+        (confirm) => {
+          if (confirm) {
+            this.commissionService.deleteCommission(commission);
+          }
+        }
+      );
+  }
+
+  openEditProgramModal() {
     this.programModalService.openEditProgramModal(
       this.program
     ).subscribe(
@@ -68,7 +113,7 @@ export class ProgramComponent implements OnInit {
     );
   }
 
-  public openNewSubjectModal() {
+  openNewSubjectModal() {
     try {
       const isProgramPublished = ProgramService.getCurrentProgram().active;
       this.subjectModalService.openNewSubjectModal(isProgramPublished).subscribe(
@@ -79,7 +124,7 @@ export class ProgramComponent implements OnInit {
     }
   }
 
-  public openDeleteProgramModal() {
+  openDeleteProgramModal() {
     this.notificationService.openConfirmModal(
       'Eliminar plan',
       'Se eliminará el plan y todas las materias que hayan sido cargadas.',
@@ -90,6 +135,25 @@ export class ProgramComponent implements OnInit {
         this.deleteProgram();
       }
     );
+  }
+
+  navigateToSubjectView(subject: Subject) {
+    SubjectService.setCurrentSubject(subject);
+    this.navigationService.navigateToSubjectPage();
+  }
+
+  canEditProgram(): boolean {
+    return !this.program.active;
+  }
+
+  isProgramPublished() {
+    return this.program.active;
+  }
+
+  private fillSubjectOnLevelMessage() {
+    this.noSubjectOnLevelMessage = this.program.active ?
+      NO_SUBJECTS_LEVEL_PUBLISHED :
+      NO_SUBJECTS_LEVEL_NO_PUBLISHED;
   }
 
   private deleteProgram() {
@@ -103,15 +167,6 @@ export class ProgramComponent implements OnInit {
           console.error(error);
         });
     }
-  }
-
-  public navigateToSubjectView(subject: Subject) {
-    SubjectService.setCurrentSubject(subject);
-    this.navigationService.navigateToSubjectPage();
-  }
-
-  public canEditProgram(): boolean {
-    return !this.program.active;
   }
 
   private addSubject(careerName) {
@@ -172,9 +227,6 @@ export class ProgramComponent implements OnInit {
     return subjectsXLevel;
   }
 
-  public isProgramPublished() {
-    return this.program.active;
-  }
 
   private getMaximumLevel() {
     let maximumLevel = 1;

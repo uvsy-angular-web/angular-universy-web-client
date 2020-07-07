@@ -1,0 +1,27 @@
+<div class="add-commission-btn">
+    <app-add-item [buttonTitle]="addCommissionBtnTxt" (buttonPressed)="add.next()">
+
+    </app-add-item>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">{{ commissionsRowTitle }}</th>
+            <th scope="col" class="text-right">{{ accionsRowTitle}}</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="commissions.length != 0 ">
+        <tr *ngFor="let conmission of commissions">
+            <td>{{ conmission.name }}</td>
+            <td class="text-right">
+                <app-table-actions (editAction)="edit.next(conmission)" (deleteAction)="delete.next(conmission)">
+                </app-table-actions>
+            </td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="commissions.length === 0" class="margin-top-1">
+        <tr>
+            <td class="no-row-message" colspan="2">{{noRowMessage}}</td>
+        </tr>
+    </tbody>
+</table>

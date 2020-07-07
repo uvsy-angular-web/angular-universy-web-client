@@ -12,7 +12,11 @@
         <h4 class="row">Nivel {{subjectXLevel.level}}</h4>
         <div class="row">
           <div class="col-4">
-            <app-comission-list></app-comission-list>
+            <app-commission-list
+            (add)="addCommission(subjectXLevel.level)"
+            (edit)="editCmomission($event)"
+            (delete)="deleteCommission($event)"
+            ></app-commission-list>
           </div>
           <div class="col-8">
             <div class="row subjects">

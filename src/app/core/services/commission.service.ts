@@ -4,39 +4,43 @@ import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { Endpoint } from 'src/app/models/endpoint.model';
 import { Program } from 'src/app/models/program.model';
 import { ProgramService } from './program.service';
-import { Commission } from 'src/app/models/comission.model';
+import { Commission } from 'src/app/models/commission.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CorrelativeService {
-  private endpoint = new Endpoint(EndpointName.COMISSIONS, EndpointName.PROGRAMS);
+export class CommissionService {
+  private endpoint = new Endpoint(EndpointName.COMMISSIONS, EndpointName.PROGRAMS);
 
   constructor(
     private crudEndpointService: CRUDEndpointsService,
   ) { }
 
-  getComissions(program: Program) {
+  getCommissions(program: Program) {
     const programId = program ? program.id : this.getProgramId();
 
     return this.crudEndpointService.getAllFromParent(programId, this.endpoint);
   }
 
-  createComission(comission: Commission) {
-    return this.crudEndpointService.update(this.endpoint, comission.id, comission);
+  createCommission(commission: Commission) {
+    return this.crudEndpointService.update(this.endpoint, commission.id, commission);
   }
 
-  deleteComission(comission: Commission) {
-    return this.crudEndpointService.delete(this.endpoint, comission.id);
+  updateCommission(commission: Commission) {
+    return this.crudEndpointService.update(this.endpoint, commission.id, commission);
   }
 
-  addComission(comission: Commission, program?: Program) {
+  deleteCommission(commission: Commission) {
+    return this.crudEndpointService.delete(this.endpoint, commission.id);
+  }
+
+  addCommission(commission: Commission, program?: Program) {
     const programId = program ? program.id : this.getProgramId();
 
-    return this.crudEndpointService.createOnParent(programId, this.endpoint, comission);
+    return this.crudEndpointService.createOnParent(programId, this.endpoint, commission);
   }
 
-   private getProgramId(): string {
+  private getProgramId(): string {
     const currentProgram = ProgramService.getCurrentProgram();
     return currentProgram.id;
   }

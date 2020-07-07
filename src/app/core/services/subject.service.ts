@@ -22,7 +22,11 @@ export class SubjectService {
 
   addSubject(subject: Subject) {
     const parentId = this.getParentId();
-
+    subject.codename = 'asd';
+    subject.hours = 0;
+    subject.points = 0;
+    subject.active = true;
+    subject.optative = false;
     return this.crudEndpointService.createOnParent(parentId, this.endpoint, subject);
   }
 

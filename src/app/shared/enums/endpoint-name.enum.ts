@@ -5,5 +5,5 @@ export enum EndpointName {
     SUBJECT = 'subjects',
     COURSES = 'courses',
     CORRELATIVES = 'correlatives',
-    COMISSIONS = 'comissions'
+    COMMISSIONS = 'commissions'
 }

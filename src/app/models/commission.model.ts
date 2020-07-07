@@ -1,5 +1,3 @@
-import { Period } from './period.model';
-
 export class Commission {
     id: string;
     name: string;
