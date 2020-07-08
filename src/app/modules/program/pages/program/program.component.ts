@@ -221,8 +221,8 @@ export class ProgramComponent implements OnInit {
     const commissionsMaxLevel = this.getMaximumLevel(this.commissions);
     const maximumLevel = Math.max(subjectstMaxLevel, commissionsMaxLevel);
     for (let level = INITIAL_LEVEL; level <= maximumLevel; level++) {
-      const subjects = this.subjects.map((subject) => this.isCurrentLevel(subject, level));
-      const commissions = this.commissions.map((commission) => this.isCurrentLevel(commission, level));
+      const subjects = this.subjects.filter((subject) => this.isCurrentLevel(subject, level));
+      const commissions = this.commissions.filter((commission) => this.isCurrentLevel(commission, level));
       const newLevel = new Level();
       newLevel.levelNumber = level;
       newLevel.subjects = subjects;
@@ -232,9 +232,7 @@ export class ProgramComponent implements OnInit {
   }
 
   private isCurrentLevel(object, level) {
-    if (object.level === level) {
-      return object;
-    }
+    return object.level === level;
   }
 
   private getMaximumLevel(list: any[]) {
