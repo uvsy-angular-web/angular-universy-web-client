@@ -16,7 +16,7 @@ export class CommissionService {
     private crudEndpointService: CRUDEndpointsService,
   ) { }
 
-  getCommissions(program: Program) {
+  getCommissions(program?: Program) {
     const programId = program ? program.id : this.getProgramId();
 
     return this.crudEndpointService.getAllFromParent(programId, this.endpoint);

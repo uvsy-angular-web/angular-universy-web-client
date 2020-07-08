@@ -10,6 +10,8 @@ import { ProgramService } from '../../../../core/services/program.service';
 import { SubjectModalService } from '../../modals/subject-modal.service';
 import { Correlative } from '../../../../models/correlative.model';
 import { CorrelativeService } from 'src/app/core/services/correlative.service';
+import { Commission } from 'src/app/models/commission.model';
+import { CommissionService } from 'src/app/core/services/commission.service';
 
 @Component({
   selector: 'app-subject',
@@ -20,11 +22,13 @@ export class SubjectComponent implements OnInit {
 
   subject = new Subject();
   courses: Course[] = [];
+  commissions: Commission[] = [];
   correlatives: Correlative[] = [];
 
   constructor(
     private subjectService: SubjectService,
     private correlativeService: CorrelativeService,
+    private commissionService: CommissionService,
     private navigationService: NavigationService,
     private subjectModalService: SubjectModalService,
     private courseService: CourseService,
@@ -35,6 +39,7 @@ export class SubjectComponent implements OnInit {
     this.subject = SubjectService.getCurrentSubject();
     this.getCorrelatives();
     this.getCourses();
+    this.getCommissions();
   }
 
   openNewCourseModal() {
@@ -120,6 +125,14 @@ export class SubjectComponent implements OnInit {
     this.courseService.getCourses()
       .subscribe((courses) => {
         this.courses = courses;
+      }
+      );
+  }
+
+  private getCommissions() {
+    this.commissionService.getCommissions()
+      .subscribe((commissions) => {
+        this.commissions = commissions.filter((commission) => commission.level === this.subject.level);
       }
       );
   }
