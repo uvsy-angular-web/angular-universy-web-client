@@ -63,8 +63,11 @@ export class ProgramComponent implements OnInit {
           const newCommission = new Commission();
           newCommission.name = name;
           newCommission.level = level;
-          this.commissionService.addCommission(newCommission, this.program)
-            .subscribe();
+          this.commissionService
+            .addCommission(newCommission, this.program)
+            .subscribe(
+              () => this.getData()
+            );
         }
       );
   }
@@ -77,7 +80,11 @@ export class ProgramComponent implements OnInit {
       .subscribe(
         (newName: string) => {
           commission.name = newName;
-          this.commissionService.updateCommission(commission);
+          this.commissionService
+            .updateCommission(commission)
+            .subscribe(
+              () => this.getData()
+            );
         }
       );
   }
@@ -91,7 +98,11 @@ export class ProgramComponent implements OnInit {
       .subscribe(
         (confirm) => {
           if (confirm) {
-            this.commissionService.deleteCommission(commission);
+            this.commissionService
+              .deleteCommission(commission)
+              .subscribe(
+                () => this.getData()
+              );
           }
         }
       );
