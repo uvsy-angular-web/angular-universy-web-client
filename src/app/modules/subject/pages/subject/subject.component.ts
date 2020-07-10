@@ -42,17 +42,6 @@ export class SubjectComponent implements OnInit {
     this.getCommissions();
   }
 
-  openNewCourseModal() {
-    this.notificationService.openEditNameModal(
-      'Agregar Comisión',
-      ButtonText.Add,
-      '').subscribe(
-        (courseName) => {
-          this.addCourse(courseName);
-        }
-      );
-  }
-
   canModifySubject() {
     return !ProgramService.getCurrentProgram().active || this.subject.optative;
   }
@@ -107,17 +96,6 @@ export class SubjectComponent implements OnInit {
         this.notificationService.showError('Ocurrió un error tratando de modificar la materia');
         console.error(error.message);
       })
-    );
-  }
-  private addCourse(courseName: string) {
-    this.courseService.addCourse(courseName).subscribe(
-      () => {
-        this.getCourses();
-      },
-      (error) => {
-        this.notificationService.showError('Ocurrió un error tratando de agregar una comisión.');
-        console.error(error);
-      }
     );
   }
 

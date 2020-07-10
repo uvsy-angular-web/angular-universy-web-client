@@ -6,6 +6,10 @@ import { Course } from '../../models/course.model';
 import { SubjectService } from './subject.service';
 import { LocalStorageService } from './local-storage.service';
 import { Subject } from '../../models/subject.model';
+import { Endpoint } from 'src/app/models/endpoint.model';
+import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
+import { CRUDEndpointsService } from './system/crud-endpoints.service';
+import { ModalService } from 'src/app/modals/modal.service';
 
 const ENDPOINT_COURSES = '/universy/institution/courses';
 const CURRENT_COURSE_KEY = 'current-course';
@@ -14,65 +18,35 @@ const CURRENT_COURSE_KEY = 'current-course';
   providedIn: 'root'
 })
 export class CourseService {
+  private endpoint = new Endpoint(EndpointName.COURSES, EndpointName.SUBJECT);
 
   constructor(
-    private http: HttpClient,
-    private systemConfigService: SystemConfigService) {
+    private crudEndpointService: CRUDEndpointsService,
+    private notificationService: ModalService) {
   }
 
-  getCourses(): Observable<Course[]> {
-    const currentSubject = SubjectService.getCurrentSubject();
-    return this.getCoursesBySubject(currentSubject);
+  getCourses(subject?: Subject): Observable<Course[]> {
+    const parentId = subject ? subject.id : this.getParentId();
+
+    return this.crudEndpointService.getAllFromParent(parentId, this.endpoint);
   }
 
-  getCoursesBySubject(subject: Subject): Observable<Course[]> {
-    const baseUrl = this.getBaseUrl();
-    const headers = this.getHeaders();
-    const params = new HttpParams()
-      .set('subjectCode', subject.codename.toString());
+  addCourse(course: Course, subject?: Subject) {
+    const parentId = subject ? subject.id : this.getParentId();
 
-    return this.http.get(baseUrl + ENDPOINT_COURSES, { headers, params })
-      .map((data: any) => {
-        return data.courses;
-      }
-      );
-  }
-
-
-  addCourse(courseName: string) {
-    const body = {
-      subjectCode: SubjectService.getCurrentSubject().codename,
-      active: true,
-      name: courseName,
-      periods: [],
-    };
-    const baseUrl = this.getBaseUrl();
-    const headers = this.getHeaders();
-    return this.http.put(baseUrl + ENDPOINT_COURSES, body, { headers });
+    return this.crudEndpointService.createOnParent(parentId, this.endpoint, course);
   }
 
   updateCourse(course: Course) {
-    const baseUrl = this.getBaseUrl();
-    const headers = this.getHeaders();
-    return this.http.post(baseUrl + ENDPOINT_COURSES, course, { headers });
+    return this.crudEndpointService.update(this.endpoint, course.courseId, course);
   }
 
   deleteCourse(course: Course) {
-    const baseUrl = this.getBaseUrl();
-    const headers = this.getHeaders();
-    const currentSubject = SubjectService.getCurrentSubject();
-    const params = new HttpParams()
-      .set('courseCode', course.courseCode.toString())
-      .set('subjectCode', currentSubject.codename);
-    return this.http.delete(baseUrl + ENDPOINT_COURSES, { headers, params });
+    return this.crudEndpointService.delete(this.endpoint, course.courseId);
   }
 
-  private getHeaders() {
-    return this.systemConfigService.getHeaders();
-  }
-
-  private  getBaseUrl() {
-    return this.systemConfigService.getBaseUrl();
+  private getParentId(): string {
+    return SubjectService.getCurrentSubject().id;
   }
 
   public static setCurrentCourse(course: Course) {

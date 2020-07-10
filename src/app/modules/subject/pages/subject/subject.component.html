@@ -6,7 +6,6 @@
                     [showDeleteButton]="canModifySubject()"></app-custom-title>
   <hr>
   <div class="content">
-    <app-add-item [buttonTitle]="'Agregar comisión'" (buttonPressed)="openNewCourseModal()"></app-add-item>
     <h4>Comisiones</h4>
     <app-courses-list [commissions]="commissions" [courses]="courses" ></app-courses-list>
     <hr>
