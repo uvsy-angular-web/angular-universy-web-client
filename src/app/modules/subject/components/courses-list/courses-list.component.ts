@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Commission } from 'src/app/models/commission.model';
 import { Course } from 'src/app/models/course.model';
 

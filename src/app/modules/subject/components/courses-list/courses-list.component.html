@@ -1,1 +1,11 @@
-<p>courses-list works!</p>
+<div class="row">
+    <div class="col">
+        <div  *ngFor="let commissionCourse of commissionsCourses">
+            <button class="btn btn-primary btn-commission"
+                [ngClass]="{'hasCourse': commissionCourse.hasCourse}">
+                {{commissionCourse.commission.name}}
+            </button>
+        </div>
+        <div *ngIf="courses.length == 0">No se cargaron comisiones aún.</div>
+    </div>
+</div>

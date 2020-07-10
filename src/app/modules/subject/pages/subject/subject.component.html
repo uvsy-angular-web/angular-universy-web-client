@@ -8,14 +8,7 @@
   <div class="content">
     <app-add-item [buttonTitle]="'Agregar comisión'" (buttonPressed)="openNewCourseModal()"></app-add-item>
     <h4>Comisiones</h4>
-    <div class="row">
-      <div class="col">
-        <button class="btn btn-primary btn-commission"  *ngFor="let commission of commissions" (click)="openCoursePage(commission)">
-          {{commission.name}}
-        </button>
-        <div *ngIf="courses.length == 0">No se cargaron comisiones aún.</div>
-      </div>
-    </div>
+    <app-courses-list [commissions]="commissions" [courses]="courses" ></app-courses-list>
     <hr>
     <button *ngIf="canModifySubject()"
             class="btn-primary correlatives-button" id="manage-correlatives-button"
