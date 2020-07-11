@@ -22,6 +22,6 @@ export class InstitutionStatsComponent implements OnInit {
   }
 
   private getCurrentInstitution() {
-    this.institution = this.institutionService.getCurrentInstitution();
+    this.institution = InstitutionService.getCurrentInstitution();
   }
 }

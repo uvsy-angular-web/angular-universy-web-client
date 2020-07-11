@@ -46,16 +46,13 @@ export class CareerService {
   }
 
   getCareersNames(): Observable<string[]> {
-    const currentInstitution = this.institutionService.getCurrentInstitution();
-
     return this.getAllCareers().map(
       (careers: Career[]) => careers.map((career: Career) => career.name)
     );
   }
 
   private getInstitutionId(): string {
-    const currentInstitution = this.institutionService.getCurrentInstitution();
-    return currentInstitution.id;
+    return InstitutionService.getCurrentInstitution().id;
   }
 
   public static setCurrentCareer(career: Career) {

@@ -37,8 +37,7 @@ export class NavigationService {
     this.navigateToRoute(Route.SUBJECT);
   }
 
-  public navigateToCoursePage(course?: Course) {
-    CourseService.setCurrentCourse(course);
+  public navigateToCoursePage() {
     this.navigateToRoute(Route.COURSE);
   }
 

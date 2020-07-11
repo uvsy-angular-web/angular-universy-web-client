@@ -102,7 +102,8 @@ export class SubjectComponent implements OnInit {
     );
   }
   onCourseClick(course: Course) {
-    this.navigationService.navigateToCoursePage(course);
+    CourseService.setCurrentCourse(course);
+    this.navigationService.navigateToCoursePage();
   }
 
   onNewCourseClick(commission: Commission) {
