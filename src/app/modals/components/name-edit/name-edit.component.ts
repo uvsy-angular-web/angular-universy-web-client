@@ -32,7 +32,7 @@ export class NameEditComponent implements OnInit {
     this.calculateColForInputSize();
   }
 
-  private calculateColForInputSize(): string {
+  calculateColForInputSize(): string {
     if (this.maxLength <= SMALL_SIZE_TEXT_LENGHT) {
       return ColSize.SMALL;
     } else if (this.maxLength <= MEDIUM_SIZE_TEXT_LENGHT) {

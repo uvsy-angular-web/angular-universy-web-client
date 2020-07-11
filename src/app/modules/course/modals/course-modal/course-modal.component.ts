@@ -27,7 +27,7 @@ export class CourseModalComponent implements OnInit {
     this.calculateColForInputSize();
   }
 
-  private calculateColForInputSize(): string {
+  calculateColForInputSize(): string {
     return ColSize.MEDIUM;
   }
 
