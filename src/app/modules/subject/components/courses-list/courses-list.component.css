@@ -1,7 +1,6 @@
 .hasCourse {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 1px 4px 3px 0 rgba(0, 0, 0, 0.19);
-    background-color: #E5C028;
-    color: white
+    background-color: #E5C028 !important;
+    color: white !important;
 }
 
 .btn-commission {
@@ -11,7 +10,7 @@
     background-color: transparent;
     color: #E5C028;
     font-weight: bold;
-    border: 2px solid #E5C028;
+    border: 2px dashed #E5C028;
     margin: 1rem;
     white-space: normal;
     font-size: 1.25vw;

@@ -2,6 +2,7 @@
     <div class="col">
         <span  *ngFor="let commissionCourse of commissionsCourses">
             <button class="btn btn-primary btn-commission"
+                (click)="onComissionCourseClick(commissionCourse)"
                 [ngClass]="{'hasCourse': commissionCourse.hasCourse}">
                 {{commissionCourse.commission.name}}
             </button>

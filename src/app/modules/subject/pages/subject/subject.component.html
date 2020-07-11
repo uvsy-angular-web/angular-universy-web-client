@@ -1,22 +1,18 @@
 <div class="container">
-  <app-custom-title [title]="subject.name"
-                    (deleteItem)="openDeleteModal()"
-                    (editItem)="openEditModal()"
-                    [showEditButton]="canModifySubject()"
-                    [showDeleteButton]="canModifySubject()"></app-custom-title>
+  <app-custom-title [title]="subject.name" (deleteItem)="openDeleteModal()" (editItem)="openEditModal()"
+    [showEditButton]="canModifySubject()" [showDeleteButton]="canModifySubject()"></app-custom-title>
   <hr>
   <div class="content">
     <h4>Comisiones</h4>
-    <app-courses-list [commissions]="commissions" [courses]="courses" ></app-courses-list>
+    <app-courses-list (courseClick)="onCourseClick($event)" (newCourseClick)="onNewCourseClick($event)"
+      [commissions]="commissions" [courses]="courses"></app-courses-list>
     <hr>
-    <button *ngIf="canModifySubject()"
-            class="btn-primary correlatives-button" id="manage-correlatives-button"
-            (click)="openManageCorrelativesModal()">
+    <button *ngIf="canModifySubject()" class="btn-primary correlatives-button" id="manage-correlatives-button"
+      (click)="openManageCorrelativesModal()">
       Administrar Correlativas
     </button>
-    <button *ngIf="!canModifySubject()"
-            class="btn-primary correlatives-button" id="view-correlatives-button"
-            (click)="openViewCorrelativesModal()">
+    <button *ngIf="!canModifySubject()" class="btn-primary correlatives-button" id="view-correlatives-button"
+      (click)="openViewCorrelativesModal()">
       Ver Correlativas
     </button>
   </div>

@@ -13,6 +13,9 @@ import { CorrelativeService } from 'src/app/core/services/correlative.service';
 import { Commission } from 'src/app/models/commission.model';
 import { CommissionService } from 'src/app/core/services/commission.service';
 
+const NEW_COURSE_MODAL_TITLE = 'Crear un nuevo curso';
+const NEW_COURSE_MODAL_QUESTION = '¿ Desea continuar ?';
+
 @Component({
   selector: 'app-subject',
   templateUrl: './subject.component.html',
@@ -96,6 +99,27 @@ export class SubjectComponent implements OnInit {
         this.notificationService.showError('Ocurrió un error tratando de modificar la materia');
         console.error(error.message);
       })
+    );
+  }
+  onCourseClick(course: Course) {
+    this.navigationService.navigateToCoursePage(course);
+  }
+
+  onNewCourseClick(commission: Commission) {
+    const newCourseModalMessage = `Se creara un nuevo curso en la comisión: ${commission.name}`;
+    this.notificationService.openConfirmModal(
+      NEW_COURSE_MODAL_TITLE,
+      newCourseModalMessage,
+      NEW_COURSE_MODAL_QUESTION,
+      ButtonText.Accept
+    ).subscribe(
+      (confirm) => {
+        if (confirm) {
+          this.courseService.addCourse(commission).subscribe(
+            () => this.getCourses()
+          );
+        }
+      }
     );
   }
 

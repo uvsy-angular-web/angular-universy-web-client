@@ -10,6 +10,7 @@ import { Endpoint } from 'src/app/models/endpoint.model';
 import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { CRUDEndpointsService } from './system/crud-endpoints.service';
 import { ModalService } from 'src/app/modals/modal.service';
+import { Commission } from 'src/app/models/commission.model';
 
 const ENDPOINT_COURSES = '/universy/institution/courses';
 const CURRENT_COURSE_KEY = 'current-course';
@@ -31,10 +32,11 @@ export class CourseService {
     return this.crudEndpointService.getAllFromParent(parentId, this.endpoint);
   }
 
-  addCourse(course: Course, subject?: Subject) {
+  addCourse(commission: Commission, subject?: Subject) {
     const parentId = subject ? subject.id : this.getParentId();
+    const body = { commissionId: commission.id };
 
-    return this.crudEndpointService.createOnParent(parentId, this.endpoint, course);
+    return this.crudEndpointService.createOnParent(parentId, this.endpoint, body);
   }
 
   updateCourse(course: Course) {
