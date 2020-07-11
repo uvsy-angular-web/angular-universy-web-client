@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
 import { Commission } from 'src/app/models/commission.model';
 import { Course } from 'src/app/models/course.model';
 
@@ -18,18 +18,18 @@ class CommissionCourse {
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.css']
 })
-export class CoursesListComponent implements OnInit {
+export class CoursesListComponent implements OnChanges {
   @Input() commissions: Commission[] = [];
   @Input() courses: Course[] = [];
   commissionsCourses: CommissionCourse[] = [];
-
+  noCommissionsMessage = 'Este nivel no cuenta con comisiones cargadas aún.';
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.generateCommissionCourses();
   }
-
   private generateCommissionCourses() {
+    this.commissionsCourses = [];
     this.commissions.forEach(
       (commission: Commission) => {
         const courseInCommision = this.courses.find(

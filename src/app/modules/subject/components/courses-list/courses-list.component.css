@@ -1,23 +1,24 @@
 .hasCourse {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 1px 4px 3px 0 rgba(0, 0, 0, 0.19);
     background-color: #E5C028;
-
+    color: white
 }
 
 .btn-commission {
     height: 4rem;
     width: 12rem;
     border-radius: 16px;
-    background-color: #f0d66e;
-    color: white;
-    border-color: transparent;
+    background-color: transparent;
+    color: #E5C028;
+    font-weight: bold;
+    border: 2px solid #E5C028;
     margin: 1rem;
     white-space: normal;
     font-size: 1.25vw;
   }
   
   .btn-commission:hover {
-    background-color: #f3d24e;
+    background-color: #fffdf6;
   }
   
   .correlatives-button {
