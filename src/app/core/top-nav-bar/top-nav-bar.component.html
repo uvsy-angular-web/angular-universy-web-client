@@ -1,29 +1,36 @@
 <nav class="navbar navbar-light navbar-expand-lg">
-    <ul class="navbar-nav">
-        <li class="nav-item" *ngIf="!isLoggedIn">
-            <a class=" nav-link" routerLink="/home" routerLinkActive="active-link"> Inicio </a>
-        </li>
-
-        <li class="nav-item" *ngIf="isLoggedIn">
-            <a class=" nav-link" routerLink="/institution" routerLinkActive="active-link"> Mis Carreras </a>
-        </li>
-
-        <li class="nav-item" *ngIf="isLoggedIn">
-            <a class=" nav-link" routerLink="/institution/stats" routerLinkActive="active-link"> Mis Estadisticas </a>
-        </li>
-
-        <li class="nav-item">
-            <a class=" nav-link" id="contact-info" routerLink="/contact-info" routerLinkActive="active-link"> Sobre
-        Universy</a>
-        </li>
-
-
-
-    </ul>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item" *ngIf="isLoggedIn">
-            <a class=" nav-link" href="" (click)="logoutEvent()" routerLinkActive="active-link">
-      Cerrar sesión</a>
-        </li>
-    </ul>
+    <a class="navbar-brand" href="#">Universy</a>
+    <button class="navbar-toggler" type="button" (click)="onCollapse()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [class.show]="!navbarCollapsed" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item" *ngIf="!isLoggedIn">
+                <a class=" nav-link" routerLink="/home" routerLinkActive="active-link">
+                    Inicio
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a class=" nav-link" routerLink="/institution" routerLinkActive="active-link">
+                    Mis Carreras
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a class=" nav-link" routerLink="/institution/stats" routerLinkActive="active-link">
+                    Mis Estadisticas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class=" nav-link" id="contact-info" routerLink="/contact-info" routerLinkActive="active-link"> Sobre
+                    Universy
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a class=" nav-link" href="" (click)="logoutEvent()" routerLinkActive="active-link">
+                    Cerrar sesión</a>
+            </li>
+        </ul>
+    </div>
 </nav>
