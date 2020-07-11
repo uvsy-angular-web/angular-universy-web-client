@@ -3,27 +3,39 @@
     [showDeleteButton]="canEditProgram()" [showEditButton]="canEditProgram()"></app-custom-title>
   <hr>
   <div class="content">
-    <app-add-item *ngIf="showAddSubjectButton" [buttonTitle]="addSubjectText"
-      (buttonPressed)="openNewSubjectModal()"></app-add-item>
+    <app-add-item *ngIf="showAddSubjectButton" [buttonTitle]="addSubjectText" (buttonPressed)="openNewSubjectModal()">
+    </app-add-item>
     <app-add-item *ngIf="!showAddSubjectButton" [buttonTitle]="addOptativeSubjectText"
       (buttonPressed)="openNewSubjectModal()"></app-add-item>
-    <div class="row bottom-line" *ngFor="let subjectXLevel of subjectsXLevel">
-      <div class="col-xs-12">
-        <h4>Nivel {{subjectXLevel.level}}</h4>
-        <div class="row subjects">
-          <div class="col-xs-2" *ngFor="let subject of subjectXLevel.subjects">
-              <button *ngIf="!subject.optative"  class="btn-subject"  (click)="navigateToSubjectView(subject)">
-                {{subject.name}}
-              </button>
-              <button *ngIf="subject.optative" class="btn-subject" (click)="navigateToSubjectView(subject)">
-              <div class="optative-decorator">
-                <p class="optative-header">{{optativeHeader}}</p>
-              </div>
-                {{subject.name}}
-              </button>
+    <div class="row bottom-line" *ngFor="let level of levels">
+      <div class="container">
+        <h4 class="row">Nivel {{level.levelNumber}}</h4>
+        <div class="row">
+          <div class="col-4" >
+            <app-commission-list
+            [commissions]="level.commissions"
+            (add)="addCommission(level.levelNumber)"
+            (edit)="editCommission($event)"
+            (delete)="deleteCommission($event)"
+            ></app-commission-list>
           </div>
-          <div class="col no-subject-found" *ngIf="subjectXLevel.subjects.length === 0">
-            {{noSubjectOnLevelMessage}}
+          <div class="col"  *ngIf="level.subjects && level.subjects.length > 0">
+            <div class="row subjects">
+              <div class="col-xs-2" *ngFor="let subject of level.subjects">
+                <button *ngIf="!subject.optative" class="btn-subject" (click)="navigateToSubjectView(subject)">
+                  {{subject.name}}
+                </button>
+                <button *ngIf="subject.optative" class="btn-subject" (click)="navigateToSubjectView(subject)">
+                  <div class="optative-decorator">
+                    <p class="optative-header">{{optativeHeader}}</p>
+                  </div>
+                  {{subject.name}}
+                </button>
+              </div>
+              <div class="col no-subject-found" *ngIf="level.subjects.length === 0">
+                {{noSubjectOnLevelMessage}}
+              </div>
+            </div>
           </div>
         </div>
       </div>

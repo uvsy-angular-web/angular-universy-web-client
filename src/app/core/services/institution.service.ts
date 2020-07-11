@@ -6,6 +6,8 @@ import { Institution } from '../../models/institution.model';
 import { Endpoint } from 'src/app/models/endpoint.model';
 import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { CRUDEndpointsService } from './system/crud-endpoints.service';
+import { NavigationService } from './system/navigation.service';
+
 const FIRST_INSTITUTION_INDEX = 0;
 const CURRENT_INSTITUTION_KEY = 'current-institution';
 
@@ -16,7 +18,9 @@ export class InstitutionService {
   private endpoint = new Endpoint(EndpointName.INSTITUTIONS);
 
   constructor(
-    private crudEndpointsService: CRUDEndpointsService) {
+    private crudEndpointsService: CRUDEndpointsService,
+    private navigationService: NavigationService,
+  ) {
   }
 
   getInstitution(): Observable<Institution> {
@@ -29,18 +33,17 @@ export class InstitutionService {
     return this.crudEndpointsService.getAll(this.endpoint);
   }
 
-  getCurrentInstitution(): Institution {
-    let currentInstitution = LocalStorageService.getObjectFromInLocalStorage(CURRENT_INSTITUTION_KEY) as Institution;
-    if (currentInstitution) { return currentInstitution; }
-
+  setDefaultInstitution() {
     this.getInstitution().subscribe(
       (institution: Institution) => {
-        currentInstitution = institution;
         InstitutionService.setCurrentInstitution(institution);
+        this.navigationService.navigateToInstitutionPage();
       }
     );
+  }
 
-    return currentInstitution;
+  static getCurrentInstitution(): Institution {
+    return LocalStorageService.getObjectFromInLocalStorage(CURRENT_INSTITUTION_KEY) as Institution;
   }
 
   static setCurrentInstitution(institution: Institution) {

@@ -1,0 +1,26 @@
+.hasCourse {
+    background-color: #E5C028 !important;
+    color: white !important;
+}
+
+.btn-commission {
+    height: 4rem;
+    width: 12rem;
+    border-radius: 16px;
+    background-color: transparent;
+    color: #E5C028;
+    font-weight: bold;
+    border: 2px dashed #E5C028;
+    margin: 1rem;
+    white-space: normal;
+    font-size: 1.25vw;
+  }
+  
+  .btn-commission:hover {
+    background-color: #fffdf6;
+  }
+  
+  .correlatives-button {
+    padding: 0.5rem 1rem;
+  }
+  

@@ -32,7 +32,7 @@ export class CareerModalComponent implements OnInit {
     this.getCareerNames();
   }
 
-  private calculateColForInputSize(): string {
+  calculateColForInputSize(): string {
     return ColSize.MEDIUM;
   }
 

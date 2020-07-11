@@ -56,6 +56,6 @@ export class SystemConfigService {
   }
 
   getBaseUrl(): string {
-    return `${configJson.baseEndpoint}/${configJson.stage}/`;
+    return `${configJson.baseEndpoint}/${configJson.version}/`;
   }
 }

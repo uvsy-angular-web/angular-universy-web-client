@@ -116,7 +116,7 @@ export class ProgramStatsComponent implements OnInit {
     if (this.subjects) {
       this.subjects.forEach(
         (sbj) => {
-          this.courseService.getCoursesBySubject(sbj)
+          this.courseService.getCourses(sbj)
             .subscribe((courses: Course[]) => {
               const newRow = new ProgramStatsRow(sbj.level, sbj.name, courses);
               this.programStatsRow.push(newRow);

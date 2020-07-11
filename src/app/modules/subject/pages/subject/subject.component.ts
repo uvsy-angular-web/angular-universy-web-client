@@ -10,6 +10,11 @@ import { ProgramService } from '../../../../core/services/program.service';
 import { SubjectModalService } from '../../modals/subject-modal.service';
 import { Correlative } from '../../../../models/correlative.model';
 import { CorrelativeService } from 'src/app/core/services/correlative.service';
+import { Commission } from 'src/app/models/commission.model';
+import { CommissionService } from 'src/app/core/services/commission.service';
+
+const NEW_COURSE_MODAL_TITLE = 'Crear un nuevo curso';
+const NEW_COURSE_MODAL_QUESTION = '¿ Desea continuar ?';
 
 @Component({
   selector: 'app-subject',
@@ -20,11 +25,13 @@ export class SubjectComponent implements OnInit {
 
   subject = new Subject();
   courses: Course[] = [];
+  commissions: Commission[] = [];
   correlatives: Correlative[] = [];
 
   constructor(
     private subjectService: SubjectService,
     private correlativeService: CorrelativeService,
+    private commissionService: CommissionService,
     private navigationService: NavigationService,
     private subjectModalService: SubjectModalService,
     private courseService: CourseService,
@@ -35,17 +42,7 @@ export class SubjectComponent implements OnInit {
     this.subject = SubjectService.getCurrentSubject();
     this.getCorrelatives();
     this.getCourses();
-  }
-
-  openNewCourseModal() {
-    this.notificationService.openEditNameModal(
-      'Agregar Comisión',
-      ButtonText.Add,
-      '').subscribe(
-        (courseName) => {
-          this.addCourse(courseName);
-        }
-      );
+    this.getCommissions();
   }
 
   canModifySubject() {
@@ -104,14 +101,25 @@ export class SubjectComponent implements OnInit {
       })
     );
   }
-  private addCourse(courseName: string) {
-    this.courseService.addCourse(courseName).subscribe(
-      () => {
-        this.getCourses();
-      },
-      (error) => {
-        this.notificationService.showError('Ocurrió un error tratando de agregar una comisión.');
-        console.error(error);
+  onCourseClick(course: Course) {
+    CourseService.setCurrentCourse(course);
+    this.navigationService.navigateToCoursePage();
+  }
+
+  onNewCourseClick(commission: Commission) {
+    const newCourseModalMessage = `Se creara un nuevo curso en la comisión: ${commission.name}`;
+    this.notificationService.openConfirmModal(
+      NEW_COURSE_MODAL_TITLE,
+      newCourseModalMessage,
+      NEW_COURSE_MODAL_QUESTION,
+      ButtonText.Accept
+    ).subscribe(
+      (confirm) => {
+        if (confirm) {
+          this.courseService.addCourse(commission).subscribe(
+            () => this.getCourses()
+          );
+        }
       }
     );
   }
@@ -120,6 +128,14 @@ export class SubjectComponent implements OnInit {
     this.courseService.getCourses()
       .subscribe((courses) => {
         this.courses = courses;
+      }
+      );
+  }
+
+  private getCommissions() {
+    this.commissionService.getCommissions()
+      .subscribe((commissions) => {
+        this.commissions = commissions.filter((commission) => commission.level === this.subject.level);
       }
       );
   }

@@ -1,22 +1,31 @@
-import {Period} from './period.model';
+import { Period } from './period.model';
 
 export class Course {
-  public subjectCode: string;
-  public courseCode: string;
-  public name: string;
+
+  public subjectId: string;
+  public commissionId: string;
+  public courseId: string;
   public periods: Period[];
   public active: boolean;
+  public createdAt: number;
+  public updatedAt: number;
 
-  constructor(subjectCode?: string,
-              courseCode?: string,
-              name?: string,
-              periods?: Period[],
-              active?: boolean) {
-    this.subjectCode = subjectCode;
-    this.courseCode = courseCode;
-    this.name = name;
+  constructor(
+    subjectId?: string,
+    commissionId?: string,
+    courseId?: string,
+    periods?: Period[],
+    active?: boolean,
+    createdAt?: number,
+    updatedAt?: number
+    ) {
+    this.subjectId = subjectId;
+    this.commissionId = commissionId;
+    this.courseId = courseId;
     this.periods = periods;
     this.active = active;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 }
 
