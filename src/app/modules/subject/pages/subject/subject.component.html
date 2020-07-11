@@ -3,7 +3,7 @@
     [showEditButton]="canModifySubject()" [showDeleteButton]="canModifySubject()"></app-custom-title>
   <hr>
   <div class="content">
-    <h4>Comisiones</h4>
+    <h4>Cursos</h4>
     <app-courses-list (courseClick)="onCourseClick($event)" (newCourseClick)="onNewCourseClick($event)"
       [commissions]="commissions" [courses]="courses"></app-courses-list>
     <hr>

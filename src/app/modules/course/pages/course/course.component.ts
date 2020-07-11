@@ -1,12 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {Course} from '../../../../models/course.model';
-import {CourseService} from '../../../../core/services/course.service';
-import {CourseModalService} from '../../modals/course-modal.service';
-import {Period} from '../../../../models/period.model';
-import {NavigationService} from '../../../../core/services/system/navigation.service';
-import {ModalService} from '../../../../modals/modal.service';
-import {SubjectModalService} from '../../../subject/modals/subject-modal.service';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
+import { Component, OnInit } from '@angular/core';
+import { Course } from '../../../../models/course.model';
+import { CourseService } from '../../../../core/services/course.service';
+import { CourseModalService } from '../../modals/course-modal.service';
+import { Period } from '../../../../models/period.model';
+import { NavigationService } from '../../../../core/services/system/navigation.service';
+import { ModalService } from '../../../../modals/modal.service';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { CommissionService } from 'src/app/core/services/commission.service';
+import { Commission } from 'src/app/models/commission.model';
+
+const DELETE_COURSE_TITLE = 'Eliminar curso';
+const DELETE_COURSE_DESCRIPTION = 'Se eliminará el curso junto con sus períodos, profesores y horarios.';
+const DELETE_COURSE_QUESTION = '¿ Está seguro que desea continuar ?';
 
 @Component({
   selector: 'app-course',
@@ -14,13 +19,16 @@ import {ButtonText} from '../../../../shared/enums/button-text.enum';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+  title = 'Cargando...';
+  course: Course;
+  commission: Commission;
 
-  public course: Course;
-
-  constructor(private courseModalService: CourseModalService,
-              private courseService: CourseService,
-              private navigationService: NavigationService,
-              private notificationService: ModalService) {
+  constructor(
+    private courseModalService: CourseModalService,
+    private courseService: CourseService,
+    private commissionService: CommissionService,
+    private navigationService: NavigationService,
+    private notificationService: ModalService) {
   }
 
   ngOnInit() {
@@ -29,52 +37,45 @@ export class CourseComponent implements OnInit {
 
   private getCurrentCourse() {
     this.course = CourseService.getCurrentCourse();
+    this.commissionService.getCommission(this.course.commissionId).subscribe(
+      (commission: Commission) => {
+        this.commission = commission;
+        this.updateTitle();
+      }
+    );
   }
 
-  public openNewPeriodModal() {
+  openNewPeriodModal() {
     this.courseModalService.openNewPeriodModal().subscribe(
       (newPeriod: Period) => this.addPeriod(newPeriod)
     );
   }
 
-  public saveCourse() {
+  saveCourse() {
     this.courseService.updateCourse(this.course).subscribe(
       () => {
         this.notificationService.inform('Se guardo con éxito', 'Se actualizo la comisión con éxito');
         this.navigationService.navigateToSubjectPage();
       }, (error) => {
-        this.notificationService.showError('Ocurrió un problema tratando de publicar el plan');
+        this.notificationService.showError('Ocurrió un problema tratando de r el plan');
         console.error(error);
       }
     );
+  }
+
+  private updateTitle() {
+    this.title = `Curso: ${this.commission && this.commission.name}`;
   }
 
   private addPeriod(period: Period) {
     this.course.periods.push(period);
   }
 
-  public openEditModalCourse() {
-    this.courseModalService.openEditCourseNameModal('Editar Comisión', this.course).subscribe(
-      (courseName: string) => {
-        // this.course.name = courseName;
-        this.courseService.updateCourse(this.course).subscribe(() => {
-            this.notificationService.inform(
-              '¡Modificación con éxito!',
-              'Se actualizó la comisión exitosamente.');
-          }
-        );
-      }, ((error) => {
-        this.notificationService.showError('Ocurrió un error tratando de modificar la comisión');
-        console.error(error.message);
-      })
-    );
-  }
-
-  public openDeleteModal() {
+  openDeleteModal() {
     this.notificationService.openConfirmModal(
-      'Eliminar comisión',
-      'Se eliminará la comisión con sus períodos, profesores y horarios.',
-      '¿ Está seguro que desea eliminarla ?',
+      DELETE_COURSE_TITLE,
+      DELETE_COURSE_DESCRIPTION,
+      DELETE_COURSE_QUESTION,
       ButtonText.Delete
     ).subscribe(
       () => {

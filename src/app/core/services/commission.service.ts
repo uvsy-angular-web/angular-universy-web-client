@@ -22,6 +22,10 @@ export class CommissionService {
     return this.crudEndpointService.getAllFromParent(programId, this.endpoint);
   }
 
+  getCommission(commissionId: string) {
+    return this.crudEndpointService.get(this.endpoint, commissionId);
+  }
+
   createCommission(commission: Commission) {
     return this.crudEndpointService.update(this.endpoint, commission.id, commission);
   }
