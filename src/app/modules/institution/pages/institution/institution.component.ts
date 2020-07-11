@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {InstitutionService} from '../../../../core/services/institution.service';
-import {Career, Institution} from '../../../../models/career.model';
-import {CareerService} from '../../../../core/services/career.service';
-import {CareerModalService} from '../../../career/modals/career-modal.service';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {NavigationService} from '../../../../core/services/system/navigation.service';
+import { Component, OnInit } from '@angular/core';
+import { Career } from '../../../../models/career.model';
+import { CareerService } from '../../../../core/services/career.service';
+import { CareerModalService } from '../../../career/modals/career-modal.service';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { NavigationService } from '../../../../core/services/system/navigation.service';
 
 
 @Component({
@@ -14,10 +13,9 @@ import {NavigationService} from '../../../../core/services/system/navigation.ser
 })
 
 export class InstitutionComponent implements OnInit {
-  institution: Institution = new Institution();
+  careers: Career[] = [];
 
   constructor(
-    private institutionService: InstitutionService,
     private careerService: CareerService,
     private navigationService: NavigationService,
     private careerModalService: CareerModalService) {
@@ -27,14 +25,8 @@ export class InstitutionComponent implements OnInit {
     this.getCareers();
   }
   private getCareers() {
-    this.institutionService.getInstitution().subscribe(
-      (institution: Institution) => {
-        if (institution) {
-          this.institution = institution;
-          InstitutionService.setCurrentInstitution(institution);
-        }
-      }
-    );
+    this.careerService.getAllCareers().subscribe(
+      (careers: Career[]) => this.careers = careers);
   }
 
   public openNewCareerModal() {

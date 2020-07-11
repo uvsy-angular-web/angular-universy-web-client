@@ -1,5 +1,5 @@
 <div class="career-card" (click)="navigateToCareerStats()">
-    <div id="career-name">{{career.careerName}}</div>
+    <div id="career-name">{{career.name}}</div>
     <div *ngIf="programs.length > 0" class="program-container">
         <div class="program-item" *ngFor="let program of programs">
             <app-program-item [program]="program"></app-program-item>

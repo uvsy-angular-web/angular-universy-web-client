@@ -1,67 +1,49 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {SystemConfigService} from './system/system-config.service';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import 'rxjs-compat/add/operator/map';
-import {LocalStorageService} from './local-storage.service';
-import {Institution, Institutions} from '../../models/career.model';
-import { SimilarWordService } from 'src/app/core/services/validator/repeated-text.service';
-
+import { LocalStorageService } from './local-storage.service';
+import { Institution } from '../../models/institution.model';
+import { Endpoint } from 'src/app/models/endpoint.model';
+import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
+import { CRUDEndpointsService } from './system/crud-endpoints.service';
 const FIRST_INSTITUTION_INDEX = 0;
-const MOCKED_INSTITUTION_KEY = 'FRC';
-const ENDPOINT_INSTITUTION = '/universy/institution';
 const CURRENT_INSTITUTION_KEY = 'current-institution';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstitutionService {
+  private endpoint = new Endpoint(EndpointName.INSTITUTIONS);
 
-  constructor(private http: HttpClient,
-              private systemConfigService: SystemConfigService,
-              private similarWordService: SimilarWordService) {
+  constructor(
+    private crudEndpointsService: CRUDEndpointsService) {
   }
-
 
   getInstitution(): Observable<Institution> {
-    const baseUrl = InstitutionService._getBaseUrl();
-    const headers = this._getHeaders();
-
-    const institutionKey = InstitutionService.getCurrentInstitution().institutionKey;
-    const params = new HttpParams()
-      .set('institutionKey', institutionKey);
-
-    return this.http.get(baseUrl + ENDPOINT_INSTITUTION, {headers, params})
-      .map((institutions: Institutions) => {
-          return institutions.institutions[FIRST_INSTITUTION_INDEX];
-        }
-      );
+    return this.getAllInstitutions().map(
+      (institutions: Institution[]) => institutions[FIRST_INSTITUTION_INDEX]
+    );
   }
 
-   private _getHeaders() {
-    return this.systemConfigService.getHeader();
+  getAllInstitutions(): Observable<Institution[]> {
+    return this.crudEndpointsService.getAll(this.endpoint);
   }
 
-  private static _getBaseUrl() {
-    return SystemConfigService.getBaseUrl();
+  getCurrentInstitution(): Institution {
+    let currentInstitution = LocalStorageService.getObjectFromInLocalStorage(CURRENT_INSTITUTION_KEY) as Institution;
+    if (currentInstitution) { return currentInstitution; }
+
+    this.getInstitution().subscribe(
+      (institution: Institution) => {
+        currentInstitution = institution;
+        InstitutionService.setCurrentInstitution(institution);
+      }
+    );
+
+    return currentInstitution;
   }
 
-  public static setCurrentInstitution(institution: Institution) {
+  static setCurrentInstitution(institution: Institution) {
     LocalStorageService.saveObjectInLocalStorage(CURRENT_INSTITUTION_KEY, institution);
-  }
-
-  public static getCurrentInstitution(): Institution {
-    let institution = LocalStorageService.getObjectFromInLocalStorage(CURRENT_INSTITUTION_KEY) as Institution;
-    if (!institution) {
-      institution = this.getMockedInstitution(institution);
-    }
-    return institution;
-  }
-
-  private static getMockedInstitution(institution) {
-    institution = new Institution();
-    institution.institutionKey = MOCKED_INSTITUTION_KEY;
-    InstitutionService.setCurrentInstitution(institution);
-    return institution;
   }
 }

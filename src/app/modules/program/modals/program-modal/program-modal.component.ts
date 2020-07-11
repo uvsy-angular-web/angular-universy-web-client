@@ -4,8 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Program } from '../../../../models/program.model';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 
-const DEFAULT_DAY_INIT_FROM = '01';
-const DEFAULT_MONTH_INIT_FROM = '01';
+const DEFAULT_DAY_INIT_FROM = 1;
+const DEFAULT_MONTH_INIT_FROM = 1;
 const INIT_OF_YEAR_IN_STRING = 6;
 const EMPTY_YEAR = '';
 const REG_EX_CAREER_NAME = '^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$';
@@ -78,12 +78,12 @@ export class ProgramModalComponent implements OnInit {
     return this.form.get('requiresOptatives') as FormControl;
   }
 
-  get amountOfHours(): FormControl {
-    return this.form.get('amountOfHours') as FormControl;
+  get hours(): FormControl {
+    return this.form.get('hours') as FormControl;
   }
 
-  get amountOfPoints(): FormControl {
-    return this.form.get('amountOfPoints') as FormControl;
+  get points(): FormControl {
+    return this.form.get('points') as FormControl;
   }
 
   get amountOfSubjects(): FormControl {
@@ -96,8 +96,8 @@ export class ProgramModalComponent implements OnInit {
 
   private _areAmountsValid(): boolean {
     const atLeastOneAmountLoaded =
-      this.amountOfHours.value > 0 ||
-      this.amountOfPoints.value > 0 ||
+      this.hours.value > 0 ||
+      this.points.value > 0 ||
       this.amountOfSubjects.value > 0;
 
     if (!atLeastOneAmountLoaded) {
@@ -117,34 +117,35 @@ export class ProgramModalComponent implements OnInit {
 
   private _updatesOptativeRequirement() {
     if (this.requiresOptatives.value) {
-      this.program.amountOfHours = +this.amountOfHours.value;
-      this.program.amountOfPoints = +this.amountOfPoints.value;
+      this.program.hours = +this.hours.value;
+      this.program.points = +this.points.value;
       this.program.amountOfSubjects = +this.amountOfSubjects.value;
     } else {
-      this.program.amountOfHours = ZERO_AMOUNT_VALUE;
+      this.program.hours = ZERO_AMOUNT_VALUE;
       this.program.amountOfSubjects = ZERO_AMOUNT_VALUE;
-      this.program.amountOfPoints = ZERO_AMOUNT_VALUE;
+      this.program.points = ZERO_AMOUNT_VALUE;
     }
   }
 
-  private _getValidFromDate() {
-    return `${DEFAULT_DAY_INIT_FROM}/${DEFAULT_MONTH_INIT_FROM}/${this.yearFrom.value}`;
+  private _getValidFromDate(): number {
+    const date = new Date(this.yearFrom.value, DEFAULT_MONTH_INIT_FROM, DEFAULT_DAY_INIT_FROM);
+    return date.getTime();
   }
 
   private _createForm(): void {
-    const yearFrom = this.program.validFrom ? this.program.validFrom.substring(INIT_OF_YEAR_IN_STRING) : EMPTY_YEAR;
+    const yearFrom = this.program.validFrom ? new Date(this.program.validFrom).getFullYear() : EMPTY_YEAR;
 
     const requiresOptatives =
-      this.program.amountOfHours ||
-      this.program.amountOfPoints ||
+      this.program.hours ||
+      this.program.points ||
       this.program.amountOfSubjects;
 
     this.form = this.formBuilder.group({
       name: new FormControl(this.program.name, ProgramModalComponent._getValidatorsForCareerName()),
       yearFrom: new FormControl(yearFrom, ProgramModalComponent._getValidatorsForYearFrom()),
       requiresOptatives: new FormControl(requiresOptatives != null, Validators.required),
-      amountOfHours: new FormControl(this.program.amountOfHours, ProgramModalComponent._getAmountOfValidators()),
-      amountOfPoints: new FormControl(this.program.amountOfPoints, ProgramModalComponent._getAmountOfValidators()),
+      hours: new FormControl(this.program.hours, ProgramModalComponent._getAmountOfValidators()),
+      points: new FormControl(this.program.points, ProgramModalComponent._getAmountOfValidators()),
       amountOfSubjects: new FormControl(this.program.amountOfSubjects, ProgramModalComponent._getAmountOfValidators()),
     });
   }

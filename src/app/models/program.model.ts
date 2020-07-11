@@ -1,34 +1,39 @@
-import { CareerKey } from './carreer-key.model';
-
 export class Program {
-  careerKey: CareerKey;
-  uuid: string;
+  id: string;
   name: string;
-  validFrom: string;
-  validTo: string;
-  published: boolean;
-  amountOfHours: number;
-  amountOfPoints: number;
+  careerId: string;
+  validFrom: number;
+  validTo: number;
+  hours: number;
+  points: number;
   amountOfSubjects: number;
+  active: boolean;
+  createdAt: number;
+  updatedAt: number;
+  deactivatedAt: number;
 
   constructor(
-    careerKey?: CareerKey,
-    uuid?: string,
+    id?: string,
     name?: string,
-    validFrom?: string,
-    validTo?: string,
-    published?: boolean,
-    amountOfHours?: number,
-    amountOfPoints?: number,
-    amountOfSubjects?: number) {
-      this.careerKey = careerKey;
-      this.uuid = uuid;
+    careerId?: string,
+    validFrom?: number,
+    validTo?: number,
+    hours?: number,
+    points?: number,
+    active?: boolean,
+    createdAt?: number,
+    updatedAt?: number,
+    deactivatedAt?: number) {
+      this.id = id;
       this.name = name;
+      this.careerId = careerId;
       this.validFrom = validFrom;
       this.validTo = validTo;
-      this.published = published;
-      this.amountOfHours = amountOfHours;
-      this.amountOfPoints = amountOfPoints;
-      this.amountOfSubjects = amountOfSubjects;
+      this.hours = hours;
+      this.points = points;
+      this.active = active;
+      this.createdAt = createdAt;
+      this.updatedAt = updatedAt;
+      this.deactivatedAt = deactivatedAt;
   }
 }

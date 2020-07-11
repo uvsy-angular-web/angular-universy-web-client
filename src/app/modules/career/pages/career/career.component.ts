@@ -1,14 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Career} from '../../../../models/career.model';
-import {CareerService} from '../../../../core/services/career.service';
-import {InstitutionService} from '../../../../core/services/institution.service';
-import {ModalService} from '../../../../modals/modal.service';
-import {Program} from '../../../../models/program.model';
-import {ProgramService} from '../../../../core/services/program.service';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {ProgramModalService} from '../../../program/modals/program-modal.service';
-import {NavigationService} from '../../../../core/services/system/navigation.service';
+import { Component, OnInit } from '@angular/core';
+import { Career } from '../../../../models/career.model';
+import { CareerService } from '../../../../core/services/career.service';
+import { ModalService } from '../../../../modals/modal.service';
+import { Program } from '../../../../models/program.model';
+import { ProgramService } from '../../../../core/services/program.service';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { ProgramModalService } from '../../../program/modals/program-modal.service';
+import { NavigationService } from '../../../../core/services/system/navigation.service';
 
 
 @Component({
@@ -21,11 +19,12 @@ export class CareerComponent implements OnInit {
   programs: Program[] = [];
 
 
-  constructor(private careerService: CareerService,
-              private programService: ProgramService,
-              private navigationService: NavigationService,
-              private programModalService: ProgramModalService,
-              private notificationService: ModalService) {
+  constructor(
+    private careerService: CareerService,
+    private programService: ProgramService,
+    private navigationService: NavigationService,
+    private programModalService: ProgramModalService,
+    private notificationService: ModalService) {
   }
 
   ngOnInit() {
@@ -48,9 +47,9 @@ export class CareerComponent implements OnInit {
   }
 
   public editStateOfCareer(state: boolean) {
-    if (state !== this.career.active) {
-      this.career.active = state;
-      this.updateCareer();
+    if (state) {
+      this.activateCareer();
+      // TODO: Adds inactivate career
     }
   }
 
@@ -76,7 +75,7 @@ export class CareerComponent implements OnInit {
   }
 
   private isThereProgramNotPublished() {
-    return this.programs.find((program: Program) => program.published === false);
+    return this.programs.find((program: Program) => program.active === false);
   }
 
   private addProgram(newProgram: Program) {
@@ -105,7 +104,7 @@ export class CareerComponent implements OnInit {
 
   private editCareerName(careerName: string) {
     if (careerName) {
-      this.career.careerName = careerName;
+      this.career.name = careerName;
       this.updateCareer();
     }
   }
@@ -116,6 +115,17 @@ export class CareerComponent implements OnInit {
         CareerService.setCurrentCareer(this.career);
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de modificar la carrera');
+        console.error(error);
+      })
+    );
+  }
+
+  private activateCareer() {
+    this.careerService.activateCareer(this.career).subscribe(
+      () => {
+        CareerService.setCurrentCareer(this.career);
+      }, ((error) => {
+        this.notificationService.showError('Ocurrió un error tratando de activar la carrera');
         console.error(error);
       })
     );

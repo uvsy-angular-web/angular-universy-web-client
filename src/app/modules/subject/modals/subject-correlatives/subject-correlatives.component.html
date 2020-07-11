@@ -21,19 +21,22 @@
                     <th scope="row">{{subject.level}}</th>
                     <td>{{subject.name}}</td>
                     <td>
-                        <input type="checkbox" [checked]="isToTakeRegularChecked(subject)" (change)="changeCorrelativeToTakeRegular(subject)">
+                        <input type="checkbox" [checked]="isToTakeRegularChecked(subject)"
+                            (change)="changeCorrelativeToTakeRegular(subject,$event.target.checked)">
                     </td>
                     <td>
-                        <input type="checkbox" [checked]="isToTakeApprovedChecked(subject)" (change)="changeCorrelativeToTakeApproved(subject)">
+                        <input type="checkbox" [checked]="isToTakeApprovedChecked(subject)"
+                            (change)="changeCorrelativeToTakeApproved(subject,$event.target.checked)">
                     </td>
                     <td class="border-left text-center">
-                        <input type="checkbox" [checked]="isToApproveChecked(subject)" (change)="changeCorrelativeToApprove(subject)">
+                        <input type="checkbox" [checked]="isToApproveChecked(subject)"
+                            (change)="changeCorrelativeToApprove(subject)">
                     </td>
                 </tr>
             </tbody>
         </table>
         <div [hidden]="!readOnly">
-            <app-correlative-list [subject]="subject" [subjects]="subjects"></app-correlative-list>
+            <app-correlative-list [correlatives]="correlatives" [subject]="subject" [subjects]="subjects"></app-correlative-list>
         </div>
         <div [hidden]="showTable()" class="text-center">
             <span class="font-italic" [hidden]="readOnly">No existen materias para asignar como correlativas.</span>
@@ -42,6 +45,6 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline" [hidden]="readOnly" (click)="cancelAction()">Cancelar
-  </button>
+    </button>
     <button type="buttom" class="btn btn-primary" (click)="emitCorrelatives()">{{confirmButtonText}}</button>
 </div>

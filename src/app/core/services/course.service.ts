@@ -6,8 +6,6 @@ import { Course } from '../../models/course.model';
 import { SubjectService } from './subject.service';
 import { LocalStorageService } from './local-storage.service';
 import { Subject } from '../../models/subject.model';
-import { ProgramService } from './program.service';
-
 
 const ENDPOINT_COURSES = '/universy/institution/courses';
 const CURRENT_COURSE_KEY = 'current-course';
@@ -28,10 +26,10 @@ export class CourseService {
   }
 
   getCoursesBySubject(subject: Subject): Observable<Course[]> {
-    const baseUrl = CourseService.getBaseUrl();
+    const baseUrl = this.getBaseUrl();
     const headers = this.getHeaders();
     const params = new HttpParams()
-      .set('subjectCode', subject.subjectCode.toString());
+      .set('subjectCode', subject.codename.toString());
 
     return this.http.get(baseUrl + ENDPOINT_COURSES, { headers, params })
       .map((data: any) => {
@@ -43,38 +41,38 @@ export class CourseService {
 
   addCourse(courseName: string) {
     const body = {
-      subjectCode: SubjectService.getCurrentSubject().subjectCode,
+      subjectCode: SubjectService.getCurrentSubject().codename,
       active: true,
       name: courseName,
       periods: [],
     };
-    const baseUrl = CourseService.getBaseUrl();
+    const baseUrl = this.getBaseUrl();
     const headers = this.getHeaders();
     return this.http.put(baseUrl + ENDPOINT_COURSES, body, { headers });
   }
 
   updateCourse(course: Course) {
-    const baseUrl = CourseService.getBaseUrl();
+    const baseUrl = this.getBaseUrl();
     const headers = this.getHeaders();
     return this.http.post(baseUrl + ENDPOINT_COURSES, course, { headers });
   }
 
   deleteCourse(course: Course) {
-    const baseUrl = CourseService.getBaseUrl();
+    const baseUrl = this.getBaseUrl();
     const headers = this.getHeaders();
     const currentSubject = SubjectService.getCurrentSubject();
     const params = new HttpParams()
       .set('courseCode', course.courseCode.toString())
-      .set('subjectCode', currentSubject.subjectCode);
+      .set('subjectCode', currentSubject.codename);
     return this.http.delete(baseUrl + ENDPOINT_COURSES, { headers, params });
   }
 
   private getHeaders() {
-    return this.systemConfigService.getHeader();
+    return this.systemConfigService.getHeaders();
   }
 
-  private static getBaseUrl() {
-    return SystemConfigService.getBaseUrl();
+  private  getBaseUrl() {
+    return this.systemConfigService.getBaseUrl();
   }
 
   public static setCurrentCourse(course: Course) {

@@ -5,13 +5,13 @@
         <div class="margin-top-2">
             <app-stats [title]="correlativeCountText" [value]="correlativesCount+'/'+subjects.length"> </app-stats>
         </div>
-        <div *ngFor="let subject of subjects" class="subject-detail">
+        <div *ngFor="let subject of subjects; index as i" class="subject-detail">
             <div *ngIf="subject.correlatives && subject.correlatives.length > 0" class="subject-table">
-                <h4>{{subject.name}}</h4>
+                <h4><strong>{{(i)+' - '}}</strong>{{subject.name}}</h4>
                 <p class="level-row">{{levelText}}<span class="level-number">{{subject.level}}</span></p>
                 <h6 class="correlative-title">{{correlativesTitle}}</h6>
                 <div class="correlative-list">
-                    <app-correlative-list [subject]="subject" [subjects]="subjects"></app-correlative-list>
+                    <app-correlative-list [correlatives]="subject.correlatives" [subject]="subject" [subjects]="subjects"></app-correlative-list>
                 </div>
             </div>
         </div>

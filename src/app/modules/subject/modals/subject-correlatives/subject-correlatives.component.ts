@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ButtonText} from '../../../../shared/enums/button-text.enum';
-import {Subject} from '../../../../models/subject.model';
-import {FormGroup} from '@angular/forms';
-import {SubjectService} from '../../../../core/services/subject.service';
-import {Correlative, CorrelativeCondition, CorrelativeRestriction} from '../../../../models/correlative.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ButtonText } from '../../../../shared/enums/button-text.enum';
+import { Subject } from '../../../../models/subject.model';
+import { FormGroup } from '@angular/forms';
+import { SubjectService } from '../../../../core/services/subject.service';
+import { Correlative, CorrelativeCondition, CorrelativeRestriction } from '../../../../models/correlative.model';
 
 const FIRST_LEVEL = 1;
 const ONE_CORRELATIVE_TO_DELETE = 1;
@@ -17,15 +17,17 @@ const NO_CORRELATIVE_FOUND = undefined;
 })
 export class SubjectCorrelativesComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal,
-              private subjectService: SubjectService) {
+  constructor(
+    public activeModal: NgbActiveModal,
+    private subjectService: SubjectService) {
   }
 
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
   @Input() readOnly = false;
+  @Input() correlatives: Correlative[] = [];
+  @Input() subject: Subject;
   @Output() confirmEvent: EventEmitter<Correlative[]> = new EventEmitter();
-  subject: Subject;
   subjects: Subject[] = [];
   form: FormGroup;
 
@@ -43,48 +45,48 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   public emitCorrelatives() {
-    this.confirmEvent.emit(this.subject.correlatives);
+    this.confirmEvent.emit(this.correlatives);
     this.activeModal.close();
   }
 
-  public changeCorrelativeToTakeRegular(subject: Subject) {
+  public changeCorrelativeToTakeRegular(subject: Subject, isChecked: boolean) {
     this.removePreviousToTakeCorrelative(subject);
-    this.addCorrelativeToTakeRegular(subject);
+    if (isChecked) { this.addCorrelativeToTakeRegular(subject); }
   }
 
-  public changeCorrelativeToTakeApproved(subject: Subject) {
+  public changeCorrelativeToTakeApproved(subject: Subject, isChecked: boolean) {
     this.removePreviousToTakeCorrelative(subject);
-    this.addCorrelativeToTakeApproved(subject);
+    if (isChecked) { this.addCorrelativeToTakeApproved(subject); }
   }
 
   private removePreviousToTakeCorrelative(subject: Subject) {
     const correlative = this.getCorrelativeToTakeBySubject(subject);
     if (correlative) {
-      this.removeCorrelativeOfTheList(correlative);
+      this.removeCorrelativeOfList(correlative);
     }
   }
 
   public changeCorrelativeToApprove(subject: Subject) {
     const correlative = this.getCorrelativeToApprove(subject);
     if (correlative) {
-      this.removeCorrelativeOfTheList(correlative);
+      this.removeCorrelativeOfList(correlative);
     } else {
       this.addCorrelativeToApprove(subject);
     }
   }
 
   private getCorrelativeToApprove(subject: Subject) {
-    return this.subject.correlatives.find(
+    return this.correlatives.find(
       (correlative) =>
-        correlative.subjectCode === subject.subjectCode &&
+        correlative.correlativeSubjectId === subject.id &&
         correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE
     );
   }
 
   private getCorrelativeToTakeBySubject(subject: Subject) {
-    return this.subject.correlatives.find(
+    return this.correlatives.find(
       (correlative) =>
-        (correlative.subjectCode === subject.subjectCode &&
+        (correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE));
   }
 
@@ -102,16 +104,16 @@ export class SubjectCorrelativesComponent implements OnInit {
 
   private addCorrelative(subject: Subject, correlativeRestriction: CorrelativeRestriction, correlativeCondition: CorrelativeCondition) {
     const newCorrelative = new Correlative(
-      subject.name,
-      subject.subjectCode,
-      correlativeRestriction,
-      correlativeCondition);
-    this.subject.correlatives.push(newCorrelative);
+      null,
+      subject.id,
+      correlativeCondition,
+      correlativeRestriction);
+    this.correlatives.push(newCorrelative);
   }
 
-  private removeCorrelativeOfTheList(correlative) {
-    const index = this.subject.correlatives.indexOf(correlative);
-    this.subject.correlatives.splice(index, ONE_CORRELATIVE_TO_DELETE);
+  private removeCorrelativeOfList(correlative) {
+    const index = this.correlatives.indexOf(correlative);
+    this.correlatives.splice(index, ONE_CORRELATIVE_TO_DELETE);
   }
 
   public cancelAction(): void {
@@ -119,9 +121,9 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   public isToTakeRegularChecked(subject: Subject): boolean {
-    return this.subject.correlatives.find(
+    return this.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.REGULAR;
       }
@@ -129,9 +131,9 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   public isToTakeApprovedChecked(subject: Subject): boolean {
-    return this.subject.correlatives.find(
+    return this.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
@@ -139,9 +141,9 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   public isToApproveChecked(subject: Subject): boolean {
-    return this.subject.correlatives.find(
+    return this.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
@@ -172,7 +174,7 @@ export class SubjectCorrelativesComponent implements OnInit {
       (subjects) => {
         subjects.correlatives.filter(
           (correlative) => {
-            return correlative.subjectCode === this.subject.subjectCode;
+            return correlative.correlativeSubjectId === this.subject.id;
           }
         );
       }
@@ -187,7 +189,7 @@ export class SubjectCorrelativesComponent implements OnInit {
   }
 
   private isCurrentSubjectNotIncluded(subject) {
-    return subject.subjectCode !== this.subject.subjectCode;
+    return subject.id !== this.subject.id;
   }
 
   private isSubjectLevelLowerThatActual(subject) {

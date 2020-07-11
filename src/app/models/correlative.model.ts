@@ -1,17 +1,26 @@
 export class Correlative {
-  name: string;
-  subjectCode: string;
-  correlativeRestriction: CorrelativeRestriction;
+  id: string;
+  correlativeSubjectId: string;
   correlativeCondition: CorrelativeCondition;
+  correlativeRestriction: CorrelativeRestriction;
+  createdAt: number;
+  updatedAt: number;
 
-  constructor(name?: string,
-              subjectCode?: string,
-              correlativeRestriction?: CorrelativeRestriction,
-              correlativeCondition?: CorrelativeCondition) {
-    this.name = name;
-    this.subjectCode = subjectCode;
-    this.correlativeRestriction = correlativeRestriction;
+
+  constructor(
+    id?: string,
+    correlativeSubjectId?: string,
+    correlativeCondition?: CorrelativeCondition,
+    correlativeRestriction?: CorrelativeRestriction,
+    createdAt?: number,
+    updatedAt?: number
+  ) {
+    this.id = id;
+    this.correlativeSubjectId = correlativeSubjectId;
     this.correlativeCondition = correlativeCondition;
+    this.correlativeRestriction = correlativeRestriction;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 }
 

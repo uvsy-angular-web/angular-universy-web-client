@@ -15,11 +15,11 @@ const NO_CORRELATIVE_FOUND = undefined;
 })
 export class CorrelativeListComponent implements OnInit {
 
-
   constructor() {
   }
 
   @Input() subject: Subject;
+  @Input() correlatives: Correlative[] = [];
   @Input() subjects: Subject[] = [];
 
   toTakeText = 'Para cursar';
@@ -37,9 +37,9 @@ export class CorrelativeListComponent implements OnInit {
     return subject.name + ' Nivel: ' + subject.level;
   }
   isToTakeRegularChecked(subject: Subject): boolean {
-    const isToTakeRegularChecked = this.subject.correlatives.find(
+    const isToTakeRegularChecked = this.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.REGULAR;
       }
@@ -49,9 +49,9 @@ export class CorrelativeListComponent implements OnInit {
   }
 
   isToTakeApprovedChecked(subject: Subject): boolean {
-    const isToTakeApprovedChecked = this.subject.correlatives.find(
+    const isToTakeApprovedChecked = this.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_TAKE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }
@@ -61,9 +61,9 @@ export class CorrelativeListComponent implements OnInit {
   }
 
   isToApproveChecked(subject: Subject): boolean {
-    const isToApproveChecked = this.subject.correlatives.find(
+    const isToApproveChecked = this.correlatives.find(
       (correlative) => {
-        return correlative.subjectCode === subject.subjectCode &&
+        return correlative.correlativeSubjectId === subject.id &&
           correlative.correlativeRestriction === CorrelativeRestriction.TO_APPROVE &&
           correlative.correlativeCondition === CorrelativeCondition.APPROVED;
       }

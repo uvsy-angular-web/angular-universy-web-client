@@ -49,13 +49,13 @@ export class ProgramComponent implements OnInit {
 
   ngOnInit() {
     this.program = ProgramService.getCurrentProgram();
-    this.showAddSubjectButton = !this.isProgramPublished()
+    this.showAddSubjectButton = !this.isProgramPublished();
     this.getSubjects();
     this.fillSubjectOnLevelMessage();
   }
 
   private fillSubjectOnLevelMessage() {
-    this.noSubjectOnLevelMessage = this.program.published ?
+    this.noSubjectOnLevelMessage = this.program.active ?
       NO_SUBJECTS_LEVEL_PUBLISHED :
       NO_SUBJECTS_LEVEL_NO_PUBLISHED;
   }
@@ -70,7 +70,7 @@ export class ProgramComponent implements OnInit {
 
   public openNewSubjectModal() {
     try {
-      const isProgramPublished = ProgramService.getCurrentProgram().published;
+      const isProgramPublished = ProgramService.getCurrentProgram().active;
       this.subjectModalService.openNewSubjectModal(isProgramPublished).subscribe(
         (newSubject: Program) => this.addSubject(newSubject)
       );
@@ -93,7 +93,7 @@ export class ProgramComponent implements OnInit {
   }
 
   private deleteProgram() {
-    if (!this.program.published) {
+    if (!this.program.active) {
       this.programService.deleteProgram(this.program).subscribe(
         () => {
           this.navigationService.navigateToCareerPage();
@@ -111,7 +111,7 @@ export class ProgramComponent implements OnInit {
   }
 
   public canEditProgram(): boolean {
-    return !this.program.published;
+    return !this.program.active;
   }
 
   private addSubject(careerName) {
@@ -173,7 +173,7 @@ export class ProgramComponent implements OnInit {
   }
 
   public isProgramPublished() {
-    return this.program.published;
+    return this.program.active;
   }
 
   private getMaximumLevel() {

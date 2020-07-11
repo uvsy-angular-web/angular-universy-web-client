@@ -91,12 +91,12 @@ export class ProgramStatsComponent implements OnInit {
   private initProgram() {
     this.program = ProgramService.getCurrentProgram();
     this.programName = this.program.name;
-    this.isProgramPublished = this.program.published;
+    this.isProgramPublished = this.program.active;
     this.title = this.isProgramPublished ? 'Visualizar plan' : 'Publicar plan';
 
   }
   private initCareer() {
-    this.careerName = CareerService.getCurrentCareer().careerName;
+    this.careerName = CareerService.getCurrentCareer().name;
 
   }
   private initSubjects() {
