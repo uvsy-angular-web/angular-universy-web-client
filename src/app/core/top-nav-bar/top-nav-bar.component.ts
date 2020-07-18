@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 
 @Component({
@@ -8,10 +8,14 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class TopNavBarComponent implements OnInit {
   isLoggedIn = false;
-
+  navbarCollapsed = true;
   constructor(private authService: AuthService) {
   }
 
+
+  onCollapse() {
+    this.navbarCollapsed = !this.navbarCollapsed;
+  }
   ngOnInit() {
     this.checkLogIn();
   }
