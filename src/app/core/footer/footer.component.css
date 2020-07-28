@@ -1,17 +1,30 @@
-.page-footer{
-    background-color: black;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    color:grey;
+
+.footer-container {
+    display: flex;
+    flex-direction:column ;
+    margin-top: 3rem;
+}
+.footer-container > *, a {
+    color: white
+}
+.info{
+    background-color: #404348;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem
 }
 
-.second-footer{
-    background-color: #404348;
-    width:100%;
+.copyright {
+    background-color: #161616;
+    width: 100vw;
+    color:grey;
+    padding: 0.5rem
 }
 
 .footer-icon{
-    width: 1.5rem;
+    width: 2.3rem;
+    padding-right: 0.5rem;
 }
 
