@@ -4,9 +4,7 @@
     flex-direction:column ;
     margin-top: 3rem;
 }
-.footer-container > *, a {
-    color: #161616
-}
+
 .info{
     /* background-color: #404348; */
     width: 100vw;
@@ -15,11 +13,25 @@
     justify-content: space-between;
     padding: 2rem 3rem;
 }
+.info a{
+    color: #161616
+}
 
 .copyright {
     background-color: #161616;
     width: 100vw;
-    color:grey;
+    color:white;
+    padding: 0.5rem
+}
+
+.copyright a{
+    color:#FFD438;
+}
+
+.copyright {
+    background-color: #161616;
+    width: 100vw;
+    color:white;
     padding: 0.5rem
 }
 
