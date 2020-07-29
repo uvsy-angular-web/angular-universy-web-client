@@ -1,8 +1,8 @@
 <app-loader></app-loader>
-<div class="main-container">
-    <div [class.yellow-background]="isHomePageActive()">
+<div class="main-container" [class.yellow-background]="isHomePageActive()">
+    <div>
         <app-top-nav-bar></app-top-nav-bar>
         <router-outlet></router-outlet>
     </div>
-    <app-footer></app-footer>
+    <app-footer [isHomePage]="isHomePageActive()"></app-footer>
 </div>
