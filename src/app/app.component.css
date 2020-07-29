@@ -8,4 +8,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative
+ }
+
+ .opacity-background {
+  background-color: gray;
+ }
+
+ .main-container::after {
+  content: "";
+  background-image: url(../assets/pictures/buildings.png);
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: center;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;  
  }
