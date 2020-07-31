@@ -37,7 +37,7 @@ export class InstitutionService {
     this.getInstitution().subscribe(
       (institution: Institution) => {
         InstitutionService.setCurrentInstitution(institution);
-        this.navigationService.navigateToInstitutionPage();
+        this.navigationService.navigateToInstitutionPage(true);
       }
     );
   }

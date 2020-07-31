@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class HomeComponent implements OnInit {
   public title;
 
-  constructor(private navigationService: NavigationService) {
+  constructor(
+    private navigationService: NavigationService) {
   }
 
   ngOnInit() {
