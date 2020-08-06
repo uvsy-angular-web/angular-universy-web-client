@@ -18,21 +18,12 @@ const FIRST_ITEM_INDEX = 0;
 export class CareerStatsComponent implements OnInit {
   career: Career;
   backNavigationRoute = Route.INSTITUTION_STATS;
-  programs: Program[] = [];
-  subjects: Subject[] = [];
   selectedSubject: Subject;
-  form: FormGroup;
 
-  constructor(
-    private subjectService: SubjectService,
-    private programService: ProgramService,
-    private formBuilder: FormBuilder
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     this.getCareer();
-    this.getPrograms();
-    this.createForm();
   }
 
   selectSubject(subject: Subject) {
@@ -42,40 +33,4 @@ export class CareerStatsComponent implements OnInit {
   private getCareer() {
     this.career = CareerService.getCurrentCareer();
   }
-
-  private createForm() {
-    this.form = this.formBuilder.group({
-      program: new FormControl()
-    });
-
-    this.subscribeToProgramChange();
-  }
-
-
-  get program(): FormControl {
-    return this.form.get('program') as FormControl;
-  }
-
-  private subscribeToProgramChange() {
-    this.program.valueChanges.subscribe(
-      (selectedProgram: Program) => this.getSubjects(selectedProgram)
-    );
-  }
-
-  private getSubjects(selectedProgram: Program) {
-    this.subjectService.getSubjectsByProgram(selectedProgram)
-      .subscribe((subjects: Subject[]) => {
-        this.subjects = subjects;
-        this.selectedSubject = this.subjects[FIRST_ITEM_INDEX];
-      });
-  }
-
-  private getPrograms() {
-    this.programService.getProgramsByCareer(this.career)
-      .subscribe((programs: Program[]) => {
-        this.programs = programs;
-        this.program.setValue(this.programs[FIRST_ITEM_INDEX]);
-      });
-  }
-
 }
