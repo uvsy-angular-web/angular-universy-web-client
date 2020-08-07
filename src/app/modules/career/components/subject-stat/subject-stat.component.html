@@ -1,19 +1,21 @@
-<h4 class="text-right">{{subject.name}}</h4>
-<div class="text-right subject-rate">
-    {{subjectRateTxt}}
-    <span class="subject-rate-number">{{subjectRate}}
-        <i class="material-icons">star</i>
-    </span>
-</div>
-<div class="graph-bar">
-    <app-graph-bar [title]="dificultGraphTitle" [items]="dificultsItems">
-    </app-graph-bar>
-</div>
-<div class="graph-bar">
-    <app-graph-bar [title]="overallGraphTitle" [items]="overallItems">
-    </app-graph-bar>
-</div>
-<div class="graph-bar">
-    <app-graph-bar [percentage]="true" [title]="wouldTakeAgainGraphTitle" [items]="wouldTakeAgainItems">
-    </app-graph-bar>
+<div class="card">
+    <h4 class="career-name">{{career.name}}</h4>
+    <div class="text-right subject-rate">
+        {{subjectRateTxt}}
+        <span class="subject-rate-number">{{subjectRate}}
+            <i class="material-icons">star</i>
+        </span>
+    </div>
+    <div class="graph-bar">
+        <app-graph-bar [title]="dificultGraphTitle" [items]="dificultsItems">
+        </app-graph-bar>
+    </div>
+    <div class="graph-bar">
+        <app-graph-bar [title]="overallGraphTitle" [items]="overallItems">
+        </app-graph-bar>
+    </div>
+    <div class="graph-bar">
+        <app-graph-bar [percentage]="true" [title]="wouldTakeAgainGraphTitle" [items]="wouldTakeAgainItems">
+        </app-graph-bar>
+    </div>
 </div>

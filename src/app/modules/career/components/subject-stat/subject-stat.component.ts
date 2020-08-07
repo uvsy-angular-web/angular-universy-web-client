@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'src/app/models/subject.model';
 import { GraphItem } from 'src/app/shared/components/graph-bar/graph-bar.component';
+import { Career } from 'src/app/models/career.model';
 
 @Component({
   selector: 'app-subject-stat',
@@ -8,6 +9,7 @@ import { GraphItem } from 'src/app/shared/components/graph-bar/graph-bar.compone
   styleUrls: ['./subject-stat.component.css']
 })
 export class SubjectStatComponent implements OnInit {
+  @Input() career: Career;
   @Input() subject: Subject;
   @Input() subjectRate = 4.2;
   subjectRateTxt = 'Valoración general';
