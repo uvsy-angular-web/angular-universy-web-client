@@ -3,17 +3,16 @@
         [backNavigationRoute]="backNavigationRoute"></app-custom-title>
     <div class="content">
         <div class="row">
-            <div class="col-4">
+            <div class="col-5">
                 <app-subject-selector [career]="career" 
                     (subjectSelected)="selectSubject($event)">
                 </app-subject-selector>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="subject-stat">
                     <app-subject-stat [subject]="selectedSubject"></app-subject-stat>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

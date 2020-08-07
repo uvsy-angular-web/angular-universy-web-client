@@ -1,0 +1,19 @@
+.selector-card {
+    padding: 1rem 3rem; 
+}
+
+.subject-separator {
+    width: 60%;
+    padding-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #707070;
+}
+
+.no-subject-message {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    font-style: italic;
+}

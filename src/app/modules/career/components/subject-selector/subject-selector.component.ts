@@ -24,6 +24,9 @@ export class SubjectSelectorComponent implements OnInit {
   displayedSubjects: Subject[] = [];
   form: FormGroup;
   selectedSubject: Subject;
+  noSubjectMessage = 'No se encontraron materias cargadas para el nivel seleccionado.';
+  planSelectLabel = 'Plan: ';
+  levelSelectLabel = 'Nivel: ';
   @Output() subjectSelected: EventEmitter<Subject> = new EventEmitter();
 
   constructor(
@@ -37,6 +40,7 @@ export class SubjectSelectorComponent implements OnInit {
   }
 
   selectSubject(subject: Subject) {
+    this.selectedSubject = subject;
     this.subjectSelected.emit(subject);
   }
 
@@ -76,6 +80,7 @@ export class SubjectSelectorComponent implements OnInit {
     this.level.valueChanges.subscribe(
       (selectedLevel: number) => {
         this.filterSubjectsForLevel(selectedLevel);
+        this.selectSubject(this.displayedSubjects[FIRST_ITEM_INDEX]);
       }
     );
   }
@@ -88,7 +93,7 @@ export class SubjectSelectorComponent implements OnInit {
     this.subjectService.getSubjectsByProgram(selectedProgram)
       .subscribe((subjects: Subject[]) => {
         this.subjects = subjects;
-        this.selectedSubject = this.subjects[FIRST_ITEM_INDEX];
+
         this.level.setValue(FIRST_LEVEL);
       });
   }
