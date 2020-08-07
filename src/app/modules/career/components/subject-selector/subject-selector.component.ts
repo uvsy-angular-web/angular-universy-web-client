@@ -24,6 +24,7 @@ export class SubjectSelectorComponent implements OnInit {
   displayedSubjects: Subject[] = [];
   form: FormGroup;
   selectedSubject: Subject;
+  formTitle = 'Seleccione una materia';
   noSubjectMessage = 'No se encontraron materias cargadas para el nivel seleccionado.';
   planSelectLabel = 'Plan: ';
   levelSelectLabel = 'Nivel: ';

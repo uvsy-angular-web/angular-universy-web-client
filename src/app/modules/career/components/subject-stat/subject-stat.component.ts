@@ -12,6 +12,7 @@ export class SubjectStatComponent implements OnInit {
   @Input() career: Career;
   @Input() subject: Subject;
   @Input() subjectRate = 4.2;
+  subjectLabel = 'Materia: ';
   subjectRateTxt = 'Valoración general';
   dificultGraphTitle = 'Dificultad';
   overallGraphTitle = 'Valoración';

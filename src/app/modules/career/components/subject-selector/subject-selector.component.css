@@ -4,7 +4,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2rem;
-    border-bottom: 1px solid #707070;
+    border-bottom: 1px solid #e3e3e3;
 }
 
 .no-subject-message {
@@ -12,4 +12,8 @@
     margin: auto;
     text-align: center;
     font-style: italic;
+}
+
+.title {
+    padding: 1.5rem 0;
 }
