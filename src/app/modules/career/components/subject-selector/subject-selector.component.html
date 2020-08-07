@@ -1,13 +1,17 @@
 <div>
   <form appForm [formGroup]="form">
     <div class="form-group">
-      <label for="level-select">Plan:</label>
-      <select id="level-select" appControlError class="form-control" formControlName="program">
+      <label for="program-select">Plan:</label>
+      <select id="program-select" appControlError class="form-control" formControlName="program">
         <option *ngFor="let program of programs" [ngValue]="program">{{program.name}}</option>
+      </select>
+      <label for="level-select">Nivel:</label>
+      <select id="level-select" appControlError class="form-control" formControlName="level">
+        <option *ngFor="let level of levels" [ngValue]="level">{{level}}</option>
       </select>
     </div>
   </form>
-  <div *ngFor="let subject of subjects">
+  <div *ngFor="let subject of displayedSubjects">
     <app-subject-item [subject]="subject" (subjectSelected)="selectSubject(subject)"
       [active]="selectedSubject === subject"></app-subject-item>
   </div>

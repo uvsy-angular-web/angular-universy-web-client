@@ -15,3 +15,5 @@ export class Level {
     this.commissions = commissions;
   }
 }
+
+export const AVAIABLE_LEVELS = [1, 2, 3, 4, 5];
