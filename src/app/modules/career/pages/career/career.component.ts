@@ -8,7 +8,6 @@ import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { ProgramModalService } from '../../../program/modals/program-modal.service';
 import { NavigationService } from '../../../../core/services/system/navigation.service';
 
-
 @Component({
   selector: 'app-career',
   templateUrl: './career.component.html',
@@ -83,10 +82,7 @@ export class CareerComponent implements OnInit {
       this.programService.addProgram(newProgram).subscribe(
         () => {
           this.getPrograms();
-        }, ((error) => {
-          this.notificationService.showError('Ocurrió un error tratando de agregar un nuevo plan.');
-          console.error(error);
-        })
+        }
       );
     }
   }
