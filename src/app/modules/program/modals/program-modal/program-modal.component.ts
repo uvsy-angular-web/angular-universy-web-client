@@ -33,7 +33,6 @@ export class ProgramModalComponent implements OnInit {
   optativesErrorMessage = '* Debe ingresar al menos un campo en requerimientos.';
   amountOfHoursInputText = 'Cantidad de horas: ';
   amountOfPointsInputText = 'Cantidad de puntos: ';
-  amountOfSubjectInputText = 'Cantidad de materias: ';
   form: FormGroup;
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
@@ -82,10 +81,6 @@ export class ProgramModalComponent implements OnInit {
     return this.form.get('points') as FormControl;
   }
 
-  get amountOfSubjects(): FormControl {
-    return this.form.get('amountOfSubjects') as FormControl;
-  }
-
   private _isFormValid() {
     return this._areAmountsValid() && this.form.valid;
   }
@@ -114,27 +109,22 @@ export class ProgramModalComponent implements OnInit {
     if (this.requiresOptatives.value) {
       this.program.hours = +this.hours.value;
       this.program.points = +this.points.value;
-      this.program.amountOfSubjects = +this.amountOfSubjects.value;
     } else {
       this.program.hours = ZERO_AMOUNT_VALUE;
-      this.program.amountOfSubjects = ZERO_AMOUNT_VALUE;
-      this.program.points = ZERO_AMOUNT_VALUE;
     }
   }
 
   private _createForm(): void {
     const requiresOptatives =
       this.program.hours ||
-      this.program.points ||
-      this.program.amountOfSubjects;
+      this.program.points;
 
     this.form = this.formBuilder.group({
       name: new FormControl(this.program.name, ProgramModalComponent._getValidatorsForCareerName()),
       yearFrom: new FormControl(this.program.yearFrom, ProgramModalComponent._getValidatorsForYearFrom()),
       requiresOptatives: new FormControl(requiresOptatives != null, Validators.required),
       hours: new FormControl(this.program.hours, ProgramModalComponent._getAmountOfValidators()),
-      points: new FormControl(this.program.points, ProgramModalComponent._getAmountOfValidators()),
-      amountOfSubjects: new FormControl(this.program.amountOfSubjects, ProgramModalComponent._getAmountOfValidators()),
+      points: new FormControl(this.program.points, ProgramModalComponent._getAmountOfValidators())
     });
   }
 
