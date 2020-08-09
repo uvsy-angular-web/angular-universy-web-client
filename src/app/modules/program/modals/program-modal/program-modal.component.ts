@@ -8,7 +8,6 @@ const REG_EX_CAREER_NAME = '^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-Z
 
 const CAREER_NAME_MAX_LENGTH = 35;
 
-const AMOUNT_VALIDATORS_MAX_LENGHT = 3;
 const AMOUNT_VALIDATORS_MIN_VALUE = 0;
 const AMOUNT_VALIDATORS_MAX_VALUE = 999;
 const ZERO_AMOUNT_VALUE = 0;
@@ -17,6 +16,7 @@ const YEAR_FROM_MAX_LENGTH = 4;
 const YEAR_FROM_MIN_YEAR = 1900;
 const YEAR_FROM_MAX_YEAR = 2100;
 
+const SHOW_YEAR_TO_INITIAL_VALUE = true;
 
 @Component({
   selector: 'app-add-program-modal',
@@ -25,6 +25,7 @@ const YEAR_FROM_MAX_YEAR = 2100;
 })
 export class ProgramModalComponent implements OnInit {
   nameInputText = 'Nombre';
+  setUndefinedYearToText = 'No especificar fin';
   yearFromInputText = 'Año de inicio';
   labelSeparator = '-';
   yearToInputText = 'Año de fin';
@@ -36,6 +37,8 @@ export class ProgramModalComponent implements OnInit {
   optativesErrorMessage = '* Debe ingresar al menos un campo en requerimientos.';
   amountOfHoursInputText = 'Cantidad de horas: ';
   amountOfPointsInputText = 'Cantidad de puntos: ';
+  undefinedYearToText = 'Indefinido';
+  showYearToInput = SHOW_YEAR_TO_INITIAL_VALUE;
   form: FormGroup;
   @Input() title: string;
   @Input() confirmButtonText: ButtonText;
@@ -88,6 +91,10 @@ export class ProgramModalComponent implements OnInit {
     return this.form.get('points') as FormControl;
   }
 
+  get setUndefinedYearTo(): FormControl {
+    return this.form.get('setUndefinedYearTo') as FormControl;
+  }
+
   private _isFormValid() {
     return this._areAmountsValid() && this.form.valid;
   }
@@ -109,6 +116,7 @@ export class ProgramModalComponent implements OnInit {
     this.program = this.program ? this.program : new Program();
     this.program.name = this.name.value;
     this.program.yearFrom = this.yearFrom.value;
+    this.program.yearTo = this.yearTo.value;
     this._updatesOptativeRequirement();
   }
 
@@ -127,6 +135,7 @@ export class ProgramModalComponent implements OnInit {
       this.program.points;
 
     this.form = this.formBuilder.group({
+      setUndefinedYearTo: new FormControl(!SHOW_YEAR_TO_INITIAL_VALUE),
       name: new FormControl(
         this.program.name,
         Validators.compose(ProgramModalComponent._getValidatorsForCareerName())
@@ -153,6 +162,7 @@ export class ProgramModalComponent implements OnInit {
     });
 
     this.subscribeToYearFromChanges();
+    this.subscribeToSetUndefinedYearToChange();
   }
 
   private subscribeToYearFromChanges() {
@@ -167,10 +177,21 @@ export class ProgramModalComponent implements OnInit {
 
   }
 
+  private subscribeToSetUndefinedYearToChange() {
+    this.setUndefinedYearTo.valueChanges.subscribe(
+      value => {
+        this.setShowYearToInput(!value);
+      }
+    );
+  }
+
+  private setShowYearToInput(value: boolean) {
+    this.showYearToInput = value;
+    this.yearTo.setValue(null);
+  }
+
   private _getValidatorsForYearTo(minValue = YEAR_FROM_MIN_YEAR): ValidatorFn[] {
     return [
-      Validators.maxLength(YEAR_FROM_MAX_LENGTH),
-      Validators.required,
       Validators.min(minValue),
       Validators.max(YEAR_FROM_MAX_YEAR)
     ];
@@ -178,7 +199,6 @@ export class ProgramModalComponent implements OnInit {
 
   private static _getAmountOfValidators(): ValidatorFn[] {
     return [
-      Validators.maxLength(AMOUNT_VALIDATORS_MAX_LENGHT),
       Validators.max(AMOUNT_VALIDATORS_MAX_VALUE),
       Validators.min(AMOUNT_VALIDATORS_MIN_VALUE),
     ];

@@ -1,11 +1,15 @@
 <app-modal-header [title]="title" (closeEvent)="cancelAction()"></app-modal-header>
 <form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
     <div class="modal-body">
-        <div class="form-group">
-            <div class="col-8">
-                <label for="item-text"> {{nameInputText}} </label>
-                <input id="item-text" appControlError class="form-control" type="text" formControlName="name">
-            </div>
+        <div class="col-8">
+            <label for="item-text"> {{nameInputText}} </label>
+            <input id="item-text" appControlError class="form-control" type="text" formControlName="name">
+        </div>
+        <div class="col-12 set-undefined-container">
+            <label>
+                <input type="checkbox" class="setUndefinedYearTo" formControlName="setUndefinedYearTo">
+                {{setUndefinedYearToText}}
+            </label>
         </div>
         <div class="col-12">
             <div class="row">
@@ -19,8 +23,11 @@
                 </div>
                 <div class="form-group col-7 col-md-4">
                     <label for="year-to"> {{yearToInputText}} </label>
-                    <input id="year-to" appControlError class="form-control" type="number" maxlength="4"
-                        formControlName="yearTo">
+                    <input [hidden]="!showYearToInput" id="year-to" appControlError class="form-control" type="number"
+                        maxlength="4" formControlName="yearTo">
+                    <div *ngIf="!showYearToInput" class="d-block undefined-year-to-text">
+                        {{undefinedYearToText}}
+                    </div>
                 </div>
             </div>
         </div>
