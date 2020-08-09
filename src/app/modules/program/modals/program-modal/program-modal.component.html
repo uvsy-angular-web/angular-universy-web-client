@@ -33,10 +33,6 @@
                 <label for="item-text" class="col-5">  {{amountOfPointsInputText}} </label>
                 <input id="item-text" appControlError class="form-control amount-input col-6" type="number" formControlName="points">
             </div>
-            <div class="row">
-                <label for="item-text" class="col-5">  {{amountOfSubjectInputText}} </label>
-                <input id="item-text" appControlError class="form-control amount-input col-6" type="number" formControlName="amountOfSubjects">
-            </div>
             <app-error-message *ngIf="showsOptativesErrorMessage" [errorMessage]="optativesErrorMessage" ></app-error-message>
         </div>
     </div>

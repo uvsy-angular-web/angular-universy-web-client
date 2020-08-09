@@ -2,11 +2,10 @@ export class Program {
   id: string;
   name: string;
   careerId: string;
-  validFrom: number;
+  yearFrom: number;
   validTo: number;
   hours: number;
   points: number;
-  amountOfSubjects: number;
   active: boolean;
   createdAt: number;
   updatedAt: number;
@@ -16,7 +15,7 @@ export class Program {
     id?: string,
     name?: string,
     careerId?: string,
-    validFrom?: number,
+    yearFrom?: number,
     validTo?: number,
     hours?: number,
     points?: number,
@@ -27,7 +26,7 @@ export class Program {
       this.id = id;
       this.name = name;
       this.careerId = careerId;
-      this.validFrom = validFrom;
+      this.yearFrom = yearFrom;
       this.validTo = validTo;
       this.hours = hours;
       this.points = points;

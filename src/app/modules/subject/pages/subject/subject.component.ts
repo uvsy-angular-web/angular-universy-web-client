@@ -88,8 +88,9 @@ export class SubjectComponent implements OnInit {
   openEditModal() {
     const isProgramPublished = ProgramService.getCurrentProgram().active;
     this.subjectModalService.openEditSubjectModal(this.subject, isProgramPublished).subscribe(
-      () => {
-        this.subjectService.updateSubject(this.subject).subscribe(() => {
+      (updatedSubject: Subject) => {
+        this.subjectService.updateSubject(updatedSubject).subscribe(() => {
+          this.subject = updatedSubject;
           this.notificationService.inform(
             '¡Modificación con éxito!',
             'Se actualizó la materia exitosamente.');
