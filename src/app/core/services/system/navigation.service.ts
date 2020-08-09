@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {Route} from './routes/routes.enum';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Route } from './routes/routes.enum';
 import { Course } from 'src/app/models/course.model';
 import { CourseService } from '../course.service';
 
@@ -14,6 +14,10 @@ export class NavigationService {
   constructor(private router: Router) {
   }
 
+  public refreshPage() {
+    location.reload();
+  }
+
   public navigateToProgramStats() {
     this.navigateToRoute(Route.PROGRAM_STATS);
   }
@@ -21,8 +25,9 @@ export class NavigationService {
   public navigateToHomePage() {
     this.navigateToRoute(Route.HOME);
   }
-  public navigateToInstitutionPage() {
+  public navigateToInstitutionPage(fromLogin = false) {
     this.navigateToRoute(Route.INSTITUTION);
+    if (fromLogin) { this.refreshPage(); }
   }
 
   public navigateToCareerPage() {

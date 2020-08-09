@@ -1,19 +1,20 @@
 <footer class="page-footer font-small ">
-    <div class="container-fluid second-footer">
-        <div class="row" >
-            <div class="col-sm-6 py-3">
-                <a style="color: rgb(209, 160, 0)" href="mailto:sinfo.universy@gmail.com">
+    <div class="footer-container">
+        <div class="info" *ngIf="!isHomePage">
+            <div>
+                <a href="mailto:sinfo.universy@gmail.com">
                     <img src="\assets\pictures\footer-mail.png" class="footer-icon" alt="mail-universy">
                     info.universy@gmail.com </a>
             </div>
-            <div class="col-sm-6 py-3 text-right">
-                <a style="color: rgb(209, 160, 0)" href="https://www.instagram.com/universy.app/">
+            <div>
+                <a href="https://www.instagram.com/universy.app/"  target="_blank">
                     <img src="\assets\pictures\footer-instagram.png" class="footer-icon" alt="instagram-universy">
-                    ¡Seguinos! </a>
+                    ¡ Seguinos ! </a>
             </div>
         </div>
+        <div class="copyright text-center">
+            © 2019 Todos los derechos reservados<a href=""> universy-app.com</a>
+        </div>
     </div>
-    <div class="footer-copyright text-center py-1">© 2019 Todos los derechos reservados
-        <a href=""> universy-app.com</a>
-    </div>
+
 </footer>
