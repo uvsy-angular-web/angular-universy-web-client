@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Program } from '../../../../models/program.model';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
@@ -127,49 +127,78 @@ export class ProgramModalComponent implements OnInit {
       this.program.points;
 
     this.form = this.formBuilder.group({
-      name: new FormControl(this.program.name, ProgramModalComponent._getValidatorsForCareerName()),
-      yearFrom: new FormControl(this.program.yearFrom, ProgramModalComponent._getValidatorsForYearFrom()),
-      yearTo: new FormControl(this.program.yearTo, ProgramModalComponent._getValidatorsForYearTo()),
-      requiresOptatives: new FormControl(requiresOptatives != null, Validators.required),
-      hours: new FormControl(this.program.hours, ProgramModalComponent._getAmountOfValidators()),
-      points: new FormControl(this.program.points, ProgramModalComponent._getAmountOfValidators())
+      name: new FormControl(
+        this.program.name,
+        Validators.compose(ProgramModalComponent._getValidatorsForCareerName())
+      ),
+      yearFrom: new FormControl(
+        this.program.yearFrom,
+        Validators.compose(ProgramModalComponent._getValidatorsForYearFrom())
+      ),
+      yearTo: new FormControl(
+        this.program.yearTo,
+        Validators.compose(this._getValidatorsForYearTo())
+      ),
+      requiresOptatives: new FormControl(
+        requiresOptatives != null, Validators.required
+      ),
+      hours: new FormControl(
+        this.program.hours,
+        Validators.compose(ProgramModalComponent._getAmountOfValidators())
+      ),
+      points: new FormControl(
+        this.program.points,
+        Validators.compose(ProgramModalComponent._getAmountOfValidators())
+      )
     });
+
+    this.subscribeToYearFromChanges();
   }
 
-  private static _getAmountOfValidators(): Validators {
-    return Validators.compose([
+  private subscribeToYearFromChanges() {
+    this.yearFrom.valueChanges.subscribe(
+      value => {
+        this.yearTo.setValidators(
+          this._getValidatorsForYearTo(value)
+        );
+        this.yearTo.updateValueAndValidity();
+      }
+    );
+
+  }
+
+  private _getValidatorsForYearTo(minValue = YEAR_FROM_MIN_YEAR): ValidatorFn[] {
+    return [
+      Validators.maxLength(YEAR_FROM_MAX_LENGTH),
+      Validators.required,
+      Validators.min(minValue),
+      Validators.max(YEAR_FROM_MAX_YEAR)
+    ];
+  }
+
+  private static _getAmountOfValidators(): ValidatorFn[] {
+    return [
       Validators.maxLength(AMOUNT_VALIDATORS_MAX_LENGHT),
       Validators.max(AMOUNT_VALIDATORS_MAX_VALUE),
       Validators.min(AMOUNT_VALIDATORS_MIN_VALUE),
-    ]);
+    ];
   }
 
-  private static _getValidatorsForCareerName(): Validators {
-    return Validators.compose([
+  private static _getValidatorsForCareerName(): ValidatorFn[] {
+    return [
       Validators.maxLength(CAREER_NAME_MAX_LENGTH),
       Validators.required,
       Validators.pattern(REG_EX_CAREER_NAME)
-    ]);
+    ];
   }
 
-  private static _getValidatorsForYearFrom(): Validators {
-    return Validators.compose(
-      [
-        Validators.maxLength(YEAR_FROM_MAX_LENGTH),
-        Validators.required,
-        Validators.min(YEAR_FROM_MIN_YEAR),
-        Validators.max(YEAR_FROM_MAX_YEAR)
-      ]);
-  }
-
-  private static _getValidatorsForYearTo(): Validators {
-    return Validators.compose(
-      [
-        Validators.maxLength(YEAR_FROM_MAX_LENGTH),
-        Validators.required,
-        Validators.min(YEAR_FROM_MIN_YEAR),
-        Validators.max(YEAR_FROM_MAX_YEAR)
-      ]);
+  private static _getValidatorsForYearFrom(): ValidatorFn[] {
+    return [
+      Validators.maxLength(YEAR_FROM_MAX_LENGTH),
+      Validators.required,
+      Validators.min(YEAR_FROM_MIN_YEAR),
+      Validators.max(YEAR_FROM_MAX_YEAR)
+    ];
   }
 
 }
