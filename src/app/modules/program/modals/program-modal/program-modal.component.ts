@@ -14,8 +14,8 @@ const AMOUNT_VALIDATORS_MAX_VALUE = 999;
 const ZERO_AMOUNT_VALUE = 0;
 
 const YEAR_FROM_MAX_LENGTH = 4;
-const YEAR_FROM_MIN_YEAR = 1920;
-const YEAR_FROM_MAX_YEAR = 2060;
+const YEAR_FROM_MIN_YEAR = 1900;
+const YEAR_FROM_MAX_YEAR = 2100;
 
 
 @Component({
@@ -26,6 +26,9 @@ const YEAR_FROM_MAX_YEAR = 2060;
 export class ProgramModalComponent implements OnInit {
   nameInputText = 'Nombre';
   yearFromInputText = 'Año de inicio';
+  labelSeparator = '-';
+  yearToInputText = 'Año de fin';
+  yearToDefaultText = 'Indefinido';
   optativeQuestionText = '¿ Requiere materias optativas ?';
   requiresOptativesText = 'Si';
   doesNotRequiresOptativesText = 'No';
@@ -67,6 +70,10 @@ export class ProgramModalComponent implements OnInit {
 
   get yearFrom(): FormControl {
     return this.form.get('yearFrom') as FormControl;
+  }
+
+  get yearTo(): FormControl {
+    return this.form.get('yearTo') as FormControl;
   }
 
   get requiresOptatives(): FormControl {
@@ -122,6 +129,7 @@ export class ProgramModalComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: new FormControl(this.program.name, ProgramModalComponent._getValidatorsForCareerName()),
       yearFrom: new FormControl(this.program.yearFrom, ProgramModalComponent._getValidatorsForYearFrom()),
+      yearTo: new FormControl(this.program.yearTo, ProgramModalComponent._getValidatorsForYearTo()),
       requiresOptatives: new FormControl(requiresOptatives != null, Validators.required),
       hours: new FormControl(this.program.hours, ProgramModalComponent._getAmountOfValidators()),
       points: new FormControl(this.program.points, ProgramModalComponent._getAmountOfValidators())
@@ -145,6 +153,16 @@ export class ProgramModalComponent implements OnInit {
   }
 
   private static _getValidatorsForYearFrom(): Validators {
+    return Validators.compose(
+      [
+        Validators.maxLength(YEAR_FROM_MAX_LENGTH),
+        Validators.required,
+        Validators.min(YEAR_FROM_MIN_YEAR),
+        Validators.max(YEAR_FROM_MAX_YEAR)
+      ]);
+  }
+
+  private static _getValidatorsForYearTo(): Validators {
     return Validators.compose(
       [
         Validators.maxLength(YEAR_FROM_MAX_LENGTH),
