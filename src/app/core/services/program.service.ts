@@ -13,9 +13,11 @@ import { catchError } from 'rxjs/operators';
 const CURRENT_PROGRAM_KEY = 'current-program';
 const PROGRAM_OVERLAPED_CODE = 409;
 
-const ADD_PROGRAM_ERROR_MESSAGE = 'Ocurrió un error tratando de agregar un nuevo plan.';
+const ADD_PROGRAM_ERROR_TITLE = 'No se pudo agregar el programa';
+const ADD_PROGRAM_DEFAULT_ERROR_MESSAGE = 'Ocurrió un error tratando de agregar un nuevo plan. Intentalo nuevamente más tarde.';
+const EDIT_PROGRAM_ERROR_MESSAGE = 'Ocurrió un error tratando de modificar el plan. Intentalo nuevamente más tarde.';
+const EDIT_PROGRAM_ERROR_TITLE = 'No se pudo modificar el programa';
 const OVERLAPED_PROGRAM_ERROR_MESSAGE = 'Verifica que el periodo ingresado sea válido, al parecer ya existe un plan para ese rango de años';
-const OVERLAPED_PROGRAM_ERROR_TITLE = 'No se pudo agregar el programa';
 
 @Injectable({
   providedIn: 'root'
@@ -30,19 +32,14 @@ export class ProgramService {
 
   addProgram(program: Program) {
     const careerId = this.getCareerId();
-    return this.crudEndpointService.
-      createOnParent(careerId, this.endpoint, program)
-      .pipe(
-        catchError(
-          err => {
-            if (err.status === PROGRAM_OVERLAPED_CODE) {
-              this.notificationService.showError(OVERLAPED_PROGRAM_ERROR_MESSAGE, OVERLAPED_PROGRAM_ERROR_TITLE);
-            } else {
-              this.notificationService.showError(ADD_PROGRAM_ERROR_MESSAGE);
-            }
-            return throwError(err);
-          }
-        ));
+    return this.crudEndpointService
+      .createOnParent(careerId, this.endpoint, program)
+      .pipe(catchError(err =>
+        this.handleError(
+          err,
+          ADD_PROGRAM_DEFAULT_ERROR_MESSAGE,
+          ADD_PROGRAM_ERROR_TITLE
+        )));
   }
 
   getPrograms(): Observable<Program[]> {
@@ -60,11 +57,30 @@ export class ProgramService {
   }
 
   updateProgram(program: Program) {
-    return this.crudEndpointService.update(this.endpoint, program.id, program);
+    return this.crudEndpointService
+      .update(this.endpoint, program.id, program)
+      .pipe(catchError(err =>
+        this.handleError(
+          err,
+          EDIT_PROGRAM_ERROR_MESSAGE,
+          EDIT_PROGRAM_ERROR_TITLE
+        )));
   }
 
   publishProgram(program: Program) {
     return this.crudEndpointService.activate(this.endpoint, program.id);
+  }
+
+  private handleError(
+    error: any, defaultMessage: string, defaultTitle: string) {
+    let message = defaultMessage;
+
+    if (error.status === PROGRAM_OVERLAPED_CODE) {
+      message = OVERLAPED_PROGRAM_ERROR_MESSAGE;
+    }
+
+    this.notificationService.showError(message, defaultTitle);
+    return throwError(error);
   }
 
   private getCareerId(): string {

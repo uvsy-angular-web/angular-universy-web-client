@@ -41,6 +41,7 @@ export class ProgramModalComponent implements OnInit {
   showYearToInput = SHOW_YEAR_TO_INITIAL_VALUE;
   form: FormGroup;
   @Input() title: string;
+  @Input() isProgramPublished = false;
   @Input() confirmButtonText: ButtonText;
   @Input() program: Program = new Program();
   @Output() confirmEvent: EventEmitter<Program> = new EventEmitter();
@@ -163,6 +164,17 @@ export class ProgramModalComponent implements OnInit {
 
     this.subscribeToYearFromChanges();
     this.subscribeToSetUndefinedYearToChange();
+    if (this.isProgramPublished) {
+      this.enablesOnlyYearToField();
+    }
+  }
+
+  private enablesOnlyYearToField() {
+    this.name.disable();
+    this.yearFrom.disable();
+    this.requiresOptatives.disable();
+    this.hours.disable();
+    this.points.disable();
   }
 
   private subscribeToYearFromChanges() {
@@ -174,7 +186,6 @@ export class ProgramModalComponent implements OnInit {
         this.yearTo.updateValueAndValidity();
       }
     );
-
   }
 
   private subscribeToSetUndefinedYearToChange() {
