@@ -8,6 +8,10 @@ import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { ProgramModalService } from '../../../program/modals/program-modal.service';
 import { NavigationService } from '../../../../core/services/system/navigation.service';
 
+const YEAR_FROM_TEXT = 'Desde';
+const YEAR_TO_TEXT = 'Hasta';
+const DEFAULT_YEAR_TO_TEXT = 'Indefinido';
+
 @Component({
   selector: 'app-career',
   templateUrl: './career.component.html',
@@ -16,7 +20,6 @@ import { NavigationService } from '../../../../core/services/system/navigation.s
 export class CareerComponent implements OnInit {
   career: Career;
   programs: Program[] = [];
-
 
   constructor(
     private careerService: CareerService,
@@ -31,28 +34,28 @@ export class CareerComponent implements OnInit {
     this.getPrograms();
   }
 
-  public getStateOfCareer(): boolean {
+  getStateOfCareer(): boolean {
     return this.career.active;
   }
 
-  public async navigateToProgramPage(program: Program) {
+  async navigateToProgramPage(program: Program) {
     ProgramService.setCurrentProgram(program);
     this.navigationService.navigateToProgramPage();
   }
 
-  public async navigateToProgramStats(program: Program) {
+  async navigateToProgramStats(program: Program) {
     ProgramService.setCurrentProgram(program);
     this.navigationService.navigateToProgramStats();
   }
 
-  public editStateOfCareer(state: boolean) {
+  editStateOfCareer(state: boolean) {
     if (state) {
       this.activateCareer();
       // TODO: Adds inactivate career
     }
   }
 
-  public openEditCareerModal() {
+  openEditCareerModal() {
     this.notificationService.openEditNameModal(
       'Modificar carrera',
       ButtonText.Edit,
@@ -62,15 +65,25 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  public openNewProgramModal() {
+  openNewProgramModal() {
     this.programModalService.openNewProgramModal().subscribe(
       (newProgram: Program) => this.addProgram(newProgram)
     );
   }
 
 
-  public showAddProgram(): boolean {
+  showAddProgram(): boolean {
     return this.programs.length === 0 || !this.isThereProgramNotPublished();
+  }
+
+  generatePeriodText(program: Program) {
+    const yearFromText = `${YEAR_FROM_TEXT} ${program.yearFrom}`;
+    let yearToText = DEFAULT_YEAR_TO_TEXT;
+    if (program.yearTo) {
+      yearToText = `${YEAR_TO_TEXT} ${program.yearTo}`;
+    }
+
+    return `${yearFromText} - ${yearToText}`;
   }
 
   private isThereProgramNotPublished() {

@@ -20,8 +20,8 @@
                     <h3 class="program-name">
                         {{program.name}}
                     </h3>
-                    <h4 class="valid-from">
-                        Desde: {{program.yearFrom}}</h4>
+                    <div class="program-period">
+                       {{generatePeriodText(program)}}</div>
                 </div>
                 <div class="col-md-4 col-12 text-center not-pusblished" *ngIf="!program.active">
                     <br>

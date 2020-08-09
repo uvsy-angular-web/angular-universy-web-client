@@ -40,9 +40,11 @@
     color: white;
 }
 
-.valid-from {
+.program-period {
     color: white;
+    font-size: 1.2rem;
     font-style: italic;
+    margin-top: 1rem;
 }
 
 .program-stat-link {
@@ -54,7 +56,7 @@
     .toggler {
       margin-bottom: 1rem;
     }
-    .program-name, .valid-from, .program-stat-link {
+    .program-name, .program-period, .program-stat-link {
         text-align: center;
     }
 
