@@ -14,28 +14,12 @@
         <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()" [buttonTitle]="'Agregar plan'">
         </app-add-item>
         <div *ngIf="programs">
-            <div *ngFor="let program of programs" class="row text-left program"
-                [ngClass]="{'btn-program-off' :program.active , 'btn-program-on': !program.active }">
-                <div class="col-md-8 col-12 clickeable" (click)="navigateToProgramPage(program)">
-                    <h3 class="program-name">
-                        {{program.name}}
-                    </h3>
-                    <div class="program-period">
-                       {{generatePeriodText(program)}}</div>
-                </div>
-                <div class="col-md-4 col-12 text-center not-pusblished" *ngIf="!program.active">
-                    <br>
-                    <button class="btn btn-primary" (click)="navigateToProgramStats(program)">Publicar</button>
-                </div>
-                <div class="col-md-4 col-12 text-center align-self-center published" *ngIf="program.active">
-                    <h3 class="program-name">
-                        <i class="material-icons active-icon">fiber_manual_record</i> Publicado
-                    </h3>
-                    <div class="text-center">
-                        <a href="" class=" add-item program-stat-link" (click)="navigateToProgramStats(program)"
-                            data-toggle="modal">Ver detalles</a>
-                    </div>
-                </div>
+            <div *ngFor="let program of programs">
+                <app-program-card [program]="program" 
+                (tap)="navigateToProgramPage($event)"
+                (publishProgram)="navigateToProgramStats($event)"
+                (seeDetail)="navigateToProgramStats($event)">
+                </app-program-card>
             </div>
         </div>
     </div>

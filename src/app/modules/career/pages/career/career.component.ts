@@ -8,10 +8,6 @@ import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { ProgramModalService } from '../../../program/modals/program-modal.service';
 import { NavigationService } from '../../../../core/services/system/navigation.service';
 
-const YEAR_FROM_TEXT = 'Desde';
-const YEAR_TO_TEXT = 'Hasta';
-const DEFAULT_YEAR_TO_TEXT = 'Indefinido';
-
 @Component({
   selector: 'app-career',
   templateUrl: './career.component.html',
@@ -20,7 +16,7 @@ const DEFAULT_YEAR_TO_TEXT = 'Indefinido';
 export class CareerComponent implements OnInit {
   career: Career;
   programs: Program[] = [];
-
+  seeDetailText = 'Ver Resumen';
   constructor(
     private careerService: CareerService,
     private programService: ProgramService,
@@ -71,19 +67,8 @@ export class CareerComponent implements OnInit {
     );
   }
 
-
   showAddProgram(): boolean {
     return this.programs.length === 0 || !this.isThereProgramNotPublished();
-  }
-
-  generatePeriodText(program: Program) {
-    const yearFromText = `${YEAR_FROM_TEXT} ${program.yearFrom}`;
-    let yearToText = DEFAULT_YEAR_TO_TEXT;
-    if (program.yearTo) {
-      yearToText = `${YEAR_TO_TEXT} ${program.yearTo}`;
-    }
-
-    return `${yearFromText} - ${yearToText}`;
   }
 
   private isThereProgramNotPublished() {
