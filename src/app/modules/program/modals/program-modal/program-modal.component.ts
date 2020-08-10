@@ -137,33 +137,21 @@ export class ProgramModalComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       setUndefinedYearTo: new FormControl(!SHOW_YEAR_TO_INITIAL_VALUE),
-      name: new FormControl(
-        this.program.name,
-        Validators.compose(ProgramModalComponent._getValidatorsForCareerName())
-      ),
-      yearFrom: new FormControl(
-        this.program.yearFrom,
-        Validators.compose(ProgramModalComponent._getValidatorsForYearFrom())
-      ),
-      yearTo: new FormControl(
-        this.program.yearTo,
-        Validators.compose(this._getValidatorsForYearTo())
-      ),
-      requiresOptatives: new FormControl(
-        requiresOptatives != null, Validators.required
-      ),
-      hours: new FormControl(
-        this.program.hours,
-        Validators.compose(ProgramModalComponent._getAmountOfValidators())
-      ),
-      points: new FormControl(
-        this.program.points,
-        Validators.compose(ProgramModalComponent._getAmountOfValidators())
-      )
+      name: new FormControl(this.program.name, Validators.compose(ProgramModalComponent._getValidatorsForCareerName())),
+      yearFrom: new FormControl(this.program.yearFrom, Validators.compose(ProgramModalComponent._getValidatorsForYearFrom())),
+      yearTo: new FormControl(this.program.yearTo, Validators.compose(this._getValidatorsForYearTo())),
+      requiresOptatives: new FormControl(requiresOptatives != null, Validators.required),
+      hours: new FormControl(this.program.hours, Validators.compose(ProgramModalComponent._getAmountOfValidators())),
+      points: new FormControl(this.program.points, Validators.compose(ProgramModalComponent._getAmountOfValidators()))
     });
 
+    this.configureForm()
+  }
+
+  private configureForm() {
     this.subscribeToYearFromChanges();
     this.subscribeToSetUndefinedYearToChange();
+
     if (this.isProgramPublished) {
       this.enablesOnlyYearToField();
     }
