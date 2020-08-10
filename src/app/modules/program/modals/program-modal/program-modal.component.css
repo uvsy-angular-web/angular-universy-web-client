@@ -12,3 +12,26 @@
     display: block;
     text-align: left;
 }
+
+.modal-body{
+    padding:0.5rem
+}
+
+.year-separator{
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding-top: 2rem;
+    color: gray;
+}
+
+
+.undefined-year-to-text{
+    font-style: italic;
+    padding-top: 0.5rem;
+    color: gray;
+    letter-spacing: 2px;
+}
+
+.set-undefined-container {
+    margin: 1.5rem 0;
+}

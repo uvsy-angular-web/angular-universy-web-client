@@ -5,6 +5,8 @@ import {NameEditComponent} from './components/name-edit/name-edit.component';
 import {ButtonText} from '../shared/enums/button-text.enum';
 import {ConfirmActionModalComponent} from './components/confirm-action-modal/confirm-action-modal.component';
 
+const DEFAULT_ERROR_TITLE = '¡Ocurrió un error!';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,9 +15,9 @@ export class ModalService {
   constructor(private modalService: NgbModal) {
   }
 
-  showError(errorMessage: string) {
+  showError(errorMessage: string, title = DEFAULT_ERROR_TITLE) {
     const modalRef = this.modalService.open(InformationModalComponent);
-    modalRef.componentInstance.title = '¡Ocurrió un error!';
+    modalRef.componentInstance.title = title;
     modalRef.componentInstance.message = errorMessage;
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
   }

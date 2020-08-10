@@ -49,32 +49,40 @@ export class SubjectModalComponent implements OnInit {
   }
 
   public confirmAction(): void {
-    if (this.form.valid && this._areAmountsValid()) {
-      this.subject.name = this.name.value;
-      this.subject.level = this.level.value;
-      this.confirmEvent.emit(this.subject);
+    if (this._isFormValid()) {
+      const newSubject = this._createSubject();
+      this.confirmEvent.emit(newSubject);
       this.activeModal.dismiss();
     }
   }
 
+  private _isFormValid(): boolean {
+    return this.form.valid && this._areAmountsValid();
+  }
+
   private _areAmountsValid(): boolean {
     if (this.isOptative.value) {
-      const atLeastOneAmountLoaded =
-        this.hours.value > 0 ||
-        this.points.value > 0;
+      const atLeastOneAmountLoaded = this.hours.value !== 0 || this.points.value !== 0;
 
-      if (atLeastOneAmountLoaded) {
-        this.subject.optative = this.isOptative.value;
-        this.subject.hours = this.hours.value;
-        this.subject.points = this.points.value;
-      } else {
-        this.showsOptativesErrorMessage = true;
-        return false;
-      }
+      this.showsOptativesErrorMessage = !atLeastOneAmountLoaded;
+      return atLeastOneAmountLoaded;
+    } else {
+      return true;
     }
-
-    return true;
   }
+
+  private _createSubject(): Subject {
+    const newSubject: Subject = { ...this.subject };
+    newSubject.name = this.name.value;
+    newSubject.level = this.level.value;
+    newSubject.optative = this.isOptative.value;
+    if (newSubject.optative) {
+      newSubject.hours = this.hours.value;
+      newSubject.points = this.points.value;
+    }
+    return newSubject;
+  }
+
   public getSubjectNames(): void {
     this.subjectService.getSubjectsName().subscribe(
       (names) => {

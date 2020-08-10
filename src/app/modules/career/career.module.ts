@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SubjectItemComponent } from './components/subject-item/subject-item.component';
 import { SubjectStatComponent } from './components/subject-stat/subject-stat.component';
 import { SubjectSelectorComponent } from './components/subject-selector/subject-selector.component';
+import { ProgramCardComponent } from './components/program-card/program-card.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SubjectSelectorComponent } from './components/subject-selector/subject-
     CareerStatsComponent,
     SubjectItemComponent,
     SubjectStatComponent,
-    SubjectSelectorComponent
+    SubjectSelectorComponent,
+    ProgramCardComponent
   ],
   imports: [
     CommonModule,

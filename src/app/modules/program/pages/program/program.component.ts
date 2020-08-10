@@ -112,7 +112,7 @@ export class ProgramComponent implements OnInit {
     this.programModalService.openEditProgramModal(
       this.program
     ).subscribe(
-      (editedProgram: Program) => this.editProgram(editedProgram.name)
+      (editedProgram: Program) => this.editProgram(editedProgram)
     );
   }
 
@@ -183,16 +183,13 @@ export class ProgramComponent implements OnInit {
     );
   }
 
-  private editProgram(programName: string) {
-    if (programName) {
-      this.program.name = programName;
-      this.programService.updateProgram(this.program).subscribe(
+  private editProgram(editedProgram) {
+    if (editedProgram) {
+      this.programService.updateProgram(editedProgram).subscribe(
         () => {
-          ProgramService.setCurrentProgram(this.program);
-        }, ((error) => {
-          this.notificationService.showError('Ocurrió un error tratando de modificar el plan');
-          console.error(error);
-        })
+          ProgramService.setCurrentProgram(editedProgram);
+          this.program = editedProgram;
+        }
       );
     }
   }
