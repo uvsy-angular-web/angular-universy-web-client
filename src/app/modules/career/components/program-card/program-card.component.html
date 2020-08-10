@@ -1,5 +1,5 @@
 <div class="row text-left program" [ngClass]="{'btn-program-off' :program.active , 'btn-program-on': !program.active }">
-  <div class="col-md-8 col-12 clickeable" (click)="tapCard()">
+  <div class="col-md-8 col-12 clickeable" (click)="tapCard(program)">
     <h3 class="program-name">
       {{program.name}}
     </h3>
@@ -8,7 +8,7 @@
   </div>
   <div class="col-md-4 col-12 text-center not-pusblished" *ngIf="!program.active">
     <br>
-    <button class="btn btn-primary" (click)="publish()">{{publishButtonText}}</button>
+    <button class="btn btn-primary" (click)="publish(program)">{{publishButtonText}}</button>
   </div>
   <div class="col-md-4 col-12 text-center align-self-center published" *ngIf="program.active">
     <h3 class="program-name">
@@ -18,7 +18,7 @@
       {{periodStatusText}}
     </h3>
     <div class="text-center">
-      <a href="" class=" add-item program-stat-link" (click)="seeMore()" data-toggle="modal">{{seeDetailText}}</a>
+      <a href="" class=" add-item program-stat-link" (click)="seeMore(program)" data-toggle="modal">{{seeDetailText}}</a>
     </div>
   </div>
 </div>

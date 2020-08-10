@@ -16,7 +16,7 @@
         <div *ngIf="programs">
             <div *ngFor="let program of programs">
                 <app-program-card [program]="program" 
-                (tap)="navigateToProgramPage($event)"
+                (cardPress)="navigateToProgramPage($event)"
                 (publishProgram)="navigateToProgramStats($event)"
                 (seeDetail)="navigateToProgramStats($event)">
                 </app-program-card>

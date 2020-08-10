@@ -20,7 +20,7 @@ export class ProgramCardComponent implements OnInit {
   periodStatusText = PUBLISHED_PERIOD_STATUS;
   publishButtonText = 'Publicar';
   @Input() program: Program;
-  @Output() tap: EventEmitter<Program> = new EventEmitter<Program>();
+  @Output() cardPress: EventEmitter<Program> = new EventEmitter<Program>();
   @Output() publishProgram: EventEmitter<Program> = new EventEmitter<Program>();
   @Output() seeDetail: EventEmitter<Program> = new EventEmitter<Program>();
 
@@ -42,15 +42,16 @@ export class ProgramCardComponent implements OnInit {
     this.periodText = `${yearFromText} - ${yearToText}`;
   }
 
-  publish() {
-    this.tap.emit(this.program);
+  publish(program: Program) {
+    this.publishProgram.emit(program);
   }
 
-  seeMore() {
-    this.tap.emit(this.program);
+  seeMore(program: Program) {
+    this.seeDetail.emit(program);
   }
-  tapCard() {
-    this.tap.emit(this.program);
+
+  tapCard(program: Program) {
+    this.cardPress.emit(program)
   }
 
   private checkPeriodStatus() {
