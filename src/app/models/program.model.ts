@@ -3,7 +3,7 @@ export class Program {
   name: string;
   careerId: string;
   yearFrom: number;
-  validTo: number;
+  yearTo: number;
   hours: number;
   points: number;
   active: boolean;
@@ -16,7 +16,7 @@ export class Program {
     name?: string,
     careerId?: string,
     yearFrom?: number,
-    validTo?: number,
+    yearTo?: number,
     hours?: number,
     points?: number,
     active?: boolean,
@@ -27,7 +27,7 @@ export class Program {
       this.name = name;
       this.careerId = careerId;
       this.yearFrom = yearFrom;
-      this.validTo = validTo;
+      this.yearTo = yearTo;
       this.hours = hours;
       this.points = points;
       this.active = active;

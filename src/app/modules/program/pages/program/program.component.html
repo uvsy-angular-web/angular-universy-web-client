@@ -1,6 +1,6 @@
 <div class="container">
   <app-custom-title [title]="program.name" (editItem)="openEditProgramModal()" (deleteItem)="openDeleteProgramModal()"
-    [showDeleteButton]="canEditProgram()" [showEditButton]="canEditProgram()"></app-custom-title>
+    [showDeleteButton]="canEditProgram()"></app-custom-title>
   <hr>
   <div class="content">
     <app-add-item *ngIf="showAddSubjectButton" [buttonTitle]="addSubjectText" (buttonPressed)="openNewSubjectModal()">

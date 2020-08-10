@@ -1,16 +1,34 @@
 <app-modal-header [title]="title" (closeEvent)="cancelAction()"></app-modal-header>
 <form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
     <div class="modal-body">
-        <div class="form-group">
-            <div class="col-8">
-                <label for="item-text">  {{nameInputText}} </label>
-                <input id="item-text" appControlError class="form-control" type="text" formControlName="name">
-            </div>
+        <div class="col-8">
+            <label for="item-text"> {{nameInputText}} </label>
+            <input id="item-text" appControlError class="form-control" type="text" formControlName="name">
         </div>
-        <div class="form-group">
-            <div class="col-4">
-                <label for="year-from"> {{yearFromInputText}} </label>
-                <input id="year-from" appControlError class="form-control" type="number" maxlength="4" formControlName="yearFrom">
+        <div class="col-12 set-undefined-container">
+            <label>
+                <input type="checkbox" class="setUndefinedYearTo" formControlName="setUndefinedYearTo">
+                {{setUndefinedYearToText}}
+            </label>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="form-group col-7 col-md-4">
+                    <label for="year-from"> {{yearFromInputText}} </label>
+                    <input id="year-from" appControlError class="form-control" type="number" maxlength="4"
+                        formControlName="yearFrom">
+                </div>
+                <div class="col-1 d-none d-md-block">
+                    <label class="year-separator">{{labelSeparator}}</label>
+                </div>
+                <div class="form-group col-7 col-md-4">
+                    <label for="year-to"> {{yearToInputText}} </label>
+                    <input [hidden]="!showYearToInput" id="year-to" appControlError class="form-control" type="number"
+                        maxlength="4" formControlName="yearTo">
+                    <div *ngIf="!showYearToInput" class="d-block undefined-year-to-text">
+                        {{undefinedYearToText}}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -25,15 +43,18 @@
             </div>
         </div>
         <div class="form-group requires-optatives" *ngIf="requiresOptatives.value">
-            <div class="row">
-                <label for="item-text" class="col-5">  {{amountOfHoursInputText}} </label>
-                <input id="item-text" appControlError class="form-control amount-input col-6" type="number" formControlName="hours">
+            <div class="form-group row">
+                <label for="item-text" class="col-5"> {{amountOfHoursInputText}} </label>
+                <input id="item-text" appControlError class="form-control amount-input col-6" type="number"
+                    formControlName="hours">
             </div>
-            <div class="row">
-                <label for="item-text" class="col-5">  {{amountOfPointsInputText}} </label>
-                <input id="item-text" appControlError class="form-control amount-input col-6" type="number" formControlName="points">
+            <div class="form-group row">
+                <label for="item-text" class="col-5"> {{amountOfPointsInputText}} </label>
+                <input id="item-text" appControlError class="form-control amount-input col-6" type="number"
+                    formControlName="points">
             </div>
-            <app-error-message *ngIf="showsOptativesErrorMessage" [errorMessage]="optativesErrorMessage" ></app-error-message>
+            <app-error-message *ngIf="showsOptativesErrorMessage" [errorMessage]="optativesErrorMessage">
+            </app-error-message>
         </div>
     </div>
     <div class="modal-footer">

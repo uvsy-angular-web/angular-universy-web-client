@@ -16,8 +16,7 @@ import { NavigationService } from '../../../../core/services/system/navigation.s
 export class CareerComponent implements OnInit {
   career: Career;
   programs: Program[] = [];
-
-
+  seeDetailText = 'Ver Resumen';
   constructor(
     private careerService: CareerService,
     private programService: ProgramService,
@@ -31,28 +30,28 @@ export class CareerComponent implements OnInit {
     this.getPrograms();
   }
 
-  public getStateOfCareer(): boolean {
+  getStateOfCareer(): boolean {
     return this.career.active;
   }
 
-  public async navigateToProgramPage(program: Program) {
+  async navigateToProgramPage(program: Program) {
     ProgramService.setCurrentProgram(program);
     this.navigationService.navigateToProgramPage();
   }
 
-  public async navigateToProgramStats(program: Program) {
+  async navigateToProgramStats(program: Program) {
     ProgramService.setCurrentProgram(program);
     this.navigationService.navigateToProgramStats();
   }
 
-  public editStateOfCareer(state: boolean) {
+  editStateOfCareer(state: boolean) {
     if (state) {
       this.activateCareer();
       // TODO: Adds inactivate career
     }
   }
 
-  public openEditCareerModal() {
+  openEditCareerModal() {
     this.notificationService.openEditNameModal(
       'Modificar carrera',
       ButtonText.Edit,
@@ -62,14 +61,13 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  public openNewProgramModal() {
+  openNewProgramModal() {
     this.programModalService.openNewProgramModal().subscribe(
       (newProgram: Program) => this.addProgram(newProgram)
     );
   }
 
-
-  public showAddProgram(): boolean {
+  showAddProgram(): boolean {
     return this.programs.length === 0 || !this.isThereProgramNotPublished();
   }
 
