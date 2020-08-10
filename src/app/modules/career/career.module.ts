@@ -11,6 +11,7 @@ import { SubjectItemComponent } from './components/subject-item/subject-item.com
 import { SubjectStatComponent } from './components/subject-stat/subject-stat.component';
 import { SubjectSelectorComponent } from './components/subject-selector/subject-selector.component';
 import { ProgramCardComponent } from './components/program-card/program-card.component';
+import { GraphAndDescriptionComponent } from './components/graph-and-description/graph-and-description.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProgramCardComponent } from './components/program-card/program-card.com
     SubjectItemComponent,
     SubjectStatComponent,
     SubjectSelectorComponent,
-    ProgramCardComponent
+    ProgramCardComponent,
+    GraphAndDescriptionComponent
   ],
   imports: [
     CommonModule,

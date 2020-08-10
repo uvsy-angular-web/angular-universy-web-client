@@ -7,7 +7,6 @@ const MAX_PERCENTAGE = 100;
   styleUrls: ['./graph-bar.component.css']
 })
 export class GraphBarComponent implements OnInit {
-  @Input() title: string;
   @Input() items: GraphItem[] = [];
   @Input() percentage = false;
   maxValue: number;
