@@ -27,8 +27,12 @@
     border-left: 2px solid white;
 }
 
-.active-icon {
+.current-period-icon {
     color: greenyellow;
+}
+
+.default-period-icon {
+    color: white;
 }
 
 .program-name {

@@ -88,6 +88,17 @@ export class ProgramService {
     return currentInstitution.id;
   }
 
+  static checkIfIsCurrentPeriod(program: Program): boolean {
+    const currentYear = new Date().getFullYear();
+
+    if (program.yearTo) {
+      return program.yearTo >= currentYear &&
+        program.yearFrom <= currentYear;
+    } else {
+      return true;
+    }
+  }
+
   static setCurrentProgram(program: Program) {
     LocalStorageService.saveObjectInLocalStorage(CURRENT_PROGRAM_KEY, program);
   }
