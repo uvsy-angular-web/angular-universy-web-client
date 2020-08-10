@@ -164,18 +164,13 @@ export class ProgramModalComponent implements OnInit {
     );
 
     if (this.isProgramPublished) {
-      this.enablesOnlyYearToField();
+      this.name.disable();
+      this.yearFrom.disable();
+      this.requiresOptatives.disable();
+      this.hours.disable();
+      this.points.disable();
     }
   }
-
-  private enablesOnlyYearToField() {
-    this.name.disable();
-    this.yearFrom.disable();
-    this.requiresOptatives.disable();
-    this.hours.disable();
-    this.points.disable();
-  }
-
 
   private _getValidatorsForYearTo(minValue = YEAR_FROM_MIN_YEAR): ValidatorFn[] {
     return [
