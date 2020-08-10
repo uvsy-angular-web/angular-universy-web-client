@@ -97,20 +97,18 @@ export class ProgramModalComponent implements OnInit {
   }
 
   private _isFormValid() {
-    return this._areAmountsValid() && this.form.valid;
-  }
+    let areAmountsValid = true;
 
-  private _areAmountsValid(): boolean {
     const noAmountLoaded =
       this.hours.value === 0 &&
       this.points.value === 0;
 
     if (noAmountLoaded && this.requiresOptatives.value) {
       this.showsOptativesErrorMessage = true;
-      return false;
+      areAmountsValid = false;
     }
 
-    return true;
+    return areAmountsValid && this.form.valid;
   }
 
   private _updatesProgram() {
@@ -149,8 +147,21 @@ export class ProgramModalComponent implements OnInit {
   }
 
   private configureForm() {
-    this.subscribeToYearFromChanges();
-    this.subscribeToSetUndefinedYearToChange();
+    this.yearFrom.valueChanges.subscribe(
+      value => {
+        this.yearTo.setValidators(
+          this._getValidatorsForYearTo(value)
+        );
+        this.yearTo.updateValueAndValidity();
+      }
+    );
+
+    this.setUndefinedYearTo.valueChanges.subscribe(
+      value => {
+        this.showYearToInput = value;
+        this.yearTo.setValue(null);
+      }
+    );
 
     if (this.isProgramPublished) {
       this.enablesOnlyYearToField();
@@ -165,29 +176,6 @@ export class ProgramModalComponent implements OnInit {
     this.points.disable();
   }
 
-  private subscribeToYearFromChanges() {
-    this.yearFrom.valueChanges.subscribe(
-      value => {
-        this.yearTo.setValidators(
-          this._getValidatorsForYearTo(value)
-        );
-        this.yearTo.updateValueAndValidity();
-      }
-    );
-  }
-
-  private subscribeToSetUndefinedYearToChange() {
-    this.setUndefinedYearTo.valueChanges.subscribe(
-      value => {
-        this.setShowYearToInput(!value);
-      }
-    );
-  }
-
-  private setShowYearToInput(value: boolean) {
-    this.showYearToInput = value;
-    this.yearTo.setValue(null);
-  }
 
   private _getValidatorsForYearTo(minValue = YEAR_FROM_MIN_YEAR): ValidatorFn[] {
     return [
