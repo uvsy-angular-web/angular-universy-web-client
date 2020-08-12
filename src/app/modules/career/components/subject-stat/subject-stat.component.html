@@ -11,18 +11,38 @@
         </span>
     </div>
     <div class="graph-bar">
-        <app-graph-and-description [title]="dificultGraphTitle" [items]="dificultsItems">
-            asdlkjdsa
+        <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems">
+            <p>
+                Valor promedio del puntaje general
+                de los estudiantes sobre cada curso
+            </p>
+            <p>
+                Es un valor que va <strong>0 y 5</strong>.
+            </p>
         </app-graph-and-description>
     </div>
     <div class="graph-bar">
-        <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems">
-            asdlkjdsa
+        <app-graph-and-description [title]="dificultGraphTitle" [items]="dificultsItems">
+            <p>
+                Valoración promedio por comisión
+                de la dificultad de la materia.
+            <p>
+                Es un valor que se encuentra
+                entre <strong>0 y 5</strong>, siendo:
+            </p>
+            <ul>
+                <li><strong>0:</strong> Muy fácil</li>
+                <li><strong>5:</strong> Muy difícil</li>
+            </ul>
         </app-graph-and-description>
     </div>
     <div class="graph-bar">
         <app-graph-and-description [percentage]="true" [title]="wouldTakeAgainGraphTitle" [items]="wouldTakeAgainItems">
-            asdlkjdsa
+            <p>
+                Porcentaje de estudiantes
+                que indicaron que recomiendan
+                el curso.
+            </p>
         </app-graph-and-description>
     </div>
 </div>

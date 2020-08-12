@@ -14,9 +14,9 @@ export class SubjectStatComponent implements OnInit {
   @Input() subjectRate = 4.2;
   subjectLabel = 'Materia: ';
   subjectRateTxt = 'Valoración general';
-  dificultGraphTitle = 'Dificultad';
-  overallGraphTitle = 'Valoración';
-  wouldTakeAgainGraphTitle = 'Volveria a cursar';
+  dificultGraphTitle = 'Dificultad por curso';
+  overallGraphTitle = 'Valoración general por curso';
+  wouldTakeAgainGraphTitle = 'Cursos elegidos por los estudiantes';
 
   dificultsItems = [
     new GraphItem('1k1', Math.floor(Math.random() * 5)),
