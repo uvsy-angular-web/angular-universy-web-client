@@ -17,16 +17,22 @@
     margin-bottom: 2rem;
 }
 
-.career-name{
+.section-container {
+    padding: 1rem;
+}
+
+::ng-deep .progress-bar {
+    background-color: #8046b6 !important;
+  }
+.career-name {
     padding: 1.5rem;
     text-align: center;
     border-bottom: 1px solid #e3e3e3;
-    margin-bottom: 1rem;
 }
 
 .subject-name-container {
-    margin: 1rem 0;
-    font-size: 1.2rem;
+    margin: 1.8rem 0;
+    font-size: 1.6rem;
 }
 
 .subject-name-label {
