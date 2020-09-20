@@ -7,6 +7,7 @@ import { Endpoint } from 'src/app/models/endpoint.model';
 import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { CRUDEndpointsService } from './system/crud-endpoints.service';
 import { NavigationService } from './system/navigation.service';
+import { CareerStat } from 'src/app/models/career-stat.model';
 
 const FIRST_INSTITUTION_INDEX = 0;
 const CURRENT_INSTITUTION_KEY = 'current-institution';
@@ -40,6 +41,10 @@ export class InstitutionService {
         this.navigationService.navigateToInstitutionPage(true);
       }
     );
+  }
+
+  getStats(): Observable<CareerStat[]>{
+    return; //TODO: Add endpoint
   }
 
   static getCurrentInstitution(): Institution {

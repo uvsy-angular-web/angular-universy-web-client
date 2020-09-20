@@ -1,11 +1,11 @@
 <div class="career-card" (click)="navigateToCareerStats()">
-    <div id="career-name">{{career.name}}</div>
-    <div *ngIf="programs.length > 0" class="program-container">
-        <div class="program-item" *ngFor="let program of programs">
-            <app-program-item [program]="program"></app-program-item>
+    <div id="career-name">{{careerStat.careerName}}</div>
+    <div *ngIf=" careerStat.programs.length > 0" class="program-container">
+        <div class="program-item" *ngFor="let programStat of careerStat.programs">
+            <app-program-item [programStat]="programStat"></app-program-item>
         </div>
     </div>
-    <div *ngIf="programs.length == 0" class="no-program-container">
+    <div *ngIf=" careerStat.programs.length == 0" class="no-program-container">
         <hr>
         <div class="col-12 text-right">
             {{noProgramTxt}}

@@ -3,6 +3,7 @@ import { Institution } from 'src/app/models/institution.model';
 import { InstitutionService } from 'src/app/core/services/institution.service';
 import { Career } from 'src/app/models/career.model';
 import { CareerService } from 'src/app/core/services/career.service';
+import { CareerStat } from 'src/app/models/career-stat.model';
 
 @Component({
   selector: 'app-institution-stats',
@@ -11,22 +12,22 @@ import { CareerService } from 'src/app/core/services/career.service';
 })
 export class InstitutionStatsComponent implements OnInit {
   title = 'Mis estadisticas';
-  careers: Career[] = [];
+  careerStats: CareerStat[] = [];
   printButtonText = 'Imprimir';
   printStyle = {
     i: { opacity: 0 },
     button: { opacity: 0 }
   };
-  constructor(private careerService: CareerService) { }
+  constructor(private institutionService: InstitutionService) { }
 
   ngOnInit() {
     this.getCurrentCareers();
   }
 
   private getCurrentCareers() {
-    this.careerService.getAllCareers()
+    this.institutionService.getStats()
       .subscribe(
-        (careers: Career[]) => this.careers = careers
+        (careerStats: CareerStat[]) => this.careerStats = careerStats
     );
   }
 }

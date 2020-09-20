@@ -8,6 +8,9 @@ import { CRUDEndpointsService } from './system/crud-endpoints.service';
 import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { Endpoint } from 'src/app/models/endpoint.model';
 import { Observable } from 'rxjs';
+import { CareerStat } from 'src/app/models/career-stat.model';
+import { NavigationService } from './system/navigation.service';
+import { Route } from './system/routes/routes.enum';
 
 const CURRENT_CAREER_KEY = 'current-career';
 
@@ -18,7 +21,7 @@ export class CareerService {
   private endpoint = new Endpoint(EndpointName.CAREERS, EndpointName.INSTITUTIONS);
 
   constructor(
-    private institutionService: InstitutionService,
+    private navigationService: NavigationService,
     private crudEndpointService: CRUDEndpointsService) {
   }
 
@@ -51,6 +54,18 @@ export class CareerService {
     );
   }
 
+  getCareerById(careerId: string): Observable<Career> {
+    return this.crudEndpointService.get(this.endpoint, careerId);
+  };
+
+  navigateToCareerState(careerId: string) {
+    this.getCareerById(careerId).subscribe(
+      (career: Career) => {
+        CareerService.setCurrentCareer(career);
+        this.navigationService.navigateToRoute(Route.CAREER_STATS);
+      }
+    )
+  }
   private getInstitutionId(): string {
     return InstitutionService.getCurrentInstitution().id;
   }
