@@ -5,7 +5,7 @@
     </div>
     <div class="content">
         <ngx-masonry>
-            <div ngxMasonryItem *ngFor="let career of careers" class="career-stat-card">
+            <div ngxMasonryItem *ngFor="let career of institutionReport.careers" class="career-stat-card">
                 <app-career-stats-card [career]="career"></app-career-stats-card>
             </div>
         </ngx-masonry>
