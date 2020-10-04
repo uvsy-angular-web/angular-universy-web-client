@@ -26,17 +26,17 @@ export class InstitutionService {
   ) {
   }
 
-  getInstitution(): Observable<Institution> {
+  public getInstitution(): Observable<Institution> {
     return this.getAllInstitutions().map(
       (institutions: Institution[]) => institutions[FIRST_INSTITUTION_INDEX]
     );
   }
 
-  getAllInstitutions(): Observable<Institution[]> {
+  public getAllInstitutions(): Observable<Institution[]> {
     return this.crudEndpointsService.getAll(this.endpoint);
   }
 
-  getCurrentInstitutionReport(): Observable<InstitutionReport> {
+  public getCurrentInstitutionReport(): Observable<InstitutionReport> {
     try {
       const currentInstitutionId =
         InstitutionService.getCurrentInstitution().id
@@ -46,7 +46,7 @@ export class InstitutionService {
     }
   }
 
-  setDefaultInstitution() {
+  public setDefaultInstitution() {
     this.getInstitution().subscribe(
       (institution: Institution) => {
         InstitutionService.setCurrentInstitution(institution);
@@ -55,11 +55,11 @@ export class InstitutionService {
     );
   }
 
-  static getCurrentInstitution(): Institution {
+  public static getCurrentInstitution(): Institution {
     return LocalStorageService.getObjectFromInLocalStorage(CURRENT_INSTITUTION_KEY) as Institution;
   }
 
-  static setCurrentInstitution(institution: Institution) {
+  public static setCurrentInstitution(institution: Institution) {
     LocalStorageService.saveObjectInLocalStorage(CURRENT_INSTITUTION_KEY, institution);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProgramStat } from 'src/app/models/institution-report.model';
+import { ProgramStat } from 'src/app/models/program-stat.model';
 
 @Component({
   selector: 'app-program-item',

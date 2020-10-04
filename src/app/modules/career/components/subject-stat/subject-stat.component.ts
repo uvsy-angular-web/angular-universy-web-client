@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GraphItem } from 'src/app/shared/components/graph-bar/graph-bar.component';
 import { Career } from 'src/app/models/career.model';
-import { SubjectStat } from 'src/app/models/program-report.model';
-import { CourseStat, SubjectReport } from 'src/app/models/subject-report.model';
+import { SubjectReport } from 'src/app/models/subject-report.model';
 import { SubjectService } from 'src/app/core/services/subject.service';
+import { CourseStat } from 'src/app/models/course-stat.model';
+import { SubjectStat } from 'src/app/models/subject-stat.model';
 
 @Component({
   selector: 'app-subject-stat',
@@ -11,23 +12,25 @@ import { SubjectService } from 'src/app/core/services/subject.service';
   styleUrls: ['./subject-stat.component.css']
 })
 export class SubjectStatComponent implements OnInit {
-  @Input() career: Career;
-  @Input() subjectStat: SubjectStat;
-  subjectReport: SubjectReport;
-  subjectLabel = 'Materia: ';
-  subjectRateTxt = 'Valoración general';
-  dificultGraphTitle = 'Dificultad por curso';
-  overallGraphTitle = 'Valoración general por curso';
-  wouldTakeAgainGraphTitle = 'Cursos elegidos por los estudiantes';
-  hasCourseStats = false;
-  noStatsAvaiableMessage = 'Parece que todavia no han valorado las comisiones';
-  dificultsItems = [];
-  overallItems = [];
-  wouldTakeAgainItems = [];
+  @Input()
+  public career: Career;
+  @Input()
+  public subjectStat: SubjectStat;
+  public subjectReport: SubjectReport;
+  public subjectLabel = 'Materia: ';
+  public subjectRateTxt = 'Valoración general';
+  public dificultGraphTitle = 'Dificultad por curso';
+  public overallGraphTitle = 'Valoración general por curso';
+  public wouldTakeAgainGraphTitle = 'Cursos elegidos por los estudiantes';
+  public hasCourseStats = false;
+  public noStatsAvaiableMessage = 'Parece que todavia no han valorado las comisiones';
+  public dificultsItems = [];
+  public overallItems = [];
+  public wouldTakeAgainItems = [];
 
   constructor(private subjectService: SubjectService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getSubjectReport();
   }
 
@@ -48,7 +51,7 @@ export class SubjectStatComponent implements OnInit {
             this.overallItems.push(overallItem);
             this.wouldTakeAgainItems.push(wouldTakeAgainItem);
           });
-      
+
       this.hasCourseStats = this.dificultsItems.length > 0 &&
         this.overallItems.length > 0 &&
         this.wouldTakeAgainItems.length > 0

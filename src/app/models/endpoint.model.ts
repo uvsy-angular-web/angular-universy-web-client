@@ -1,6 +1,6 @@
 export class Endpoint {
-    base: string;
-    parent: string;
+    public base: string;
+    public parent: string;
 
     constructor(base: string, parent?: string) {
         this.base = base;
@@ -11,5 +11,5 @@ export class Endpoint {
 export enum EndpointSuffix {
     DEFAULT = '',
     ACTIVATE = 'activate',
-    REPORT = 'report'
+    REPORT = 'report',
 }

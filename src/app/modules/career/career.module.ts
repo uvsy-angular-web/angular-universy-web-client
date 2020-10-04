@@ -21,7 +21,7 @@ import { GraphAndDescriptionComponent } from './components/graph-and-description
     SubjectStatComponent,
     SubjectSelectorComponent,
     ProgramCardComponent,
-    GraphAndDescriptionComponent
+    GraphAndDescriptionComponent,
   ],
   imports: [
     CommonModule,

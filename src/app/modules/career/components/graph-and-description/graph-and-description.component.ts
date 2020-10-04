@@ -4,16 +4,19 @@ import { GraphItem } from 'src/app/shared/components/graph-bar/graph-bar.compone
 @Component({
   selector: 'app-graph-and-description',
   templateUrl: './graph-and-description.component.html',
-  styleUrls: ['./graph-and-description.component.css']
+  styleUrls: ['./graph-and-description.component.css'],
 })
 export class GraphAndDescriptionComponent implements OnInit {
-  @Input() percentage = false;
-  @Input() title: string;
-  @Input() items: GraphItem[]= [];
+  @Input()
+  public percentage = false;
+  @Input()
+  public title: string;
+  @Input()
+  public items: GraphItem[] = [];
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { SubjectStat } from 'src/app/models/program-report.model';
+import { SubjectStat } from 'src/app/models/subject-stat.model';
 
 @Component({
   selector: 'app-subject-item',

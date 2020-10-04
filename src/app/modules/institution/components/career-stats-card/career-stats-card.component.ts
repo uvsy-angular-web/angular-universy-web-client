@@ -3,7 +3,7 @@ import { CareerService } from 'src/app/core/services/career.service';
 import { NavigationService } from 'src/app/core/services/system/navigation.service';
 import { Route } from 'src/app/core/services/system/routes/routes.enum';
 import { Career } from 'src/app/models/career.model';
-import { CareerStat } from 'src/app/models/institution-report.model';
+import { CareerStat } from 'src/app/models/career-stat.model';
 
 @Component({
   selector: 'app-career-stats-card',

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Career } from 'src/app/models/career.model';
 import { Route } from 'src/app/core/services/system/routes/routes.enum';
 import { CareerService } from 'src/app/core/services/career.service';
-import { ProgramReport, SubjectStat } from 'src/app/models/program-report.model';
+import { ProgramReport } from 'src/app/models/program-report.model';
+import { SubjectStat } from 'src/app/models/subject-stat.model';
 
 const FIRST_ITEM_INDEX = 0;
 
@@ -12,17 +13,18 @@ const FIRST_ITEM_INDEX = 0;
   styleUrls: ['./career-stats.component.css']
 })
 export class CareerStatsComponent implements OnInit {
-  career: Career;
-  backNavigationRoute = Route.INSTITUTION_STATS;
-  selectedSubject: SubjectStat;
-  programReport: ProgramReport
+  public career: Career;
+  public backNavigationRoute = Route.INSTITUTION_STATS;
+  public selectedSubject: SubjectStat;
+  public programReport: ProgramReport
+
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getCareer();
   }
 
-  selectSubject(subject: SubjectStat) {
+  public selectSubject(subject: SubjectStat) {
     this.selectedSubject = subject;
   }
 
