@@ -1,0 +1,19 @@
+.subject-separator {
+    width: 60%;
+    padding-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.no-subject-message {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    font-style: italic;
+}
+
+.title {
+    padding: 1.5rem 0;
+}

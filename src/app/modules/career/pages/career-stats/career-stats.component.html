@@ -1,26 +1,15 @@
-<div class="container">
-    <app-custom-title [title]="career.name" [showDeleteButton]="false" [showEditButton]="false" [backNavigationRoute]="backNavigationRoute"></app-custom-title>
+<div class="main-container">
+    <app-custom-title [title]="career.name" [showDeleteButton]="false" [showEditButton]="false"
+        [backNavigationRoute]="backNavigationRoute"></app-custom-title>
     <div class="content">
         <div class="row">
             <div class="col-4">
-                <form appForm [formGroup]="form">
-                    <div class="form-group">
-                        <label for="level-select">Plan:</label>
-                        <select id="level-select" appControlError class="form-control" formControlName="program">
-                    <option *ngFor="let program of programs" [ngValue]="program">{{program.name}}</option>
-                  </select>
-                    </div>
-                </form>
-                <div *ngFor="let subject of subjects">
-                    <app-subject-item [subject]="subject" (subjectSelected)="selectSubject(subject)" [active]="selectedSubject === subject"></app-subject-item>
-                </div>
+                <app-subject-selector [career]="career" (subjectSelected)="selectSubject($event)">
+                </app-subject-selector>
             </div>
             <div class="col-8">
-                <div class="subject-stat">
-                    <app-subject-stat [subject]="selectedSubject"></app-subject-stat>
-                </div>
+                    <app-subject-stat [career]="career" [subjectStat]="selectedSubject"></app-subject-stat>
             </div>
         </div>
-
     </div>
 </div>

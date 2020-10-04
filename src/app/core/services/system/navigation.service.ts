@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Route } from './routes/routes.enum';
-import { Course } from 'src/app/models/course.model';
-import { CourseService } from '../course.service';
 
 const URL_SEPARATOR = '/';
 

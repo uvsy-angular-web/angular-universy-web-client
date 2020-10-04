@@ -16,3 +16,39 @@
 .graph-bar {
     margin-bottom: 2rem;
 }
+
+.section-container {
+    padding: 1rem;
+}
+
+::ng-deep .progress-bar {
+    background-color: #8046b6 !important;
+  }
+.career-name {
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.subject-name-container {
+    margin: 1.8rem 0;
+    font-size: 1.6rem;
+}
+
+.subject-name-label {
+    font-weight: 600;
+    padding-right: 4px;
+}
+
+.subject-name {
+    margin: 1rem 0;
+}
+
+.no-stats-avaiable {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    font-style: italic;
+    font-size: 1rem;
+    padding:2rem;
+}
