@@ -50,7 +50,7 @@ export class SubjectService {
 
   getSubjectReportById(subjectId): Observable<SubjectReport> {
     try {
-      return this.crudEndpointService.getReport(this.endpoint,subjectId);
+      return this.crudEndpointService.getReport(this.endpoint, subjectId);
     } catch (e) {
       this.notificationService.showError(GET_SUBJECTS_REPORT_ERROR);
     }
