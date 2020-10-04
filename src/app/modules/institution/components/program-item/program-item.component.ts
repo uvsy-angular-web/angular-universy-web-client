@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ProgramStat } from 'src/app/models/institution-report.model';
 import { Program } from 'src/app/models/program.model';
 
 @Component({
@@ -7,16 +8,14 @@ import { Program } from 'src/app/models/program.model';
   styleUrls: ['./program-item.component.css']
 })
 export class ProgramItemComponent implements OnInit {
-  @Input() program: Program;
-  @Input() subjectCount = 35;
-  @Input() subjectCountTxt = 'Materias';
-  @Input() optativeSubjectCount = 5;
-  @Input() optativeSubjectCountTxt = 'Optativas';
-  @Input() overallRate = 4.5;
+  @Input() program: ProgramStat;
+  subjectCountTxt = 'Materias';
+  optativeSubjectCountTxt = 'Optativas';
   overallRateTxt = 'Valuación general';
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -5,6 +5,7 @@ import 'rxjs-compat/add/operator/map';
 import { Endpoint } from '../../../models/endpoint.model';
 
 const ACTIVATE_SUFIX = 'activate';
+const URL_SUFIX = 'report';
 
 @Injectable({
     providedIn: 'root'
@@ -45,6 +46,12 @@ export class CRUDEndpointsService {
         return this.systemConfigService.httpGet(url);
     }
 
+    getReport(endpoint: Endpoint, id: string): Observable<any> {
+        const url = this.buildReportUrl(endpoint, id);
+
+        return this.systemConfigService.httpGet(url);
+    }
+
     update(endpoint: Endpoint, id: string, body: any): Observable<any> {
         const url = this.buildIdUrl(endpoint, id);
 
@@ -69,6 +76,10 @@ export class CRUDEndpointsService {
 
     private buildActivateUrl(endpoint: Endpoint, id: string): string {
         return `${endpoint.base}/${id}/${ACTIVATE_SUFIX}`;
+    }
+
+    private buildReportUrl(endpoint: Endpoint, id: string): string {
+        return `${endpoint.base}/${id}/${URL_SUFIX}`;
     }
 
     private buildParentUrl(parentId: string, endpoint: Endpoint): string {

@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SystemConfigService } from './system/system-config.service';
-import { HttpClient } from '@angular/common/http';
 import { InstitutionService } from './institution.service';
 import { LocalStorageService } from './local-storage.service';
 import { Career } from '../../models/career.model';
@@ -18,7 +16,6 @@ export class CareerService {
   private endpoint = new Endpoint(EndpointName.CAREERS, EndpointName.INSTITUTIONS);
 
   constructor(
-    private institutionService: InstitutionService,
     private crudEndpointService: CRUDEndpointsService) {
   }
 
