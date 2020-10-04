@@ -8,9 +8,11 @@ import { CRUDEndpointsService } from './system/crud-endpoints.service';
 import { Endpoint } from 'src/app/models/endpoint.model';
 import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { ModalService } from 'src/app/modals/modal.service';
+import { SubjectReport } from 'src/app/models/subject-report.model';
 
 const CURRENT_SUBJECT_KEY = 'current-subject';
 const GET_SUBJECTS_ERROR = 'Ocurrió un error tratando de obtener las materias del plan';
+const GET_SUBJECTS_REPORT_ERROR = 'Ocurrió un error tratando de obtener las estadisticas de la materia';
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +45,14 @@ export class SubjectService {
       return this.crudEndpointService.getAllFromParent(parentId, this.endpoint);
     } catch (e) {
       this.notificationService.showError(GET_SUBJECTS_ERROR);
+    }
+  }
+
+  getSubjectReportById(subjectId): Observable<SubjectReport> {
+    try {
+      return this.crudEndpointService.getReport(this.endpoint,subjectId);
+    } catch (e) {
+      this.notificationService.showError(GET_SUBJECTS_REPORT_ERROR);
     }
   }
 
