@@ -93,28 +93,12 @@ export class SubjectSelectorComponent implements OnInit {
     this.displayedSubjects = this.selectedProgramReport.subjects.filter((sbj) => sbj.level === selectedLevel);
   }
 
-
   private getProgramReport(selectedProgram: Program) {
     this.programService.getProgramStatById(selectedProgram.id)
       .subscribe(
         (programReport: ProgramReport) => {
           this.selectedProgramReport = programReport;
           this.level.setValue(FIRST_LEVEL);
-          //TODO: Change this once the endpoints adds the attribute level
-          this.addLevelToSubjects(selectedProgram)
         });
-  }
-  private addLevelToSubjects(selectedProgram: Program) {
-    this.subjectService.getSubjectsByProgram(selectedProgram)
-      .subscribe((subjects: Subject[]) => {
-        if (this.selectedProgramReport) {
-          subjects.forEach((subject: Subject) => {
-            const sameSubjectStat = this.selectedProgramReport.subjects.find(
-              (subjectStat: SubjectStat) => subjectStat.subjectId === subject.id
-            )
-            sameSubjectStat.level = subject.level
-          })
-        }
-      })
   }
 }
