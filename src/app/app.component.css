@@ -1,21 +1,21 @@
-.yellow-background{
+.yellow-background {
   background-color: #FFD438;
   height: 100%;
 }
 
- .main-container {
+.main-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative
- }
+}
 
- .opacity-background {
+.opacity-background {
   background-color: gray;
- }
+}
 
- .main-container::after {
+.main-container::after {
   content: "";
   background-image: url(../assets/pictures/buildings.png);
   background-repeat: no-repeat;
@@ -27,10 +27,10 @@
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;  
- }
+  z-index: -1;
+}
 
- .main-container::before {
+.main-container::before {
   content: "";
   background: url(../assets/pictures/cloud.png);
   opacity: 0.4;
@@ -44,6 +44,4 @@
   background-size: contain;
   height: 10rem;
   z-index: -1;
- }
-
-
+}

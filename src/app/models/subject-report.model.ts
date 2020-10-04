@@ -26,4 +26,14 @@ export class CourseStat {
     this.difficulty = difficulty;
     this.wouldTakeAgain = wouldTakeAgain;
   }
+
+  static orderByAscendingCommissionName(a: CourseStat, b: CourseStat) {
+    if (a.commissionName < b.commissionName) {
+      return -1;
+    }
+    if (a.commissionName > b.commissionName) {
+      return 1;
+    }
+    return 0;
+  }
 }

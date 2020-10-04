@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { SystemConfigService } from '../system/system-config.service';
 import { Observable } from 'rxjs';
 import 'rxjs-compat/add/operator/map';
-import { Endpoint } from '../../../models/endpoint.model';
-
-const ACTIVATE_SUFIX = 'activate';
-const URL_SUFIX = 'report';
+import { Endpoint, EndpointSuffix } from '../../../models/endpoint.model';
 
 @Injectable({
     providedIn: 'root'
@@ -47,7 +44,7 @@ export class CRUDEndpointsService {
     }
 
     getReport(endpoint: Endpoint, id: string): Observable<any> {
-        const url = this.buildReportUrl(endpoint, id);
+        const url = this.buildIdUrl(endpoint, id,EndpointSuffix.REPORT);
 
         return this.systemConfigService.httpGet(url);
     }
@@ -65,21 +62,16 @@ export class CRUDEndpointsService {
     }
 
     activate(endpoint: Endpoint, id: string): Observable<any> {
-        const url = this.buildActivateUrl(endpoint, id);
+        const url = this.buildIdUrl(endpoint, id, EndpointSuffix.ACTIVATE);
 
         return this.systemConfigService.httpPost(url);
     }
 
-    private buildIdUrl(endpoint: Endpoint, id: string): string {
-        return `${endpoint.base}/${id}`;
-    }
-
-    private buildActivateUrl(endpoint: Endpoint, id: string): string {
-        return `${endpoint.base}/${id}/${ACTIVATE_SUFIX}`;
-    }
-
-    private buildReportUrl(endpoint: Endpoint, id: string): string {
-        return `${endpoint.base}/${id}/${URL_SUFIX}`;
+    private buildIdUrl(
+        endpoint: Endpoint,
+        id: string,
+        suffix: EndpointSuffix = EndpointSuffix.DEFAULT): string {
+        return `${endpoint.base}/${id}/${suffix}`;
     }
 
     private buildParentUrl(parentId: string, endpoint: Endpoint): string {

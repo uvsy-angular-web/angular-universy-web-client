@@ -34,7 +34,7 @@ export class SubjectStatComponent implements OnInit {
   private generateGraphItems() {
     if (this.subjectReport.courses && this.subjectReport.courses.length > 0) {
       this.subjectReport.courses
-        .sort(this.orderByAscendingCommissionName)
+        .sort(CourseStat.orderByAscendingCommissionName)
         .forEach(
           (courseStat: CourseStat) => {
             const dificultyItem =
@@ -54,16 +54,6 @@ export class SubjectStatComponent implements OnInit {
         this.wouldTakeAgainItems.length > 0
     }
 
-  }
-
-  private orderByAscendingCommissionName(a: CourseStat, b: CourseStat) {
-    if (a.commissionName < b.commissionName) {
-      return -1;
-    }
-    if (a.commissionName > b.commissionName) {
-      return 1;
-    }
-    return 0;
   }
 
   private getSubjectReport() {

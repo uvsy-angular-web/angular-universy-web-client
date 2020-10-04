@@ -6,5 +6,10 @@ export class Endpoint {
         this.base = base;
         this.parent = parent;
     }
+}
 
+export enum EndpointSuffix {
+    DEFAULT = '',
+    ACTIVATE = 'activate',
+    REPORT = 'report'
 }

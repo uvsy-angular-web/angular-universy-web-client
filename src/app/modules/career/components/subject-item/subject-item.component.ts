@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { SubjectStat } from 'src/app/models/program-report.model';
-const PERCENTAGE_CONSTANT = 100;
 
 @Component({
   selector: 'app-subject-item',
@@ -16,14 +15,10 @@ export class SubjectItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.calculateProgress();
   }
 
   selectSubject() {
     this.subjectSelected.emit();
   }
 
-  private calculateProgress() {
-    this.progress = this.subject.rating * PERCENTAGE_CONSTANT;
-  }
 }
