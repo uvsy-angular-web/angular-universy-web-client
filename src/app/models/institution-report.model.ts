@@ -46,4 +46,3 @@ export class ProgramStat {
     this.amountOfSubjects = amountOfSubjects;
   }
 }
- 
