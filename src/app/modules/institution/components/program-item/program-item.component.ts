@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProgramStat } from 'src/app/models/institution-report.model';
-import { Program } from 'src/app/models/program.model';
 
 @Component({
   selector: 'app-program-item',
@@ -12,6 +11,7 @@ export class ProgramItemComponent implements OnInit {
   subjectCountTxt = 'Materias';
   optativeSubjectCountTxt = 'Optativas';
   overallRateTxt = 'Valuación general';
+
   constructor() { }
 
   ngOnInit() {

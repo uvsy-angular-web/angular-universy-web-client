@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { Subject } from 'src/app/models/subject.model';
+import { SubjectStat } from 'src/app/models/program-report.model';
 const PERCENTAGE_CONSTANT = 20;
 
 @Component({
@@ -10,14 +10,12 @@ const PERCENTAGE_CONSTANT = 20;
 export class SubjectItemComponent implements OnInit {
   isOptativeMessage = 'Optativa';
   @Input() active = false;
-  @Input() subject: Subject;
-  @Input() subjectRate = Math.floor(Math.random() * 5) + 0 ;
+  @Input() subject: SubjectStat;
   @Output() subjectSelected: EventEmitter<any> = new EventEmitter();
   progress = 0;
   constructor() { }
 
   ngOnInit() {
-    console.log(this.subject)
     this.calculateProgress();
   }
 
@@ -26,6 +24,6 @@ export class SubjectItemComponent implements OnInit {
   }
 
   private calculateProgress() {
-    this.progress = this.subjectRate * PERCENTAGE_CONSTANT;
+    this.progress = this.subject.rating * PERCENTAGE_CONSTANT;
   }
 }

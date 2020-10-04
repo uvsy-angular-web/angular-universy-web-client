@@ -9,6 +9,7 @@ import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { Endpoint } from 'src/app/models/endpoint.model';
 import { ModalService } from 'src/app/modals/modal.service';
 import { catchError } from 'rxjs/operators';
+import { ProgramReport } from 'src/app/models/program-report.model';
 
 const CURRENT_PROGRAM_KEY = 'current-program';
 const PROGRAM_OVERLAPED_CODE = 409;
@@ -50,6 +51,10 @@ export class ProgramService {
 
   getProgramsByCareer(career: Career): Observable<Program[]> {
     return this.crudEndpointService.getAllFromParent(career.id, this.endpoint);
+  }
+
+  getProgramStatById(programId: string): Observable<ProgramReport> {
+    return this.crudEndpointService.getReport(this.endpoint,programId);
   }
 
   deleteProgram(program: Program) {

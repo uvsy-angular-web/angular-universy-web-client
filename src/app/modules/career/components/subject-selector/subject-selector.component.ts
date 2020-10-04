@@ -6,6 +6,7 @@ import { Program } from 'src/app/models/program.model';
 import { ProgramService } from 'src/app/core/services/program.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AVAIABLE_LEVELS } from 'src/app/models/level';
+import { ProgramReport, SubjectStat } from 'src/app/models/program-report.model';
 
 const FIRST_ITEM_INDEX = 0;
 const FIRST_LEVEL = AVAIABLE_LEVELS[FIRST_ITEM_INDEX];
@@ -20,15 +21,15 @@ export class SubjectSelectorComponent implements OnInit {
   career: Career;
   levels = AVAIABLE_LEVELS;
   programs: Program[] = [];
-  subjects: Subject[] = [];
-  displayedSubjects: Subject[] = [];
+  selectedProgramReport: ProgramReport;
+  displayedSubjects: SubjectStat[] = [];
   form: FormGroup;
-  selectedSubject: Subject;
+  selectedSubject: SubjectStat;
   formTitle = 'Seleccione una materia';
   noSubjectMessage = 'No se encontraron materias cargadas para el nivel seleccionado.';
   planSelectLabel = 'Plan: ';
   levelSelectLabel = 'Nivel: ';
-  @Output() subjectSelected: EventEmitter<Subject> = new EventEmitter();
+  @Output() subjectSelected: EventEmitter<SubjectStat> = new EventEmitter();
 
   constructor(
     private programService: ProgramService,
@@ -40,7 +41,7 @@ export class SubjectSelectorComponent implements OnInit {
     this.createForm();
   }
 
-  selectSubject(subject: Subject) {
+  selectSubject(subject: SubjectStat) {
     this.selectedSubject = subject;
     this.subjectSelected.emit(subject);
   }
@@ -73,7 +74,9 @@ export class SubjectSelectorComponent implements OnInit {
 
   private subscribeToProgramChange() {
     this.program.valueChanges.subscribe(
-      (selectedProgram: Program) => this.getSubjects(selectedProgram)
+      (selectedProgram: Program) => {
+        this.getProgramReport(selectedProgram)
+      }
     );
   }
 
@@ -87,16 +90,31 @@ export class SubjectSelectorComponent implements OnInit {
   }
 
   private filterSubjectsForLevel(selectedLevel: number) {
-    this.displayedSubjects = this.subjects.filter((sbj) => sbj.level === selectedLevel);
+    this.displayedSubjects = this.selectedProgramReport.subjects.filter((sbj) => sbj.level === selectedLevel);
   }
 
-  private getSubjects(selectedProgram: Program) {
+
+  private getProgramReport(selectedProgram: Program) {
+    this.programService.getProgramStatById(selectedProgram.id)
+      .subscribe(
+        (programReport: ProgramReport) => {
+          this.selectedProgramReport = programReport;
+          this.level.setValue(FIRST_LEVEL);
+          //TODO: Change this once the endpoints adds the attribute level
+          this.addLevelToSubjects(selectedProgram)
+        });
+  }
+  private addLevelToSubjects(selectedProgram: Program) {
     this.subjectService.getSubjectsByProgram(selectedProgram)
       .subscribe((subjects: Subject[]) => {
-        this.subjects = subjects;
-
-        this.level.setValue(FIRST_LEVEL);
-      });
+        if (this.selectedProgramReport) {
+          subjects.forEach((subject: Subject) => {
+            const sameSubjectStat = this.selectedProgramReport.subjects.find(
+              (subjectStat: SubjectStat) => subjectStat.subjectId === subject.id
+            )
+            sameSubjectStat.level = subject.level
+          })
+        }
+      })
   }
-
 }
