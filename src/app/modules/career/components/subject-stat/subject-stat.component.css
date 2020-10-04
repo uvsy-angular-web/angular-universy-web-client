@@ -43,3 +43,12 @@
 .subject-name {
     margin: 1rem 0;
 }
+
+.no-stats-avaiable {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    font-style: italic;
+    font-size: 1rem;
+    padding:2rem;
+}

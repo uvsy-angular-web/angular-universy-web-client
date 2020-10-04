@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { SubjectStat } from 'src/app/models/program-report.model';
-const PERCENTAGE_CONSTANT = 20;
+const PERCENTAGE_CONSTANT = 100;
 
 @Component({
   selector: 'app-subject-item',

@@ -3,7 +3,7 @@
     <div class="text-right publish-btn-container">
         <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
     </div>
-    <div class="content">
+    <div class="content" *ngIf="institutionReport">
         <ngx-masonry>
             <div ngxMasonryItem *ngFor="let career of institutionReport.careers" class="career-stat-card">
                 <app-career-stats-card [career]="career"></app-career-stats-card>

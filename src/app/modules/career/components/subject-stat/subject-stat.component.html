@@ -21,14 +21,14 @@
                     <span class="subject-rate-number">{{subjectStat.rating}}
                         <i class="material-icons">star</i>
                     </span>
-                    <ngb-progressbar [height]="'0.7rem'" [value]="80">
+                    <ngb-progressbar [height]="'0.7rem'" [value]="subjectStat.rating*100">
                     </ngb-progressbar>
                 </div>
             </div>
         </div>
     </div>
     <h3>Valoraciones por curso de la materia</h3>
-    <div class="section-container">
+    <div *ngIf="hasCourseStats" class="section-container">
         <div class="graph-bar">
             <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems">
                 <p>
@@ -66,5 +66,8 @@
                 </p>
             </app-graph-and-description>
         </div>
+    </div>
+    <div *ngIf="!hasCourseStats">
+        <p class="no-stats-avaiable">{{noStatsAvaiableMessage}}</p>
     </div>
 </div>

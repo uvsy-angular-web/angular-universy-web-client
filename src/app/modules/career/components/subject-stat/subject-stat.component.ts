@@ -19,7 +19,8 @@ export class SubjectStatComponent implements OnInit {
   dificultGraphTitle = 'Dificultad por curso';
   overallGraphTitle = 'Valoración general por curso';
   wouldTakeAgainGraphTitle = 'Cursos elegidos por los estudiantes';
-
+  hasCourseStats = false;
+  noStatsAvaiableMessage = 'Parece que todavia no han valorado las comisiones';
   dificultsItems = [];
   overallItems = [];
   wouldTakeAgainItems = [];
@@ -28,7 +29,6 @@ export class SubjectStatComponent implements OnInit {
 
   ngOnInit() {
     this.getSubjectReport();
-
   }
 
   private generateGraphItems() {
@@ -45,9 +45,13 @@ export class SubjectStatComponent implements OnInit {
               new GraphItem(courseStat.commissionName, Math.floor(courseStat.wouldTakeAgain));
 
             this.dificultsItems.push(dificultyItem);
-            this.dificultsItems.push(overallItem);
-            this.dificultsItems.push(wouldTakeAgainItem);
+            this.overallItems.push(overallItem);
+            this.wouldTakeAgainItems.push(wouldTakeAgainItem);
           });
+      
+      this.hasCourseStats = this.dificultsItems.length > 0 &&
+        this.overallItems.length > 0 &&
+        this.wouldTakeAgainItems.length > 0
     }
 
   }
