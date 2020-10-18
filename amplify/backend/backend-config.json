@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "angularuniversywebclcb2dc950": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
