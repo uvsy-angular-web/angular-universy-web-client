@@ -1,0 +1,38 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-angularuniversywebcl-dev-194758-authRole",
+      "UnauthRoleArn": "arn:aws:iam::952339477220:role/amplify-angularuniversywebcl-dev-194758-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::952339477220:role/amplify-angularuniversywebcl-dev-194758-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-angularuniversywebcl-dev-194758-deployment",
+      "UnauthRoleName": "amplify-angularuniversywebcl-dev-194758-unauthRole",
+      "StackName": "amplify-angularuniversywebcl-dev-194758",
+      "StackId": "arn:aws:cloudformation:us-west-2:952339477220:stack/amplify-angularuniversywebcl-dev-194758/05e8ffc0-1194-11eb-a13b-0a25a13ca77a",
+      "AmplifyAppId": "duew0uixtzpfw"
+    }
+  },
+  "auth": {
+    "angularuniversywebclcb2dc950": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-angularuniversywebcl-dev-194758-deployment/amplify-cfn-templates/auth/angularuniversywebclcb2dc950-cloudformation-template.yml",
+        "logicalId": "authangularuniversywebclcb2dc950"
+      },
+      "lastPushTimeStamp": "2020-10-18T22:57:35.309Z",
+      "output": {
+        "AppClientSecret": "jdb3cun2mu2io784epfrulg0ph1laecuriugejkj1hiu0ii45el",
+        "UserPoolId": "us-west-2_LE0jm1Ixg",
+        "AppClientIDWeb": "7m0tiiakib9h20j36c9hsdk6km",
+        "AppClientID": "2bdo9bo7h32d7hmqj2nh6v2jo7",
+        "IdentityPoolId": "us-west-2:df9a6544-9b5e-4fad-963c-38a0fb5228e1",
+        "IdentityPoolName": "angularuniversywebclcb2dc950_identitypool_cb2dc950__dev",
+        "UserPoolName": "angularuniversywebclcb2dc950_userpool_cb2dc950"
+      },
+      "lastPushDirHash": "kbQKekvYJyhBrcAS5uByJvTwJ5k="
+    }
+  }
+}

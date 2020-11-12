@@ -1,0 +1,25 @@
+<div class="card">
+  <h4 class="title">{{formTitle}}</h4>
+  <form appForm [formGroup]="form">
+    <div class="form-group">
+      <label for="program-select">{{planSelectLabel}}</label>
+      <select id="program-select" appControlError class="form-control" formControlName="program">
+        <option *ngFor="let program of programs" [ngValue]="program">{{program.name}}</option>
+      </select>
+      <label for="level-select">{{levelSelectLabel}}</label>
+      <select id="level-select" appControlError class="form-control" formControlName="level">
+        <option *ngFor="let level of levels" [ngValue]="level">{{level}}</option>
+      </select>
+    </div>
+  </form>
+  <diV class="subject-separator"></diV>
+  <div *ngFor="let subject of displayedSubjects">
+    <app-subject-item [subject]="subject" (subjectSelected)="selectSubject(subject)"
+      [active]="selectedSubject === subject"></app-subject-item>
+  </div>
+  <div *ngIf="displayedSubjects.length === 0">
+   <div class="no-subject-message">
+     {{noSubjectMessage}}
+   </div>
+  </div>
+</div>
