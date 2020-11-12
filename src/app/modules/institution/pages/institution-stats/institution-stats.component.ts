@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Institution } from 'src/app/models/institution.model';
 import { InstitutionService } from 'src/app/core/services/institution.service';
-import { Career } from 'src/app/models/career.model';
-import { CareerService } from 'src/app/core/services/career.service';
+import { InstitutionReport } from 'src/app/models/institution-report.model';
 
 @Component({
   selector: 'app-institution-stats',
@@ -11,22 +9,24 @@ import { CareerService } from 'src/app/core/services/career.service';
 })
 export class InstitutionStatsComponent implements OnInit {
   title = 'Mis estadisticas';
-  careers: Career[] = [];
+  institutionReport: InstitutionReport;
   printButtonText = 'Imprimir';
   printStyle = {
     i: { opacity: 0 },
     button: { opacity: 0 }
   };
-  constructor(private careerService: CareerService) { }
+  constructor(private institutionServicce: InstitutionService) { }
 
   ngOnInit() {
-    this.getCurrentCareers();
+    this.getInstitutionReport();
   }
 
-  private getCurrentCareers() {
-    this.careerService.getAllCareers()
+  private getInstitutionReport() {
+    this.institutionServicce.getCurrentInstitutionReport()
       .subscribe(
-        (careers: Career[]) => this.careers = careers
-    );
+        (institutionReport: InstitutionReport) =>
+          this.institutionReport = institutionReport
+      )
   }
+
 }

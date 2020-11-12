@@ -1,19 +1,73 @@
-<h4 class="text-right">{{subject.name}}</h4>
-<div class="text-right subject-rate">
-    {{subjectRateTxt}}
-    <span class="subject-rate-number">{{subjectRate}}
-        <i class="material-icons">star</i>
-    </span>
-</div>
-<div class="graph-bar">
-    <app-graph-bar [title]="dificultGraphTitle" [items]="dificultsItems">
-    </app-graph-bar>
-</div>
-<div class="graph-bar">
-    <app-graph-bar [title]="overallGraphTitle" [items]="overallItems">
-    </app-graph-bar>
-</div>
-<div class="graph-bar">
-    <app-graph-bar [percentage]="true" [title]="wouldTakeAgainGraphTitle" [items]="wouldTakeAgainItems">
-    </app-graph-bar>
+<div class="card">
+    <h4 class="career-name">{{career.name}}</h4>
+    <h4 class="subject-name-container">
+        <span class="subject-name-label">{{subjectLabel}}</span>
+        <span class="subject-name">{{subjectStat.subjectName}}</span>
+    </h4>
+    <h3>Valoraciones por curso de la materia</h3>
+    <div class="section-container">
+        <div class="row">
+            <div class="col-6">
+                <p>
+                    Valor promedio del puntaje general
+                    de los estudiantes sobre la materia.
+                </p>
+                <p>
+                    Se trata de un valor entre <strong>0 y 5</strong>.
+                </p>
+            </div>
+            <div class="col-6">
+                <div class="text-right subject-rate">
+                    <span class="subject-rate-number">{{subjectStat.rating}}
+                        <i class="material-icons">star</i>
+                    </span>
+                    <ngb-progressbar [height]="'0.7rem'" [value]="subjectStat.ratingPercentage">
+                    </ngb-progressbar>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Valoraciones por curso de la materia</h3>
+    <div *ngIf="hasCourseStats" class="section-container">
+        <div class="graph-bar">
+            <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems">
+                <p>
+                    Valor promedio del puntaje general
+                    de los estudiantes sobre cada curso
+                </p>
+                <p>
+                    Es un valor que va <strong>0 y 5</strong>.
+                </p>
+            </app-graph-and-description>
+        </div>
+        <div class="graph-bar">
+            <app-graph-and-description [title]="dificultGraphTitle" [items]="dificultsItems">
+                <p>
+                    Valoración promedio por comisión
+                    de la dificultad de la materia.
+                </p>
+                <p>
+                    Es un valor que se encuentra
+                    entre <strong>0 y 5</strong>, siendo:
+                </p>
+                <ul>
+                    <li><strong>0:</strong> Muy fácil</li>
+                    <li><strong>5:</strong> Muy difícil</li>
+                </ul>
+            </app-graph-and-description>
+        </div>
+        <div class="graph-bar">
+            <app-graph-and-description [percentage]="true" [title]="wouldTakeAgainGraphTitle"
+                [items]="wouldTakeAgainItems">
+                <p>
+                    Porcentaje de estudiantes
+                    que indicaron que recomiendan
+                    el curso.
+                </p>
+            </app-graph-and-description>
+        </div>
+    </div>
+    <div *ngIf="!hasCourseStats">
+        <p class="no-stats-avaiable">{{noStatsAvaiableMessage}}</p>
+    </div>
 </div>

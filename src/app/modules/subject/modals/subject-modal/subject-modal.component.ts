@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from '../../../../models/subject.model';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { SubjectService } from 'src/app/core/services/subject.service';
+import { AVAIABLE_LEVELS } from 'src/app/models/level';
 const AMOUNT_VALIDATORS_MAX_LENGHT = 3;
 const AMOUNT_VALIDATORS_MIN_VALUE = 0;
 const AMOUNT_VALIDATORS_MAX_VALUE = 999;
@@ -29,7 +30,7 @@ export class SubjectModalComponent implements OnInit {
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
 
-  levels = [1, 2, 3, 4, 5];
+  levels = AVAIABLE_LEVELS;
   subjectsName: string[] = [];
 
   constructor(

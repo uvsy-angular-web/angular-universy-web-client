@@ -8,9 +8,11 @@ import { CRUDEndpointsService } from './system/crud-endpoints.service';
 import { Endpoint } from 'src/app/models/endpoint.model';
 import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { ModalService } from 'src/app/modals/modal.service';
+import { SubjectReport } from 'src/app/models/subject-report.model';
 
 const CURRENT_SUBJECT_KEY = 'current-subject';
 const GET_SUBJECTS_ERROR = 'Ocurrió un error tratando de obtener las materias del plan';
+const GET_SUBJECTS_REPORT_ERROR = 'Ocurrió un error tratando de obtener las estadisticas de la materia';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,21 +24,21 @@ export class SubjectService {
     private notificationService: ModalService) {
   }
 
-  addSubject(subject: Subject) {
+  public addSubject(subject: Subject) {
     const parentId = this.getParentId();
     subject.codename = 'WEB';
     return this.crudEndpointService.createOnParent(parentId, this.endpoint, subject);
   }
 
-  updateSubject(subject: Subject) {
+  public updateSubject(subject: Subject) {
     return this.crudEndpointService.update(this.endpoint, subject.id, subject);
   }
 
-  getSubjectsByProgram(program: Program): Observable<Subject[]> {
+  public getSubjectsByProgram(program: Program): Observable<Subject[]> {
     return this.crudEndpointService.getAllFromParent(program.id, this.endpoint);
   }
 
-  getSubjects(): Observable<Subject[]> {
+  public getSubjects(): Observable<Subject[]> {
     try {
       const parentId = this.getParentId();
 
@@ -46,13 +48,21 @@ export class SubjectService {
     }
   }
 
-  getSubjectsName(): Observable<string[]> {
+  public getSubjectReportById(subjectId: string): Observable<SubjectReport> {
+    try {
+      return this.crudEndpointService.getReport(this.endpoint, subjectId);
+    } catch (e) {
+      this.notificationService.showError(GET_SUBJECTS_REPORT_ERROR);
+    }
+  }
+
+  public getSubjectsName(): Observable<string[]> {
     return this.getSubjects().map((subjects) => {
       return subjects.map((subject: Subject) => subject.name);
     });
   }
 
-  deleteSubject(subject: Subject) {
+  public deleteSubject(subject: Subject) {
     return this.crudEndpointService.delete(this.endpoint, subject.id);
   }
 
@@ -60,15 +70,15 @@ export class SubjectService {
     return ProgramService.getCurrentProgram().id;
   }
 
-  static getCurrentSubject(): Subject {
+  public static getCurrentSubject(): Subject {
     return LocalStorageService.getObjectFromInLocalStorage(CURRENT_SUBJECT_KEY) as Subject;
   }
 
-  static setCurrentSubject(subject: Subject) {
+  public static setCurrentSubject(subject: Subject) {
     LocalStorageService.saveObjectInLocalStorage(CURRENT_SUBJECT_KEY, subject);
   }
 
-  static sortSubjectsByLevel(subjects: Subject[]) {
+  public static sortSubjectsByLevel(subjects: Subject[]) {
     if (subjects) {
       subjects.sort(SubjectService.isSubjectLevelGreater);
     }

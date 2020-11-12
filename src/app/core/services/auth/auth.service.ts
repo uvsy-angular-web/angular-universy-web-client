@@ -5,23 +5,32 @@ import { NavigationService } from '../system/navigation.service';
 import { LocalStorageService } from '../local-storage.service';
 import { CURRENT_USER_KEY } from './constants/auth.constants';
 import { InstitutionService } from '../institution.service';
-
+import { Auth } from 'aws-amplify';
+import { ModalService } from 'src/app/modals/modal.service';
+const USER_NOT_VALID_ERROR = 'El email o la contraseña no son validos.';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private notificationService: ModalService,
     private navigationService: NavigationService,
     private institutionService: InstitutionService,
   ) {
   }
 
-  login(user: User) {
-    // TODO: call the login method and save the token in the user
+  async login(user: User) {
     if (user) {
-      AuthService.setCurrentUser(user);
-      this.institutionService.setDefaultInstitution();
+      try {
+        const userFromAws = await Auth.signIn(user.username, user.password);
+        user.token = userFromAws.signInUserSession.accessToken.jwtToken;
+        AuthService.setCurrentUser(user);
+        this.institutionService.setDefaultInstitution();
+      }
+      catch {
+        this.notificationService.showError(USER_NOT_VALID_ERROR);
+      }
     }
   }
 

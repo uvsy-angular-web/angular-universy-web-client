@@ -9,6 +9,7 @@ import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { Endpoint } from 'src/app/models/endpoint.model';
 import { ModalService } from 'src/app/modals/modal.service';
 import { catchError } from 'rxjs/operators';
+import { ProgramReport } from 'src/app/models/program-report.model';
 
 const CURRENT_PROGRAM_KEY = 'current-program';
 const PROGRAM_OVERLAPED_CODE = 409;
@@ -30,7 +31,7 @@ export class ProgramService {
     private notificationService: ModalService) {
   }
 
-  addProgram(program: Program) {
+  public addProgram(program: Program) {
     const careerId = this.getCareerId();
     return this.crudEndpointService
       .createOnParent(careerId, this.endpoint, program)
@@ -42,21 +43,25 @@ export class ProgramService {
         )));
   }
 
-  getPrograms(): Observable<Program[]> {
+  public getPrograms(): Observable<Program[]> {
     const careerId = this.getCareerId();
 
     return this.crudEndpointService.getAllFromParent(careerId, this.endpoint);
   }
 
-  getProgramsByCareer(career: Career): Observable<Program[]> {
+  public getProgramsByCareer(career: Career): Observable<Program[]> {
     return this.crudEndpointService.getAllFromParent(career.id, this.endpoint);
   }
 
-  deleteProgram(program: Program) {
+  public getProgramStatById(programId: string): Observable<ProgramReport> {
+    return this.crudEndpointService.getReport(this.endpoint, programId);
+  }
+
+  public deleteProgram(program: Program) {
     return this.crudEndpointService.delete(this.endpoint, program.id);
   }
 
-  updateProgram(program: Program) {
+  public updateProgram(program: Program) {
     return this.crudEndpointService
       .update(this.endpoint, program.id, program)
       .pipe(catchError(err =>
@@ -67,7 +72,7 @@ export class ProgramService {
         )));
   }
 
-  publishProgram(program: Program) {
+  public publishProgram(program: Program) {
     return this.crudEndpointService.activate(this.endpoint, program.id);
   }
 
@@ -88,7 +93,7 @@ export class ProgramService {
     return currentInstitution.id;
   }
 
-  static checkIfIsCurrentPeriod(program: Program): boolean {
+  public static checkIfIsCurrentPeriod(program: Program): boolean {
     const currentYear = new Date().getFullYear();
 
     if (program.yearTo) {
@@ -99,11 +104,11 @@ export class ProgramService {
     }
   }
 
-  static setCurrentProgram(program: Program) {
+  public static setCurrentProgram(program: Program) {
     LocalStorageService.saveObjectInLocalStorage(CURRENT_PROGRAM_KEY, program);
   }
 
-  static getCurrentProgram(): Program {
+  public static getCurrentProgram(): Program {
     return LocalStorageService.getObjectFromInLocalStorage(CURRENT_PROGRAM_KEY) as Program;
   }
 }
