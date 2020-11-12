@@ -3,8 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { User } from '../../../../models/user.model';
 
-const USERNAME_MAX_LENGHT = 15;
-const PASSWORD_MAX_LENGHT = 8;
+const USERNAME_MAX_LENGHT = 150;
+const PASSWORD_MAX_LENGHT = 25;
 
 @Component({
   selector: 'app-log-in',

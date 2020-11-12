@@ -17,6 +17,11 @@ import {CourseModalModule} from './modules/course/modals/course-modal.module';
 import {CareerModalModule} from './modules/career/modals/career-modal.module';
 import {AuthGuard} from './shared/guards/auth.guard';
 import {TokenInterceptor} from './core/interceptors/token.interceptor';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import Amplify from 'aws-amplify';
+import awsconfig from '../aws-exports';
+
+Amplify.configure(awsconfig);
 
 @NgModule({
   declarations: [
@@ -35,7 +40,8 @@ import {TokenInterceptor} from './core/interceptors/token.interceptor';
     BrowserModule,
     NgbModule,
     MatProgressSpinnerModule,
-    CareerModalModule
+    CareerModalModule,
+    AmplifyUIAngularModule
   ],
   providers: [
     AuthGuard,
