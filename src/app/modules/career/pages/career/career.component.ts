@@ -55,7 +55,7 @@ export class CareerComponent implements OnInit {
     this.notificationService.openEditNameModal(
       'Modificar carrera',
       ButtonText.Edit,
-      '',
+      this.career.name,
     ).subscribe(
       (newCareerName) => this.editCareerName(newCareerName)
     );
