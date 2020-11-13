@@ -3,6 +3,7 @@ import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {Professor} from '../../../../models/professor.model';
+import { REG_EXP_ONLY_LETTERS } from 'src/app/shared/control-error/errors';
 
 const MAX_LENGTH = 55;
 
@@ -59,6 +60,6 @@ export class ProfessorModalComponent implements OnInit {
       [
         Validators.maxLength(MAX_LENGTH),
         Validators.required,
-        Validators.pattern('^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]*$')]);
+        Validators.pattern(REG_EXP_ONLY_LETTERS)]);
   }
 }

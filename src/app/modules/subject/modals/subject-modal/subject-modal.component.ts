@@ -5,6 +5,7 @@ import { Subject } from '../../../../models/subject.model';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { AVAIABLE_LEVELS } from 'src/app/models/level';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS } from 'src/app/shared/control-error/errors';
 const AMOUNT_VALIDATORS_MAX_LENGHT = 3;
 const AMOUNT_VALIDATORS_MIN_VALUE = 0;
 const AMOUNT_VALIDATORS_MAX_VALUE = 999;
@@ -138,7 +139,7 @@ export class SubjectModalComponent implements OnInit {
     return Validators.compose([
       Validators.maxLength(50),
       Validators.required,
-      Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
+      Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
     ]);
   }
 

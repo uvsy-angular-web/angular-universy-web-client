@@ -3,6 +3,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ButtonText} from '../../../../shared/enums/button-text.enum';
 import {ColSize} from '../../../../shared/enums/col-size.enum';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS } from 'src/app/shared/control-error/errors';
 
 @Component({
   selector: 'app-course-modal',
@@ -57,7 +58,7 @@ export class CourseModalComponent implements OnInit {
       [
         Validators.maxLength(10),
         Validators.required,
-        Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
+        Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
       ]);
   }
 

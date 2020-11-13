@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS } from 'src/app/shared/control-error/errors';
 import { Program } from '../../../../models/program.model';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
-
-const REG_EX_CAREER_NAME = '^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$';
 
 const CAREER_NAME_MAX_LENGTH = 35;
 
@@ -190,7 +189,7 @@ export class ProgramModalComponent implements OnInit {
     return [
       Validators.maxLength(CAREER_NAME_MAX_LENGTH),
       Validators.required,
-      Validators.pattern(REG_EX_CAREER_NAME)
+      Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
     ];
   }
 
