@@ -8,3 +8,11 @@
   padding-top:2rem;
   padding-bottom:2rem;
 }
+
+.content{
+  background-color: #f1f0f0;
+  padding: 2rem;
+  padding-right: 3rem;
+  border-radius: 1.5rem;
+  margin: 1.3rem 0;
+}

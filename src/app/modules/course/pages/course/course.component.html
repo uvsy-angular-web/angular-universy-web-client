@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-10">
-      <app-custom-title [title]="title"
-                        [showEditButton]="false"
-                        [showDeleteButton]="true"
-                        (deleteItem)="openDeleteModal()">
+      <app-custom-title [title]="title" [showEditButton]="false" [showDeleteButton]="true"
+        (deleteItem)="openDeleteModal()">
 
       </app-custom-title>
     </div>
@@ -24,7 +22,9 @@
       </div>
     </div>
   </div>
-  <div class="col-12">
-    <button class="btn btn-primary btn-guardar" (click)="saveCourse()">Guardar</button>
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-primary btn-guardar" (click)="saveCourse()">Guardar</button>
+    </div>
   </div>
 </div>
