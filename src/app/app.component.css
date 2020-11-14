@@ -11,6 +11,10 @@
   position: relative
 }
 
+.content {
+  height: 100%;
+}
+
 .opacity-background {
   background-color: gray;
 }
