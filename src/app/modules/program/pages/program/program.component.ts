@@ -30,6 +30,7 @@ const DELETE_COMMISSION_MODAL_QUESTION = '¿ Desea continuar ?';
 export class ProgramComponent implements OnInit {
   optativeHeader = 'Optativa';
   addSubjectText = 'Agregar materia';
+  levelText = 'Nivel';
   addOptativeSubjectText = 'Agregar materia optativa';
   program: Program;
   subjects: Subject[] = [];

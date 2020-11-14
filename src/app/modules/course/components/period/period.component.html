@@ -1,9 +1,10 @@
 <div class="periods-container">
-  <div *ngFor="let period of periods" class="margin-top-2">
+  <div *ngFor="let period of periods" class="card margin-top-2">
     <app-custom-title [title]="getPeriodRangeTitle(period)"
                       [showNavigationArrow]="false"
                       (deleteItem)="deletePeriod(period)"
                       (editItem)="editPeriod(period)"></app-custom-title>
+    <hr/>
     <div class="content">
       <app-schedules [schedules]="period.schedules"
                      (scheduleAdded)="addSchedule($event,period)"

@@ -10,6 +10,7 @@
     </div>
   </div>
   <hr>
+
   <div class="content">
     <div class="row">
       <div class="col-10">
@@ -17,14 +18,12 @@
       </div>
       <app-add-item (buttonPressed)="openNewPeriodModal()" [buttonTitle]="'Agregar Período'"></app-add-item>
     </div>
-
     <div class="content">
       <div *ngIf="course">
         <app-period [periods]="course.periods || []"></app-period>
       </div>
     </div>
   </div>
-
   <div class="col-12">
     <button class="btn btn-primary btn-guardar" (click)="saveCourse()">Guardar</button>
   </div>
