@@ -39,10 +39,10 @@ export class SubjectStatComponent implements OnChanges {
   }
 
   private generateGraphItems() {
+    this.dificultsItems = [];
+    this.overallItems = [];
+    this.wouldTakeAgainItems = [];
     if (this.subjectReport.courses && this.subjectReport.courses.length > 0) {
-      this.dificultsItems = [];
-      this.overallItems = [];
-      this.wouldTakeAgainItems = [];
       this.subjectReport.courses
         .sort(CourseStat.orderByAscendingCommissionName)
         .forEach(
@@ -58,11 +58,10 @@ export class SubjectStatComponent implements OnChanges {
             this.overallItems.push(overallItem);
             this.wouldTakeAgainItems.push(wouldTakeAgainItem);
           });
-
-      this.hasCourseStats = this.dificultsItems.length > 0 &&
-        this.overallItems.length > 0 &&
-        this.wouldTakeAgainItems.length > 0;
     }
+    this.hasCourseStats = this.dificultsItems.length > 0 &&
+    this.overallItems.length > 0 &&
+    this.wouldTakeAgainItems.length > 0;
 
   }
 
