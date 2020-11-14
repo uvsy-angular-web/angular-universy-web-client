@@ -102,7 +102,7 @@ export class SubjectComponent implements OnInit {
       })
     );
   }
-  onCourseClick(course: Course) {
+  navigateToCoursePage(course: Course) {
     CourseService.setCurrentCourse(course);
     this.navigationService.navigateToCoursePage();
   }
@@ -118,7 +118,7 @@ export class SubjectComponent implements OnInit {
       (confirm) => {
         if (confirm) {
           this.courseService.addCourse(commission).subscribe(
-            () => this.getCourses()
+            (course: Course) => this.navigateToCoursePage(course)
           );
         }
       }
