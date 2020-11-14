@@ -22,6 +22,9 @@ export class SubjectStatComponent implements OnChanges {
   public dificultGraphTitle = 'Dificultad por curso';
   public overallGraphTitle = 'Valoración general por curso';
   public wouldTakeAgainGraphTitle = 'Cursos elegidos por los estudiantes';
+  public dificultGraphLeyend = '*Gráfico de dificultad valorada por curso';
+  public overallGraphLeyend = '*Gráfico de valoración general por curso';
+  public wouldTakeAgainGraphLeyend = '*Gráfico de recomendación por curso';
   public hasCourseStats = false;
   public noStatsAvaiableMessage = 'Parece que todavia no han valorado las comisiones';
   public noSubjectSelected = 'Debes seleccionar una materia en el panel de la izquierda';
@@ -37,14 +40,17 @@ export class SubjectStatComponent implements OnChanges {
 
   private generateGraphItems() {
     if (this.subjectReport.courses && this.subjectReport.courses.length > 0) {
+      this.dificultsItems = [];
+      this.overallItems = [];
+      this.wouldTakeAgainItems = [];
       this.subjectReport.courses
         .sort(CourseStat.orderByAscendingCommissionName)
         .forEach(
           (courseStat: CourseStat) => {
             const dificultyItem =
-              new GraphItem(courseStat.commissionName, Math.floor(courseStat.difficulty * 100));
+              new GraphItem(courseStat.commissionName, Math.floor(courseStat.difficulty));
             const overallItem =
-              new GraphItem(courseStat.commissionName, Math.floor(courseStat.rating * 100));
+              new GraphItem(courseStat.commissionName, Math.floor(courseStat.rating));
             const wouldTakeAgainItem =
               new GraphItem(courseStat.commissionName, Math.floor(courseStat.wouldTakeAgain));
 

@@ -1,5 +1,14 @@
 .graph-bar {
     margin-bottom: 2rem;
+    overflow-x: hidden;
+}
+
+.graph-leyend {
+    text-align: right;
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-style: italic;
+   padding-left: 20%;
 }
 
 .title {

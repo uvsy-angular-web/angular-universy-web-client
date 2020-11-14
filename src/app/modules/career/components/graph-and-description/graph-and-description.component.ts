@@ -12,6 +12,8 @@ export class GraphAndDescriptionComponent implements OnInit {
   @Input()
   public title: string;
   @Input()
+  public leyend: string;
+  @Input()
   public items: GraphItem[] = [];
 
   constructor() { }

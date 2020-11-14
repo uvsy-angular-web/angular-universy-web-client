@@ -14,11 +14,18 @@
 }
 
 .graph-bar {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .section-container {
     padding: 1rem;
+}
+
+.secondary-card{
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    padding-right: 3rem;
+    border-radius: 1.5rem;
 }
 
 ::ng-deep .progress-bar {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 const MAX_PERCENTAGE = 100;
 
 @Component({
@@ -6,14 +6,15 @@ const MAX_PERCENTAGE = 100;
   templateUrl: './graph-bar.component.html',
   styleUrls: ['./graph-bar.component.css']
 })
-export class GraphBarComponent implements OnInit {
+export class GraphBarComponent implements OnChanges {
   @Input() items: GraphItem[] = [];
   @Input() percentage = false;
   maxValue: number;
+  minValue = 0;
   maxValuePercentage: number;
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.calculateMaxValue();
     this.calculateHeights();
   }

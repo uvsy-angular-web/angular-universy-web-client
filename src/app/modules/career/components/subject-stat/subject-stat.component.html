@@ -6,7 +6,7 @@
             <span class="subject-name">{{subjectStat.subjectName}}</span>
         </h4>
         <h3>Valoraciones por curso de la materia</h3>
-        <div class="section-container">
+        <div class="section-container secondary-card margin-top-1">
             <div class="row">
                 <div class="col-6">
                     <p>
@@ -28,10 +28,10 @@
                 </div>
             </div>
         </div>
-        <h3>Valoraciones por curso de la materia</h3>
+        <h3 class="margin-top-2">Valoraciones por curso de la materia</h3>
         <div *ngIf="hasCourseStats" class="section-container">
-            <div class="graph-bar">
-                <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems">
+            <div class="graph-bar secondary-card">
+                <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems" [leyend]="overallGraphLeyend">
                     <p>
                         Valor promedio del puntaje general
                         de los estudiantes sobre cada curso
@@ -41,8 +41,8 @@
                     </p>
                 </app-graph-and-description>
             </div>
-            <div class="graph-bar">
-                <app-graph-and-description [title]="dificultGraphTitle" [items]="dificultsItems">
+            <div class="graph-bar secondary-card">
+                <app-graph-and-description [title]="dificultGraphTitle" [items]="dificultsItems" [leyend]="dificultGraphLeyend">
                     <p>
                         Valoración promedio por comisión
                         de la dificultad de la materia.
@@ -57,8 +57,8 @@
                     </ul>
                 </app-graph-and-description>
             </div>
-            <div class="graph-bar">
-                <app-graph-and-description [percentage]="true" [title]="wouldTakeAgainGraphTitle"
+            <div class="graph-bar secondary-card">
+                <app-graph-and-description [percentage]="true" [title]="wouldTakeAgainGraphTitle" [leyend]="wouldTakeAgainGraphLeyend"
                     [items]="wouldTakeAgainItems">
                     <p>
                         Porcentaje de estudiantes
