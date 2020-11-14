@@ -24,6 +24,7 @@ export class SubjectStatComponent implements OnInit {
   public wouldTakeAgainGraphTitle = 'Cursos elegidos por los estudiantes';
   public hasCourseStats = false;
   public noStatsAvaiableMessage = 'Parece que todavia no han valorado las comisiones';
+  public noSubjectSelected = 'Debes seleccionar una materia en el panel de la izquierda';
   public dificultsItems = [];
   public overallItems = [];
   public wouldTakeAgainItems = [];
