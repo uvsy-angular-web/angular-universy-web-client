@@ -33,8 +33,10 @@
 }
 
 .career-name {
-    padding: 1.5rem;
-    text-align: center;
+    padding: 1.5rem 0;
+    text-align: left;
+    font-size: 1.6rem;
+    font-weight: bold;
     border-bottom: 1px solid #e3e3e3;
 }
 
