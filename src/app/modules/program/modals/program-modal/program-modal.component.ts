@@ -25,9 +25,9 @@ const SHOW_YEAR_TO_INITIAL_VALUE = true;
 export class ProgramModalComponent implements OnInit {
   nameInputText = 'Nombre';
   setUndefinedYearToText = 'No especificar fin';
-  yearFromInputText = 'Año de inicio';
+  yearFromInputText = 'Año desde';
   labelSeparator = '-';
-  yearToInputText = 'Año de fin';
+  yearToInputText = 'Año hasta';
   yearToDefaultText = 'Indefinido';
   optativeQuestionText = '¿ Requiere materias optativas ?';
   requiresOptativesText = 'Si';
@@ -37,6 +37,7 @@ export class ProgramModalComponent implements OnInit {
   amountOfHoursInputText = 'Cantidad de horas: ';
   amountOfPointsInputText = 'Cantidad de puntos: ';
   undefinedYearToText = 'Indefinido';
+  periodText = 'Periodo';
   showYearToInput = SHOW_YEAR_TO_INITIAL_VALUE;
   form: FormGroup;
   @Input() title: string;
@@ -142,7 +143,7 @@ export class ProgramModalComponent implements OnInit {
       points: new FormControl(this.program.points, Validators.compose(ProgramModalComponent._getAmountOfValidators()))
     });
 
-    this.configureForm()
+    this.configureForm();
   }
 
   private configureForm() {
@@ -157,8 +158,10 @@ export class ProgramModalComponent implements OnInit {
 
     this.setUndefinedYearTo.valueChanges.subscribe(
       value => {
-        this.showYearToInput = value;
-        this.yearTo.setValue(null);
+        this.showYearToInput = !value;
+        if (!value) {
+          this.yearTo.setValue(null);
+        }
       }
     );
 

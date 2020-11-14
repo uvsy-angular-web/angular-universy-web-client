@@ -3,7 +3,7 @@
     padding-left: 0.5em;
 }
 
-.requires-optatives {
+.sub-form{
     padding-left: 2rem;
 }
 
@@ -13,19 +13,18 @@
     text-align: left;
 }
 
-.modal-body{
-    padding:0.5rem
+.modal-body {
+    padding: 2rem
 }
 
-.year-separator{
+.year-separator {
     font-size: 1.5rem;
     font-weight: 100;
     padding-top: 2rem;
     color: gray;
 }
 
-
-.undefined-year-to-text{
+.undefined-year-to-text {
     font-style: italic;
     padding-top: 0.5rem;
     color: gray;
