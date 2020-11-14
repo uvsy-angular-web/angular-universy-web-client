@@ -14,19 +14,29 @@
 }
 
 .graph-bar {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .section-container {
     padding: 1rem;
 }
 
+.secondary-card{
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    padding-right: 3rem;
+    border-radius: 1.5rem;
+}
+
 ::ng-deep .progress-bar {
     background-color: #8046b6 !important;
-  }
+}
+
 .career-name {
-    padding: 1.5rem;
-    text-align: center;
+    padding: 1.5rem 0;
+    text-align: left;
+    font-size: 1.6rem;
+    font-weight: bold;
     border-bottom: 1px solid #e3e3e3;
 }
 
@@ -50,5 +60,11 @@
     text-align: center;
     font-style: italic;
     font-size: 1rem;
-    padding:2rem;
+    padding: 2rem;
+    color: gray;
+}
+
+.card {
+    padding-left: 3rem;
+    padding-right: 3rem;
 }

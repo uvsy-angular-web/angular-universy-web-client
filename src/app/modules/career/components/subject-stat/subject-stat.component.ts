@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { GraphItem } from 'src/app/shared/components/graph-bar/graph-bar.component';
 import { Career } from 'src/app/models/career.model';
 import { SubjectReport } from 'src/app/models/subject-report.model';
@@ -11,7 +11,7 @@ import { SubjectStat } from 'src/app/models/subject-stat.model';
   templateUrl: './subject-stat.component.html',
   styleUrls: ['./subject-stat.component.css']
 })
-export class SubjectStatComponent implements OnInit {
+export class SubjectStatComponent implements OnChanges {
   @Input()
   public career: Career;
   @Input()
@@ -22,28 +22,35 @@ export class SubjectStatComponent implements OnInit {
   public dificultGraphTitle = 'Dificultad por curso';
   public overallGraphTitle = 'Valoración general por curso';
   public wouldTakeAgainGraphTitle = 'Cursos elegidos por los estudiantes';
+  public dificultGraphLeyend = '*Gráfico de dificultad valorada por curso';
+  public overallGraphLeyend = '*Gráfico de valoración general por curso';
+  public wouldTakeAgainGraphLeyend = '*Gráfico de recomendación por curso';
   public hasCourseStats = false;
   public noStatsAvaiableMessage = 'Parece que todavia no han valorado las comisiones';
+  public noSubjectSelected = 'Debes seleccionar una materia en el panel de la izquierda';
   public dificultsItems = [];
   public overallItems = [];
   public wouldTakeAgainItems = [];
 
   constructor(private subjectService: SubjectService) { }
 
-  public ngOnInit() {
+  public ngOnChanges() {
     this.getSubjectReport();
   }
 
   private generateGraphItems() {
+    this.dificultsItems = [];
+    this.overallItems = [];
+    this.wouldTakeAgainItems = [];
     if (this.subjectReport.courses && this.subjectReport.courses.length > 0) {
       this.subjectReport.courses
         .sort(CourseStat.orderByAscendingCommissionName)
         .forEach(
           (courseStat: CourseStat) => {
             const dificultyItem =
-              new GraphItem(courseStat.commissionName, Math.floor(courseStat.difficulty * 100));
+              new GraphItem(courseStat.commissionName, Math.floor(courseStat.difficulty));
             const overallItem =
-              new GraphItem(courseStat.commissionName, Math.floor(courseStat.rating * 100));
+              new GraphItem(courseStat.commissionName, Math.floor(courseStat.rating));
             const wouldTakeAgainItem =
               new GraphItem(courseStat.commissionName, Math.floor(courseStat.wouldTakeAgain));
 
@@ -51,22 +58,23 @@ export class SubjectStatComponent implements OnInit {
             this.overallItems.push(overallItem);
             this.wouldTakeAgainItems.push(wouldTakeAgainItem);
           });
-
-      this.hasCourseStats = this.dificultsItems.length > 0 &&
-        this.overallItems.length > 0 &&
-        this.wouldTakeAgainItems.length > 0
     }
+    this.hasCourseStats = this.dificultsItems.length > 0 &&
+    this.overallItems.length > 0 &&
+    this.wouldTakeAgainItems.length > 0;
 
   }
 
   private getSubjectReport() {
-    this.subjectService
-      .getSubjectReportById(this.subjectStat.subjectId)
-      .subscribe(
-        (subjectReport: SubjectReport) => {
-          this.subjectReport = subjectReport
-          this.generateGraphItems();
-        }
-      )
+    if (this.subjectStat) {
+      this.subjectService
+        .getSubjectReportById(this.subjectStat.subjectId)
+        .subscribe(
+          (subjectReport: SubjectReport) => {
+            this.subjectReport = subjectReport;
+            this.generateGraphItems();
+          }
+        );
+    }
   }
 }

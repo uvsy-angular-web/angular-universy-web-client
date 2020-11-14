@@ -45,17 +45,14 @@ export class CareerComponent implements OnInit {
   }
 
   editStateOfCareer(state: boolean) {
-    if (state) {
-      this.activateCareer();
-      // TODO: Adds inactivate career
-    }
+    this.activateCareer(state);
   }
 
   openEditCareerModal() {
     this.notificationService.openEditNameModal(
       'Modificar carrera',
       ButtonText.Edit,
-      '',
+      this.career.name,
     ).subscribe(
       (newCareerName) => this.editCareerName(newCareerName)
     );
@@ -114,8 +111,8 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  private activateCareer() {
-    this.careerService.activateCareer(this.career).subscribe(
+  private activateCareer(isActive: boolean) {
+    this.careerService.activateCareer(this.career, isActive).subscribe(
       () => {
         CareerService.setCurrentCareer(this.career);
       }, ((error) => {

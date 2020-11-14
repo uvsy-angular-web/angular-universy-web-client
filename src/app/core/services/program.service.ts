@@ -73,7 +73,8 @@ export class ProgramService {
   }
 
   public publishProgram(program: Program) {
-    return this.crudEndpointService.activate(this.endpoint, program.id);
+    program.active = true
+    return this.crudEndpointService.update(this.endpoint, program.id, program);
   }
 
   private handleError(

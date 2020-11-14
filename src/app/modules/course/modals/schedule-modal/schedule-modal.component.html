@@ -1,5 +1,4 @@
-<app-modal-header [title]="title"
-                  (closeEvent)="cancelAction()"></app-modal-header>
+<app-modal-header [title]="title" (closeEvent)="cancelAction()"></app-modal-header>
 <form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
   <div class="modal-body">
     <div class="row" id="time-row">
@@ -8,10 +7,7 @@
           <label for="item-text">
             Hora inicio:
           </label>
-          <ngb-timepicker id="begin-time"
-                          [spinners]="false"
-                          appControlError
-                          formControlName="beginTime"></ngb-timepicker>
+          <ngb-timepicker id="begin-time" appControlError formControlName="beginTime"></ngb-timepicker>
         </div>
       </div>
       <div class="col-1 align-self-center">
@@ -22,45 +18,40 @@
           <label for="end-time">
             Hora fin:
           </label>
-          <ngb-timepicker id="end-time"
-                          [spinners]="false"
-                          appControlError
-                          formControlName="endTime"></ngb-timepicker>
+          <ngb-timepicker id="end-time" appControlError formControlName="endTime"></ngb-timepicker>
         </div>
       </div>
-    </div>
-    <div class="row">
       <div class="col-12">
-        <div class="form-group">
-          <div class="col-6">
-            <label for="item-text">
-              Aula:
-            </label>
-            <div class="control">
-              <input id="item-text" appControlError
-                     class="form-control"
-                     type="text" formControlName="classroom">
+        <app-error-message [hidden]="!formError" [errorMessage]="formError">
+        </app-error-message>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <div class="col-6">
+              <label for="item-text">
+                Aula:
+              </label>
+              <div class="control">
+                <input id="item-text" appControlError class="form-control" type="text" formControlName="classroom">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <div class="col-6">
+              <label for="begin-month">Dia de la semana: </label>
+              <select id="begin-month" appControlError class="form-control" formControlName="dayOfWeek">
+                <option *ngFor="let day of days" [ngValue]="day.id">{{day.name}}</option>
+              </select>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <div class="form-group">
-          <div class="col-6">
-            <label for="begin-month">Dia de la semana: </label>
-            <select id="begin-month" appControlError
-                    class="form-control" formControlName="dayOfWeek">
-              <option *ngFor="let day of days" [ngValue]="day.id">{{day.name}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline"
-            (click)="cancelAction()">Cancelar
-    </button>
-    <button type="submit" class="btn btn-primary">{{confirmButtonText}}</button>
+    <app-modal-confirm-footer (confirmAction)="confirmAction()" (cancelAction)="cancelAction()"
+      [confirmButtonText]="confirmButtonText">
+    </app-modal-confirm-footer>
   </div>
 </form>

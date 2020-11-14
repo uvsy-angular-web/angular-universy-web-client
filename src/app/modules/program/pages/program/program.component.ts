@@ -20,7 +20,7 @@ const ADD_COMMISSION_MODAL_TITLE = 'Agregar comisión';
 const EDIT_COMMISSION_MODAL_TITLE = 'Modificar comisión';
 const DELETE_COMMISSION_MODAL_TITLE = 'Borrar comisión';
 const DELETE_COMMISSION_MODAL_MESSAGE = 'Usted esta por eliminar una comisión, se perdera toda información cargada a la misma.';
-const DELETE_COMMISSION_MODAL_QUESTION = '¿ Está segure que desea continuar ?';
+const DELETE_COMMISSION_MODAL_QUESTION = '¿ Desea continuar ?';
 
 @Component({
   selector: 'app-plan-edit',
@@ -30,6 +30,7 @@ const DELETE_COMMISSION_MODAL_QUESTION = '¿ Está segure que desea continuar ?'
 export class ProgramComponent implements OnInit {
   optativeHeader = 'Optativa';
   addSubjectText = 'Agregar materia';
+  levelText = 'Nivel';
   addOptativeSubjectText = 'Agregar materia optativa';
   program: Program;
   subjects: Subject[] = [];

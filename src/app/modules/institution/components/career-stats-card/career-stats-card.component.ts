@@ -20,7 +20,7 @@ export class CareerStatsCardComponent implements OnInit {
   }
 
   navigateToCareerStats() {
-    const currentCareer = new Career(this.career.careerId)
+    const currentCareer = new Career(this.career.careerId, this.career.careerName)
     CareerService.setCurrentCareer(currentCareer);
     this.navigationService.navigateToRoute(Route.CAREER_STATS);
   }

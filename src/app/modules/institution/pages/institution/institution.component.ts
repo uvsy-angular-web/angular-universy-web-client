@@ -4,6 +4,7 @@ import { CareerService } from '../../../../core/services/career.service';
 import { CareerModalService } from '../../../career/modals/career-modal.service';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { NavigationService } from '../../../../core/services/system/navigation.service';
+import { ModalService } from 'src/app/modals/modal.service';
 
 
 @Component({
@@ -18,7 +19,9 @@ export class InstitutionComponent implements OnInit {
   constructor(
     private careerService: CareerService,
     private navigationService: NavigationService,
-    private careerModalService: CareerModalService) {
+    private careerModalService: CareerModalService,
+    private notificationService: ModalService,
+    ) {
   }
 
   ngOnInit(): void {
@@ -30,10 +33,10 @@ export class InstitutionComponent implements OnInit {
   }
 
   public openNewCareerModal() {
-    this.careerModalService.openEditCareerNameModal(
+    this.notificationService.openEditNameModal(
       'Agregar carrera',
       ButtonText.Add,
-      ''
+      '',
     ).subscribe(
       (newCareerName) => this.addCareer(newCareerName)
     );

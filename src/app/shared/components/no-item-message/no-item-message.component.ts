@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class NoItemMessageComponent implements OnInit {
 
   @Input() message: string;
+  @Input() size = 'normal';
 
   constructor() { }
 

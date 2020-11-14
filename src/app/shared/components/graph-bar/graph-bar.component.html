@@ -1,7 +1,7 @@
 
 <div class="graph">
-    <div *ngFor="let item of items" class="graph-bar text-center">
-        <div class="bar-value">{{item.value}}<span *ngIf="percentage"> %</span></div>
+    <div *ngFor="let item of items" class="graph-bar text-center" >
+        <div class="bar-value" [class.bar-value-max]="item.value === maxValue" [class.bar-value-min]="item.value === minValue">{{item.value}}<span *ngIf="percentage"> %</span></div>
         <div class="bar" [style.height.%]="item.percentage" [class.bar-max]="item.value === maxValue"></div>
         <div class="bar-label">{{item.label}}</div>
     </div>

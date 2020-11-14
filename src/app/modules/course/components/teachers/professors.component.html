@@ -1,4 +1,4 @@
-<h3 class="margin-top-2">
+<h3>
   Profesores
 </h3>
 <app-add-item (buttonPressed)="openNewScheduleModal()"
@@ -25,6 +25,6 @@
     </tbody>
   </table>
 </div>
-<div *ngIf="professors.length === 0">
-  <app-no-item-message [message]="noProfessorMessage"></app-no-item-message>
+<div *ngIf="professors.length === 0"  class="margin-top-2">
+  <app-no-item-message [message]="noProfessorMessage" [size]="'small'"></app-no-item-message>
 </div>

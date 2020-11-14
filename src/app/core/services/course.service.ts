@@ -32,7 +32,7 @@ export class CourseService {
     return this.crudEndpointService.getAllFromParent(parentId, this.endpoint);
   }
 
-  addCourse(commission: Commission, subject?: Subject) {
+  addCourse(commission: Commission, subject?: Subject): Observable<Course> {
     const parentId = subject ? subject.id : this.getParentId();
     const body = { commissionId: commission.id };
 

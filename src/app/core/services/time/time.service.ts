@@ -7,12 +7,26 @@ const INDEX_MINUTES_END = 4;
 
 const TIME_UNIT_FILLER = 0;
 
+export class Time {
+  hour: number;
+  minute: number;
+
+  constructor(hour?: number, minute?: number) {
+    this.hour = hour;
+    this.minute = minute;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class TimeService {
 
   constructor() {
+  }
+
+  public static areTimesValids(beginTime: Time, endTime: Time): boolean {
+    return beginTime.hour < endTime.hour && beginTime.minute < endTime.minute;
   }
 
   public static showTime(timeNumber: number): string {
@@ -22,14 +36,14 @@ export class TimeService {
     return `${hour} : ${minute}`;
   }
 
-  public static getTime(timeNumber): Time {
+  public static getTime(timeNumber, defaultTime?: Time): Time {
     if (timeNumber) {
       const timeString = TimeService.timeStringFormatted(timeNumber);
       const hours = +timeString.substr(INDEX_HOUR_START, INDEX_HOUR_END);
       const minutes = +timeString.substr(INDEX_MINUTES_START, INDEX_MINUTES_END);
       return new Time(hours, minutes);
     }
-    return new Time();
+    return defaultTime || new Time();
   }
 
   public static getTimeNumber(time: Time): number {
@@ -48,12 +62,3 @@ export class TimeService {
 
 }
 
-export class Time {
-  hour: number;
-  minute: number;
-
-  constructor(hour?: number, minute?: number) {
-    this.hour = hour;
-    this.minute = minute;
-  }
-}

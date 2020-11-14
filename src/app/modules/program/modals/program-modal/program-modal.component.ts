@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS } from 'src/app/shared/control-error/errors';
 import { Program } from '../../../../models/program.model';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
-
-const REG_EX_CAREER_NAME = '^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$';
 
 const CAREER_NAME_MAX_LENGTH = 35;
 
@@ -26,9 +25,9 @@ const SHOW_YEAR_TO_INITIAL_VALUE = true;
 export class ProgramModalComponent implements OnInit {
   nameInputText = 'Nombre';
   setUndefinedYearToText = 'No especificar fin';
-  yearFromInputText = 'Año de inicio';
+  yearFromInputText = 'Año desde';
   labelSeparator = '-';
-  yearToInputText = 'Año de fin';
+  yearToInputText = 'Año hasta';
   yearToDefaultText = 'Indefinido';
   optativeQuestionText = '¿ Requiere materias optativas ?';
   requiresOptativesText = 'Si';
@@ -38,6 +37,7 @@ export class ProgramModalComponent implements OnInit {
   amountOfHoursInputText = 'Cantidad de horas: ';
   amountOfPointsInputText = 'Cantidad de puntos: ';
   undefinedYearToText = 'Indefinido';
+  periodText = 'Periodo';
   showYearToInput = SHOW_YEAR_TO_INITIAL_VALUE;
   form: FormGroup;
   @Input() title: string;
@@ -143,7 +143,7 @@ export class ProgramModalComponent implements OnInit {
       points: new FormControl(this.program.points, Validators.compose(ProgramModalComponent._getAmountOfValidators()))
     });
 
-    this.configureForm()
+    this.configureForm();
   }
 
   private configureForm() {
@@ -158,8 +158,10 @@ export class ProgramModalComponent implements OnInit {
 
     this.setUndefinedYearTo.valueChanges.subscribe(
       value => {
-        this.showYearToInput = value;
-        this.yearTo.setValue(null);
+        this.showYearToInput = !value;
+        if (!value) {
+          this.yearTo.setValue(null);
+        }
       }
     );
 
@@ -190,7 +192,7 @@ export class ProgramModalComponent implements OnInit {
     return [
       Validators.maxLength(CAREER_NAME_MAX_LENGTH),
       Validators.required,
-      Validators.pattern(REG_EX_CAREER_NAME)
+      Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
     ];
   }
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { SubjectStat } from 'src/app/models/subject-stat.model';
+import { RATING_PERCENTAGE_MULTIPLIER, SubjectStat } from 'src/app/models/subject-stat.model';
 
 @Component({
   selector: 'app-subject-item',
@@ -11,14 +11,17 @@ export class SubjectItemComponent implements OnInit {
   @Input() active = false;
   @Input() subject: SubjectStat;
   @Output() subjectSelected: EventEmitter<any> = new EventEmitter();
-  progress = 0;
   constructor() { }
 
   ngOnInit() {
+    this._calculateProgressPercentage();
   }
 
   selectSubject() {
     this.subjectSelected.emit();
   }
 
+  private _calculateProgressPercentage() {
+    this.subject.ratingPercentage = this.subject.rating * RATING_PERCENTAGE_MULTIPLIER;
+  }
 }

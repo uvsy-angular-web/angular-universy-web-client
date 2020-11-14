@@ -1,7 +1,8 @@
 import {InjectionToken} from '@angular/core';
 
-const REG_EXP_ONLY_LETTERS = '^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]*$';
-const REG_EXP_ONLY_LETTERS_AND_NUMBERS = '^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$'
+export const REG_EXP_ONLY_LETTERS = '^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0_]+)*$';
+export const REG_EXP_ONLY_LETTERS_AND_NUMBERS = '^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$'
+
 export const defaultErrors = {
   required: () => `El campo es requerido.`,
   pattern: ({requiredPattern}) => {

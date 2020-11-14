@@ -2,7 +2,7 @@
     <app-custom-title [title]="title" [showDeleteButton]="false" [showEditButton]="false" [backNavigationRoute]="backNavigationRoute">
     </app-custom-title>
 
-    <body class="content" id="print-section">
+    <body class="content card" id="print-section">
         <div class="text-right publish-btn-container">
             <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
                 <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>

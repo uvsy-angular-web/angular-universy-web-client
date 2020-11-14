@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ButtonText} from '../../../shared/enums/button-text.enum';
 import {ColSize} from '../../../shared/enums/col-size.enum';
 import { CareerService } from 'src/app/core/services/career.service';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS } from 'src/app/shared/control-error/errors';
 
 const SMALL_SIZE_TEXT_LENGHT = 15;
 const MEDIUM_SIZE_TEXT_LENGHT = 25;
@@ -68,7 +69,7 @@ export class NameEditComponent implements OnInit {
       [
         Validators.maxLength(this.maxLength),
         Validators.required,
-        Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
+        Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
       ]);
   }
 }

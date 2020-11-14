@@ -7,21 +7,20 @@
   border-color: transparent;
   margin: 1rem;
   white-space: normal;
-  font-size: 1vw;
+  font-size: 1rem;
 }
 
 .btn-subject:hover {
   background-color: #e7c94f;
-  
 }
 
-
-.bottom-line {
-  border-bottom: 1px solid #b9b9b9;
+.card {
   margin-bottom: 1rem;
+  margin-top: 1rem;
+  background-color: #fffffff3;
 }
 
-.optative-header{
+.optative-header {
   font-size: small;
   font-style: italic;
   position: absolute;
@@ -34,15 +33,14 @@
   border-radius: 20px 20px 20px 5px
 }
 
-.btn-subject:hover .optative-header{
+.btn-subject:hover .optative-header {
   background-color: #551777;
 }
 
-.optative-decorator{
+.optative-decorator {
   position: relative;
 }
 
 .subjects {
   padding: 1.5rem;
 }
-
