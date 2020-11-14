@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { GraphItem } from 'src/app/shared/components/graph-bar/graph-bar.component';
 import { Career } from 'src/app/models/career.model';
 import { SubjectReport } from 'src/app/models/subject-report.model';
@@ -11,7 +11,7 @@ import { SubjectStat } from 'src/app/models/subject-stat.model';
   templateUrl: './subject-stat.component.html',
   styleUrls: ['./subject-stat.component.css']
 })
-export class SubjectStatComponent implements OnInit {
+export class SubjectStatComponent implements OnChanges {
   @Input()
   public career: Career;
   @Input()
@@ -31,7 +31,7 @@ export class SubjectStatComponent implements OnInit {
 
   constructor(private subjectService: SubjectService) { }
 
-  public ngOnInit() {
+  public ngOnChanges() {
     this.getSubjectReport();
   }
 
@@ -55,19 +55,21 @@ export class SubjectStatComponent implements OnInit {
 
       this.hasCourseStats = this.dificultsItems.length > 0 &&
         this.overallItems.length > 0 &&
-        this.wouldTakeAgainItems.length > 0
+        this.wouldTakeAgainItems.length > 0;
     }
 
   }
 
   private getSubjectReport() {
-    this.subjectService
-      .getSubjectReportById(this.subjectStat.subjectId)
-      .subscribe(
-        (subjectReport: SubjectReport) => {
-          this.subjectReport = subjectReport
-          this.generateGraphItems();
-        }
-      )
+    if (this.subjectStat) {
+      this.subjectService
+        .getSubjectReportById(this.subjectStat.subjectId)
+        .subscribe(
+          (subjectReport: SubjectReport) => {
+            this.subjectReport = subjectReport;
+            this.generateGraphItems();
+          }
+        );
+    }
   }
 }
