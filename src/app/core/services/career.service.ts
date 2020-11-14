@@ -19,8 +19,9 @@ export class CareerService {
     private crudEndpointService: CRUDEndpointsService) {
   }
 
-  activateCareer(career: Career) {
-    return this.crudEndpointService.activate(this.endpoint, career.id);
+  activateCareer(career: Career, active: boolean) {
+    career.active = active;
+    return this.crudEndpointService.update(this.endpoint, career.id, career);
   }
 
   updateCareer(career: Career) {
