@@ -1,4 +1,4 @@
-const RATING_PERCENTAGE_MULTIPLIER = 20;
+export const RATING_PERCENTAGE_MULTIPLIER = 20;
 
 export class SubjectStat {
   public subjectId: string;
@@ -18,7 +18,6 @@ export class SubjectStat {
     this.subjectId = subjectId;
     this.subjectName = subjectName;
     this.rating = rating;
-    this.ratingPercentage = rating * RATING_PERCENTAGE_MULTIPLIER;
     this.optative = optative;
     this.level = level;
   }
