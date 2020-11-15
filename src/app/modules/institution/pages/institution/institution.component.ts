@@ -20,7 +20,6 @@ export class InstitutionComponent implements OnInit {
     private careerService: CareerService,
     private navigationService: NavigationService,
     private careerModalService: CareerModalService,
-    private notificationService: ModalService,
     ) {
   }
 
@@ -33,7 +32,7 @@ export class InstitutionComponent implements OnInit {
   }
 
   public openNewCareerModal() {
-    this.notificationService.openEditNameModal(
+    this.careerModalService.openEditCareerNameModal(
       'Agregar carrera',
       ButtonText.Add,
       '',

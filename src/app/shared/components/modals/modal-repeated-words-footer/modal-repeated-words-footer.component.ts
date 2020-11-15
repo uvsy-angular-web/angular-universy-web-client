@@ -14,6 +14,7 @@ export class ModalRepeatedWordsFooterComponent implements OnInit {
   @Input() repeatedWordText: string;
   @Input() words: string[] = [];
   @Input() wordToCompare: string;
+  @Input() initialWord = '';
   @Output() cancelAction = new EventEmitter();
   @Output() confirmAction = new EventEmitter();
   onlySearch = false;
@@ -27,10 +28,15 @@ export class ModalRepeatedWordsFooterComponent implements OnInit {
   }
 
   searchSimilarWords(onlySearch = false) {
-    this.onlySearch = onlySearch;
-    this.similarWords = this.similarWordService.getSimilarWords(this.words, this.wordToCompare);
-    if (this.similarWords.length === 0 && !this.onlySearch) {
+    if (this.wordToCompare === this.initialWord) {
       this.onConfirmAction();
+    } else {
+      this.onlySearch = onlySearch;
+      const words = this.pruneWords()
+      this.similarWords = this.similarWordService.getSimilarWords(words, this.wordToCompare);
+      if (this.similarWords.length === 0 && !this.onlySearch) {
+        this.onConfirmAction();
+      }
     }
   }
 
@@ -45,5 +51,9 @@ export class ModalRepeatedWordsFooterComponent implements OnInit {
 
   onCancelAction() {
     this.cancelAction.next();
+  }
+
+  private pruneWords(): string[]{
+   return this.words.filter((word: string) => word !== this.initialWord)
   }
 }

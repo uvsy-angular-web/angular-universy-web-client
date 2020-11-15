@@ -66,7 +66,7 @@ export class CareerModalComponent implements OnInit {
   private getValidatorsForCareerName(): Validators {
     return Validators.compose(
       [
-        Validators.maxLength(25),
+        Validators.maxLength(45),
         Validators.required,
         Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
       ]);

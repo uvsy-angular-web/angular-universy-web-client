@@ -49,7 +49,7 @@ export class SubjectService {
           buttonText
         ).subscribe((confirmation: boolean) => observer.next(confirmation));
       } else {
-        observer.next(false);
+        observer.next(true);
       }
     });
 
