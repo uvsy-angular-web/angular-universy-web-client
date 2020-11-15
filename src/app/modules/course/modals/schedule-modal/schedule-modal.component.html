@@ -41,7 +41,7 @@
         <div class="col-12">
           <div class="form-group">
             <div class="col-6">
-              <label for="begin-month">Dia de la semana: </label>
+              <label for="begin-month">Día de la semana: </label>
               <select id="begin-month" appControlError class="form-control" formControlName="dayOfWeek">
                 <option *ngFor="let day of days" [ngValue]="day.id">{{day.name}}</option>
               </select>
