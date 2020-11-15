@@ -27,6 +27,8 @@ export class SubjectComponent implements OnInit {
   courses: Course[] = [];
   commissions: Commission[] = [];
   correlatives: Correlative[] = [];
+  canModifySubject = false;
+  canDeleteSubject = false;
 
   constructor(
     private subjectService: SubjectService,
@@ -43,10 +45,13 @@ export class SubjectComponent implements OnInit {
     this.getCorrelatives();
     this.getCourses();
     this.getCommissions();
+    this.showActions();
   }
 
-  canModifySubject() {
-    return !ProgramService.getCurrentProgram().active || this.subject.optative;
+  showActions(): void {
+    const isProgramActive = ProgramService.getCurrentProgram().active;
+    this.canModifySubject = !isProgramActive || this.subject.optative;
+    this.canDeleteSubject = !isProgramActive;
   }
 
 
