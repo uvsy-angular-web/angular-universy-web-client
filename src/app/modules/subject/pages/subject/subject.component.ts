@@ -89,12 +89,18 @@ export class SubjectComponent implements OnInit {
     const isProgramPublished = ProgramService.getCurrentProgram().active;
     this.subjectModalService.openEditSubjectModal(this.subject, isProgramPublished).subscribe(
       (updatedSubject: Subject) => {
-        this.subjectService.updateSubject(updatedSubject).subscribe(() => {
-          this.subject = updatedSubject;
-          this.notificationService.inform(
-            '¡Modificación con éxito!',
-            'Se actualizó la materia exitosamente.');
-        }
+        this.subjectService.validateOptativeSubject(updatedSubject).subscribe(
+          (isValid: boolean) => {
+            if (isValid) {
+              this.subjectService.updateSubject(updatedSubject).subscribe(() => {
+                this.subject = updatedSubject;
+                this.notificationService.inform(
+                  '¡Modificación con éxito!',
+                  'Se actualizó la materia exitosamente.');
+              }
+              );
+            }
+          }
         );
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de modificar la materia');

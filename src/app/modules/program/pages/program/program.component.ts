@@ -121,7 +121,7 @@ export class ProgramComponent implements OnInit {
     try {
       const isProgramPublished = ProgramService.getCurrentProgram().active;
       this.subjectModalService.openNewSubjectModal(isProgramPublished).subscribe(
-        (newSubject: Program) => this.addSubject(newSubject)
+        (newSubject: Subject) => this.addSubject(newSubject)
       );
     } catch (_) {
       this.notificationService.showError(ERROR_ON_SUBJECT_MODAL);
@@ -173,15 +173,22 @@ export class ProgramComponent implements OnInit {
     }
   }
 
-  private addSubject(careerName) {
-    this.subjectService.addSubject(careerName).subscribe(
-      () => {
-        this.getData();
-      }, ((error) => {
-        this.notificationService.showError('Ocurrió un error tratando de agregar una materia');
-        console.error(error.message);
-      })
+  private addSubject(newSubject) {
+    this.subjectService.validateOptativeSubject(newSubject).subscribe(
+      (isValid: boolean) => {
+        if (isValid) {
+          this.subjectService.addSubject(newSubject).subscribe(
+            () => this.getData()
+            ,
+            (error) => {
+              this.notificationService.showError('Ocurrió un error tratando de agregar una materia');
+              console.error(error.message);
+            }
+          );
+        }
+      }
     );
+
   }
 
   private editProgram(editedProgram) {

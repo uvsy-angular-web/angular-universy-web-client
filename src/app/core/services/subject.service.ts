@@ -9,10 +9,15 @@ import { Endpoint } from 'src/app/models/endpoint.model';
 import { EndpointName } from 'src/app/shared/enums/endpoint-name.enum';
 import { ModalService } from 'src/app/modals/modal.service';
 import { SubjectReport } from 'src/app/models/subject-report.model';
+import { ButtonText } from 'src/app/shared/enums/button-text.enum';
 
 const CURRENT_SUBJECT_KEY = 'current-subject';
 const GET_SUBJECTS_ERROR = 'Ocurrió un error tratando de obtener las materias del plan';
 const GET_SUBJECTS_REPORT_ERROR = 'Ocurrió un error tratando de obtener las estadisticas de la materia';
+const OPTATIVE_SUBJECT_TITLE = 'Advertencia';
+const OPTATIVE_SUBJECT_MESSAGE = 'Está intentando cargar una materia optativa dentro de un plan que no requiere materias optativas en su configuración. Dicho registro puede generar inconsistencias para los estudiantes y en la generación posterior de de estadísticas.';
+const OPTATIVE_SUBJECT_QUESTION = '¿Desea continuar de todas formas?';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,9 +35,31 @@ export class SubjectService {
     return this.crudEndpointService.createOnParent(parentId, this.endpoint, subject);
   }
 
+  public validateOptativeSubject(subject: Subject, isUpdate = false): Observable<boolean> {
+    return new Observable<boolean>(observer => {
+      const buttonText = isUpdate ? ButtonText.Edit : ButtonText.Add;
+      const currentProgram = ProgramService.getCurrentProgram();
+      const isProgramOptative = currentProgram.hours > 0 || currentProgram.points > 0;
+
+      if (subject.optative && !isProgramOptative) {
+        this.notificationService.openConfirmModal(
+          OPTATIVE_SUBJECT_TITLE,
+          OPTATIVE_SUBJECT_MESSAGE,
+          OPTATIVE_SUBJECT_QUESTION,
+          buttonText
+        ).subscribe((confirmation: boolean) => observer.next(confirmation));
+      } else {
+        observer.next(false);
+      }
+    });
+
+
+  }
+
   public updateSubject(subject: Subject) {
     return this.crudEndpointService.update(this.endpoint, subject.id, subject);
   }
+
 
   public getSubjectsByProgram(program: Program): Observable<Subject[]> {
     return this.crudEndpointService.getAllFromParent(program.id, this.endpoint);
