@@ -4,6 +4,7 @@ import {InformationModalComponent} from '../../../modals/components/error-modal/
 import {CareerModalComponent} from './career-modal/career-modal.component';
 import {ButtonText} from '../../../shared/enums/button-text.enum';
 import {ConfirmActionModalComponent} from '../../../modals/components/confirm-action-modal/confirm-action-modal.component';
+import { Career } from 'src/app/models/career.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +28,10 @@ export class CareerModalService {
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
   }
 
-  openEditCareerNameModal(title: string, confirmButtonText: ButtonText, careerName = '') {
+  openEditCareerNameModal(title: string, confirmButtonText: ButtonText, career = new Career()) {
     const modalRef = this.modalService.open(CareerModalComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = title;
-    modalRef.componentInstance.careerName = careerName;
+    modalRef.componentInstance.career = career;
     modalRef.componentInstance.confirmButtonText = confirmButtonText;
     return modalRef.componentInstance.confirmEvent;
   }

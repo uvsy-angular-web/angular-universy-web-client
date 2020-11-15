@@ -54,9 +54,9 @@ export class CareerComponent implements OnInit {
     this.careerModalService.openEditCareerNameModal(
       'Modificar carrera',
       ButtonText.Edit,
-      this.career.name,
+      this.career,
     ).subscribe(
-      (newCareerName) => this.editCareerName(newCareerName)
+      (career: Career) => this.editCareer(career)
     );
   }
 
@@ -95,9 +95,9 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  private editCareerName(careerName: string) {
-    if (careerName) {
-      this.career.name = careerName;
+  private editCareer(career: Career) {
+    if (career) {
+      this.career = career;
       this.updateCareer();
     }
   }

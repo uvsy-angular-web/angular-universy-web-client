@@ -20,7 +20,7 @@ export class InstitutionComponent implements OnInit {
     private careerService: CareerService,
     private navigationService: NavigationService,
     private careerModalService: CareerModalService,
-    ) {
+  ) {
   }
 
   ngOnInit(): void {
@@ -35,9 +35,8 @@ export class InstitutionComponent implements OnInit {
     this.careerModalService.openEditCareerNameModal(
       'Agregar carrera',
       ButtonText.Add,
-      '',
     ).subscribe(
-      (newCareerName) => this.addCareer(newCareerName)
+      (career: Career) => this.addCareer(career)
     );
   }
 
@@ -46,8 +45,8 @@ export class InstitutionComponent implements OnInit {
     this.navigationService.navigateToCareerPage();
   }
 
-  private addCareer(careerName) {
-    this.careerService.addCareer(careerName).subscribe(
+  private addCareer(career: Career) {
+    this.careerService.addCareer(career).subscribe(
       () => {
         this.getCareers();
       }, ((error) => {
