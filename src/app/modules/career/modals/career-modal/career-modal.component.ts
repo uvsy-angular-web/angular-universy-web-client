@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { ColSize } from '../../../../shared/enums/col-size.enum';
 import { CareerService } from 'src/app/core/services/career.service';
+import { Career } from 'src/app/models/career.model';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS, REG_EXP_ONLY_UPPERCASE_LETTERS } from 'src/app/shared/control-error/errors';
 
 @Component({
   selector: 'app-career-modal',
@@ -12,7 +14,7 @@ import { CareerService } from 'src/app/core/services/career.service';
 })
 export class CareerModalComponent implements OnInit {
   @Input() title: string;
-  @Input() careerName: string;
+  @Input() career: Career = new Career();
   @Input() confirmButtonText: ButtonText;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
@@ -42,7 +44,9 @@ export class CareerModalComponent implements OnInit {
 
   public confirmAction(): void {
     if (this.form.valid) {
-      this.confirmEvent.emit(this.careerNameControl.value);
+      this.career.name = this.careerNameControl.value
+      this.career.codename = this.codenameControl.value
+      this.confirmEvent.emit(this.career);
       this.activeModal.dismiss();
     }
   }
@@ -55,7 +59,8 @@ export class CareerModalComponent implements OnInit {
 
   private createForm(): void {
     this.form = this.formBuilder.group({
-      careerName: new FormControl(this.careerName, this.getValidatorsForCareerName())
+      careerName: new FormControl(this.career.name, this.getValidatorsForCareerName()),
+      codename: new FormControl(this.career.codename, this.getValidatorsForCodeName())
     });
   }
 
@@ -63,12 +68,24 @@ export class CareerModalComponent implements OnInit {
     return this.form.get('careerName') as FormControl;
   }
 
+  public get codenameControl(): FormControl {
+    return this.form.get('codename') as FormControl;
+  }
+
   private getValidatorsForCareerName(): Validators {
     return Validators.compose(
       [
-        Validators.maxLength(25),
+        Validators.maxLength(45),
         Validators.required,
-        Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
+        Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
+      ]);
+  }
+  private getValidatorsForCodeName(): Validators {
+    return Validators.compose(
+      [
+        Validators.maxLength(3),
+        Validators.required,
+        Validators.pattern(REG_EXP_ONLY_UPPERCASE_LETTERS)
       ]);
   }
 

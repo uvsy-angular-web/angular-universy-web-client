@@ -28,11 +28,8 @@ export class CareerService {
     return this.crudEndpointService.update(this.endpoint, career.id, career);
   }
 
-  addCareer(careerName: string) {
+  addCareer(career: Career) {
     const institutionId = this.getInstitutionId();
-
-    const career = new Career();
-    career.name = careerName;
 
     return this.crudEndpointService.createOnParent(institutionId, this.endpoint, career);
   }

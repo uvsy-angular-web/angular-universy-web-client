@@ -27,6 +27,8 @@ export class SubjectComponent implements OnInit {
   courses: Course[] = [];
   commissions: Commission[] = [];
   correlatives: Correlative[] = [];
+  canModifySubject = false;
+  canDeleteSubject = false;
 
   constructor(
     private subjectService: SubjectService,
@@ -43,10 +45,13 @@ export class SubjectComponent implements OnInit {
     this.getCorrelatives();
     this.getCourses();
     this.getCommissions();
+    this.showActions();
   }
 
-  canModifySubject() {
-    return !ProgramService.getCurrentProgram().active || this.subject.optative;
+  showActions(): void {
+    const isProgramActive = ProgramService.getCurrentProgram().active;
+    this.canModifySubject = !isProgramActive || this.subject.optative;
+    this.canDeleteSubject = !isProgramActive;
   }
 
 
@@ -89,12 +94,18 @@ export class SubjectComponent implements OnInit {
     const isProgramPublished = ProgramService.getCurrentProgram().active;
     this.subjectModalService.openEditSubjectModal(this.subject, isProgramPublished).subscribe(
       (updatedSubject: Subject) => {
-        this.subjectService.updateSubject(updatedSubject).subscribe(() => {
-          this.subject = updatedSubject;
-          this.notificationService.inform(
-            '¡Modificación con éxito!',
-            'Se actualizó la materia exitosamente.');
-        }
+        this.subjectService.validateOptativeSubject(updatedSubject).subscribe(
+          (isValid: boolean) => {
+            if (isValid) {
+              this.subjectService.updateSubject(updatedSubject).subscribe(() => {
+                this.subject = updatedSubject;
+                this.notificationService.inform(
+                  '¡Modificación con éxito!',
+                  'Se actualizó la materia exitosamente.');
+              }
+              );
+            }
+          }
         );
       }, ((error) => {
         this.notificationService.showError('Ocurrió un error tratando de modificar la materia');

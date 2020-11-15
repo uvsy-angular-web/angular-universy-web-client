@@ -7,6 +7,7 @@ import { ProgramService } from '../../../../core/services/program.service';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { ProgramModalService } from '../../../program/modals/program-modal.service';
 import { NavigationService } from '../../../../core/services/system/navigation.service';
+import { CareerModalService } from '../../modals/career-modal.service';
 
 @Component({
   selector: 'app-career',
@@ -22,6 +23,7 @@ export class CareerComponent implements OnInit {
     private programService: ProgramService,
     private navigationService: NavigationService,
     private programModalService: ProgramModalService,
+    private careerModalService: CareerModalService,
     private notificationService: ModalService) {
   }
 
@@ -49,12 +51,12 @@ export class CareerComponent implements OnInit {
   }
 
   openEditCareerModal() {
-    this.notificationService.openEditNameModal(
+    this.careerModalService.openEditCareerNameModal(
       'Modificar carrera',
       ButtonText.Edit,
-      this.career.name,
+      this.career,
     ).subscribe(
-      (newCareerName) => this.editCareerName(newCareerName)
+      (career: Career) => this.editCareer(career)
     );
   }
 
@@ -93,9 +95,9 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  private editCareerName(careerName: string) {
-    if (careerName) {
-      this.career.name = careerName;
+  private editCareer(career: Career) {
+    if (career) {
+      this.career = career;
       this.updateCareer();
     }
   }

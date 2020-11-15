@@ -1,6 +1,5 @@
-<app-modal-header [title]="title"
-                  (closeEvent)="cancelAction()"></app-modal-header>
-<form appForm [formGroup]="form">
+<app-modal-header [title]="title" (closeEvent)="cancelAction()"></app-modal-header>
+<form appForm [formGroup]="form" (ngSubmit)="confirmAction()">
   <div class="modal-body">
     <div class="form-group">
       <div class="{{calculateColForInputSize()}}">
@@ -8,19 +7,24 @@
           Nombre:
         </label>
         <div class="control">
-          <input id="item-text" appControlError
-                 class="form-control"
-                 type="text" formControlName="careerName">
+          <input id="item-text" appControlError class="form-control" type="text" formControlName="careerName">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-4">
+        <label for="codename-input">
+          Código identificador:
+        </label>
+        <div class="control">
+          <input id="codename-input" maxlength="3" appControlError class="form-control" type="text" formControlName="codename">
         </div>
       </div>
     </div>
   </div>
-  <app-modal-repeated-words-footer 
-    [defaultButtonText] = "confirmButtonText"
-    [words] = "careerNames"
-    [wordToCompare] = "careerNameControl.value"
-    [repeatedWordText] = "'Ya existen las siguientes carreras con el mismo nombre: '"
-    (cancelAction)="cancelAction()"
+  <app-modal-repeated-words-footer [defaultButtonText]="confirmButtonText" [words]="careerNames"
+    [initialWord]="career.name" [wordToCompare]="careerNameControl.value"
+    [repeatedWordText]="'Ya existen las siguientes carreras con el mismo nombre: '" (cancelAction)="cancelAction()"
     (confirmAction)="confirmAction()">
   </app-modal-repeated-words-footer>
 </form>

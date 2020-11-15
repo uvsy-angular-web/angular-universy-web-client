@@ -21,7 +21,7 @@ const EDIT_COMMISSION_MODAL_TITLE = 'Modificar comisión';
 const DELETE_COMMISSION_MODAL_TITLE = 'Borrar comisión';
 const DELETE_COMMISSION_MODAL_MESSAGE = 'Usted esta por eliminar una comisión, se perdera toda información cargada a la misma.';
 const DELETE_COMMISSION_MODAL_QUESTION = '¿ Desea continuar ?';
-
+const COMMISION_NAME_MAX_LENGTH = 15;
 @Component({
   selector: 'app-plan-edit',
   templateUrl: './program.component.html',
@@ -58,7 +58,9 @@ export class ProgramComponent implements OnInit {
   addCommission(level: number) {
     this.notificationService.openEditNameModal(
       ADD_COMMISSION_MODAL_TITLE,
-      ButtonText.Add)
+      ButtonText.Add,
+      '',
+      COMMISION_NAME_MAX_LENGTH)
       .subscribe(
         (name: string) => {
           const newCommission = new Commission();
@@ -77,7 +79,8 @@ export class ProgramComponent implements OnInit {
     this.notificationService.openEditNameModal(
       EDIT_COMMISSION_MODAL_TITLE,
       ButtonText.Edit,
-      commission.name)
+      commission.name,
+      COMMISION_NAME_MAX_LENGTH)
       .subscribe(
         (newName: string) => {
           commission.name = newName;
@@ -121,7 +124,7 @@ export class ProgramComponent implements OnInit {
     try {
       const isProgramPublished = ProgramService.getCurrentProgram().active;
       this.subjectModalService.openNewSubjectModal(isProgramPublished).subscribe(
-        (newSubject: Program) => this.addSubject(newSubject)
+        (newSubject: Subject) => this.addSubject(newSubject)
       );
     } catch (_) {
       this.notificationService.showError(ERROR_ON_SUBJECT_MODAL);
@@ -173,15 +176,22 @@ export class ProgramComponent implements OnInit {
     }
   }
 
-  private addSubject(careerName) {
-    this.subjectService.addSubject(careerName).subscribe(
-      () => {
-        this.getData();
-      }, ((error) => {
-        this.notificationService.showError('Ocurrió un error tratando de agregar una materia');
-        console.error(error.message);
-      })
+  private addSubject(newSubject) {
+    this.subjectService.validateOptativeSubject(newSubject).subscribe(
+      (isValid: boolean) => {
+        if (isValid) {
+          this.subjectService.addSubject(newSubject).subscribe(
+            () => this.getData()
+            ,
+            (error) => {
+              this.notificationService.showError('Ocurrió un error tratando de agregar una materia');
+              console.error(error.message);
+            }
+          );
+        }
+      }
     );
+
   }
 
   private editProgram(editedProgram) {
