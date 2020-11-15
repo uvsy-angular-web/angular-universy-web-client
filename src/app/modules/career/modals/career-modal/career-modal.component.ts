@@ -5,6 +5,7 @@ import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { ColSize } from '../../../../shared/enums/col-size.enum';
 import { CareerService } from 'src/app/core/services/career.service';
 import { Career } from 'src/app/models/career.model';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS, REG_EXP_ONLY_UPPERCASE_LETTERS } from 'src/app/shared/control-error/errors';
 
 @Component({
   selector: 'app-career-modal',
@@ -76,7 +77,7 @@ export class CareerModalComponent implements OnInit {
       [
         Validators.maxLength(45),
         Validators.required,
-        Validators.pattern('^[a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+( [a-zA-ZzÑñÁáÉéÍíÓóÚúÜü0-9_]+)*$')
+        Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
       ]);
   }
   private getValidatorsForCodeName(): Validators {
@@ -84,6 +85,7 @@ export class CareerModalComponent implements OnInit {
       [
         Validators.maxLength(3),
         Validators.required,
+        Validators.pattern(REG_EXP_ONLY_UPPERCASE_LETTERS)
       ]);
   }
 
