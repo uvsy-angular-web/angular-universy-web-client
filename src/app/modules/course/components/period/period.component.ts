@@ -16,7 +16,7 @@ const ONE_ELEMENT = 1;
 })
 export class PeriodComponent implements OnInit {
   @Input() periods: Period[] = [];
-  noPeriodMessage = 'La carrera no posee períodos todavia, haz click en Agregar Período';
+  noPeriodMessage = 'La carrera no posee períodos todavía, haz click en Agregar Período';
 
   constructor(private courseModalService: CourseModalService,
               private notificationService: ModalService) {

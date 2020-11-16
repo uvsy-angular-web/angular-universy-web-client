@@ -27,13 +27,13 @@ export class DayService {
       case Days.TUESDAY:
         return 'Martes';
       case Days.WEDNESDAY:
-        return 'Miercoles';
+        return 'Miércoles';
       case Days.THURSDAY:
         return 'Jueves';
       case Days.FRIDAY:
         return 'Viernes';
       case Days.SATURDAY:
-        return 'Sabado';
+        return 'Sábado';
       case Days.SUNDAY:
         return 'Domingo';
     }

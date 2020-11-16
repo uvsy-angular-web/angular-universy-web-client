@@ -119,7 +119,7 @@ export class SubjectComponent implements OnInit {
   }
 
   onNewCourseClick(commission: Commission) {
-    const newCourseModalMessage = `Se creara un nuevo curso en la comisión: ${commission.name}`;
+    const newCourseModalMessage = `Se creará un nuevo curso en la comisión: ${commission.name}`;
     this.notificationService.openConfirmModal(
       NEW_COURSE_MODAL_TITLE,
       newCourseModalMessage,
