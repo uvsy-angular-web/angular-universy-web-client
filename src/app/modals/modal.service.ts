@@ -29,11 +29,12 @@ export class ModalService {
     modalRef.componentInstance.confirmButtonText = ButtonText.Accept;
   }
 
-  openEditNameModal(title: string, confirmButtonText: ButtonText, itemText = '', maxLength = 45) {
+  openEditNameModal(title: string, confirmButtonText: ButtonText, itemText = '', maxLength = 45, removesPatternValidation = false) {
     const modalRef = this.modalService.open(NameEditComponent, {backdrop: 'static'});
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.itemText = itemText;
     modalRef.componentInstance.maxLength = maxLength;
+    modalRef.componentInstance.removesPatternValidation = removesPatternValidation;
     modalRef.componentInstance.confirmButtonText = confirmButtonText;
     return modalRef.componentInstance.confirmEvent;
   }

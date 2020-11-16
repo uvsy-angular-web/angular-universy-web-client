@@ -60,7 +60,8 @@ export class ProgramComponent implements OnInit {
       ADD_COMMISSION_MODAL_TITLE,
       ButtonText.Add,
       '',
-      COMMISION_NAME_MAX_LENGTH)
+      COMMISION_NAME_MAX_LENGTH,
+      true)
       .subscribe(
         (name: string) => {
           const newCommission = new Commission();
@@ -80,7 +81,8 @@ export class ProgramComponent implements OnInit {
       EDIT_COMMISSION_MODAL_TITLE,
       ButtonText.Edit,
       commission.name,
-      COMMISION_NAME_MAX_LENGTH)
+      COMMISION_NAME_MAX_LENGTH,
+      true)
       .subscribe(
         (newName: string) => {
           commission.name = newName;
