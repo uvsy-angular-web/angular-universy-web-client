@@ -17,7 +17,8 @@ export class NameEditComponent implements OnInit {
   @Input() title: string;
   @Input() itemText: string;
   @Input() confirmButtonText: ButtonText;
-  @Input() maxLength;
+  @Input() maxLength: number;
+  @Input() removesPatternValidation = false;
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
 
   public form: FormGroup;
@@ -65,11 +66,15 @@ export class NameEditComponent implements OnInit {
   }
 
   private  getValidatorsForCareerName(): Validators {
-    return Validators.compose(
-      [
-        Validators.maxLength(this.maxLength),
-        Validators.required,
-        Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
-      ]);
+    const validations =[
+      Validators.maxLength(this.maxLength),
+      Validators.required,
+    ]
+
+    if(!this.removesPatternValidation){
+      Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
+    }
+
+    return Validators.compose(validations);
   }
 }
