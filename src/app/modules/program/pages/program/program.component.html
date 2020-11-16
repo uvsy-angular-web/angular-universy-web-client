@@ -9,7 +9,7 @@
       (buttonPressed)="openNewSubjectModal()"></app-add-item>
     <div class="row" *ngFor="let level of levels">
       <div class="container card">
-        <h4 class="row"> {{levelText + level.levelNumber}}</h4>
+        <h4 class="row"> {{levelText + ' ' + level.levelNumber}}</h4>
         <div class="row">
           <div class="col-4" >
             <app-commission-list
