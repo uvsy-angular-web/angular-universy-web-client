@@ -1,6 +1,6 @@
 <div class="container" id="print-section">
     <app-custom-title [title]="title" [showNavigationArrow]="false" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
-    <div class="text-right publish-btn-container">
+    <div class="text-right publish-btn-container" *ngIf="institutionReport.careers && institutionReport.careers.length > 0">
         <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
     </div>
     <div class="content" *ngIf="institutionReport">
@@ -10,7 +10,7 @@
             </div>
         </ngx-masonry>
     </div>
-    <div class="text-right publish-btn-container">
+    <div class="text-right publish-btn-container" *ngIf="institutionReport.careers && institutionReport.careers.length > 0">
         <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
     </div>
 </div>

@@ -46,7 +46,7 @@ export class SchedulesComponent implements OnInit {
     this.modalService.openConfirmModal(
       'Eliminar Horario',
       'Usted está por eliminar un Horario.',
-      '¿Está seguro que desea eliminar el Horario seleccionado?',
+      '¿Desea continuar?',
       ButtonText.Delete
     ).subscribe(
       () => {

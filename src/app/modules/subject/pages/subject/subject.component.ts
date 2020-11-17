@@ -59,7 +59,7 @@ export class SubjectComponent implements OnInit {
     this.notificationService.openConfirmModal(
       'Eliminar materia',
       'Se eliminará la materia y sus comisiones.',
-      '¿ Está seguro que desea eliminarla ?',
+      '¿ Desea continuar ?',
       ButtonText.Delete
     ).subscribe(
       () => {
@@ -113,13 +113,9 @@ export class SubjectComponent implements OnInit {
       })
     );
   }
-  navigateToCoursePage(course: Course) {
-    CourseService.setCurrentCourse(course);
-    this.navigationService.navigateToCoursePage();
-  }
 
   onNewCourseClick(commission: Commission) {
-    const newCourseModalMessage = `Se creara un nuevo curso en la comisión: ${commission.name}`;
+    const newCourseModalMessage = `Se creará un nuevo curso en la comisión: ${commission.name}`;
     this.notificationService.openConfirmModal(
       NEW_COURSE_MODAL_TITLE,
       newCourseModalMessage,
@@ -129,10 +125,18 @@ export class SubjectComponent implements OnInit {
       (confirm) => {
         if (confirm) {
           this.courseService.addCourse(commission).subscribe(
-            (course: Course) => this.navigateToCoursePage(course)
+            () => this.showCourseSuccessMessage()
           );
         }
       }
+    );
+  }
+
+  private showCourseSuccessMessage() {
+    this.getCourses();
+    this.notificationService.inform(
+      'Curso creado con éxito',
+      'Haz click en el curso para cargar la información del mismo.'
     );
   }
 

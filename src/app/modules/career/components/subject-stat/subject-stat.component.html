@@ -5,7 +5,7 @@
             <span class="subject-name-label">{{subjectLabel}}</span>
             <span class="subject-name">{{subjectStat.subjectName}}</span>
         </h4>
-        <h3>Valoraciones por curso de la materia</h3>
+        <h3>Valoraciones de la materia</h3>
         <div class="section-container secondary-card margin-top-1">
             <div class="row">
                 <div class="col-6">
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <h3 class="margin-top-2">Valoraciones por curso de la materia</h3>
+        <h3 class="margin-top-2">Valoraciones de la materia</h3>
         <div *ngIf="hasCourseStats" class="section-container">
             <div class="graph-bar secondary-card">
                 <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems" [leyend]="overallGraphLeyend">

@@ -11,7 +11,7 @@ import { Commission } from 'src/app/models/commission.model';
 
 const DELETE_COURSE_TITLE = 'Eliminar curso';
 const DELETE_COURSE_DESCRIPTION = 'Se eliminará el curso junto con sus períodos, profesores y horarios.';
-const DELETE_COURSE_QUESTION = '¿ Está seguro que desea continuar ?';
+const DELETE_COURSE_QUESTION = '¿Desea continuar?';
 
 @Component({
   selector: 'app-course',
@@ -54,7 +54,7 @@ export class CourseComponent implements OnInit {
   saveCourse() {
     this.courseService.updateCourse(this.course).subscribe(
       () => {
-        this.notificationService.inform('Se guardo con éxito', 'Se actualizó el curso exitosamente');
+        this.notificationService.inform('Se guardó con éxito', 'Se actualizó el curso exitosamente');
         this.navigationService.navigateToSubjectPage();
       }, (error) => {
         this.notificationService.showError('Ocurrió un problema tratando de obtener el plan');

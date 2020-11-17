@@ -63,7 +63,7 @@ export class SubjectModalComponent implements OnInit {
 
   private _areAmountsValid(): boolean {
     if (this.isOptative.value) {
-      const atLeastOneAmountLoaded = this.hours.value !== 0 || this.points.value !== 0;
+      const atLeastOneAmountLoaded = this.hours.value > 0 || this.points.value > 0;
 
       this.showsOptativesErrorMessage = !atLeastOneAmountLoaded;
       return atLeastOneAmountLoaded;

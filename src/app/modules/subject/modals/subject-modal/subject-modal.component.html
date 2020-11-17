@@ -15,7 +15,7 @@
         </select>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" [hidden]="isProgramPublished">
       <div class="col-12">
         <label> {{optativeQuestionText}}</label>
         <div class="form-group">
@@ -46,7 +46,7 @@
   <app-modal-repeated-words-footer [defaultButtonText]="confirmButtonText" [words]="subjectsName"
     [wordToCompare]="name.value" 
     [initialWord]="subject.name"
-    [repeatedWordText]="'Ya existen las siguientes materias con el mismo nombre: '"
+    [repeatedWordText]="'Ya existen las siguientes materias con nombres similares: '"
     (cancelAction)="cancelAction()" (confirmAction)="confirmAction()">
   </app-modal-repeated-words-footer>
 </form>

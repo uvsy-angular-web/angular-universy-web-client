@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 const INDEX_HOUR_START = 0;
 const INDEX_HOUR_END = 2;
@@ -26,7 +26,13 @@ export class TimeService {
   }
 
   public static areTimesValids(beginTime: Time, endTime: Time): boolean {
-    return beginTime.hour < endTime.hour && beginTime.minute < endTime.minute;
+    if (beginTime.hour < endTime.hour) {
+      return true;
+    } else if (beginTime.hour === endTime.hour) {
+      return beginTime.minute < endTime.minute;
+    } else {
+      return false;
+    }
   }
 
   public static showTime(timeNumber: number): string {

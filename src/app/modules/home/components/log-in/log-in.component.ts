@@ -39,7 +39,7 @@ export class LogInComponent implements OnInit {
 
   login() {
     if (this.form.valid) {
-      const username = this.username.value;
+      const username = this.username.value.toLowerCase();
       const password = this.password.value;
       const user = new User(username, password);
       this.authService.login(user);

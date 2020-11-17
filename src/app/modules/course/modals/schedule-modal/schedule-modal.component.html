@@ -21,10 +21,6 @@
           <ngb-timepicker id="end-time" appControlError formControlName="endTime"></ngb-timepicker>
         </div>
       </div>
-      <div class="col-12">
-        <app-error-message [hidden]="!formError" [errorMessage]="formError">
-        </app-error-message>
-      </div>
       <div class="row">
         <div class="col-12">
           <div class="form-group">
@@ -49,6 +45,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-12">
+      <app-error-message [hidden]="!formError" [errorMessage]="formError">
+      </app-error-message>
     </div>
     <app-modal-confirm-footer (confirmAction)="confirmAction()" (cancelAction)="cancelAction()"
       [confirmButtonText]="confirmButtonText">

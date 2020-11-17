@@ -40,7 +40,7 @@ export class ProfessorsComponent implements OnInit {
     this.modalService.openConfirmModal(
       'Eliminar Profesor',
       'Usted está por eliminar un Profesor.',
-      '¿Está seguro que desea eliminar el Profesor seleccionado?',
+      '¿Desea continuar?',
       ButtonText.Delete
     ).subscribe(
       () => {

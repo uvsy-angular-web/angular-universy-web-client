@@ -3,10 +3,9 @@
     </app-custom-title>
 
     <body class="content card" id="print-section">
-        <div class="text-right publish-btn-container">
+        <div class="text-right publish-btn-container" *ngIf="isProgramPublished" >
             <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
                 <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
-            <button *ngIf="!isProgramPublished" class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
         </div>
         <h5 id="careerName">{{careerName}}</h5>
         <h2>{{programName}}</h2>
@@ -29,10 +28,10 @@
             <app-program-summary [subjects]="subjects" [isInsideComponent]="true"></app-program-summary>
         </div>
         <hr>
-        <div class="text-right publish-btn-container">
+        <div class="text-right publish-btn-container" *ngIf="!isProgramPublished">
             <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
                 <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
-            <button *ngIf="!isProgramPublished" class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
+            <button  class="btn btn-primary" (click)="openConfirmPublishModal()">{{publishBtnTxt}}</button>
         </div>
     </body>
 </div>

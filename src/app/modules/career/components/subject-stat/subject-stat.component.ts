@@ -26,7 +26,7 @@ export class SubjectStatComponent implements OnChanges {
   public overallGraphLeyend = '*Gráfico de valoración general por curso';
   public wouldTakeAgainGraphLeyend = '*Gráfico de recomendación por curso';
   public hasCourseStats = false;
-  public noStatsAvaiableMessage = 'Parece que todavia no han valorado las comisiones';
+  public noStatsAvaiableMessage = 'Esta materia no tiene comisiones cargadas';
   public noSubjectSelected = 'Debes seleccionar una materia en el panel de la izquierda';
   public dificultsItems = [];
   public overallItems = [];
