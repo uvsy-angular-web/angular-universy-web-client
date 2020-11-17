@@ -60,6 +60,10 @@ export class ScheduleModalComponent implements OnInit {
     return areTimesValid;
   }
 
+  private hideErrorTime(): void {
+      this.formError = '';
+  }
+
   private createForm(): void {
     const beginTime = TimeService.getTime(this.schedule.beginTime, new Time(8,0));
     const endTime = TimeService.getTime(this.schedule.endTime, new Time(13,30));
@@ -70,6 +74,18 @@ export class ScheduleModalComponent implements OnInit {
       dayOfWeek: new FormControl(this.schedule.dayOfWeek, Validators.required),
       classroom: new FormControl(this.schedule.classroom, Validators.required)
     });
+
+    this.beginTime.valueChanges.subscribe(
+      value => {
+      this.hideErrorTime();
+      }
+    );
+
+    this.endTime.valueChanges.subscribe(
+      value => {
+      this.hideErrorTime();
+      }
+    );
   }
 
   public get beginTime(): FormControl {

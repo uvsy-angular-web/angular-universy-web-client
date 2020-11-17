@@ -16,7 +16,7 @@ const GET_SUBJECTS_ERROR = 'Ocurrió un error tratando de obtener las materias d
 const GET_SUBJECTS_REPORT_ERROR = 'Ocurrió un error tratando de obtener las estadisticas de la materia';
 const OPTATIVE_SUBJECT_TITLE = 'Advertencia';
 const OPTATIVE_SUBJECT_MESSAGE = 'Está intentando cargar una materia optativa dentro de un plan que no requiere materias optativas en su configuración. Dicho registro puede generar inconsistencias para los estudiantes y en la generación posterior de de estadísticas.';
-const OPTATIVE_SUBJECT_QUESTION = '¿Desea continuar de todas formas?';
+const OPTATIVE_SUBJECT_QUESTION = '¿Desea continuar?';
 
 @Injectable({
   providedIn: 'root'

@@ -29,7 +29,7 @@ export class PeriodComponent implements OnInit {
     this.notificationService.openConfirmModal(
       'Eliminar Periodo',
       'Se eliminará el periodo y todos sus datos.',
-      '¿ Está seguro que desea eliminarlo ?',
+      '¿Desea continuar?',
       ButtonText.Delete
     ).subscribe(
       (confirmation) => {

@@ -125,6 +125,7 @@ export class ProgramModalComponent implements OnInit {
       this.program.points = +this.points.value;
     } else {
       this.program.hours = ZERO_AMOUNT_VALUE;
+      this.program.points = ZERO_AMOUNT_VALUE;
     }
   }
 

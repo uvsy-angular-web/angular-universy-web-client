@@ -21,7 +21,7 @@ const EDIT_COMMISSION_MODAL_TITLE = 'Modificar comisión';
 const DELETE_COMMISSION_MODAL_TITLE = 'Borrar comisión';
 const DELETE_COMMISSION_MODAL_MESSAGE = 'Usted esta por eliminar una comisión, se perdera toda información cargada a la misma.';
 const DELETE_COMMISSION_MODAL_QUESTION = '¿ Desea continuar ?';
-const COMMISION_NAME_MAX_LENGTH = 15;
+const COMMISSION_NAME_MAX_LENGTH = 6;
 @Component({
   selector: 'app-plan-edit',
   templateUrl: './program.component.html',
@@ -60,7 +60,7 @@ export class ProgramComponent implements OnInit {
       ADD_COMMISSION_MODAL_TITLE,
       ButtonText.Add,
       '',
-      COMMISION_NAME_MAX_LENGTH,
+      COMMISSION_NAME_MAX_LENGTH,
       true)
       .subscribe(
         (name: string) => {
@@ -81,7 +81,7 @@ export class ProgramComponent implements OnInit {
       EDIT_COMMISSION_MODAL_TITLE,
       ButtonText.Edit,
       commission.name,
-      COMMISION_NAME_MAX_LENGTH,
+      COMMISSION_NAME_MAX_LENGTH,
       true)
       .subscribe(
         (newName: string) => {

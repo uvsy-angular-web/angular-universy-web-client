@@ -16,7 +16,6 @@ const routes: Routes = [
   },
   {
     path: 'contact-info',
-    canActivate : [AuthGuard],
     loadChildren: () => import('./modules/contact-info/contact-info.module').then(mod => mod.ContactInfoModule)
   },
   {
