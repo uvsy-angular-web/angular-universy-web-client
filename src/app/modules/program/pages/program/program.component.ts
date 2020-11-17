@@ -137,7 +137,7 @@ export class ProgramComponent implements OnInit {
     this.notificationService.openConfirmModal(
       'Eliminar plan',
       'Se eliminará el plan y todas las materias que hayan sido cargadas.',
-      '¿ Está seguro que desea eliminarlo ?',
+      '¿ Desea continuar ?',
       ButtonText.Delete
     ).subscribe(
       () => {

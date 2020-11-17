@@ -11,7 +11,7 @@ import { Commission } from 'src/app/models/commission.model';
 
 const DELETE_COURSE_TITLE = 'Eliminar curso';
 const DELETE_COURSE_DESCRIPTION = 'Se eliminará el curso junto con sus períodos, profesores y horarios.';
-const DELETE_COURSE_QUESTION = '¿ Está seguro que desea continuar ?';
+const DELETE_COURSE_QUESTION = '¿Desea continuar?';
 
 @Component({
   selector: 'app-course',

@@ -4,7 +4,7 @@
   <hr>
   <div class="content">
     <h4>Cursos</h4>
-    <app-courses-list (courseClick)="navigateToCoursePage($event)" (newCourseClick)="onNewCourseClick($event)"
+    <app-courses-list (courseClick)="openCoursePage($event)" (newCourseClick)="onNewCourseClick($event)"
       [commissions]="commissions" [courses]="courses"></app-courses-list>
     <button *ngIf="canModifySubject" class="btn-primary correlatives-button" id="manage-correlatives-button"
       (click)="openManageCorrelativesModal()">
