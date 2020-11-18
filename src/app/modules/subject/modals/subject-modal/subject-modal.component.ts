@@ -5,7 +5,8 @@ import { Subject } from '../../../../models/subject.model';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { AVAIABLE_LEVELS } from 'src/app/models/level';
-import { REG_EXP_ONLY_LETTERS_AND_NUMBERS } from 'src/app/shared/control-error/errors';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS, REG_EXP_ONLY_NUMBERS } from 'src/app/shared/control-error/errors';
+
 const AMOUNT_VALIDATORS_MAX_LENGHT = 3;
 const AMOUNT_VALIDATORS_MIN_VALUE = 0;
 const AMOUNT_VALIDATORS_MAX_VALUE = 999;
@@ -107,13 +108,6 @@ export class SubjectModalComponent implements OnInit {
     }
   }
 
-  private static _getAmountOfValidators(): Validators {
-    return Validators.compose([
-      Validators.maxLength(AMOUNT_VALIDATORS_MAX_LENGHT),
-      Validators.min(AMOUNT_VALIDATORS_MIN_VALUE),
-      Validators.max(AMOUNT_VALIDATORS_MAX_VALUE),
-    ]);
-  }
 
   public get name(): FormControl {
     return this.form.get('name') as FormControl;
@@ -142,5 +136,15 @@ export class SubjectModalComponent implements OnInit {
       Validators.pattern(REG_EXP_ONLY_LETTERS_AND_NUMBERS)
     ]);
   }
+
+  private static _getAmountOfValidators(): Validators {
+    return Validators.compose([
+      Validators.maxLength(AMOUNT_VALIDATORS_MAX_LENGHT),
+      Validators.pattern(REG_EXP_ONLY_NUMBERS),
+      Validators.min(AMOUNT_VALIDATORS_MIN_VALUE),
+      Validators.max(AMOUNT_VALIDATORS_MAX_VALUE),
+    ]);
+  }
+
 
 }

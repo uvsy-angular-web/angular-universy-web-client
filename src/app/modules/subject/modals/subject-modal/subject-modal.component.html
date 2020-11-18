@@ -31,12 +31,12 @@
     <div class="form-group requires-optatives" [hidden]="!isOptative.value">
       <div class="row">
         <label for="item-text" class="col-5"> {{hoursInputText}} </label>
-        <input id="item-text" appControlError class="form-control amount-input col-6" type="number"
+        <input id="item-text" appControlError class="form-control amount-input col-6" type="number" maxlength="3"
           formControlName="hours">
       </div>
       <div class="row">
         <label for="item-text" class="col-5"> {{pointsInputText}} </label>
-        <input id="item-text" appControlError class="form-control amount-input col-6" type="number"
+        <input id="item-text" appControlError class="form-control amount-input col-6" type="number" maxlength="3"
           formControlName="points">
       </div>
       <app-error-message [hidden]="!showsOptativesErrorMessage" [errorMessage]="optativesErrorMessage">

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { REG_EXP_ONLY_LETTERS_AND_NUMBERS } from 'src/app/shared/control-error/errors';
+import { REG_EXP_ONLY_LETTERS_AND_NUMBERS, REG_EXP_ONLY_NUMBERS, REG_EXP_ONLY_UPPERCASE_LETTERS } from 'src/app/shared/control-error/errors';
 import { Program } from '../../../../models/program.model';
 import { ButtonText } from '../../../../shared/enums/button-text.enum';
 
@@ -99,11 +99,11 @@ export class ProgramModalComponent implements OnInit {
   private _isFormValid() {
     let areAmountsValid = true;
 
-    const noAmountLoaded =
-      this.hours.value === 0 &&
-      this.points.value === 0;
+    const ammountsLoaded =
+      this.hours.value > 0 &&
+      this.points.value > 0;
 
-    if (noAmountLoaded && this.requiresOptatives.value) {
+    if (!ammountsLoaded && this.requiresOptatives.value) {
       this.showsOptativesErrorMessage = true;
       areAmountsValid = false;
     }
@@ -185,6 +185,7 @@ export class ProgramModalComponent implements OnInit {
   private static _getAmountOfValidators(): ValidatorFn[] {
     return [
       Validators.max(AMOUNT_VALIDATORS_MAX_VALUE),
+      Validators.pattern(REG_EXP_ONLY_NUMBERS),
       Validators.min(AMOUNT_VALIDATORS_MIN_VALUE),
     ];
   }
