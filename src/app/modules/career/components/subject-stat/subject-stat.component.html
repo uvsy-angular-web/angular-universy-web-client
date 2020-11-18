@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-6">
                     <div class="text-right subject-rate">
-                        <span class="subject-rate-number">{{subjectStat.rating}}
+                        <span class="subject-rate-number">{{subjectStat.rating | number:'1.0-1'}}
                             <i class="material-icons">star</i>
                         </span>
                         <ngb-progressbar [height]="'0.7rem'" [value]="subjectStat.ratingPercentage">
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <h3 class="margin-top-2">Valoraciones de la materia</h3>
+        <h3 class="margin-top-2">Valoraciones de la materia por curso</h3>
         <div *ngIf="hasCourseStats" class="section-container">
             <div class="graph-bar secondary-card">
                 <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems" [leyend]="overallGraphLeyend">
@@ -37,7 +37,7 @@
                         de los estudiantes sobre cada curso
                     </p>
                     <p>
-                        Es un valor que va <strong>0 y 5</strong>.
+                        Es un valor que va entre <strong>0 y 5</strong>.
                     </p>
                 </app-graph-and-description>
             </div>
