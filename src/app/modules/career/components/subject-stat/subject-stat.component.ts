@@ -31,6 +31,11 @@ export class SubjectStatComponent implements OnChanges {
   public dificultsItems = [];
   public overallItems = [];
   public wouldTakeAgainItems = [];
+  public printStyle = {
+    a: { opacity: 0 },
+    button: { opacity: 0 },
+  };
+  public printButtonText = 'Imprimir'
 
   constructor(private subjectService: SubjectService) { }
 

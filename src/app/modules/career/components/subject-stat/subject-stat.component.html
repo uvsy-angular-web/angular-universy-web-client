@@ -1,5 +1,5 @@
 <div class="card">
-    <div *ngIf="subjectStat">
+    <div *ngIf="subjectStat" id="print-section">
         <h4 class="career-name">{{career.name}}</h4>
         <h4 class="subject-name-container">
             <span class="subject-name-label">{{subjectLabel}}</span>
@@ -31,7 +31,8 @@
         <h3 class="margin-top-2">Valoraciones de la materia por curso</h3>
         <div *ngIf="hasCourseStats" class="section-container">
             <div class="graph-bar secondary-card">
-                <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems" [leyend]="overallGraphLeyend">
+                <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems"
+                    [leyend]="overallGraphLeyend">
                     <p>
                         Valor promedio del puntaje general
                         de los estudiantes sobre cada curso
@@ -42,7 +43,8 @@
                 </app-graph-and-description>
             </div>
             <div class="graph-bar secondary-card">
-                <app-graph-and-description [title]="dificultGraphTitle" [items]="dificultsItems" [leyend]="dificultGraphLeyend">
+                <app-graph-and-description [title]="dificultGraphTitle" [items]="dificultsItems"
+                    [leyend]="dificultGraphLeyend">
                     <p>
                         Valoración promedio por comisión
                         de la dificultad de la materia.
@@ -58,14 +60,19 @@
                 </app-graph-and-description>
             </div>
             <div class="graph-bar secondary-card">
-                <app-graph-and-description [percentage]="true" [title]="wouldTakeAgainGraphTitle" [leyend]="wouldTakeAgainGraphLeyend"
-                    [items]="wouldTakeAgainItems">
+                <app-graph-and-description [percentage]="true" [title]="wouldTakeAgainGraphTitle"
+                    [leyend]="wouldTakeAgainGraphLeyend" [items]="wouldTakeAgainItems">
                     <p>
                         Porcentaje de estudiantes
                         que indicaron que recomiendan
                         el curso.
                     </p>
                 </app-graph-and-description>
+            </div>
+            <div class="row flex-row-reverse">
+                <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true"
+                    printSectionId="print-section" ngxPrint>
+                    <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
             </div>
         </div>
         <div *ngIf="!hasCourseStats">
