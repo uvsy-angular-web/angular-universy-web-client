@@ -12,6 +12,7 @@ import { SubjectStatComponent } from './components/subject-stat/subject-stat.com
 import { SubjectSelectorComponent } from './components/subject-selector/subject-selector.component';
 import { ProgramCardComponent } from './components/program-card/program-card.component';
 import { GraphAndDescriptionComponent } from './components/graph-and-description/graph-and-description.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { GraphAndDescriptionComponent } from './components/graph-and-description
     CommonModule,
     CareerRoutingModule,
     SharedModule,
+    NgxPrintModule
   ],
 })
 

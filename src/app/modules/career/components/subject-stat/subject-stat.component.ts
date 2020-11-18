@@ -31,6 +31,11 @@ export class SubjectStatComponent implements OnChanges {
   public dificultsItems = [];
   public overallItems = [];
   public wouldTakeAgainItems = [];
+  public printStyle = {
+    a: { opacity: 0 },
+    button: { opacity: 0 },
+  };
+  public printButtonText = 'Imprimir'
 
   constructor(private subjectService: SubjectService) { }
 
@@ -47,21 +52,23 @@ export class SubjectStatComponent implements OnChanges {
         .sort(CourseStat.orderByAscendingCommissionName)
         .forEach(
           (courseStat: CourseStat) => {
-            const dificultyItem =
-              new GraphItem(courseStat.commissionName, Math.floor(courseStat.difficulty));
-            const overallItem =
-              new GraphItem(courseStat.commissionName, Math.floor(courseStat.rating));
-            const wouldTakeAgainItem =
-              new GraphItem(courseStat.commissionName, Math.floor(courseStat.wouldTakeAgain));
+            if (courseStat.commissionName) {
+              const dificultyItem =
+                new GraphItem(courseStat.commissionName, Math.floor(courseStat.difficulty));
+              const overallItem =
+                new GraphItem(courseStat.commissionName, Math.floor(courseStat.rating));
+              const wouldTakeAgainItem =
+                new GraphItem(courseStat.commissionName, Math.floor(courseStat.wouldTakeAgain));
 
-            this.dificultsItems.push(dificultyItem);
-            this.overallItems.push(overallItem);
-            this.wouldTakeAgainItems.push(wouldTakeAgainItem);
+              this.dificultsItems.push(dificultyItem);
+              this.overallItems.push(overallItem);
+              this.wouldTakeAgainItems.push(wouldTakeAgainItem);
+            }
           });
     }
     this.hasCourseStats = this.dificultsItems.length > 0 &&
-    this.overallItems.length > 0 &&
-    this.wouldTakeAgainItems.length > 0;
+      this.overallItems.length > 0 &&
+      this.wouldTakeAgainItems.length > 0;
 
   }
 

@@ -2,22 +2,34 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    height: 8rem;
+}
+
+.bar-container{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .graph-bar {
     width: max-content;
-    height: 8rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 
 .bar {
-    min-height: 4px;
     width: 30px;
     background-color: #cfcfcf;
     border-radius: 5px 5px 0 0;
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .bar:hover .bar-value {
@@ -52,5 +64,6 @@
 
 .bar-value-min {
     color: #bbbbbb;
-    font-weight: 300
+    font-weight: 300;
+    min-height: 0.5rem;
 }

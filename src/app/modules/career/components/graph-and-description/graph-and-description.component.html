@@ -1,14 +1,16 @@
 <h5 class="title">{{title}}</h5>
-<hr/>
+<hr />
 <div class="row">
-  <div class="col-12 col-md-6">
+  <div class="col-12">
     <div class="description">
       <ng-content></ng-content>
     </div>
   </div>
-  <div class="col-12 col-md-6 graph-bar">
-    <app-graph-bar [percentage]="percentage" [items]="items">
-    </app-graph-bar>
+  <div class="col-12 graph-bar">
+    <div class="horizontal-scroll">
+      <app-graph-bar [percentage]="percentage" [items]="items">
+      </app-graph-bar>
+    </div>
     <div class="graph-leyend">{{leyend}}</div>
   </div>
 </div>
