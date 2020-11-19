@@ -1,0 +1,32 @@
+.print-header {
+    opacity: 0;
+    height: 0;
+}
+
+/* @media print { */
+
+.print-header {
+    opacity: 1;
+}
+
+.print-body {
+    margin: 0.5rem;
+    padding: 1.5rem;
+    border: 1px solid black
+}
+
+.print-logo {
+    width: 5rem;
+}
+
+.print-header {
+    border-bottom: 1px solid black;
+    padding: 0.5rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* } */

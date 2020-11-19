@@ -36,7 +36,7 @@ export class SubjectStatComponent implements OnChanges {
     button: { opacity: 0 },
   };
   public printButtonText = 'Imprimir'
-
+  public printTitle = 'Valoración de la carrera'
   constructor(private subjectService: SubjectService) { }
 
   public ngOnChanges() {

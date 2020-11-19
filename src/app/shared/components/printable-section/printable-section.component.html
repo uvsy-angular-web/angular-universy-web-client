@@ -1,0 +1,14 @@
+<div id="print-section">
+    <div class="print-body">
+        <div class="print-header">
+            <h5>{{printTitle}}</h5>
+            <img src="\assets\pictures\home-logo.png" alt="logo-universy" height="auto" width="3rem" class="print-logo">
+        </div>
+        <ng-content></ng-content>
+    </div>
+</div>
+<div class="row flex-row-reverse">
+    <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section"
+        ngxPrint>
+        <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
+</div>
