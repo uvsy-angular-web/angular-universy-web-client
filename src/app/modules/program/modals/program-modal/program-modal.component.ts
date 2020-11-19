@@ -100,7 +100,7 @@ export class ProgramModalComponent implements OnInit {
     let areAmountsValid = true;
 
     const ammountsLoaded =
-      this.hours.value > 0 &&
+      this.hours.value > 0 ||
       this.points.value > 0;
 
     if (!ammountsLoaded && this.requiresOptatives.value) {
