@@ -1,13 +1,13 @@
 <div class="main-container">
-    <app-custom-title [title]="career.name" [showDeleteButton]="false" [showEditButton]="false"
+    <app-custom-title [title]="careerStatsTitle" [showDeleteButton]="false" [showEditButton]="false"
         [backNavigationRoute]="backNavigationRoute"></app-custom-title>
     <div class="content">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <app-subject-selector [career]="career" (subjectSelected)="selectSubject($event)">
                 </app-subject-selector>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-8">
                 <app-subject-stat [career]="career" [subjectStat]="selectedSubject"></app-subject-stat>
             </div>
         </div>
