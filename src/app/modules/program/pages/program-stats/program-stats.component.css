@@ -27,3 +27,13 @@
 .btn-secondary i {
     vertical-align: bottom;
 }
+
+@media print {
+    .main-container {
+        padding-top: 1rem;
+        width: 80%;
+    }
+    .table-container, .stats-container, .main-container {
+        margin: auto;
+    }
+}

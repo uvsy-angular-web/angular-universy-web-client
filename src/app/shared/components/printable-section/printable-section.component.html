@@ -1,4 +1,9 @@
 <div id="print-section">
+    <div class="row flex-row-reverse" *ngIf="showSecondaryPrintButton">
+        <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true"
+            printSectionId="print-section" ngxPrint>
+            <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
+    </div>
     <div class="print-container">
         <div class="print-header">
             <div class="print-banner">
@@ -18,7 +23,7 @@
            {{footerText}}
         </div>
     </div>
-    <div class="row flex-row-reverse">
+    <div class="row flex-row-reverse" *ngIf="showPrimaryPrintButton">
         <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true"
             printSectionId="print-section" ngxPrint>
             <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>

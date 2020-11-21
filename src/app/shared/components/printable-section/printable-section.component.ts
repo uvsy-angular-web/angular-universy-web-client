@@ -7,6 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PrintableSectionComponent implements OnInit {
   @Input() printTitle: string;
+  @Input() showPrimaryPrintButton = true;
+  @Input() showSecondaryPrintButton = false;
   dateText = 'Fecha: ';
   hourText = 'Hora: ';
   currentDate: Date;
