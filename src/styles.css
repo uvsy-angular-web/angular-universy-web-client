@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -46,13 +45,11 @@ body {
 }
 
 .content {
-    
     padding-left: 3rem;
     padding-right: 3rem;
 }
 
-form.submitted input.ng-invalid,
-input.ng-dirty.ng-invalid {
+form.submitted input.ng-invalid, input.ng-dirty.ng-invalid {
     border: 1px solid red;
 }
 
@@ -81,14 +78,21 @@ i {
 }
 
 .card {
-    padding: 1rem 2rem; 
+    padding: 1rem 2rem;
     border: none;
     border-radius: 1rem;
     box-shadow: 0 3px 6px #00000017;
-  }
+}
 
 @media only screen and (max-width: 768px) {
     .content {
-      margin-top: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+
+@media print {
+    .no-break {
+        page-break-before: always;
     }
 }

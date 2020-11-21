@@ -15,7 +15,7 @@ export class PrintableSectionComponent implements OnInit {
     button: { opacity: 0 },
   };
   printButtonText = 'Imprimir';
-
+  footerText = 'Universy | Sistema de gestión estudiantil.'
   constructor() { }
 
   ngOnInit() {
