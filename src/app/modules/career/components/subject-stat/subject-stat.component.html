@@ -1,12 +1,12 @@
 <div class="card">
     <div *ngIf="subjectStat">
         <app-printable-section [printTitle]="printTitle">
-            <h4 class="career-name">{{career.name}}</h4>
+            <h5 class="career-name">{{career.name}}</h5>
             <h4 class="subject-name-container">
                 <span class="subject-name-label">{{subjectLabel}}</span>
                 <span class="subject-name">{{subjectStat.subjectName}}</span>
             </h4>
-            <h3>Valoraciones de la materia</h3>
+            <h3>Valoración general</h3>
             <div class="section-container secondary-card margin-top-1">
                 <div class="row">
                     <div class="col-6">
@@ -21,6 +21,7 @@
                     <div class="col-6">
                         <div class="text-right subject-rate">
                             <span class="subject-rate-number">{{subjectStat.rating | number:'1.0-1'}}
+                                <span class="subject-rate-total">{{totalSubjectRatingText}}</span>
                                 <i class="material-icons">star</i>
                             </span>
                             <ngb-progressbar [height]="'0.7rem'" [value]="subjectStat.ratingPercentage">
@@ -29,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <h3 class="margin-top-2">Valoraciones de la materia por curso</h3>
+            <h3 class="margin-top-2">Valoración por curso</h3>
             <div *ngIf="hasCourseStats" class="section-container">
                 <div class="graph-bar secondary-card">
                     <app-graph-and-description [title]="overallGraphTitle" [items]="overallItems"
@@ -72,11 +73,11 @@
                 </div>
             </div>
         </app-printable-section>
-            <div *ngIf="!hasCourseStats">
-                <p class="no-stats-avaiable">{{noStatsAvaiableMessage}}</p>
+        <div *ngIf="!hasCourseStats">
+            <p class="no-stats-avaiable">{{noStatsAvaiableMessage}}</p>
+        </div>
     </div>
-</div>
-<div *ngIf="!subjectStat">
-    <p class="no-stats-avaiable">{{noSubjectSelected}}</p>
-</div>
+    <div *ngIf="!subjectStat">
+        <p class="no-stats-avaiable">{{noSubjectSelected}}</p>
+    </div>
 </div>

@@ -1,9 +1,15 @@
 <div id="print-section">
-    <div class="print-body">
-        <div class="print-header">
-            <h5>{{printTitle}}</h5>
-            <img src="\assets\pictures\home-logo.png" alt="logo-universy" height="auto" width="3rem" class="print-logo">
+    <div class="print-header">
+        <div class="print-banner">
+            <img src="\assets\pictures\home-logo.png" alt="logo-universy" height="auto" width="60px" class="print-logo">
+            <div class="d-flex align-items-end flex-column">
+                <div class="date-header">{{dateText}}{{currentDate | date:'dd/MM/yyyy'}}</div>
+                <div class="hour-header">{{hourText}}{{currentDate | date:'hh:mm'}}</div>
+            </div>
         </div>
+        <div class="print-title">{{printTitle}}</div>
+    </div>
+    <div class="print-body">
         <ng-content></ng-content>
     </div>
 </div>

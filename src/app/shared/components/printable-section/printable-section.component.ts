@@ -7,6 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PrintableSectionComponent implements OnInit {
   @Input() printTitle: string;
+  dateText = 'Fecha: ';
+  hourText = 'Hora: ';
+  currentDate: Date;
   printStyle = {
     a: { opacity: 0 },
     button: { opacity: 0 },
@@ -16,6 +19,7 @@ export class PrintableSectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.currentDate = new Date();
   }
 
 }

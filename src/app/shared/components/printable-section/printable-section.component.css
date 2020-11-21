@@ -5,14 +5,17 @@
 
 /* @media print { */
 
+#print-section {
+    border: 1px solid black
+}
+
 .print-header {
     opacity: 1;
 }
 
 .print-body {
     margin: 0.5rem;
-    padding: 1.5rem;
-    border: 1px solid black
+    padding: 0 1.5rem;
 }
 
 .print-logo {
@@ -20,13 +23,41 @@
 }
 
 .print-header {
-    border-bottom: 1px solid black;
-    padding: 0.5rem;
-    height: 5rem;
+    padding: 1rem;
+    height: max-content;
+    border-bottom: 1px dashed black
+}
+
+.print-banner {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.print-title {
+    text-align: center;
+    font-size: 1.3rem;
+    letter-spacing: 0.025rem;
+    white-space: pre-wrap;
+    padding-top: 0.5rem;
+    border-top: 1px solid gray;
+    font-weight: 600;
+}
+
+.date-header {
+    font-size: 1rem;
+}
+
+.hour-header {
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.date-header, .hour-header {
+    text-align: left;
 }
 
 /* } */
