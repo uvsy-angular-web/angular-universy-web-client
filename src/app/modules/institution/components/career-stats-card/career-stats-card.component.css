@@ -30,8 +30,7 @@
     font-size: 1rem;
 }
 
-.display-number,
-.subtitle {
+.display-number, .subtitle {
     text-align: center;
 }
 
@@ -51,8 +50,21 @@ hr {
     color: red;
 }
 
-#career-name,
-.program-container,
-.no-program-container {
+#career-name, .program-container, .no-program-container {
     padding: 0 2rem 0.3rem 2rem;
+}
+
+@media print {
+    .career-card {
+        border: 1px solid gray;
+    }
+    #career-name {
+        border-bottom: 1px solid gray;
+    }
+    .program-container {
+        background-color: transparent;
+    }
+    .content {
+        padding: 0;
+    }
 }

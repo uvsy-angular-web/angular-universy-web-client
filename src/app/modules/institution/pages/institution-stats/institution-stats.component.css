@@ -1,3 +1,14 @@
 .career-stat-card {
     width: 21rem;
 }
+
+@media print {
+    .content {
+        min-height: 80vh;
+        position: relative;
+        left: -4.5rem;
+    }
+    #container {
+        height: auto !important;
+    }
+}

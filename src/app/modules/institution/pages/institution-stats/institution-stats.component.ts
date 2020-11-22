@@ -11,10 +11,7 @@ export class InstitutionStatsComponent implements OnInit {
   title = 'Mis estadisticas';
   institutionReport: InstitutionReport;
   printButtonText = 'Imprimir';
-  printStyle = {
-    i: { opacity: 0 },
-    button: { opacity: 0 }
-  };
+
   constructor(private institutionServicce: InstitutionService) { }
 
   ngOnInit() {
@@ -26,7 +23,7 @@ export class InstitutionStatsComponent implements OnInit {
       .subscribe(
         (institutionReport: InstitutionReport) =>
           this.institutionReport = institutionReport
-      )
+      );
   }
 
 }
