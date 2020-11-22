@@ -6,7 +6,7 @@ import { InstitutionStatsComponent } from './pages/institution-stats/institution
 
 const routes: Routes = [
   { path: '', component: InstitutionComponent },
-  { path: 'stats', component: InstitutionStatsComponent },
+  { path: 'stats', component: InstitutionStatsComponent, },
   {
     path: 'career',
     loadChildren: () => import('src/app/modules/career/career.module').then(mod => mod.CareerModule)

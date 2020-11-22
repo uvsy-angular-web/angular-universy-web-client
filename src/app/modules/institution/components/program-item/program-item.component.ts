@@ -10,7 +10,7 @@ export class ProgramItemComponent implements OnInit {
   @Input() program: ProgramStat;
   subjectCountTxt = 'Materias';
   optativeSubjectCountTxt = 'Optativas';
-  overallRateTxt = 'Valoración general promedio: ';
+  overallRateTxt = 'Valoración general promedio';
   overallRateTotalText = '/5'
 
   constructor() { }

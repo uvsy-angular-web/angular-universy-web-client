@@ -13,12 +13,12 @@
                 </a>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn">
-                <a class=" nav-link" routerLink="/institution" routerLinkActive="active-link">
+                <a class=" nav-link" routerLink="/institution" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                     Mis Carreras
                 </a>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn">
-                <a class=" nav-link" routerLink="/institution/stats" routerLinkActive="active-link">
+                <a class=" nav-link" routerLink="/institution/stats" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                     Mis Estadísticas
                 </a>
             </li>
