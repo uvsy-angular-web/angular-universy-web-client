@@ -3,7 +3,7 @@
   font-weight: bold;
 }
 
-.active-link::before {
+.active-link a::before {
   content: '';
   height: 8px;
   width: 8px;

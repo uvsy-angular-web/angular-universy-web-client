@@ -13,14 +13,24 @@
                 </a>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn">
-                <a class=" nav-link" routerLink="/institution" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                    Mis Carreras
-                </a>
+                <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                    <a class=" nav-link" routerLink="/institution">
+                        Mis Carreras
+                    </a>
+                    <a class=" nav-link" routerLink="/institution/career/" style="display: none"></a>
+                    <a class=" nav-link" routerLink="/institution/career/program" style="display: none"></a>
+                    <a class=" nav-link" routerLink="/institution/career/program/stats" style="display: none"></a>
+                    <a class=" nav-link" routerLink="/institution/career/program/subject" style="display: none"></a>
+                    <a class=" nav-link" routerLink="/institution/career/program/subject/course" style="display: none"></a>
+                </div>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn">
-                <a class=" nav-link" routerLink="/institution/stats" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                    Mis Estadísticas
-                </a>
+                <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                    <a class=" nav-link" routerLink="/institution/stats">
+                        Mis Estadísticas
+                    </a>
+                    <a class=" nav-link" routerLink="/institution/career/stats" style="display: none"></a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class=" nav-link" routerLink="/contact-info" routerLinkActive="active-link"> Sobre
