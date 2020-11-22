@@ -22,7 +22,8 @@ export const defaultErrors = {
   minlength: ({requiredLength}) => `Como mínimo debe tener ${requiredLength}.`,
   maxlength: ({requiredLength}) => `No debe superar los ${requiredLength} caracteres.`,
   min: ({min}) => `El valor mínimo es ${min}.`,
-  max: ({max}) => `El valor máximo es ${max}.`
+  max: ({max}) => `El valor máximo es ${max}.`,
+  email: () => `El mail ingresado es inválido.`
 };
 
 export const FORM_ERRORS = new InjectionToken('FORM_ERRORS', {
