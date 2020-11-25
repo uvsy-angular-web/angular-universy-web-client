@@ -3,6 +3,18 @@
   font-weight: bold;
 }
 
+.active-link a::before {
+  content: '';
+  height: 8px;
+  width: 8px;
+  background-color: #E5C028;
+  border-radius: 50%;
+  margin: auto;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 .navbar-light .navbar-nav .nav-link {
   color: black;
   font-size: 1.2rem;

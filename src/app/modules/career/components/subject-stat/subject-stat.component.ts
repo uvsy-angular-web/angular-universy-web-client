@@ -5,6 +5,7 @@ import { SubjectReport } from 'src/app/models/subject-report.model';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { CourseStat } from 'src/app/models/course-stat.model';
 import { SubjectStat } from 'src/app/models/subject-stat.model';
+import { ProgramService } from 'src/app/core/services/program.service';
 
 @Component({
   selector: 'app-subject-stat',
@@ -35,12 +36,19 @@ export class SubjectStatComponent implements OnChanges {
     a: { opacity: 0 },
     button: { opacity: 0 },
   };
-  public printButtonText = 'Imprimir'
-
+  public printButtonText = 'Imprimir';
+  public totalSubjectRatingText = '/5';
+  public printTitle: string;
   constructor(private subjectService: SubjectService) { }
 
   public ngOnChanges() {
     this.getSubjectReport();
+    this.buildPrintTitle();
+  }
+
+  private buildPrintTitle() {
+    const currentProgram = ProgramService.getCurrentProgram();
+    this.printTitle = `Estadisticas de valoración por materia \n - ${currentProgram.name} -`;
   }
 
   private generateGraphItems() {

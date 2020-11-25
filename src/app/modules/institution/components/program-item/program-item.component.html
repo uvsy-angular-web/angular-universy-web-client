@@ -1,15 +1,17 @@
 <div class="program-container">
-    <h5> {{ program.programName }}</h5>
+    <h5>{{ program.programName}}</h5>
     <div class="overall-rate-container">
-        <div class="col-10 text-right overall-rate-txt">
+        <div class="overall-rate-txt">
             {{overallRateTxt}}
         </div>
-        <div class="col-2 text-center overall-rate">
+        <div class="overall-rate">
             {{program.rating | number:'1.0-1'}}
+            <span class="overall-rate-total">{{overallRateTotalText}}</span>
+            <i class="material-icons">star</i>
         </div>
     </div>
     <hr>
-    <div class="row">
+    <div class="row program-footer">
         <div class="col-6 text-left  subject-count-txt">
             <span class="subject-count">{{program.amountOfSubjects}}</span> {{subjectCountTxt}}
         </div>

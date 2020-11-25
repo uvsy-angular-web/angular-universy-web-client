@@ -9,6 +9,13 @@
     font-size: 1.5rem;
 }
 
+.subject-rate-total {
+    font-weight: 400;
+    font-size: smaller;
+    padding-right: 4px;
+    color: gray;
+}
+
 .subject-rate-number i {
     color: #8046b6;
 }
@@ -21,7 +28,7 @@
     padding: 1rem;
 }
 
-.secondary-card{
+.secondary-card {
     background-color: #f8f8f8;
     padding: 1.5rem;
     padding-right: 3rem;
@@ -54,7 +61,6 @@
 
 .subject-name-label {
     font-weight: 600;
-    padding-right: 4px;
 }
 
 .subject-name {
@@ -76,9 +82,14 @@
     padding-right: 3rem;
 }
 
-@media print {
-    .section-container {
+@media only screen and (max-width: 768px) {
+    .card {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
+}
+
+@media print {
     #print-section {
         padding-left: 10rem;
         padding-right: 100px;
@@ -87,7 +98,7 @@
         margin: 0;
         padding: 0;
     }
-    .graph-bar{
+    .graph-bar {
         margin: 0;
         padding: 0;
     }

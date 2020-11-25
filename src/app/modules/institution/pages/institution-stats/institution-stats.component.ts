@@ -8,13 +8,10 @@ import { InstitutionReport } from 'src/app/models/institution-report.model';
   styleUrls: ['./institution-stats.component.css']
 })
 export class InstitutionStatsComponent implements OnInit {
-  title = 'Mis estadisticas';
+  title = 'Mis estadisticas generales de las carreras';
   institutionReport: InstitutionReport;
   printButtonText = 'Imprimir';
-  printStyle = {
-    i: { opacity: 0 },
-    button: { opacity: 0 }
-  };
+
   constructor(private institutionServicce: InstitutionService) { }
 
   ngOnInit() {
@@ -26,7 +23,7 @@ export class InstitutionStatsComponent implements OnInit {
       .subscribe(
         (institutionReport: InstitutionReport) =>
           this.institutionReport = institutionReport
-      )
+      );
   }
 
 }

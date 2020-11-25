@@ -1,0 +1,59 @@
+.print-header, .print-footer {
+    opacity: 0;
+    height: 0;
+}
+
+@media print {
+    .print-header, .print-footer {
+        opacity: 1;
+        height: max-content;
+    }
+    .print-container {
+        border: 1px solid black;
+        margin: 1rem
+    }
+    .print-body {
+        margin: 0.5rem;
+        padding: 0 1.5rem;
+    }
+    .print-logo {
+        width: 5rem;
+    }
+    .print-header {
+        padding: 1rem;
+        border-bottom: 1px solid black
+    }
+    .print-banner {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .print-title {
+        text-align: center;
+        font-size: 1.3rem;
+        letter-spacing: 0.025rem;
+        white-space: pre-wrap;
+        padding-top: 0.5rem;
+        border-top: 1px dashed gray;
+        font-weight: 600;
+    }
+    .print-footer {
+        border-top: 1px solid black;
+        padding: 1rem;
+        margin-top: 1rem;
+        text-align: right;
+    }
+    .date-header {
+        font-size: 1rem;
+    }
+    .hour-header {
+        font-size: 0.8rem;
+        font-weight: 300;
+    }
+    .date-header, .hour-header {
+        text-align: left;
+    }
+}

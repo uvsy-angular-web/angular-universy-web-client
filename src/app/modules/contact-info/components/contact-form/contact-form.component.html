@@ -1,0 +1,46 @@
+<div class="card" id="login-card">
+  <div class="col-12">
+    <h3>¡Vinculá tu institución a Universy!</h3>
+    <h5>Envianos un mail con tus datos y comenzá a ser parte. </h5>
+  </div>
+  <hr />
+  <form appForm [formGroup]="form" (ngSubmit)="sendEmail()">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="institutionEmail">
+          Email de tu institución:
+        </label>
+        <div class="control">
+          <input id="institutionEmail" appControlError class="form-control" type="text"
+            formControlName="institutionEmail">
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="institutionName">
+          Nombre de tu institución:
+        </label>
+        <div class="control">
+          <input id="institutionName" appControlError class="form-control" type="text"
+            formControlName="institutionName">
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="control">
+          Mensaje:
+        </label>
+        <div class="control">
+          <textarea id="comment" appControlError class="form-control" rows="3" formControlName="comment">
+            </textarea>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-primary" id="login-button">Enviar datos</button>
+    </div>
+  </form>
+</div>

@@ -15,6 +15,8 @@ import { ModalConfirmFooterComponent } from './components/modals/modal-confirm-f
 import { ModalRepeatedWordsFooterComponent } from './components/modals/modal-repeated-words-footer/modal-repeated-words-footer.component';
 import { GraphBarComponent } from './components/graph-bar/graph-bar.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { PrintableSectionComponent } from './components/printable-section/printable-section.component';
+import { NgxPrintModule } from 'ngx-print';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     ModalConfirmFooterComponent,
     ModalRepeatedWordsFooterComponent,
     GraphBarComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    PrintableSectionComponent
   ],
   exports: [
     GraphBarComponent,
@@ -46,12 +49,14 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     ModalHeaderComponent,
     ModalConfirmFooterComponent,
     ModalRepeatedWordsFooterComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    PrintableSectionComponent
   ],
   imports: [
     CommonModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPrintModule
   ],
   entryComponents: [
     ControlErrorComponent

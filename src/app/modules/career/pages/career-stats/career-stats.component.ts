@@ -17,7 +17,7 @@ export class CareerStatsComponent implements OnInit {
   public backNavigationRoute = Route.INSTITUTION_STATS;
   public selectedSubject: SubjectStat;
   public programReport: ProgramReport
-
+  public careerStatsTitle = 'Estadisticas de valoración por materia'
   constructor() { }
 
   public ngOnInit() {

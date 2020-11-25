@@ -32,7 +32,6 @@ import { NgxPrintModule } from 'ngx-print';
     CommonModule,
     CareerRoutingModule,
     SharedModule,
-    NgxPrintModule
   ],
 })
 
