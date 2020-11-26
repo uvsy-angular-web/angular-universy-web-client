@@ -8,11 +8,14 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="col-4">
+      <div *ngIf="!subject.id" class="col-4">
         <label for="level-select">Nivel:</label>
         <select id="level-select" appControlError class="form-control" formControlName="level">
           <option *ngFor="let level of levels" [ngValue]="level">{{level}}</option>
         </select>
+      </div>
+      <div *ngIf="subject.id" class="col-3">
+        <div class="level-chip">Nivel <span>{{subject.level}}</span></div>
       </div>
     </div>
     <div class="form-group" [hidden]="isProgramPublished">
