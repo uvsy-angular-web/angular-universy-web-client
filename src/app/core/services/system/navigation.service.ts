@@ -59,6 +59,13 @@ export class NavigationService {
     this.router.navigate([route]);
   }
 
+  public getCurrentLocations(): string[] {
+    if (this.router.url) {
+      return this.router.url.split('/');
+    }
+    return [];
+  }
+
   private static getPreviousPath(currentPath) {
     const arrayCurrentPath = currentPath.split(URL_SEPARATOR);
     arrayCurrentPath.pop();
