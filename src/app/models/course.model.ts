@@ -4,6 +4,7 @@ export class Course {
 
   public subjectId: string;
   public commissionId: string;
+  public commissionName: string;
   public courseId: string;
   public periods: Period[];
   public active: boolean;
@@ -13,6 +14,7 @@ export class Course {
   constructor(
     subjectId?: string,
     commissionId?: string,
+    commissionName?: string,
     courseId?: string,
     periods?: Period[],
     active?: boolean,
@@ -21,6 +23,7 @@ export class Course {
     ) {
     this.subjectId = subjectId;
     this.commissionId = commissionId;
+    this.commissionName = commissionName;
     this.courseId = courseId;
     this.periods = periods;
     this.active = active;

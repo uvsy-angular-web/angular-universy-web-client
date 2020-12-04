@@ -48,8 +48,11 @@ export class CoursesListComponent implements OnChanges {
         );
         const commissionCourse = new CommissionCourse();
         commissionCourse.commission = commission;
-        commissionCourse.course = courseInCommision;
         commissionCourse.hasCourse = courseInCommision !== undefined;
+        if(courseInCommision){
+          commissionCourse.course = courseInCommision;
+          commissionCourse.course.commissionName = commission.name
+        }
 
         this.commissionsCourses.push(commissionCourse);
       }

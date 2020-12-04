@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationService } from 'src/app/core/services/system/navigation.service';
+import { BreadcrumService } from 'src/app/core/services/system/breadcrum.service';
+import { BreadCrum } from 'src/app/models/breadcrum.model';
 
 
 
@@ -9,16 +10,16 @@ import { NavigationService } from 'src/app/core/services/system/navigation.servi
   styleUrls: ['./bread-crum.component.css']
 })
 export class BreadCrumComponent implements OnInit {
+  breadcrums: BreadCrum[];
 
-  constructor(private navigationService: NavigationService) { }
+  constructor(private breadcrumService: BreadcrumService) { }
 
   ngOnInit() {
     this.generateLocations();
   }
 
   private generateLocations(){
-    const currentBreadcrums = this.navigationService.getCurrentBreadcrums();
-    console.log(currentBreadcrums)
+    this.breadcrums = this.breadcrumService.getCurrentBreadcrums();
   }
 
 }
