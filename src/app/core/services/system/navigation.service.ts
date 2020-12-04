@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Route } from './routes/routes.enum';
+import { BreadCrum } from 'src/app/models/breadcrum.model';
+import { Route, routesBreadcrum } from './routes/routes.enum';
 
 const URL_SEPARATOR = '/';
 
@@ -61,11 +62,25 @@ export class NavigationService {
 
   public getCurrentLocations(): string[] {
     if (this.router.url) {
-      return this.router.url.split('/');
+      return this.router.url.split(URL_SEPARATOR);
     }
     return [];
   }
-
+  public getCurrentBreadcrums() {
+    const locations = this.getCurrentLocations();
+    const breadcrums = [...routesBreadcrum];
+    if (locations) {
+      locations.forEach((location: Route) => {
+        const locationBreadCrum = breadcrums
+          .find((breadcrum: BreadCrum) => breadcrum.location === location);
+        if (locationBreadCrum) {
+          locationBreadCrum.active = true;
+          locationBreadCrum.value = 'LADKJDSAKLDJSALKADS'; //TODO: Implement function
+        }
+      });
+    }
+    return breadcrums;
+  }
   private static getPreviousPath(currentPath) {
     const arrayCurrentPath = currentPath.split(URL_SEPARATOR);
     arrayCurrentPath.pop();

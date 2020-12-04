@@ -17,8 +17,8 @@ export class BreadCrumComponent implements OnInit {
   }
 
   private generateLocations(){
-    const currentPath = this.navigationService.getCurrentLocations();
-    console.log(currentPath)
+    const currentBreadcrums = this.navigationService.getCurrentBreadcrums();
+    console.log(currentBreadcrums)
   }
 
 }
