@@ -1,13 +1,17 @@
-<div class="container-fluid">
-    <app-custom-title [title]="'Mis Carreras'" [showDeleteButton]="false" [showEditButton]="false" [showNavigationArrow]="false"></app-custom-title>
-    <hr>
-    <div class="content">
-        <app-add-item (buttonPressed)="openNewCareerModal()" [buttonTitle]="'Agregar carrera'"></app-add-item>
-        <br>
-        <div class="row justify-content-center">
-            <div *ngFor="let career of careers" class="col-lg-5 col-xs-12">
-                <button class="btn  btn-primary button-career" [class.carrer-disabled]="!career.active" (click)="navigateToCareerPage(career)"> {{ career.name}} </button>
+<app-navigation-layout>
+    <div class="container-fluid">
+        <app-custom-title [title]="'Mis Carreras'" [showDeleteButton]="false" [showEditButton]="false"
+            [showNavigationArrow]="false"></app-custom-title>
+        <hr>
+        <div class="content">
+            <app-add-item (buttonPressed)="openNewCareerModal()" [buttonTitle]="'Agregar carrera'"></app-add-item>
+            <br>
+            <div class="row justify-content-center">
+                <div *ngFor="let career of careers" class="col-lg-5 col-xs-12">
+                    <button class="btn  btn-primary button-career" [class.carrer-disabled]="!career.active"
+                        (click)="navigateToCareerPage(career)"> {{ career.name}} </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</app-navigation-layout>

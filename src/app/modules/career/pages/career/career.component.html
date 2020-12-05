@@ -1,31 +1,32 @@
-<div class="container-fluid">
-    <div class="row flex-sm-row-reverse">
-        <div class="col-sm-5 col-xs-12 toggler">
-            <app-custom-toggle class="float-right" [activated]="getStateOfCareer()"
-                (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
-        </div>
-        <div class="col-sm-7 col-xs-12">
-            <app-custom-title [title]="career.name" (editItem)="openEditCareerModal()" [showDeleteButton]="false">
-            </app-custom-title>
-        </div>
-    </div>
-    <hr>
-    <div class="content">
-        <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()" [buttonTitle]="'Agregar plan'">
-        </app-add-item>
-        <div *ngIf="programs">
-            <div *ngFor="let program of programs">
-                <app-program-card [program]="program" 
-                (cardPress)="navigateToProgramPage($event)"
-                (publishProgram)="navigateToProgramStats($event)"
-                (seeDetail)="navigateToProgramStats($event)">
-                </app-program-card>
+<app-navigation-layout>
+    <div class="container-fluid">
+        <div class="row flex-sm-row-reverse">
+            <div class="col-sm-5 col-xs-12 toggler">
+                <app-custom-toggle class="float-right" [activated]="getStateOfCareer()"
+                    (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
+            </div>
+            <div class="col-sm-7 col-xs-12">
+                <app-custom-title [title]="career.name" (editItem)="openEditCareerModal()" [showDeleteButton]="false">
+                </app-custom-title>
             </div>
         </div>
+        <hr>
+        <div class="content">
+            <app-add-item *ngIf="showAddProgram()" (buttonPressed)="openNewProgramModal()"
+                [buttonTitle]="'Agregar plan'">
+            </app-add-item>
+            <div *ngIf="programs">
+                <div *ngFor="let program of programs">
+                    <app-program-card [program]="program" (cardPress)="navigateToProgramPage($event)"
+                        (publishProgram)="navigateToProgramStats($event)" (seeDetail)="navigateToProgramStats($event)">
+                    </app-program-card>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="programs.length === 0">
+            <h4 class="no-program-text">
+                La carrera no posee planes todavía, haz click en Agregar plan.
+            </h4>
+        </div>
     </div>
-    <div *ngIf="programs.length === 0">
-        <h4 class="no-program-text">
-            La carrera no posee planes todavía, haz click en Agregar plan.
-        </h4>
-    </div>
-</div>
+</app-navigation-layout>

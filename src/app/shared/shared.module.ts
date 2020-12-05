@@ -18,6 +18,7 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
 import { PrintableSectionComponent } from './components/printable-section/printable-section.component';
 import { NgxPrintModule } from 'ngx-print';
 import { BreadCrumComponent } from './components/bread-crum/bread-crum.component';
+import { NavigationLayoutComponent } from './components/navigation-layout/navigation-layout.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { BreadCrumComponent } from './components/bread-crum/bread-crum.component
     GraphBarComponent,
     ErrorMessageComponent,
     PrintableSectionComponent,
-    BreadCrumComponent
+    BreadCrumComponent,
+    NavigationLayoutComponent
   ],
   exports: [
     GraphBarComponent,
@@ -52,7 +54,9 @@ import { BreadCrumComponent } from './components/bread-crum/bread-crum.component
     ModalConfirmFooterComponent,
     ModalRepeatedWordsFooterComponent,
     ErrorMessageComponent,
-    PrintableSectionComponent
+    PrintableSectionComponent,
+    BreadCrumComponent,
+    NavigationLayoutComponent
   ],
   imports: [
     CommonModule,
