@@ -1,6 +1,18 @@
-<div>
+<div class="card">
+  <div class="title">{{title}}</div>
   <div *ngFor="let breadCrum of breadcrums">
-    <h6>{{breadCrum.label}}</h6>
-    <h2>{{breadCrum.value}}</h2>
+    <div class="step-container">
+      <div class="step-label" *ngIf="breadCrum.active">{{breadCrum.label}}</div>
+      <div class="row">
+        <div class="col-2">
+          <div class="step-number" [class.step-number-active]="breadCrum.active">{{breadCrum.order}}</div>
+        </div>
+        <div class="col">
+          <div class="step" [class.step-active]="breadCrum.active">
+            {{breadCrum.active ? breadCrum.value : breadCrum.label}}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

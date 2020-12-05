@@ -16,8 +16,8 @@ export enum Route {
 export const routesBreadcrum: BreadCrum[] = [
   new BreadCrum(1, 'institution', 'Institución'),
   new BreadCrum(2, 'career', 'Carrera'),
-  new BreadCrum(3, 'program', 'Programa'),
+  new BreadCrum(3, 'program', 'Plan'),
   new BreadCrum(4, 'subject', 'Materia'),
-  new BreadCrum(5, 'course', 'Curso'),
+  new BreadCrum(5, 'course', 'Curso: Profesores y horarios'),
 ];
 

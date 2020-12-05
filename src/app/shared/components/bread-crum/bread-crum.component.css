@@ -1,0 +1,54 @@
+.title {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.step-container {
+    padding: 0.8rem 0;
+}
+
+.step-label {
+    font-style: 0.4rem;
+    text-align: right;
+    font-style: italic;
+    font-weight: 300;
+    color: #696969;
+    margin-bottom: 0.2rem;
+}
+
+.step-number {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: gray;
+    vertical-align: center;
+}
+
+.step-number-active {
+    font-weight: 400;
+    color: black;
+}
+
+.step {
+    font-size: 0.9rem;
+    border-radius: 16px;
+    background-color: #eaeaea;
+    color: rgb(83, 83, 83);
+    text-align: center;
+    padding: 1rem;
+}
+
+.step-active {
+    border-radius: 16px;
+    background-color: #E5C028;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+}
+
+.card:last-child {
+    border-bottom: none !important;
+}

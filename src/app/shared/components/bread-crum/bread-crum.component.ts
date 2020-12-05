@@ -11,6 +11,7 @@ import { BreadCrum } from 'src/app/models/breadcrum.model';
 })
 export class BreadCrumComponent implements OnInit {
   breadcrums: BreadCrum[];
+  title = 'Mapa';
 
   constructor(private breadcrumService: BreadcrumService) { }
 
@@ -18,7 +19,7 @@ export class BreadCrumComponent implements OnInit {
     this.generateLocations();
   }
 
-  private generateLocations(){
+  private generateLocations() {
     this.breadcrums = this.breadcrumService.getCurrentBreadcrums();
   }
 

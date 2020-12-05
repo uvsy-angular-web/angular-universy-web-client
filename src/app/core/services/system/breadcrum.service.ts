@@ -31,7 +31,7 @@ export class BreadcrumService {
       breadcrums.forEach((breadcrum: BreadCrum) => {
         const locationBreadcrum = locations
           .find((location: string) => location === breadcrum.location);
-        if (location) {
+        if (locationBreadcrum) {
           breadcrum.active = true;
           breadcrum.value = this.getBreadcrumValue(locationBreadcrum);
         } else {
