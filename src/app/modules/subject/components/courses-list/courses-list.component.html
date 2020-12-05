@@ -1,9 +1,11 @@
 <div class="row">
     <div class="col">
-        <span  *ngFor="let commissionCourse of commissionsCourses">
-            <button class="btn btn-primary btn-commission"
-                (click)="onComissionCourseClick(commissionCourse)"
+        <span *ngFor="let commissionCourse of commissionsCourses">
+            <button class="btn btn-primary btn-commission" (click)="onComissionCourseClick(commissionCourse)"
                 [ngClass]="{'hasCourse': commissionCourse.hasCourse}">
+                <div *ngIf="!commissionCourse.hasCourse">
+                    + Agregar curso en: 
+                </div>
                 {{commissionCourse.commission.name}}
             </button>
         </span>
