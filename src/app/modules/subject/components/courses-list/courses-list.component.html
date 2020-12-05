@@ -4,11 +4,15 @@
             <button class="btn btn-primary btn-commission" (click)="onComissionCourseClick(commissionCourse)"
                 [ngClass]="{'hasCourse': commissionCourse.hasCourse}">
                 <div *ngIf="!commissionCourse.hasCourse">
-                    + Agregar curso en: 
+                    + Agregar curso en:
                 </div>
                 {{commissionCourse.commission.name}}
             </button>
         </span>
         <div *ngIf="commissionsCourses.length == 0">{{noCommissionsMessage}}</div>
+        <div>
+            <i>Para agregar una nueva comisión haz click en el botón &quot;Agregar Comisión&quot; en la pantalla
+                anterior.</i>
+        </div>
     </div>
 </div>
