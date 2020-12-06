@@ -36,10 +36,13 @@
 }
 
 .step-active {
-    font-style: normal;
-    color: #E5C028;
     font-weight: bold;
     line-height: normal;
+    font-style: normal;
+    color: #8046b6;
+    text-align: center;
+    background-color: #e4e4e4;
+    padding: 0.4rem;
 }
 
 .step-number, .step, .step-label {
