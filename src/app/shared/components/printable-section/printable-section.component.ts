@@ -9,6 +9,7 @@ export class PrintableSectionComponent implements OnInit {
   @Input() printTitle: string;
   @Input() showPrimaryPrintButton = true;
   @Input() showSecondaryPrintButton = false;
+  @Input() buttonTooltip = 'Imprimir página';
   dateText = 'Fecha: ';
   hourText = 'Hora: ';
   currentDate: Date;

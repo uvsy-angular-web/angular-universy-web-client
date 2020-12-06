@@ -1,7 +1,9 @@
 <div id="print-section">
     <div class="row flex-row-reverse" *ngIf="showPrimaryPrintButton">
         <button class="btn btn-secondary" [printStyle]="printStyle" [useExistingCss]="true"
-            printSectionId="print-section" ngxPrint>
+            printSectionId="print-section" 
+            ngbTooltip="{{buttonTooltip}}" placement="bottom"
+            ngxPrint>
             <i class="material-icons" id="print-icon">print</i> {{printButtonText}}</button>
     </div>
     <div class="print-container">

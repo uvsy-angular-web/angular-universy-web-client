@@ -2,7 +2,7 @@
     <app-custom-title [title]="title" [showNavigationArrow]="false" [showDeleteButton]="false" [showEditButton]="false">
     </app-custom-title>
     <div *ngIf="institutionReport">
-        <app-printable-section [printTitle]="title">
+        <app-printable-section [printTitle]="title" [buttonTooltip]="'printTooltip'">
             <div class="content">
                 <ngx-masonry>
                     <div ngxMasonryItem *ngFor="let career of institutionReport.careers" class="career-stat-card">

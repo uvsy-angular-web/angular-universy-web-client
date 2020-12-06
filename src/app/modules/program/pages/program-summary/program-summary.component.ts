@@ -20,6 +20,7 @@ export class ProgramSummaryComponent implements OnInit {
   correlativesTitle = 'Correlativas';
   correlativeCountText = 'Materias cargadas con correlativas:';
   printButtonText = 'Imprimir';
+  correlativeListTitle = 'Ver lista de correlativas';
   correlativesCount = 0;
   printStyle = {
     i: { opacity: 0 },

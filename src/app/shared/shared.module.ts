@@ -19,6 +19,7 @@ import { PrintableSectionComponent } from './components/printable-section/printa
 import { NgxPrintModule } from 'ngx-print';
 import { BreadCrumComponent } from './components/bread-crum/bread-crum.component';
 import { NavigationLayoutComponent } from './components/navigation-layout/navigation-layout.component';
+import { AcordionComponent } from './components/acordion/acordion.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { NavigationLayoutComponent } from './components/navigation-layout/naviga
     ErrorMessageComponent,
     PrintableSectionComponent,
     BreadCrumComponent,
-    NavigationLayoutComponent
+    NavigationLayoutComponent,
+    AcordionComponent
   ],
   exports: [
     GraphBarComponent,
@@ -56,7 +58,8 @@ import { NavigationLayoutComponent } from './components/navigation-layout/naviga
     ErrorMessageComponent,
     PrintableSectionComponent,
     BreadCrumComponent,
-    NavigationLayoutComponent
+    NavigationLayoutComponent,
+    AcordionComponent
   ],
   imports: [
     CommonModule,

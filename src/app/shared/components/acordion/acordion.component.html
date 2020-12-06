@@ -1,0 +1,11 @@
+<div class="row accordion-title align-items-center" (click)="toggleCollapse()">
+  <div class="col-11 text-left">
+    {{title}}
+  </div>
+  <div class="col-1 text-rigth text">
+    <i class="material-icons" [class.icon-expanded]="isCollapsed">expand_more</i>
+  </div>
+</div>
+<div class="collapse" [class.show]="!isCollapsed" id="navbarSupportedContent">
+  <ng-content></ng-content>
+</div>
