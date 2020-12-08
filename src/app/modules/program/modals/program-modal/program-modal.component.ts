@@ -37,7 +37,7 @@ export class ProgramModalComponent implements OnInit {
   amountOfHoursInputText = 'Cantidad de horas: ';
   amountOfPointsInputText = 'Cantidad de puntos: ';
   undefinedYearToText = 'Indefinido';
-  periodText = 'Periodo';
+  periodText = 'Período';
   showYearToInput = SHOW_YEAR_TO_INITIAL_VALUE;
   form: FormGroup;
   @Input() title: string;

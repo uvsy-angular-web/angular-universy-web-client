@@ -55,7 +55,7 @@ export class ProgramStatsComponent implements OnInit {
     button: { opacity: 0 }
   };
   isProgramPublished = true;
-  printTitle = 'Resumen general del programa';
+  printTitle = 'Resumen general del plan';
 
   constructor(
     private programModalService: ProgramModalService,
