@@ -1,7 +1,7 @@
 <div id="print-section">
     <div [ngClass]="{'content':!isInsideComponent}">
         <app-custom-title *ngIf="!isInsideComponent" [title]="componentTitle" [showDeleteButton]="false"
-            [showEditButton]="false"></app-custom-title>
+            [showEditButton]="false" [showCurrentLocation]="false"></app-custom-title>
         <h3 *ngIf="isInsideComponent">{{componentTitle}}</h3>
         <div class="correlative-stat-container">
             <app-stats [title]="correlativeCountText" [value]="correlativesCount+'/'+subjects.length"> </app-stats>
