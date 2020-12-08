@@ -1,0 +1,13 @@
+.help-tooltip {
+    padding: 0.2rem;
+    margin: 0 1rem;
+    line-height: normal;
+    font-size: larger;
+    color: #8046b6;
+}
+
+@media print {
+    .help-tooltip {
+        display: none;
+    }
+}

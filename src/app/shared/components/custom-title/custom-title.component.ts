@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationService } from '../../../core/services/system/navigation.service';
 import { Route } from 'src/app/core/services/system/routes/routes.enum';
+import { BreadcrumService } from 'src/app/core/services/system/breadcrum.service';
 
 @Component({
   selector: 'app-custom-title',
@@ -15,12 +16,14 @@ export class CustomTitleComponent implements OnInit {
   @Input() showDeleteButton = true;
   @Input() showEditButton = true;
   @Input() showNavigationArrow = true;
+  @Input() showCurrentLocation = true;
   @Input() backNavigationRoute: Route;
-
-  constructor(private navigationService: NavigationService) {
+  currentLocationLabel: string;
+  constructor(private navigationService: NavigationService, private breadcrumService: BreadcrumService) {
   }
 
   ngOnInit() {
+    this.getCurrentLocationLabel()
   }
 
   public navigateToPreviousPage() {
@@ -37,6 +40,10 @@ export class CustomTitleComponent implements OnInit {
 
   public deleteItemAction() {
     this.deleteItem.emit();
+  }
+
+  private getCurrentLocationLabel() {
+    this.currentLocationLabel =  this.breadcrumService.getCurrentLocationLabel()
   }
 
 }

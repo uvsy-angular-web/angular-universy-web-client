@@ -5,6 +5,8 @@ import { Endpoint } from 'src/app/models/endpoint.model';
 import { Program } from 'src/app/models/program.model';
 import { ProgramService } from './program.service';
 import { Commission } from 'src/app/models/commission.model';
+import { CourseService } from './course.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,11 @@ export class CommissionService {
   }
 
   getCommission(commissionId: string) {
+    return this.crudEndpointService.get(this.endpoint, commissionId);
+  }
+
+  getCurrentCommission(): Observable<Commission> {
+    const commissionId = CourseService.getCurrentCourse().commissionId;
     return this.crudEndpointService.get(this.endpoint, commissionId);
   }
 

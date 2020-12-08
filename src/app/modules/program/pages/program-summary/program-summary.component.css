@@ -39,4 +39,9 @@ h4 {
 .correlative-stat-container {
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
+    margin-left: 1rem;
+}
+.correlative-list-container{
+    margin-left: 1rem;
+    padding-top: 1.2rem;
 }

@@ -2,6 +2,7 @@
   <div *ngFor="let period of periods" class="card margin-top-2">
     <app-custom-title [title]="getPeriodRangeTitle(period)"
                       [showNavigationArrow]="false"
+                      [showCurrentLocation]="false"
                       (deleteItem)="deletePeriod(period)"
                       (editItem)="editPeriod(period)"></app-custom-title>
     <hr/>

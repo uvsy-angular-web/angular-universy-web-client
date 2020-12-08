@@ -1,0 +1,50 @@
+.title {
+    text-align: center;
+}
+
+.step-container {
+    border-top: 1px solid #e3e3e3;
+    padding: 0.8rem 0;
+}
+
+.step-label {
+    font-style: 0.4rem;
+    text-align: left;
+    font-weight: 400;
+    color: #363636;
+    margin-bottom: 0.2rem;
+}
+
+.step-number {
+    font-size: 1.5rem;
+    font-weight: 200;
+    color: #a1a1a1;
+    white-space: nowrap;
+}
+
+.step-number-active {
+    font-weight: 500;
+    color: black;
+}
+
+.step {
+    font-size: 1rem;
+    border-radius: 2px;
+    color: #a1a1a1;
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
+.step-active {
+    font-weight: bold;
+    line-height: normal;
+    font-style: normal;
+    color: #8046b6;
+    text-align: left;
+    background-color: #f1f1f1;
+    padding: 0.4rem;
+}
+
+.step-number, .step, .step-label {
+    line-height: 1.5rem;
+}

@@ -17,6 +17,10 @@ import { GraphBarComponent } from './components/graph-bar/graph-bar.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { PrintableSectionComponent } from './components/printable-section/printable-section.component';
 import { NgxPrintModule } from 'ngx-print';
+import { BreadCrumComponent } from './components/bread-crum/bread-crum.component';
+import { NavigationLayoutComponent } from './components/navigation-layout/navigation-layout.component';
+import { AcordionComponent } from './components/acordion/acordion.component';
+import { HelpTooltipComponent } from './components/help-tooltip/help-tooltip.component';
 
 
 @NgModule({
@@ -34,7 +38,11 @@ import { NgxPrintModule } from 'ngx-print';
     ModalRepeatedWordsFooterComponent,
     GraphBarComponent,
     ErrorMessageComponent,
-    PrintableSectionComponent
+    PrintableSectionComponent,
+    BreadCrumComponent,
+    NavigationLayoutComponent,
+    AcordionComponent,
+    HelpTooltipComponent
   ],
   exports: [
     GraphBarComponent,
@@ -50,7 +58,11 @@ import { NgxPrintModule } from 'ngx-print';
     ModalConfirmFooterComponent,
     ModalRepeatedWordsFooterComponent,
     ErrorMessageComponent,
-    PrintableSectionComponent
+    PrintableSectionComponent,
+    BreadCrumComponent,
+    NavigationLayoutComponent,
+    AcordionComponent,
+    HelpTooltipComponent
   ],
   imports: [
     CommonModule,

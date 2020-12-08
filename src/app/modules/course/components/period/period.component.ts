@@ -16,7 +16,7 @@ const ONE_ELEMENT = 1;
 })
 export class PeriodComponent implements OnInit {
   @Input() periods: Period[] = [];
-  noPeriodMessage = 'La carrera no posee períodos todavía, haz click en Agregar Período';
+  noPeriodMessage = 'El curso no posee períodos todavía, haz click en Agregar Período';
 
   constructor(private courseModalService: CourseModalService,
               private notificationService: ModalService) {
@@ -27,8 +27,8 @@ export class PeriodComponent implements OnInit {
 
   public deletePeriod(period) {
     this.notificationService.openConfirmModal(
-      'Eliminar Periodo',
-      'Se eliminará el periodo y todos sus datos.',
+      'Eliminar Período',
+      'Se eliminará el período y todos sus datos.',
       '¿Desea continuar?',
       ButtonText.Delete
     ).subscribe(

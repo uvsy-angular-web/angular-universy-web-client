@@ -1,0 +1,36 @@
+.accordion-title {
+    margin: 0.2rem;
+    padding: 0.25rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    cursor: pointer;
+    border-radius: 16px;
+    background-color: #f3f3f3;
+}
+
+.accordion-title:hover {
+    border-radius: 16px;
+    background-color: #f8f8f8;
+}
+
+i:hover {
+    color: #8046b6
+}
+
+i {
+    font-size: 2.5rem;
+}
+
+i, .accordion-title, .collapse {
+    transition: all 0.3s ease;
+}
+
+.icon-expanded {
+    transform: rotate(180deg);
+}
+
+@media print {
+    .accordion-title {
+        display: none;
+    }
+}

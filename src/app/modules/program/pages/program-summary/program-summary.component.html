@@ -1,22 +1,32 @@
 <div id="print-section">
     <div [ngClass]="{'content':!isInsideComponent}">
-        <app-custom-title *ngIf="!isInsideComponent" [title]="componentTitle" [showDeleteButton]="false" [showEditButton]="false"></app-custom-title>
+        <app-custom-title *ngIf="!isInsideComponent" [title]="componentTitle" [showDeleteButton]="false"
+            [showEditButton]="false"></app-custom-title>
         <h3 *ngIf="isInsideComponent">{{componentTitle}}</h3>
         <div class="correlative-stat-container">
             <app-stats [title]="correlativeCountText" [value]="correlativesCount+'/'+subjects.length"> </app-stats>
         </div>
-        <div *ngFor="let subject of subjects; index as i" class="subject-detail">
-            <div *ngIf="subject.correlatives && subject.correlatives.length > 0" class="subject-table">
-                <h4><strong>{{(i)+' - '}}</strong>{{subject.name}}</h4>
-                <p class="level-row">{{levelText}}<span class="level-number">{{subject.level}}</span></p>
-                <h6 class="correlative-title">{{correlativesTitle}}</h6>
-                <div class="correlative-list">
-                    <app-correlative-list [correlatives]="subject.correlatives" [subject]="subject" [subjects]="subjects"></app-correlative-list>
+        <div class="correlative-list-container">
+            <app-acordion [title]="correlativeListTitle" >
+                <div class="card-body">
+                    <div *ngFor="let subject of subjects; index as i" class="subject-detail">
+                        <div *ngIf="subject.correlatives && subject.correlatives.length > 0" class="subject-table">
+                            <h4><strong>{{(i)+' - '}}</strong>{{subject.name}}</h4>
+                            <p class="level-row">{{levelText}}<span class="level-number">{{subject.level}}</span></p>
+
+                            <h6 class="correlative-title">{{correlativesTitle}}</h6>
+                            <div class="correlative-list">
+                                <app-correlative-list [correlatives]="subject.correlatives" [subject]="subject"
+                                    [subjects]="subjects"></app-correlative-list>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right publish-btn-container" *ngIf="!isInsideComponent">
+                        <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true"
+                            printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="text-right publish-btn-container" *ngIf="!isInsideComponent">
-            <button class="btn btn-primary" [printStyle]="printStyle" [useExistingCss]="true" printSectionId="print-section" ngxPrint>{{printButtonText}}</button>
+            </app-acordion>
         </div>
     </div>
 </div>

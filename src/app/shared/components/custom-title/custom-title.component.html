@@ -1,10 +1,14 @@
 <div class="row">
   <div class="col">
-    <h3>
-      <i *ngIf="showNavigationArrow" class="material-icons space-right" (click)="navigateToPreviousPage()">arrow_back</i>
-      <span class="career-title space-right">{{title}}</span>
+    <div class="row align-items-end">
+      <i *ngIf="showNavigationArrow" class="material-icons space-right"
+        (click)="navigateToPreviousPage()">arrow_back</i>
+      <div>
+        <h6 *ngIf="showCurrentLocation">{{currentLocationLabel}}:</h6>
+        <h3 class="career-title space-right">{{title}}</h3>
+      </div>
       <i *ngIf="showEditButton" class="material-icons space-right" (click)="editItemAction()">edit</i>
       <i *ngIf="showDeleteButton" class="material-icons space-right" (click)="deleteItemAction()">delete</i>
-    </h3>
+    </div>
   </div>
 </div>

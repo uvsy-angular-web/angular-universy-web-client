@@ -48,7 +48,7 @@ export class SubjectStatComponent implements OnChanges {
 
   private buildPrintTitle() {
     const currentProgram = ProgramService.getCurrentProgram();
-    this.printTitle = `Estadisticas de valoración por materia \n - ${currentProgram.name} -`;
+    this.printTitle = `Estadísticas de valoración por materia \n - ${currentProgram.name} -`;
   }
 
   private generateGraphItems() {

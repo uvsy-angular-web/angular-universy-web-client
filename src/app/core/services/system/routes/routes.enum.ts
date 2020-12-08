@@ -1,3 +1,5 @@
+import { BreadCrum } from 'src/app/models/breadcrum.model';
+
 export enum Route {
   HOME = 'home',
   INSTITUTION = 'institution',
@@ -10,3 +12,12 @@ export enum Route {
   SUBJECT = 'institution/career/program/subject',
   COURSE = 'institution/career/program/subject/course',
 }
+
+export const routesBreadcrum: BreadCrum[] = [
+  new BreadCrum(1, 'institution', 'Institución'),
+  new BreadCrum(2, 'career', 'Carrera'),
+  new BreadCrum(3, 'program', 'Plan'),
+  new BreadCrum(4, 'subject', 'Materia'),
+  new BreadCrum(5, 'course', 'Curso, profesores y horarios'),
+];
+

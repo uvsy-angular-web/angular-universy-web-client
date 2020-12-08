@@ -14,11 +14,11 @@ import { ProgramReport } from 'src/app/models/program-report.model';
 const CURRENT_PROGRAM_KEY = 'current-program';
 const PROGRAM_OVERLAPED_CODE = 409;
 
-const ADD_PROGRAM_ERROR_TITLE = 'No se pudo agregar el programa';
+const ADD_PROGRAM_ERROR_TITLE = 'No se pudo agregar el plan';
 const ADD_PROGRAM_DEFAULT_ERROR_MESSAGE = 'Ocurrió un error tratando de agregar un nuevo plan. Intentalo nuevamente más tarde.';
 const EDIT_PROGRAM_ERROR_MESSAGE = 'Ocurrió un error tratando de modificar el plan. Intentalo nuevamente más tarde.';
-const EDIT_PROGRAM_ERROR_TITLE = 'No se pudo modificar el programa';
-const OVERLAPED_PROGRAM_ERROR_MESSAGE = 'Verifica que el periodo ingresado sea válido, al parecer ya existe un plan para ese rango de años';
+const EDIT_PROGRAM_ERROR_TITLE = 'No se pudo modificar el plan';
+const OVERLAPED_PROGRAM_ERROR_MESSAGE = 'Verifica que el período ingresado sea válido, al parecer ya existe un plan para ese rango de años';
 
 @Injectable({
   providedIn: 'root'

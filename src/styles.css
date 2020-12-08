@@ -45,8 +45,8 @@ html, body {
 }
 
 .content {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 form.submitted input.ng-invalid, input.ng-dirty.ng-invalid {

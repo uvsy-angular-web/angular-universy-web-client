@@ -48,13 +48,14 @@ export class ProgramStatsComponent implements OnInit {
   printButtonText = 'Imprimir';
   subjectCountStatTxt = 'Cantidad de materias';
   levelCountStatTxt = 'Cantidad de niveles';
+  printTooltip = 'Para imprimir la página completa, haz click en "Ver lista de correlativas"';
   printStyle = {
     body: { 'margin-left': '3rem' },
     a: { opacity: 0 },
     button: { opacity: 0 }
   };
   isProgramPublished = true;
-  printTitle = 'Resumen general del programa';
+  printTitle = 'Resumen general del plan';
 
   constructor(
     private programModalService: ProgramModalService,

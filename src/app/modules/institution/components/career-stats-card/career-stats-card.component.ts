@@ -12,7 +12,7 @@ import { CareerStat } from 'src/app/models/career-stat.model';
 })
 export class CareerStatsCardComponent implements OnInit {
   @Input() career: CareerStat;
-  noProgramTxt = 'no posee programas';
+  noProgramTxt = 'no posee planes';
 
   constructor(private navigationService: NavigationService) { }
 

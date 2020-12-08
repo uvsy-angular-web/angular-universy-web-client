@@ -8,7 +8,7 @@ import { InstitutionReport } from 'src/app/models/institution-report.model';
   styleUrls: ['./institution-stats.component.css']
 })
 export class InstitutionStatsComponent implements OnInit {
-  title = 'Mis estadisticas generales de las carreras';
+  title = 'Mis estadísticas generales de las carreras';
   institutionReport: InstitutionReport;
   printButtonText = 'Imprimir';
 

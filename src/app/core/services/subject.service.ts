@@ -13,7 +13,7 @@ import { ButtonText } from 'src/app/shared/enums/button-text.enum';
 
 const CURRENT_SUBJECT_KEY = 'current-subject';
 const GET_SUBJECTS_ERROR = 'Ocurrió un error tratando de obtener las materias del plan';
-const GET_SUBJECTS_REPORT_ERROR = 'Ocurrió un error tratando de obtener las estadisticas de la materia';
+const GET_SUBJECTS_REPORT_ERROR = 'Ocurrió un error tratando de obtener las estadísticas de la materia';
 const OPTATIVE_SUBJECT_TITLE = 'Advertencia';
 const OPTATIVE_SUBJECT_MESSAGE = 'Está intentando cargar una materia optativa dentro de un plan que no requiere materias optativas en su configuración. Dicho registro puede generar inconsistencias para los estudiantes y en la generación posterior de de estadísticas.';
 const OPTATIVE_SUBJECT_QUESTION = '¿Desea continuar?';

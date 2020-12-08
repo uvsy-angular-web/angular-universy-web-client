@@ -26,14 +26,14 @@ export class CourseModalService {
 
   public openNewPeriodModal() {
     const modalRef = this.modalService.open(PeriodModalComponent, {backdrop: 'static'});
-    modalRef.componentInstance.title = 'Agregar Periodo';
+    modalRef.componentInstance.title = 'Agregar Período';
     modalRef.componentInstance.confirmButtonText = ButtonText.Add;
     return modalRef.componentInstance.confirmEvent;
   }
 
   public openEditPeriodModal(period: Period) {
     const modalRef = this.modalService.open(PeriodModalComponent, {backdrop: 'static'});
-    modalRef.componentInstance.title = 'Modificar Periodo';
+    modalRef.componentInstance.title = 'Modificar Período';
     modalRef.componentInstance.period = period;
     modalRef.componentInstance.confirmButtonText = ButtonText.Edit;
     return modalRef.componentInstance.confirmEvent;
