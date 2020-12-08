@@ -1,13 +1,13 @@
 <app-navigation-layout>
     <div class="container-fluid">
-        <div class="row flex-sm-row-reverse">
-            <div class="col-sm-5 col-xs-12 toggler">
-                <app-custom-toggle class="float-right" [activated]="getStateOfCareer()"
-                    (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
-            </div>
-            <div class="col-sm-7 col-xs-12">
+        <div class="row">
+            <div class="col-12">
                 <app-custom-title [title]="career.name" (editItem)="openEditCareerModal()" [showDeleteButton]="false">
                 </app-custom-title>
+            </div>
+            <div class="col-12 align-items-end">
+                <app-custom-toggle class="float-right" [activated]="getStateOfCareer()"
+                    (toggleChanged)="editStateOfCareer($event)"></app-custom-toggle>
             </div>
         </div>
         <hr>
