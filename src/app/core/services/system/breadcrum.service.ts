@@ -23,7 +23,7 @@ export class BreadcrumService {
       const currentLocation =  this.router.url.split(URL_SEPARATOR).pop();
       const currentBreadcrum = routesBreadcrum
       .find((routeBreadcrum: BreadCrum) => routeBreadcrum.location === currentLocation)
-      return currentBreadcrum.label
+      return currentBreadcrum? currentBreadcrum.label : ''
     }
     return null;
   }
