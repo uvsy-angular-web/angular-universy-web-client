@@ -9,7 +9,6 @@ import { InstitutionReport } from 'src/app/models/institution-report.model';
 })
 export class InstitutionStatsComponent implements OnInit {
   title = 'Mis estadisticas generales de las carreras';
-  printTooltip = 'Para imprimir la página completa, expandi todas las correlativas';
   institutionReport: InstitutionReport;
   printButtonText = 'Imprimir';
 

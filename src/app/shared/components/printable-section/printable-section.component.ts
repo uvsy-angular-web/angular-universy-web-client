@@ -9,13 +9,14 @@ export class PrintableSectionComponent implements OnInit {
   @Input() printTitle: string;
   @Input() showPrimaryPrintButton = true;
   @Input() showSecondaryPrintButton = false;
-  @Input() buttonTooltip = 'Imprimir página';
+  @Input() buttonTooltip: string;
   dateText = 'Fecha: ';
   hourText = 'Hora: ';
   currentDate: Date;
   printStyle = {
     a: { opacity: 0 },
     button: { opacity: 0 },
+    'ngb-print-tooltip': { opacity: 0}
   };
   printButtonText = 'Imprimir';
   footerText = 'Universy | Sistema de gestión estudiantil.'

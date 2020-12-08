@@ -7,7 +7,7 @@
             <app-stats [title]="correlativeCountText" [value]="correlativesCount+'/'+subjects.length"> </app-stats>
         </div>
         <div class="correlative-list-container">
-            <app-acordion [title]="correlativeListTitle">
+            <app-acordion [title]="correlativeListTitle" >
                 <div class="card-body">
                     <div *ngFor="let subject of subjects; index as i" class="subject-detail">
                         <div *ngIf="subject.correlatives && subject.correlatives.length > 0" class="subject-table">

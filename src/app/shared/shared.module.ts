@@ -20,6 +20,7 @@ import { NgxPrintModule } from 'ngx-print';
 import { BreadCrumComponent } from './components/bread-crum/bread-crum.component';
 import { NavigationLayoutComponent } from './components/navigation-layout/navigation-layout.component';
 import { AcordionComponent } from './components/acordion/acordion.component';
+import { HelpTooltipComponent } from './components/help-tooltip/help-tooltip.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AcordionComponent } from './components/acordion/acordion.component';
     PrintableSectionComponent,
     BreadCrumComponent,
     NavigationLayoutComponent,
-    AcordionComponent
+    AcordionComponent,
+    HelpTooltipComponent
   ],
   exports: [
     GraphBarComponent,
@@ -59,7 +61,8 @@ import { AcordionComponent } from './components/acordion/acordion.component';
     PrintableSectionComponent,
     BreadCrumComponent,
     NavigationLayoutComponent,
-    AcordionComponent
+    AcordionComponent,
+    HelpTooltipComponent
   ],
   imports: [
     CommonModule,
