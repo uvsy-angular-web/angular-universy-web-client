@@ -18,6 +18,6 @@ export const routesBreadcrum: BreadCrum[] = [
   new BreadCrum(2, 'career', 'Carrera'),
   new BreadCrum(3, 'program', 'Plan'),
   new BreadCrum(4, 'subject', 'Materia'),
-  new BreadCrum(5, 'course', 'Curso: Profesores y horarios'),
+  new BreadCrum(5, 'course', 'Curso, profesores y horarios'),
 ];
 

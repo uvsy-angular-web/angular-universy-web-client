@@ -18,12 +18,23 @@ export class BreadcrumService {
   constructor(private router: Router) {
   }
 
+  public getCurrentLocationLabel(): string {
+    if (this.router.url) {
+      const currentLocation =  this.router.url.split(URL_SEPARATOR).pop();
+      const currentBreadcrum = routesBreadcrum
+      .find((routeBreadcrum: BreadCrum) => routeBreadcrum.location === currentLocation)
+      return currentBreadcrum.label
+    }
+    return null;
+  }
+
   public getCurrentLocations(): string[] {
     if (this.router.url) {
       return this.router.url.split(URL_SEPARATOR);
     }
     return [];
   }
+
   public getCurrentBreadcrums() {
     const locations = this.getCurrentLocations();
     const breadcrums = [...routesBreadcrum];

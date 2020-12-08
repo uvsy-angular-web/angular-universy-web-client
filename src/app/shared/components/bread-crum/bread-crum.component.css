@@ -11,14 +11,14 @@
     font-style: 0.4rem;
     text-align: left;
     font-weight: 400;
-    color: #696969;
+    color: #363636;
     margin-bottom: 0.2rem;
 }
 
 .step-number {
     font-size: 1.5rem;
     font-weight: 200;
-    color: gray;
+    color: #a1a1a1;
     white-space: nowrap;
 }
 
@@ -29,8 +29,8 @@
 
 .step {
     font-size: 1rem;
-    border-radius: 16px;
-    color: #686868;
+    border-radius: 2px;
+    color: #a1a1a1;
     text-align: left;
     padding-bottom: 1rem;
 }
@@ -40,8 +40,8 @@
     line-height: normal;
     font-style: normal;
     color: #8046b6;
-    text-align: center;
-    background-color: #e4e4e4;
+    text-align: left;
+    background-color: #f1f1f1;
     padding: 0.4rem;
 }
 
